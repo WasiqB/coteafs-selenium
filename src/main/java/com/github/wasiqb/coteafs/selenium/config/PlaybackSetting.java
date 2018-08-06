@@ -1,0 +1,123 @@
+/**
+ * Copyright (c) 2017-2020, Wasiq Bhamla.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.github.wasiqb.coteafs.selenium.config;
+
+/**
+ * @author Wasiq Bhamla
+ * @since Apr 8, 2018 2:45:29 PM
+ */
+public class PlaybackSetting {
+	private DelaySetting		delays;
+	private boolean				highlight;
+	private String				screenResolution;
+	private ScreenshotSetting	screenshot;
+	private ScreenState			screenState;
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 * @return the delays
+	 */
+	public DelaySetting getDelays () {
+		return this.delays;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 * @return the screenResolution
+	 */
+	public String getScreenResolution () {
+		return this.screenResolution;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 * @return the screenshot
+	 */
+	public ScreenshotSetting getScreenshot () {
+		return this.screenshot;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 * @return the screenState
+	 */
+	public ScreenState getScreenState () {
+		return this.screenState;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 * @return the highlight
+	 */
+	public boolean isHighlight () {
+		return this.highlight;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 * @param delays
+	 *            the delays to set
+	 */
+	public void setDelays (DelaySetting delays) {
+		this.delays = delays;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 * @param highlight
+	 *            the highlight to set
+	 */
+	public void setHighlight (boolean highlight) {
+		this.highlight = highlight;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 * @param screenResolution
+	 *            the screenSize to set
+	 */
+	public void setScreenResolution (String screenResolution) {
+		this.screenResolution = screenResolution;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 * @param screenshot
+	 *            the screenshot to set
+	 */
+	public void setScreenshot (ScreenshotSetting screenshot) {
+		this.screenshot = screenshot;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 * @param screenState
+	 *            the screenState to set
+	 */
+	public void setScreenState (ScreenState screenState) {
+		this.screenState = screenState;
+	}
+}

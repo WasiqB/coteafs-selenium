@@ -1,0 +1,9 @@
+/target/
+/test-output/
+/settings/
+/reports/
+/*.gpg
+/*.gpg.lock
+/.settings/
+/.classpath
+/.project

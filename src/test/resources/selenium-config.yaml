@@ -1,0 +1,20 @@
+applications:
+  ppay:
+    browser: chrome # chrome, ie, firefox
+    url: # 
+    playback:
+      screen_state: maximized # normals
+      screen_size: # resolution
+      highlight: true
+      delays:
+        implicit:
+        explicit:
+        before_key_press:
+        after_key_press:
+        before_mouse_move:
+        after_mouse_move:
+        page_load: 
+      screenshot:
+        path:
+        prefix:
+        capture_on_error: 

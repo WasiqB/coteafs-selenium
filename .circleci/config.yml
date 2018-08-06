@@ -1,0 +1,54 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "pom.xml" }}
+      - run: mvn dependency:go-offline
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+  test:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "pom.xml" }}
+      - run:
+          name: Run Tests with Sonar Coverage
+          command: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
+      - save_cache:
+          paths:
+            - reports/
+          key: v1-reports-{{ checksum "pom.xml" }}
+  code_analysis:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-reports-{{ checksum "pom.xml" }}
+      - run:
+          name: Update Sonar Analysis
+          command: mvn sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=wasiqb-github -Dsonar.login=2a3b543fa174cd6f6dab293da326d9aa62473316
+
+workflows:
+  version: 2
+  normal_flow:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - code_analysis:
+          requires:
+            - test
