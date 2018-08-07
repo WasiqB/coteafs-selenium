@@ -41,20 +41,25 @@ jobs:
           name: Update Sonar Analysis
           command: mvn sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=wasiqb-github -Dsonar.login=2a3b543fa174cd6f6dab293da326d9aa62473316
 
+filters: &all_branches
+  branches:
+    only:
+      - develop
+      - master
+      - release
+      - /issue-.*/
+
 workflows:
   version: 2
   normal_flow:
-    branches:
-      only:
-        - develop
-        - master
-        - release
-        - /issue-.*/
     jobs:
-      - build
+      - build:
+          filters: *all_branches
       - test:
           requires:
             - build
+          filters: *all_branches
       - code_analysis:
           requires:
             - test
+          filters: *all_branches
