@@ -44,6 +44,12 @@ jobs:
 workflows:
   version: 2
   normal_flow:
+    branches:
+      only:
+        - develop
+        - master
+        - release
+        - /issue-.*/
     jobs:
       - build
       - test:
