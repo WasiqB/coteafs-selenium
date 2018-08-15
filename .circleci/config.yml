@@ -46,8 +46,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - repo-dependencies-{{ checksum "pom.xml" }}
             - repo-{{ arch }}
+            - repo-dependencies-{{ checksum "pom.xml" }}
             - repo-target-{{ checksum "pom.xml" }}
       - run:
           name: Run Tests with Sonar Coverage
@@ -62,8 +62,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - repo-dependencies-{{ checksum "pom.xml" }}
             - repo-{{ arch }}
+            - repo-dependencies-{{ checksum "pom.xml" }}
             - repo-target-{{ checksum "pom.xml" }}
             - repo-reports-{{ checksum "pom.xml" }}
       - run:
