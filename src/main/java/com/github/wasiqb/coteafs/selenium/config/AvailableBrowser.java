@@ -15,8 +15,13 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
+import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static java.lang.System.getProperty;
 import static java.lang.System.setProperty;
+
+import java.net.URL;
+
+import com.github.wasiqb.coteafs.selenium.constants.OS;
 
 /**
  * @author Wasiq Bhamla
@@ -26,38 +31,42 @@ public enum AvailableBrowser {
 	/**
 	 * Chrome.
 	 */
-	CHROME ("webdriver.chrome.driver", "/chromedriver_"),
+	CHROME ("webdriver.chrome.driver", "chromedriver"),
 	/**
 	 * Firefox.
 	 */
-	FIREFOX ("webdriver.gecko.driver", "/geckodriver_");
+	FIREFOX ("webdriver.gecko.driver", "geckodriver");
 
-	private static final String DEFAULT_FOLDER = "/driver";
+	private static final String DEFAULT_FOLDER = "/drivers";
 
+	private String	driver;
 	private String	key;
-	private String	path;
 
-	private AvailableBrowser (final String key, final String path) {
+	private AvailableBrowser (final String key, final String driver) {
 		this.key = key;
-		this.path = path;
+		this.driver = driver;
 		setup ();
 	}
 
 	private void setup () {
+		final ApplicationSetting setting = appSetting ();
 		if (getProperty (this.key) == null) {
-			final String folder = getConfig (DRIVER_PATH, DEFAULT_FOLDER);
-			final String os = getProperty ("os.name");
+			final String folder = setting.getDriverPath () == null
+					? DEFAULT_FOLDER
+					: setting.getDriverPath ();
 			final StringBuilder sb = new StringBuilder ();
 			if (DEFAULT_FOLDER.equals (folder)) {
-				final String dir = getProperty ("user.dir");
-				sb.append (dir);
+				final URL dir = AvailableBrowser.class.getClassLoader ()
+						.getResource (folder);
+				sb.append (dir.getPath ());
 			}
-			sb.append (folder);
-			sb.append (this.path);
-			if (os.startsWith ("Windows"))
-				sb.append ("Windows.exe");
-			else
-				sb.append (os);
+			sb.append (folder)
+					.append ("/")
+					.append (OS.platform ())
+					.append (this.driver);
+			if (OS.isWindows ()) {
+				sb.append (".exe");
+			}
 			setProperty (this.key, sb.toString ());
 		}
 	}

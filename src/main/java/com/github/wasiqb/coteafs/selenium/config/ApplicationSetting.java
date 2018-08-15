@@ -21,6 +21,7 @@ package com.github.wasiqb.coteafs.selenium.config;
  */
 public class ApplicationSetting {
 	private AvailableBrowser	browser;
+	private String				driverPath;
 	private boolean				headlessMode;
 	private String				hubUrl;
 	private PlaybackSetting		playback;
@@ -41,6 +42,15 @@ public class ApplicationSetting {
 	 */
 	public AvailableBrowser getBrowser () {
 		return this.browser;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Aug 9, 2018 8:52:36 PM
+	 * @return the driverPath
+	 */
+	public String getDriverPath () {
+		return this.driverPath;
 	}
 
 	/**
@@ -87,6 +97,16 @@ public class ApplicationSetting {
 	 */
 	public void setBrowser (AvailableBrowser browser) {
 		this.browser = browser;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Aug 9, 2018 8:52:36 PM
+	 * @param driverPath
+	 *            the driverPath to set
+	 */
+	public void setDriverPath (String driverPath) {
+		this.driverPath = driverPath;
 	}
 
 	/**

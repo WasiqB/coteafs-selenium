@@ -33,6 +33,17 @@ public class DelaySetting {
 
 	/**
 	 * @author Wasiq Bhamla
+	 * @since Aug 15, 2018 3:14:37 PM
+	 */
+	public DelaySetting () {
+		this.pageLoad = 60;
+		this.scriptLoad = 60;
+		this.implicit = 1;
+		this.explicit = 10;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
 	 * @since May 1, 2018 4:53:44 PM
 	 * @return the afterClick
 	 */
@@ -127,7 +138,7 @@ public class DelaySetting {
 	 * @param afterClick
 	 *            the afterClick to set
 	 */
-	public void setAfterClick (long afterClick) {
+	public void setAfterClick (final long afterClick) {
 		this.afterClick = afterClick;
 	}
 
@@ -137,7 +148,7 @@ public class DelaySetting {
 	 * @param afterKeyPress
 	 *            the afterKeyPress to set
 	 */
-	public void setAfterKeyPress (long afterKeyPress) {
+	public void setAfterKeyPress (final long afterKeyPress) {
 		this.afterKeyPress = afterKeyPress;
 	}
 
@@ -147,7 +158,7 @@ public class DelaySetting {
 	 * @param afterMouseMove
 	 *            the afterMouseMove to set
 	 */
-	public void setAfterMouseMove (long afterMouseMove) {
+	public void setAfterMouseMove (final long afterMouseMove) {
 		this.afterMouseMove = afterMouseMove;
 	}
 
@@ -157,7 +168,7 @@ public class DelaySetting {
 	 * @param beforeClick
 	 *            the beforeClick to set
 	 */
-	public void setBeforeClick (long beforeClick) {
+	public void setBeforeClick (final long beforeClick) {
 		this.beforeClick = beforeClick;
 	}
 
@@ -167,7 +178,7 @@ public class DelaySetting {
 	 * @param beforeKeyPress
 	 *            the beforeKeyPress to set
 	 */
-	public void setBeforeKeyPress (long beforeKeyPress) {
+	public void setBeforeKeyPress (final long beforeKeyPress) {
 		this.beforeKeyPress = beforeKeyPress;
 	}
 
@@ -177,7 +188,7 @@ public class DelaySetting {
 	 * @param beforeMouseMove
 	 *            the beforeMouseMove to set
 	 */
-	public void setBeforeMouseMove (long beforeMouseMove) {
+	public void setBeforeMouseMove (final long beforeMouseMove) {
 		this.beforeMouseMove = beforeMouseMove;
 	}
 
@@ -187,7 +198,7 @@ public class DelaySetting {
 	 * @param explicit
 	 *            the explicit to set
 	 */
-	public void setExplicit (long explicit) {
+	public void setExplicit (final long explicit) {
 		this.explicit = explicit;
 	}
 
@@ -197,7 +208,7 @@ public class DelaySetting {
 	 * @param implicit
 	 *            the implicit to set
 	 */
-	public void setImplicit (long implicit) {
+	public void setImplicit (final long implicit) {
 		this.implicit = implicit;
 	}
 
@@ -207,7 +218,7 @@ public class DelaySetting {
 	 * @param pageLoad
 	 *            the pageLoad to set
 	 */
-	public void setPageLoad (long pageLoad) {
+	public void setPageLoad (final long pageLoad) {
 		this.pageLoad = pageLoad;
 	}
 
@@ -217,7 +228,7 @@ public class DelaySetting {
 	 * @param scriptLoad
 	 *            the scriptLoad to set
 	 */
-	public void setScriptLoad (long scriptLoad) {
+	public void setScriptLoad (final long scriptLoad) {
 		this.scriptLoad = scriptLoad;
 	}
 }
