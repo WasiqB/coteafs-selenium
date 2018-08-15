@@ -1,45 +1,79 @@
+docker: &docker_java
+  - image: circleci/openjdk:8-jdk
 version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/openjdk:8-jdk
+  code_checkout:
+    docker: *docker_java
     working_directory: ~/repo
     steps:
       - checkout
+      - save_cache:
+          key: repo-{{ checksum "pom.xml" }}
+          paths:
+            - ~/repo
+  resolve_dependencies:
+    docker: *docker_java
+    working_directory: ~/repo
+    steps:
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "pom.xml" }}
-      - run: mvn dependency:go-offline
+            - repo-{{ checksum "pom.xml" }}
+      - run:
+          name: Resolve Dependencies
+          command: mvn dependency:resolve
       - save_cache:
+          key: repo-dependencies-{{ checksum "pom.xml" }}
           paths:
             - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
-  test:
-    docker:
-      - image: circleci/openjdk:8-jdk
+  build:
+    docker: *docker_java
+    working_directory: ~/repo
     steps:
-      - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "pom.xml" }}
+            - repo-{{ checksum "pom.xml" }}
+            - repo-dependencies-{{ checksum "pom.xml" }}
+      - run:
+          name: Build project
+          command: mvn clean install -DskipTests=true
+      - save_cache:
+          key: repo-{{ checksum "pom.xml" }}
+          paths:
+            - ~/repo
+  test:
+    docker: *docker_java
+    working_directory: ~/repo
+    steps:
+      - restore_cache:
+          keys:
+            - repo-{{ checksum "pom.xml" }}
+            - repo-dependencies-{{ checksum "pom.xml" }}
       - run:
           name: Run Tests with Sonar Coverage
-          command: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
+          command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
       - save_cache:
+          key: repo-{{ checksum "pom.xml" }}
           paths:
-            - reports/
-          key: v1-reports-{{ checksum "pom.xml" }}
+            - ~/repo
   code_analysis:
-    docker:
-      - image: circleci/openjdk:8-jdk
+    docker: *docker_java
+    working_directory: ~/repo
     steps:
-      - checkout
       - restore_cache:
           keys:
-          - v1-reports-{{ checksum "pom.xml" }}
+            - repo-{{ checksum "pom.xml" }}
+            - repo-dependencies-{{ checksum "pom.xml" }}
       - run:
           name: Update Sonar Analysis
-          command: mvn sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=wasiqb-github -Dsonar.login=2a3b543fa174cd6f6dab293da326d9aa62473316
+          command: mvn sonar:sonar \
+                      -Dsonar.host.url=${env.SONAR_HOST} \
+                      -Dsonar.organization=${env.SONAR_ORG} \
+                      -Dsonar.login=${env.SONAR_KEY} \
+                      -Dsonar.pullrequest.base=master \
+                      -Dsonar.pullrequest.branch=issue-7 \
+                      -Dsonar.pullrequest.key=5 \
+                      -Dsonar.pullrequest.provider=GitHub \
+                      -Dsonar.pullrequest.github.repository=WasiqB/coteafs-selenium
 
 filters: &all_branches
   branches:
@@ -53,8 +87,16 @@ workflows:
   version: 2
   normal_flow:
     jobs:
+      - code_checkout:
+          filters: *all_branches
+      - resolve_dependencies:
+          filters: *all_branches
+          requires:
+            - code_checkout
       - build:
           filters: *all_branches
+          requires:
+            - resolve_dependencies
       - test:
           requires:
             - build
