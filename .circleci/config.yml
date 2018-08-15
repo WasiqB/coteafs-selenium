@@ -8,61 +8,62 @@ jobs:
     steps:
       - checkout
       - save_cache:
-          key: repo-{{ checksum "pom.xml" }}
+          key: repo-{{ arch }}
           paths:
             - ~/repo
   resolve_dependencies:
     docker: *docker_java
-    working_directory: ~/repo
     steps:
       - restore_cache:
           keys:
-            - repo-{{ checksum "pom.xml" }}
+            - repo-{{ arch }}
       - run:
           name: Resolve Dependencies
           command: mvn dependency:resolve
       - save_cache:
-          key: repo-dependencies-{{ checksum "pom.xml" }}
           paths:
             - ~/.m2
+          key: maven-dependency-{{ checksum "pom.xml" }}
   build:
     docker: *docker_java
-    working_directory: ~/repo
     steps:
       - restore_cache:
           keys:
-            - repo-{{ checksum "pom.xml" }}
-            - repo-dependencies-{{ checksum "pom.xml" }}
+            - repo-{{ arch }}
+            - repo-dependency-{{ checksum "pom.xml" }}
       - run:
           name: Build project
           command: mvn clean install -DskipTests=true
       - save_cache:
-          key: repo-{{ checksum "pom.xml" }}
+          key: repo-target-{{ checksum "pom.xml" }}
           paths:
-            - ~/repo
+            - target/
   test:
     docker: *docker_java
     working_directory: ~/repo
     steps:
       - restore_cache:
           keys:
-            - repo-{{ checksum "pom.xml" }}
             - repo-dependencies-{{ checksum "pom.xml" }}
+            - repo-{{ arch }}
+            - repo-target-{{ checksum "pom.xml" }}
       - run:
           name: Run Tests with Sonar Coverage
           command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
       - save_cache:
-          key: repo-{{ checksum "pom.xml" }}
+          key: repo-reports-{{ checksum "pom.xml" }}
           paths:
-            - ~/repo
+            - reports/
   code_analysis:
     docker: *docker_java
     working_directory: ~/repo
     steps:
       - restore_cache:
           keys:
-            - repo-{{ checksum "pom.xml" }}
             - repo-dependencies-{{ checksum "pom.xml" }}
+            - repo-{{ arch }}
+            - repo-target-{{ checksum "pom.xml" }}
+            - repo-reports-{{ checksum "pom.xml" }}
       - run:
           name: Update Sonar Analysis
           command: mvn sonar:sonar \
