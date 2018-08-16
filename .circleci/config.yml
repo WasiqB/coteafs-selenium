@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - save_cache:
-          key: repo-{{ arch }}
+          key: repo-{{ .Branch }}-{{ .BuildNum }}
           paths:
             - ~/repo
   resolve_dependencies:
@@ -17,27 +17,27 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - repo-{{ arch }}
+            - repo-{{ .Branch }}-{{ .BuildNum }}
       - run:
           name: Resolve Dependencies
           command: mvn dependency:resolve
       - save_cache:
           paths:
             - ~/.m2
-          key: maven-dependency-{{ checksum "pom.xml" }}
+          key: maven-dependency-{{ .Branch }}-{{ .BuildNum }}
   build:
     docker: *docker_java
     working_directory: ~/repo
     steps:
       - restore_cache:
           keys:
-            - repo-{{ arch }}
-            - repo-dependency-{{ checksum "pom.xml" }}
+            - repo-{{ .Branch }}-{{ .BuildNum }}
+            - repo-dependency-{{ .Branch }}-{{ .BuildNum }}
       - run:
           name: Build project
           command: mvn clean install -DskipTests=true
       - save_cache:
-          key: repo-target-{{ checksum "pom.xml" }}
+          key: repo-target-{{ .Branch }}-{{ .BuildNum }}
           paths:
             - target/
   test:
@@ -46,14 +46,14 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - repo-{{ arch }}
-            - repo-dependencies-{{ checksum "pom.xml" }}
-            - repo-target-{{ checksum "pom.xml" }}
+            - repo-{{ .Branch }}-{{ .BuildNum }}
+            - repo-dependencies-{{ .Branch }}-{{ .BuildNum }}
+            - repo-target-{{ .Branch }}-{{ .BuildNum }}
       - run:
           name: Run Tests with Sonar Coverage
           command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
       - save_cache:
-          key: repo-reports-{{ checksum "pom.xml" }}
+          key: repo-reports-{{ .Branch }}-{{ .BuildNum }}
           paths:
             - reports/
   code_analysis:
@@ -62,10 +62,10 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - repo-{{ arch }}
-            - repo-dependencies-{{ checksum "pom.xml" }}
-            - repo-target-{{ checksum "pom.xml" }}
-            - repo-reports-{{ checksum "pom.xml" }}
+            - repo-{{ .Branch }}-{{ .BuildNum }}
+            - repo-dependencies-{{ .Branch }}-{{ .BuildNum }}
+            - repo-target-{{ .Branch }}-{{ .BuildNum }}
+            - repo-reports-{{ .Branch }}-{{ .BuildNum }}
       - run:
           name: Update Sonar Analysis
           command: mvn sonar:sonar \
