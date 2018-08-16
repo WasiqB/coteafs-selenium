@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - save_cache:
-          key: repo-{{ .Branch }}-{{ .BuildNum }}
+          key: repo-{{ .Branch }}-{{ .Revision }}
           paths:
             - ~/repo
   resolve_dependencies:
@@ -17,27 +17,27 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - repo-{{ .Branch }}-{{ .BuildNum }}
+            - repo-{{ .Branch }}-{{ .Revision }}
       - run:
           name: Resolve Dependencies
           command: mvn dependency:resolve
       - save_cache:
           paths:
             - ~/.m2
-          key: maven-dependency-{{ .Branch }}-{{ .BuildNum }}
+          key: repo-dependency-{{ .Branch }}-{{ .Revision }}
   build:
     docker: *docker_java
     working_directory: ~/repo
     steps:
       - restore_cache:
           keys:
-            - repo-{{ .Branch }}-{{ .BuildNum }}
-            - repo-dependency-{{ .Branch }}-{{ .BuildNum }}
+            - repo-{{ .Branch }}-{{ .Revision }}
+            - repo-dependency-{{ .Branch }}-{{ .Revision }}
       - run:
           name: Build project
           command: mvn clean install -DskipTests=true
       - save_cache:
-          key: repo-target-{{ .Branch }}-{{ .BuildNum }}
+          key: repo-target-{{ .Branch }}-{{ .Revision }}
           paths:
             - target/
   test:
@@ -46,14 +46,14 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - repo-{{ .Branch }}-{{ .BuildNum }}
-            - repo-dependencies-{{ .Branch }}-{{ .BuildNum }}
-            - repo-target-{{ .Branch }}-{{ .BuildNum }}
+            - repo-{{ .Branch }}-{{ .Revision }}
+            - repo-dependencies-{{ .Branch }}-{{ .Revision }}
+            - repo-target-{{ .Branch }}-{{ .Revision }}
       - run:
           name: Run Tests with Sonar Coverage
           command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
       - save_cache:
-          key: repo-reports-{{ .Branch }}-{{ .BuildNum }}
+          key: repo-reports-{{ .Branch }}-{{ .Revision }}
           paths:
             - reports/
   code_analysis:
@@ -62,10 +62,10 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - repo-{{ .Branch }}-{{ .BuildNum }}
-            - repo-dependencies-{{ .Branch }}-{{ .BuildNum }}
-            - repo-target-{{ .Branch }}-{{ .BuildNum }}
-            - repo-reports-{{ .Branch }}-{{ .BuildNum }}
+            - repo-{{ .Branch }}-{{ .Revision }}
+            - repo-dependencies-{{ .Branch }}-{{ .Revision }}
+            - repo-target-{{ .Branch }}-{{ .Revision }}
+            - repo-reports-{{ .Branch }}-{{ .Revision }}
       - run:
           name: Update Sonar Analysis
           command: mvn sonar:sonar \
