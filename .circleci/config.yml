@@ -69,9 +69,9 @@ jobs:
       - run:
           name: Update Sonar Analysis
           command: mvn sonar:sonar \
-                      -Dsonar.host.url=${env.SONAR_HOST} \
-                      -Dsonar.organization=${env.SONAR_ORG} \
-                      -Dsonar.login=${env.SONAR_KEY} \
+                      -Dsonar.host.url=$SONAR_HOST \
+                      -Dsonar.organization=$SONAR_ORG \
+                      -Dsonar.login=$SONAR_KEY \
                       -Dsonar.pullrequest.base=master \
                       -Dsonar.pullrequest.branch=issue-7 \
                       -Dsonar.pullrequest.key=5 \
