@@ -1,45 +1,71 @@
+default: &default
+  working_directory: ~/repo
+  docker:
+    - image: circleci/openjdk:8-jdk
 version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    working_directory: ~/repo
+  code_checkout:
+    <<: *default
     steps:
       - checkout
+      - save_cache:
+          key: repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - ~/repo
+  resolve_dependencies:
+    <<: *default
+    steps:
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "pom.xml" }}
-      - run: mvn dependency:go-offline
+            - repo-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Resolve Dependencies
+          command: mvn dependency:resolve
       - save_cache:
           paths:
             - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
-  test:
-    docker:
-      - image: circleci/openjdk:8-jdk
+          key: repo-dependency-{{ .Branch }}-{{ .Revision }}
+  build:
+    <<: *default
     steps:
-      - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "pom.xml" }}
+            - repo-{{ .Branch }}-{{ .Revision }}
+            - repo-dependency-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Build project
+          command: mvn clean install -DskipTests=true
+      - save_cache:
+          key: repo-target-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - target/
+  test:
+    <<: *default
+    steps:
+      - restore_cache:
+          keys:
+            - repo-{{ .Branch }}-{{ .Revision }}
+            - repo-dependencies-{{ .Branch }}-{{ .Revision }}
+            - repo-target-{{ .Branch }}-{{ .Revision }}
       - run:
           name: Run Tests with Sonar Coverage
-          command: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
+          command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
       - save_cache:
+          key: repo-reports-{{ .Branch }}-{{ .Revision }}
           paths:
             - reports/
-          key: v1-reports-{{ checksum "pom.xml" }}
   code_analysis:
-    docker:
-      - image: circleci/openjdk:8-jdk
+    <<: *default
     steps:
-      - checkout
       - restore_cache:
           keys:
-          - v1-reports-{{ checksum "pom.xml" }}
+            - repo-{{ .Branch }}-{{ .Revision }}
+            - repo-dependencies-{{ .Branch }}-{{ .Revision }}
+            - repo-target-{{ .Branch }}-{{ .Revision }}
+            - repo-reports-{{ .Branch }}-{{ .Revision }}
       - run:
           name: Update Sonar Analysis
-          command: mvn sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=wasiqb-github -Dsonar.login=2a3b543fa174cd6f6dab293da326d9aa62473316
+          command: mvn package sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.organization=$SONAR_ORG -Dsonar.login=$SONAR_KEY
 
 filters: &all_branches
   branches:
@@ -53,8 +79,16 @@ workflows:
   version: 2
   normal_flow:
     jobs:
+      - code_checkout:
+          filters: *all_branches
+      - resolve_dependencies:
+          filters: *all_branches
+          requires:
+            - code_checkout
       - build:
           filters: *all_branches
+          requires:
+            - resolve_dependencies
       - test:
           requires:
             - build
