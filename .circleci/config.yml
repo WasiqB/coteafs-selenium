@@ -1,10 +1,11 @@
-docker: &docker_java
-  - image: circleci/openjdk:8-jdk
+default: &default
+  working_directory: ~/repo
+  docker:
+    - image: circleci/openjdk:8-jdk
 version: 2
 jobs:
   code_checkout:
-    docker: *docker_java
-    working_directory: ~/repo
+    <<: *default
     steps:
       - checkout
       - save_cache:
@@ -12,8 +13,7 @@ jobs:
           paths:
             - ~/repo
   resolve_dependencies:
-    docker: *docker_java
-    working_directory: ~/repo
+    <<: *default
     steps:
       - restore_cache:
           keys:
@@ -26,8 +26,7 @@ jobs:
             - ~/.m2
           key: repo-dependency-{{ .Branch }}-{{ .Revision }}
   build:
-    docker: *docker_java
-    working_directory: ~/repo
+    <<: *default
     steps:
       - restore_cache:
           keys:
@@ -41,8 +40,7 @@ jobs:
           paths:
             - target/
   test:
-    docker: *docker_java
-    working_directory: ~/repo
+    <<: *default
     steps:
       - restore_cache:
           keys:
@@ -57,8 +55,7 @@ jobs:
           paths:
             - reports/
   code_analysis:
-    docker: *docker_java
-    working_directory: ~/repo
+    <<: *default
     steps:
       - restore_cache:
           keys:
