@@ -15,6 +15,8 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
+import org.openqa.selenium.Dimension;
+
 /**
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 2:45:29 PM
@@ -22,7 +24,7 @@ package com.github.wasiqb.coteafs.selenium.config;
 public class PlaybackSetting {
 	private DelaySetting		delays;
 	private boolean				highlight;
-	private String				screenResolution;
+	private Dimension			screenResolution;
 	private ScreenshotSetting	screenshot;
 	private ScreenState			screenState;
 
@@ -40,7 +42,7 @@ public class PlaybackSetting {
 	 * @since Apr 8, 2018 3:00:22 PM
 	 * @return the screenResolution
 	 */
-	public String getScreenResolution () {
+	public Dimension getScreenResolution () {
 		return this.screenResolution;
 	}
 
@@ -77,7 +79,7 @@ public class PlaybackSetting {
 	 * @param delays
 	 *            the delays to set
 	 */
-	public void setDelays (DelaySetting delays) {
+	public void setDelays (final DelaySetting delays) {
 		this.delays = delays;
 	}
 
@@ -87,7 +89,7 @@ public class PlaybackSetting {
 	 * @param highlight
 	 *            the highlight to set
 	 */
-	public void setHighlight (boolean highlight) {
+	public void setHighlight (final boolean highlight) {
 		this.highlight = highlight;
 	}
 
@@ -97,7 +99,7 @@ public class PlaybackSetting {
 	 * @param screenResolution
 	 *            the screenSize to set
 	 */
-	public void setScreenResolution (String screenResolution) {
+	public void setScreenResolution (final Dimension screenResolution) {
 		this.screenResolution = screenResolution;
 	}
 
@@ -107,7 +109,7 @@ public class PlaybackSetting {
 	 * @param screenshot
 	 *            the screenshot to set
 	 */
-	public void setScreenshot (ScreenshotSetting screenshot) {
+	public void setScreenshot (final ScreenshotSetting screenshot) {
 		this.screenshot = screenshot;
 	}
 
@@ -117,7 +119,7 @@ public class PlaybackSetting {
 	 * @param screenState
 	 *            the screenState to set
 	 */
-	public void setScreenState (ScreenState screenState) {
+	public void setScreenState (final ScreenState screenState) {
 		this.screenState = screenState;
 	}
 }

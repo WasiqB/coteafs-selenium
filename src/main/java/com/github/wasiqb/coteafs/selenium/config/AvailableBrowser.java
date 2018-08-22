@@ -15,7 +15,6 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
-import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static java.lang.System.getProperty;
 import static java.lang.System.setProperty;
 
@@ -37,7 +36,7 @@ public enum AvailableBrowser {
 	 */
 	FIREFOX ("webdriver.gecko.driver", "geckodriver");
 
-	private static final String DEFAULT_FOLDER = "/drivers";
+	private static final String DEFAULT_FOLDER = "drivers/";
 
 	private String	driver;
 	private String	key;
@@ -49,20 +48,13 @@ public enum AvailableBrowser {
 	}
 
 	private void setup () {
-		final ApplicationSetting setting = appSetting ();
 		if (getProperty (this.key) == null) {
-			final String folder = setting.getDriverPath () == null
-					? DEFAULT_FOLDER
-					: setting.getDriverPath ();
 			final StringBuilder sb = new StringBuilder ();
-			if (DEFAULT_FOLDER.equals (folder)) {
-				final URL dir = AvailableBrowser.class.getClassLoader ()
-						.getResource (folder);
-				sb.append (dir.getPath ());
-			}
-			sb.append (folder)
+			final URL dir = AvailableBrowser.class.getClassLoader ()
+					.getResource (DEFAULT_FOLDER);
+			sb.append (dir.getPath ());
+			sb.append (OS.platform ())
 					.append ("/")
-					.append (OS.platform ())
 					.append (this.driver);
 			if (OS.isWindows ()) {
 				sb.append (".exe");

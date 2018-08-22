@@ -2,6 +2,7 @@
 /test-output/
 /settings/
 /reports/
+/logs/
 /*.gpg
 /*.gpg.lock
 /.settings/
