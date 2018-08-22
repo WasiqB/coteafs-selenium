@@ -27,7 +27,7 @@ public interface ConfigKeys {
 	/**
 	 * Selenium default config key.
 	 */
-	String	COTEAFS_CONFIG_DEFAULT_FILE	= "/appium-config.yaml";
+	String	COTEAFS_CONFIG_DEFAULT_FILE	= "/selenium-config.yaml";
 	/**
 	 * Selenium config key.
 	 */

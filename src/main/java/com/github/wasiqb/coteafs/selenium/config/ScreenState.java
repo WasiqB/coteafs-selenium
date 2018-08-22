@@ -21,6 +21,10 @@ package com.github.wasiqb.coteafs.selenium.config;
  */
 public enum ScreenState {
 	/**
+	 * Full screen.
+	 */
+	FULL_SCREEN,
+	/**
 	 * Maximized.
 	 */
 	MAXIMIZED,
