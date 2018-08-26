@@ -21,8 +21,8 @@
 	</scm>
 
 	<ciManagement>
-		<system>travis</system>
-		<url>https://travis-ci.org/wasiqb/coteafs-selenium</url>
+		<system>Circle CI</system>
+		<url>https://circleci.com/gh/WasiqB/coteafs-selenium</url>
 	</ciManagement>
 
 	<properties>
