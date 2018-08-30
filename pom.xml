@@ -30,6 +30,7 @@
 		<coteafs.error.version>1.5.0</coteafs.error.version>
 		<coteafs.logger.version>1.6.0</coteafs.logger.version>
 		<selenium-version>3.14.0</selenium-version>
+		<commons.io.version>2.6</commons.io.version>
 	</properties>
 
 	<dependencies>
@@ -73,6 +74,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons.io.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.truth</groupId>
