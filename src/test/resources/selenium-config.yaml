@@ -3,15 +3,23 @@ url: http://automationpractice.com
 playback:
   screen_state: MAXIMIZED
   highlight: true
+#  screen_resolution:
+#    width: 1280
+#    height: 768
   delays:
-    implicit: 10
-    explicit: 10
+    implicit: 60
+    explicit: 60
     before_key_press: 0
     after_key_press: 0
     before_mouse_move: 0
     after_mouse_move: 0
+    before_click: 0
+    after_click: 0
     page_load: 60
-#      screenshot:
-#        path:
-#        prefix:
-#        capture_on_error: 
+    script_load: 60
+    highlight: 500
+  screenshot:
+    path: ~/screenshots
+    prefix: SCR
+    extension: jpeg
+    capture_on_error: false

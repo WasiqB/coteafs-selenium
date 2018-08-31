@@ -15,6 +15,12 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
+import static com.github.wasiqb.coteafs.selenium.core.Browser.start;
+import static com.github.wasiqb.coteafs.selenium.core.Browser.stop;
+
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
@@ -22,12 +28,54 @@ import org.testng.annotations.Test;
  * @since Aug 15, 2018 8:07:59 PM
  */
 public class ConfigTest {
+	private MainPage main;
+
 	/**
 	 * @author Wasiq Bhamla
-	 * @since Aug 16, 2018 8:52:18 AM
+	 * @since Aug 19, 2018 4:30:34 PM
+	 */
+	@BeforeMethod
+	public void setupMethod () {
+		this.main.interact ()
+				.navigateTo ("http://automationpractice.com");
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Aug 19, 2018 4:22:57 PM
+	 */
+	@BeforeTest
+	public void setupTest () {
+		start ("CHROME");
+		this.main = new MainPage ();
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Aug 19, 2018 4:23:40 PM
+	 */
+	@AfterTest
+	public void teardownTest () {
+		stop ();
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Aug 31, 2018 9:15:42 PM
 	 */
 	@Test
-	public void testConfig () {
+	public void testSignIn () {
+		this.main.search ()
+				.enterText ("Hello!!!");
+		this.main.signIn ()
+				.click ();
 
+		final LoginPage login = new LoginPage ();
+		login.email ()
+				.enterText ("testerbuds@gmail.com");
+		login.password ()
+				.enterText ("123456");
+		login.signIn ()
+				.click ();
 	}
 }
