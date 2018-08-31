@@ -21,7 +21,6 @@ package com.github.wasiqb.coteafs.selenium.config;
  */
 public class ApplicationSetting {
 	private AvailableBrowser	browser;
-	private String				driverPath;
 	private boolean				headlessMode;
 	private String				hubUrl;
 	private PlaybackSetting		playback;
@@ -42,15 +41,6 @@ public class ApplicationSetting {
 	 */
 	public AvailableBrowser getBrowser () {
 		return this.browser;
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 9, 2018 8:52:36 PM
-	 * @return the driverPath
-	 */
-	public String getDriverPath () {
-		return this.driverPath;
 	}
 
 	/**
@@ -95,18 +85,8 @@ public class ApplicationSetting {
 	 * @param browser
 	 *            the browser to set
 	 */
-	public void setBrowser (AvailableBrowser browser) {
+	public void setBrowser (final AvailableBrowser browser) {
 		this.browser = browser;
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 9, 2018 8:52:36 PM
-	 * @param driverPath
-	 *            the driverPath to set
-	 */
-	public void setDriverPath (String driverPath) {
-		this.driverPath = driverPath;
 	}
 
 	/**
@@ -115,7 +95,7 @@ public class ApplicationSetting {
 	 * @param headlessMode
 	 *            the headlessMode to set
 	 */
-	public void setHeadlessMode (boolean headlessMode) {
+	public void setHeadlessMode (final boolean headlessMode) {
 		this.headlessMode = headlessMode;
 	}
 
@@ -125,7 +105,7 @@ public class ApplicationSetting {
 	 * @param hubUrl
 	 *            the hubUrl to set
 	 */
-	public void setHubUrl (String hubUrl) {
+	public void setHubUrl (final String hubUrl) {
 		this.hubUrl = hubUrl;
 	}
 
@@ -135,7 +115,7 @@ public class ApplicationSetting {
 	 * @param playback
 	 *            the playback to set
 	 */
-	public void setPlayback (PlaybackSetting playback) {
+	public void setPlayback (final PlaybackSetting playback) {
 		this.playback = playback;
 	}
 
@@ -145,7 +125,7 @@ public class ApplicationSetting {
 	 * @param url
 	 *            the url to set
 	 */
-	public void setUrl (String url) {
+	public void setUrl (final String url) {
 		this.url = url;
 	}
 }

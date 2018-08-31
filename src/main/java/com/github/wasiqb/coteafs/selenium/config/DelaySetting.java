@@ -27,6 +27,7 @@ public class DelaySetting {
 	private long	beforeKeyPress;
 	private long	beforeMouseMove;
 	private long	explicit;
+	private long	highlight;
 	private long	implicit;
 	private long	pageLoad;
 	private long	scriptLoad;
@@ -40,6 +41,7 @@ public class DelaySetting {
 		this.scriptLoad = 60;
 		this.implicit = 1;
 		this.explicit = 10;
+		this.highlight = 200;
 	}
 
 	/**
@@ -103,6 +105,15 @@ public class DelaySetting {
 	 */
 	public long getExplicit () {
 		return this.explicit;
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Aug 31, 2018 10:15:33 PM
+	 * @return the highlight
+	 */
+	public long getHighlight () {
+		return this.highlight;
 	}
 
 	/**
@@ -200,6 +211,16 @@ public class DelaySetting {
 	 */
 	public void setExplicit (final long explicit) {
 		this.explicit = explicit;
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Aug 31, 2018 10:15:33 PM
+	 * @param highlight
+	 *            the highlight to set
+	 */
+	public void setHighlight (final long highlight) {
+		this.highlight = highlight;
 	}
 
 	/**

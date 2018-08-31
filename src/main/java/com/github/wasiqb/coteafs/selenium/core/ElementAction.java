@@ -15,7 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core;
 
-import static java.lang.String.format;
+import static java.text.MessageFormat.format;
 import static java.time.Duration.ofMillis;
 import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBe;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
@@ -24,6 +24,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfEl
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -112,7 +113,10 @@ public class ElementAction {
 	 */
 	public void click () {
 		perform (e -> {
-			e.click ();
+			this.actions.pause (Duration.ofMillis (this.delays.getBeforeClick ()))
+					.click (e)
+					.pause (Duration.ofMillis (this.delays.getAfterClick ()))
+					.perform ();
 		});
 	}
 
@@ -125,7 +129,10 @@ public class ElementAction {
 		perform (e -> {
 			click ();
 			e.clear ();
-			e.sendKeys (text);
+			this.actions.pause (Duration.ofMillis (this.delays.getBeforeKeyPress ()))
+					.sendKeys (e, text)
+					.pause (Duration.ofMillis (this.delays.getAfterKeyPress ()))
+					.perform ();
 		});
 	}
 
@@ -157,8 +164,9 @@ public class ElementAction {
 	 */
 	public void hover () {
 		perform (e -> {
-			this.actions.moveToElement (e)
-					.pause (ofMillis (this.delays.getBeforeMouseMove ()))
+			this.actions.pause (ofMillis (this.delays.getBeforeMouseMove ()))
+					.moveToElement (e)
+					.pause (ofMillis (this.delays.getAfterMouseMove ()))
 					.perform ();
 		});
 	}
@@ -292,6 +300,11 @@ public class ElementAction {
 		}
 	}
 
+	private void pause (final long delay) {
+		this.actions.pause (Duration.ofMillis (delay))
+				.perform ();
+	}
+
 	private void perform (final Consumer <WebElement> action) {
 		prepareForAction ("red");
 		action.accept (this.element);
@@ -301,6 +314,7 @@ public class ElementAction {
 		this.element = this.browserAction.find (this.locator);
 		scrollIntoView ();
 		highlight (color);
+		pause (this.delays.getHighlight ());
 		unhighlight ();
 	}
 
