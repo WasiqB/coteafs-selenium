@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.wasiqb.coteafs.selenium.config;
+package com.github.wasiqb.coteafs.selenium.pages;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserElement;
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
