@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.wasiqb.coteafs.selenium.config;
+package com.github.wasiqb.coteafs.selenium;
 
 import static com.github.wasiqb.coteafs.selenium.core.Browser.start;
 import static com.github.wasiqb.coteafs.selenium.core.Browser.stop;
@@ -23,11 +23,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.github.wasiqb.coteafs.selenium.pages.MainPage;
+import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
+
 /**
  * @author Wasiq Bhamla
  * @since Aug 15, 2018 8:07:59 PM
  */
-public class ConfigTest {
+public class BrowserTest {
 	private MainPage main;
 
 	/**
@@ -70,12 +73,9 @@ public class ConfigTest {
 		this.main.signIn ()
 				.click ();
 
-		final LoginPage login = new LoginPage ();
-		login.email ()
-				.enterText ("testerbuds@gmail.com");
-		login.password ()
-				.enterText ("123456");
-		login.signIn ()
-				.click ();
+		final LoginPageAction login = new LoginPageAction ();
+		login.addInputValue ("Email", "testerbuds@gmail.com")
+				.addInputValue ("Password", "123456")
+				.perform ();
 	}
 }

@@ -3,7 +3,7 @@
 <suite name="Suite">
 	<test name="Test" enabled="false">
 		<classes>
-			<class name="com.github.wasiqb.coteafs.selenium.config.ConfigTest" />
+			<class name="com.github.wasiqb.coteafs.selenium.BrowserTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
