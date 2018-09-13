@@ -311,7 +311,10 @@ public class ElementAction {
 	}
 
 	private void prepareForAction (final String color) {
-		this.element = this.browserAction.find (this.locator);
+		if (!this.useBy && this.locator != null) {
+			this.element = this.browserAction.find (this.locator);
+		}
+		waitUntilVisible ();
 		scrollIntoView ();
 		highlight (color);
 		pause (this.delays.getHighlight ());

@@ -21,8 +21,10 @@ import static com.github.wasiqb.coteafs.selenium.core.Browser.stop;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
+import com.github.wasiqb.coteafs.selenium.core.PageEngine;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
 
@@ -40,7 +42,7 @@ public class BrowserTest {
 	@BeforeMethod
 	public void setupMethod () {
 		this.main.interact ()
-				.navigateTo ("http://automationpractice.com");
+				.navigateTo ("http://cafetownsend-angular-rails.herokuapp.com/login");
 	}
 
 	/**
@@ -64,8 +66,18 @@ public class BrowserTest {
 
 	/**
 	 * @author wasiqb
+	 * @since Sep 13, 2018 4:37:51 PM
+	 */
+	@Test
+	public void testPage () {
+		PageEngine.fill ("login");
+	}
+
+	/**
+	 * @author wasiqb
 	 * @since Aug 31, 2018 9:15:42 PM
 	 */
+	@Ignore
 	@Test
 	public void testSignIn () {
 		this.main.search ()

@@ -1,0 +1,16 @@
+alias: Login Form
+locator: login-form
+locator_type: ID
+children:
+  - alias: user_name
+    locator: input[type='text']
+    locator_type: CSS
+    element_type: TEXT
+  - alias: password
+    locator: input[type='password']
+    locator_type: CSS
+    element_type: TEXT
+  - alias: submit
+    locator: button
+    locator_type: TAG
+    element_type: LINK
