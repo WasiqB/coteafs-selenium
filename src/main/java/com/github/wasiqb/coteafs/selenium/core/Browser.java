@@ -15,6 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core;
 
+import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
 import static java.lang.System.getProperty;
 
@@ -37,9 +38,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import com.github.wasiqb.coteafs.selenium.config.ApplicationSetting;
 import com.github.wasiqb.coteafs.selenium.config.AvailableBrowser;
-import com.github.wasiqb.coteafs.selenium.config.ConfigUtil;
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
 import com.github.wasiqb.coteafs.selenium.config.PlaybackSetting;
 
@@ -48,28 +47,33 @@ import com.github.wasiqb.coteafs.selenium.config.PlaybackSetting;
  * @since Aug 15, 2018 2:11:13 PM
  */
 public class Browser {
-	private static final ThreadLocal <EventFiringWebDriver>	driverThread;
-	private static final Logger								log;
-	private static ApplicationSetting						setting;
-
-	static {
-		driverThread = new ThreadLocal <> ();
-		log = LogManager.getLogger (Browser.class);
-		setting = ConfigUtil.appSetting ();
-	}
+	private static final ThreadLocal <EventFiringWebDriver>	driverThread	= new ThreadLocal <> ();
+	private static final Logger								log				= LogManager
+		.getLogger (Browser.class);
 
 	/**
 	 * @author Wasiq Bhamla
 	 * @since Aug 18, 2018 6:06:32 PM
 	 */
 	public static void close () {
+		log.info ("Closing the browser...");
 		final int handles = driver ().getWindowHandles ()
-				.size ();
+			.size ();
 		if (handles > 1) {
 			driver ().close ();
-		} else {
+		}
+		else {
 			stop ();
 		}
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Mar 21, 2019 9:15:09 PM
+	 * @return browser action
+	 */
+	public static BrowserActions interact () {
+		return new BrowserActions (driver ());
 	}
 
 	/**
@@ -79,14 +83,12 @@ public class Browser {
 	 */
 	public static void start (final String browserName) {
 		log.info ("Starting driver...");
-		AvailableBrowser browser = null;
-		if (browserName != null) {
-			browser = AvailableBrowser.valueOf (browserName.toUpperCase ());
-		} else {
-			final String browserArg = getProperty (BROWSER, setting.getBrowser ()
-					.name ());
-			browser = AvailableBrowser.valueOf (browserArg.toUpperCase ());
+		String target = browserName;
+		if (target == null) {
+			target = getProperty (BROWSER, appSetting ().getBrowser ()
+				.name ());
 		}
+		final AvailableBrowser browser = AvailableBrowser.valueOf (target.toUpperCase ());
 		final WebDriver driver = setupDriver (browser);
 		final EventFiringWebDriver wd = new EventFiringWebDriver (driver);
 		driver (wd);
@@ -104,7 +106,7 @@ public class Browser {
 	}
 
 	static EventFiringWebDriver driver () {
-		return Browser.driverThread.get ();
+		return driverThread.get ();
 	}
 
 	private static void driver (final EventFiringWebDriver driver) {
@@ -117,19 +119,14 @@ public class Browser {
 
 	private static void manageTimeouts (final Consumer <Timeouts> timeouts) {
 		timeouts.accept (driver ().manage ()
-				.timeouts ());
+			.timeouts ());
 	}
 
 	private static void manageWindow (final Consumer <Window> window) {
 		window.accept (driver ().manage ()
-				.window ());
+			.window ());
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @param playback
-	 * @since Aug 19, 2018 5:03:31 PM
-	 */
 	private static void setScreenSize (final PlaybackSetting playback) {
 		switch (playback.getScreenState ()) {
 			case FULL_SCREEN:
@@ -166,7 +163,7 @@ public class Browser {
 	}
 
 	private static void setupDriverOptions () {
-		final PlaybackSetting playback = setting.getPlayback ();
+		final PlaybackSetting playback = appSetting ().getPlayback ();
 		final DelaySetting delays = playback.getDelays ();
 		manageTimeouts (t -> t.pageLoadTimeout (delays.getPageLoad (), TimeUnit.SECONDS));
 		manageTimeouts (t -> t.setScriptTimeout (delays.getScriptLoad (), TimeUnit.SECONDS));

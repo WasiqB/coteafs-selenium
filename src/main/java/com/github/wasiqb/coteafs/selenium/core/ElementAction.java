@@ -15,6 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core;
 
+import static com.google.common.truth.Truth.assertThat;
 import static java.text.MessageFormat.format;
 import static java.time.Duration.ofMillis;
 import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBe;
@@ -31,6 +32,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -40,6 +42,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.github.wasiqb.coteafs.selenium.config.ConfigUtil;
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
+import com.google.common.truth.BooleanSubject;
+import com.google.common.truth.StringSubject;
 
 /**
  * @author Wasiq Bhamla
@@ -53,21 +57,9 @@ public class ElementAction {
 	private final DelaySetting			delays;
 	private final EventFiringWebDriver	driver;
 	private WebElement					element;
-	private BrowserElement				locator;
 	private String						style;
 	private boolean						useBy;
 	private final WebDriverWait			wait;
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @param browserAction
-	 * @param element
-	 * @since Aug 21, 2018 3:31:21 PM
-	 */
-	public ElementAction (final BrowserActions browserAction, final BrowserElement element) {
-		this (browserAction);
-		this.locator = element;
-	}
 
 	/**
 	 * @author Wasiq Bhamla
@@ -81,6 +73,18 @@ public class ElementAction {
 		this.useBy = true;
 	}
 
+	/**
+	 * @author wasiqb
+	 * @since Mar 21, 2019 10:16:16 PM
+	 * @param browserAction
+	 * @param element
+	 */
+	public ElementAction (final BrowserActions browserAction, final WebElement element) {
+		this (browserAction);
+		this.element = element;
+		this.useBy = false;
+	}
+
 	private ElementAction (final BrowserActions browserAction) {
 		this.browserAction = browserAction;
 		this.driver = browserAction.driver ();
@@ -88,13 +92,8 @@ public class ElementAction {
 		this.wait = browserAction.driverWait ();
 		this.alreadyHighlighted = false;
 		this.delays = ConfigUtil.appSetting ()
-				.getPlayback ()
-				.getDelays ();
-	}
-
-	private ElementAction (final BrowserActions browserAction, final WebElement element) {
-		this (browserAction);
-		this.element = element;
+			.getPlayback ()
+			.getDelays ();
 	}
 
 	/**
@@ -108,15 +107,23 @@ public class ElementAction {
 	}
 
 	/**
+	 * @author wasiqb
+	 * @since Mar 21, 2019 10:17:57 PM
+	 */
+	public void clear () {
+		perform (WebElement::clear);
+	}
+
+	/**
 	 * @author Wasiq Bhamla
 	 * @since Aug 21, 2018 4:01:50 PM
 	 */
 	public void click () {
 		perform (e -> {
 			this.actions.pause (Duration.ofMillis (this.delays.getBeforeClick ()))
-					.click (e)
-					.pause (Duration.ofMillis (this.delays.getAfterClick ()))
-					.perform ();
+				.click (e)
+				.pause (Duration.ofMillis (this.delays.getAfterClick ()))
+				.perform ();
 		});
 	}
 
@@ -127,12 +134,12 @@ public class ElementAction {
 	 */
 	public void enterText (final String text) {
 		perform (e -> {
-			click ();
-			e.clear ();
-			this.actions.pause (Duration.ofMillis (this.delays.getBeforeKeyPress ()))
+			if (StringUtils.isNoneEmpty (text)) {
+				this.actions.pause (Duration.ofMillis (this.delays.getBeforeTyping ()))
 					.sendKeys (e, text)
-					.pause (Duration.ofMillis (this.delays.getAfterKeyPress ()))
+					.pause (Duration.ofMillis (this.delays.getAfterTyping ()))
 					.perform ();
+			}
 		});
 	}
 
@@ -154,8 +161,8 @@ public class ElementAction {
 	 */
 	public List <ElementAction> finds (final By byLocator) {
 		return get (e -> e.findElements (byLocator)).stream ()
-				.map (e -> new ElementAction (this.browserAction, e))
-				.collect (Collectors.toList ());
+			.map (e -> new ElementAction (this.browserAction, e))
+			.collect (Collectors.toList ());
 	}
 
 	/**
@@ -165,9 +172,9 @@ public class ElementAction {
 	public void hover () {
 		perform (e -> {
 			this.actions.pause (ofMillis (this.delays.getBeforeMouseMove ()))
-					.moveToElement (e)
-					.pause (ofMillis (this.delays.getAfterMouseMove ()))
-					.perform ();
+				.moveToElement (e)
+				.pause (ofMillis (this.delays.getAfterMouseMove ()))
+				.perform ();
 		});
 	}
 
@@ -216,13 +223,15 @@ public class ElementAction {
 		perform (e -> {
 			click ();
 			final List <WebElement> options = e.findElements (By.tagName ("option"));
-			final Optional <WebElement> option = options.stream ()
-					.filter (s -> s.getText ()
-							.trim ()
-							.equalsIgnoreCase (value))
-					.findFirst ();
+			final Optional <ElementAction> option = options.stream ()
+				.map (o -> new ElementAction (this.browserAction, o))
+				.filter (s -> s.text ()
+					.trim ()
+					.equalsIgnoreCase (value))
+				.findFirst ();
 			if (option.isPresent ()) {
-				new ElementAction (this.browserAction, option.get ()).click ();
+				option.get ()
+					.click ();
 			}
 		});
 	}
@@ -237,6 +246,52 @@ public class ElementAction {
 	}
 
 	/**
+	 * @author wasiqb
+	 * @since Mar 21, 2019 10:37:04 PM
+	 * @param attribute
+	 * @return verify attribute
+	 */
+	public StringSubject verifyAttribute (final String attribute) {
+		return assertThat (attribute (attribute));
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Mar 21, 2019 10:38:06 PM
+	 * @return verify is displayed
+	 */
+	public BooleanSubject verifyDisplayed () {
+		return assertThat (isDisplayed ()).named ("Is Displayed?");
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Mar 21, 2019 10:38:55 PM
+	 * @return verify is enabled
+	 */
+	public BooleanSubject verifyEnabled () {
+		return assertThat (isEnabled ()).named ("Is Enabled?");
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Mar 21, 2019 10:44:01 PM
+	 * @return verify is selected
+	 */
+	public BooleanSubject verifySelected () {
+		return assertThat (isSelected ()).named ("Is Selected?");
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Mar 21, 2019 10:45:45 PM
+	 * @return verify element text
+	 */
+	public StringSubject verifyText () {
+		return assertThat (text ());
+	}
+
+	/**
 	 * @author Wasiq Bhamla
 	 * @since Aug 21, 2018 9:34:15 PM
 	 * @param attribute
@@ -245,7 +300,8 @@ public class ElementAction {
 	public void waitUntilAttributeIs (final String attribute, final String value) {
 		if (this.useBy) {
 			waitUntilLocatorAttributeIs (attribute, value);
-		} else {
+		}
+		else {
 			this.wait.until (attributeToBe (this.element, attribute, value));
 		}
 	}
@@ -257,7 +313,8 @@ public class ElementAction {
 	public void waitUntilClickable () {
 		if (this.useBy) {
 			waitUntilLocatorClickable ();
-		} else {
+		}
+		else {
 			this.wait.until (elementToBeClickable (this.element));
 		}
 	}
@@ -269,7 +326,8 @@ public class ElementAction {
 	public void waitUntilInvisible () {
 		if (this.useBy) {
 			waitUntilLocatorInvisible ();
-		} else {
+		}
+		else {
 			this.wait.until (invisibilityOf (this.element));
 		}
 	}
@@ -281,7 +339,8 @@ public class ElementAction {
 	public void waitUntilVisible () {
 		if (this.useBy) {
 			waitUntilLocatorVisible ();
-		} else {
+		}
+		else {
 			this.wait.until (visibilityOf (this.element));
 		}
 	}
@@ -295,14 +354,14 @@ public class ElementAction {
 		if (!this.alreadyHighlighted) {
 			this.style = this.element.getAttribute ("style");
 			this.browserAction.executeScript (
-					"arguments[0].setAttribute('style', arguments[1] + arguments[2]);",
-					this.element, this.style, format ("color: {0}; border: 3px solid {0};", color));
+				"arguments[0].setAttribute('style', arguments[1] + arguments[2]);", this.element,
+				this.style, format ("color: {0}; border: 3px solid {0};", color));
 		}
 	}
 
 	private void pause (final long delay) {
 		this.actions.pause (Duration.ofMillis (delay))
-				.perform ();
+			.perform ();
 	}
 
 	private void perform (final Consumer <WebElement> action) {
@@ -311,27 +370,16 @@ public class ElementAction {
 	}
 
 	private void prepareForAction (final String color) {
-		if (!this.useBy && this.locator != null) {
-			this.element = this.browserAction.find (this.locator);
-		}
 		waitUntilVisible ();
-		scrollIntoView ();
 		highlight (color);
 		pause (this.delays.getHighlight ());
 		unhighlight ();
 	}
 
-	private void scrollIntoView () {
-		final String script = "var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);\n"
-				+ "var elementTop = arguments[0].getBoundingClientRect().top;\n"
-				+ "window.scrollBy(0, elementTop-(viewPortHeight/2));";
-		this.browserAction.executeScript (script, this.element);
-	}
-
 	private void unhighlight () {
 		if (!this.alreadyHighlighted) {
 			this.browserAction.executeScript ("arguments[0].setAttribute('style', arguments[1]);",
-					this.element, this.style);
+				this.element, this.style);
 			this.alreadyHighlighted = true;
 		}
 	}

@@ -15,7 +15,8 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages;
 
-import com.github.wasiqb.coteafs.selenium.core.BrowserElement;
+import org.openqa.selenium.By;
+
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.ElementAction;
 
@@ -30,9 +31,7 @@ public class LoginPage extends BrowserPage {
 	 * @return email
 	 */
 	public ElementAction email () {
-		final BrowserElement element = BrowserElement.create ("Email", "input")
-				.withAttr ("id", "email");
-		return interact (element);
+		return interact (By.cssSelector ("input[type='text']"));
 	}
 
 	/**
@@ -41,9 +40,7 @@ public class LoginPage extends BrowserPage {
 	 * @return password
 	 */
 	public ElementAction password () {
-		final BrowserElement element = BrowserElement.create ("Password", "input")
-				.withAttr ("id", "passwd");
-		return interact (element);
+		return interact (By.cssSelector ("input[type='text']"));
 	}
 
 	/**
@@ -52,8 +49,6 @@ public class LoginPage extends BrowserPage {
 	 * @return signIn button
 	 */
 	public ElementAction signIn () {
-		final BrowserElement element = BrowserElement.create ("Sign In", "button")
-				.withAttr ("id", "SubmitLogin");
-		return interact (element);
+		return interact (By.className ("main-button"));
 	}
 }

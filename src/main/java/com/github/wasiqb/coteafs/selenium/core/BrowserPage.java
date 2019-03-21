@@ -16,6 +16,7 @@
 package com.github.wasiqb.coteafs.selenium.core;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 /**
  * @author Wasiq Bhamla
@@ -28,17 +29,7 @@ public class BrowserPage {
 	 * @return actions
 	 */
 	public BrowserActions interact () {
-		return new BrowserActions (Browser.driver ());
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 9:38:00 PM
-	 * @param element
-	 * @return element action
-	 */
-	public ElementAction interact (final BrowserElement element) {
-		return new ElementAction (interact (), element);
+		return Browser.interact ();
 	}
 
 	/**
@@ -49,5 +40,15 @@ public class BrowserPage {
 	 */
 	public ElementAction interact (final By locator) {
 		return new ElementAction (interact (), locator);
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Aug 21, 2018 9:38:00 PM
+	 * @param element
+	 * @return element action
+	 */
+	public ElementAction interact (final WebElement element) {
+		return new ElementAction (interact (), element);
 	}
 }

@@ -15,16 +15,10 @@
  */
 package com.github.wasiqb.coteafs.selenium;
 
-import static com.github.wasiqb.coteafs.selenium.core.Browser.start;
-import static com.github.wasiqb.coteafs.selenium.core.Browser.stop;
-
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
-import com.github.wasiqb.coteafs.selenium.core.PageEngine;
+import com.github.wasiqb.coteafs.selenium.core.BrowserTest;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
 
@@ -32,7 +26,7 @@ import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
  * @author Wasiq Bhamla
  * @since Aug 15, 2018 8:07:59 PM
  */
-public class BrowserTest {
+public class SeleniumTest extends BrowserTest {
 	private MainPage main;
 
 	/**
@@ -42,52 +36,18 @@ public class BrowserTest {
 	@BeforeMethod
 	public void setupMethod () {
 		this.main.interact ()
-				.navigateTo ("http://cafetownsend-angular-rails.herokuapp.com/login");
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 19, 2018 4:22:57 PM
-	 */
-	@BeforeTest
-	public void setupTest () {
-		start ("CHROME");
-		this.main = new MainPage ();
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 19, 2018 4:23:40 PM
-	 */
-	@AfterTest
-	public void teardownTest () {
-		stop ();
-	}
-
-	/**
-	 * @author wasiqb
-	 * @since Sep 13, 2018 4:37:51 PM
-	 */
-	@Test
-	public void testPage () {
-		PageEngine.fill ("login");
+			.navigateTo ("http://cafetownsend-angular-rails.herokuapp.com/login");
 	}
 
 	/**
 	 * @author wasiqb
 	 * @since Aug 31, 2018 9:15:42 PM
 	 */
-	@Ignore
 	@Test
 	public void testSignIn () {
-		this.main.search ()
-				.enterText ("Hello!!!");
-		this.main.signIn ()
-				.click ();
-
 		final LoginPageAction login = new LoginPageAction ();
 		login.addInputValue ("Email", "testerbuds@gmail.com")
-				.addInputValue ("Password", "123456")
-				.perform ();
+			.addInputValue ("Password", "123456")
+			.perform ();
 	}
 }

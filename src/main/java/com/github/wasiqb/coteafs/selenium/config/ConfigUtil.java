@@ -25,14 +25,10 @@ import com.github.wasiqb.coteafs.config.loader.ConfigLoader;
  * @since Aug 9, 2018 8:23:23 PM
  */
 public final class ConfigUtil {
-	private static final ApplicationSetting setting;
-
-	static {
-		setting = ConfigLoader.settings ()
-				.withKey (COTEAFS_CONFIG_KEY)
-				.withDefault (COTEAFS_CONFIG_DEFAULT_FILE)
-				.load (ApplicationSetting.class);
-	}
+	private static final ApplicationSetting setting = ConfigLoader.settings ()
+		.withKey (COTEAFS_CONFIG_KEY)
+		.withDefault (COTEAFS_CONFIG_DEFAULT_FILE)
+		.load (ApplicationSetting.class);
 
 	/**
 	 * @author Wasiq Bhamla

@@ -15,10 +15,13 @@
  */
 package com.github.wasiqb.coteafs.selenium.core;
 
+import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.github.wasiqb.coteafs.selenium.core.Browser.interact;
 import static com.github.wasiqb.coteafs.selenium.core.Browser.start;
 import static com.github.wasiqb.coteafs.selenium.core.Browser.stop;
-import static com.github.wasiqb.coteafs.selenium.core.PageEngine.fill;
 
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
@@ -35,22 +38,34 @@ public class BrowserTest {
 	 * @param browserName
 	 */
 	@Parameters ("test.browser")
-	@BeforeTest
-	public void setupTest (@Optional
-	final String browserName) {
+	@BeforeTest (alwaysRun = true)
+	public void setupTest (@Optional final String browserName) {
 		start (browserName);
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Mar 21, 2019 6:46:47 PM
+	 * @param result
+	 */
+	@AfterMethod (alwaysRun = true)
+	public void teardownMethod (final ITestResult result) {
+		final boolean screenshotOnError = appSetting ().getPlayback ()
+			.getScreenshot ()
+			.isCaptureOnError ();
+		if (screenshotOnError && result.getStatus () == ITestResult.FAILURE) {
+			if (!interact ().isClosed ()) {
+				interact ().saveScreenshot ();
+			}
+		}
 	}
 
 	/**
 	 * @author wasiqb
 	 * @since Sep 13, 2018 9:57:12 PM
 	 */
-	@AfterTest
+	@AfterTest (alwaysRun = true)
 	public void teardownTest () {
 		stop ();
-	}
-
-	protected void fillPage (final String pageName) {
-		fill (pageName);
 	}
 }

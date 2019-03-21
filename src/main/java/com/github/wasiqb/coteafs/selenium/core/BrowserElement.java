@@ -22,6 +22,7 @@ import java.util.Map;
  * @author Wasiq Bhamla
  * @since Aug 18, 2018 10:46:12 PM
  */
+@Deprecated
 public class BrowserElement {
 	/**
 	 * @author Wasiq Bhamla
@@ -128,18 +129,19 @@ public class BrowserElement {
 		for (final String key : this.attributes.keySet ()) {
 			if (key.equals ("id")) {
 				sb.append ("#")
-						.append (this.attributes.get (key));
+					.append (this.attributes.get (key));
 				continue;
-			} else if (key.equals ("class")) {
+			}
+			else if (key.equals ("class")) {
 				sb.append (".")
-						.append (this.attributes.get (key));
+					.append (this.attributes.get (key));
 				continue;
 			}
 			sb.append ("[")
-					.append (key)
-					.append ("='")
-					.append (this.attributes.get (key))
-					.append ("']");
+				.append (key)
+				.append ("='")
+				.append (this.attributes.get (key))
+				.append ("']");
 		}
 		return sb.toString ();
 	}

@@ -15,11 +15,11 @@
  */
 package com.github.wasiqb.coteafs.selenium.core;
 
+import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static java.lang.String.format;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -29,28 +29,22 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.github.wasiqb.coteafs.selenium.config.ApplicationSetting;
-import com.github.wasiqb.coteafs.selenium.config.ConfigUtil;
 
 /**
  * @author Wasiq Bhamla
  * @since Aug 18, 2018 4:41:56 PM
  */
 public class BrowserActions {
-	private static final Logger log = LogManager.getLogger (Browser.class);
+	private static final Logger log = LogManager.getLogger (BrowserActions.class);
 
 	private final EventFiringWebDriver	driver;
-	private final ApplicationSetting	setting;
 	private final WebDriverWait			wait;
 
 	/**
@@ -60,10 +54,9 @@ public class BrowserActions {
 	 */
 	public BrowserActions (final EventFiringWebDriver driver) {
 		this.driver = driver;
-		this.setting = ConfigUtil.appSetting ();
-		this.wait = new WebDriverWait (driver, this.setting.getPlayback ()
-				.getDelays ()
-				.getExplicit ());
+		this.wait = new WebDriverWait (driver, appSetting ().getPlayback ()
+			.getDelays ()
+			.getExplicit ());
 	}
 
 	/**
@@ -87,7 +80,7 @@ public class BrowserActions {
 	 */
 	public void back () {
 		perform (d -> d.navigate ()
-				.back ());
+			.back ());
 	}
 
 	/**
@@ -96,7 +89,7 @@ public class BrowserActions {
 	 */
 	public void deleteCookies () {
 		perform (d -> d.manage ()
-				.deleteAllCookies ());
+			.deleteAllCookies ());
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class BrowserActions {
 	 */
 	public void forward () {
 		perform (d -> d.navigate ()
-				.forward ());
+			.forward ());
 	}
 
 	/**
@@ -160,7 +153,7 @@ public class BrowserActions {
 	 */
 	public void navigateTo (final String url) {
 		perform (d -> d.navigate ()
-				.to (url));
+			.to (url));
 	}
 
 	/**
@@ -169,7 +162,7 @@ public class BrowserActions {
 	 */
 	public void refresh () {
 		perform (d -> d.navigate ()
-				.refresh ());
+			.refresh ());
 	}
 
 	/**
@@ -191,7 +184,8 @@ public class BrowserActions {
 		try {
 			log.info (format ("Saving screenshot to file: %s...", filePath));
 			FileUtils.copyFile (screenshot, new File (filePath));
-		} catch (final IOException e) {
+		}
+		catch (final IOException e) {
 			log.error (format ("Error while saving screenshot to file: %s", filePath));
 			log.catching (e);
 		}
@@ -203,7 +197,7 @@ public class BrowserActions {
 	 */
 	public void switchToMain () {
 		perform (d -> d.switchTo ()
-				.defaultContent ());
+			.defaultContent ());
 	}
 
 	/**
@@ -220,9 +214,9 @@ public class BrowserActions {
 					continue;
 				}
 				final WebDriver w = d.switchTo ()
-						.window (win);
+					.window (win);
 				if (w.getTitle ()
-						.contains (title)) { return; }
+					.contains (title)) { return; }
 			}
 		});
 	}
@@ -238,14 +232,6 @@ public class BrowserActions {
 
 	EventFiringWebDriver driver () {
 		return this.driver;
-	}
-
-	WebElement find (final BrowserElement element) {
-		return this.driver.findElement (By.cssSelector (element.toString ()));
-	}
-
-	List <WebElement> finds (final BrowserElement element) {
-		return this.driver.findElements (By.cssSelector (element.toString ()));
 	}
 
 	private <E> E get (final Function <EventFiringWebDriver, E> func) {

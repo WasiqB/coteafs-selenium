@@ -15,7 +15,8 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages;
 
-import com.github.wasiqb.coteafs.selenium.core.BrowserElement;
+import org.openqa.selenium.By;
+
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.ElementAction;
 
@@ -30,9 +31,7 @@ public class MainPage extends BrowserPage {
 	 * @return element
 	 */
 	public ElementAction search () {
-		final BrowserElement element = BrowserElement.create ("Search", "input")
-				.withAttr ("id", "search_query_top");
-		return interact (element);
+		return interact (By.id ("search_query_top"));
 	}
 
 	/**
@@ -41,8 +40,6 @@ public class MainPage extends BrowserPage {
 	 * @return element
 	 */
 	public ElementAction signIn () {
-		final BrowserElement element = BrowserElement.create ("Sign In", "a")
-				.withAttr ("class", "login");
-		return interact (element);
+		return interact (By.className ("login"));
 	}
 }

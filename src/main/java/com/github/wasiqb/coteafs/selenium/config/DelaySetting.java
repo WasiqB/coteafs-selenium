@@ -58,7 +58,7 @@ public class DelaySetting {
 	 * @since Apr 8, 2018 2:58:50 PM
 	 * @return the afterKeyPress
 	 */
-	public long getAfterKeyPress () {
+	public long getAfterTyping () {
 		return this.afterKeyPress;
 	}
 
@@ -85,7 +85,7 @@ public class DelaySetting {
 	 * @since Apr 8, 2018 2:58:50 PM
 	 * @return the beforeKeyPress
 	 */
-	public long getBeforeKeyPress () {
+	public long getBeforeTyping () {
 		return this.beforeKeyPress;
 	}
 
