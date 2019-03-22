@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>selenium</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>coteafs-selenium</name>
+	<description>A Tester friendly framework for Web App Automation using Selenium</description>
+	<url>https://github.com/WasiqB/coteafs-selenium</url>
+
+	<parent>
+		<groupId>com.github.wasiqb.coteafs</groupId>
+		<artifactId>parent</artifactId>
+		<version>2.0.1</version>
+	</parent>
+
+	<scm>
+		<connection>scm:git:git@github.com:WasiqB/coteafs-selenium.git</connection>
+		<developerConnection>scm:git:git@github.com:WasiqB/coteafs-selenium.git</developerConnection>
+		<url>git@github.com:WasiqB/coteafs-selenium.git</url>
+	</scm>
+
+	<ciManagement>
+		<system>Circle CI</system>
+		<url>https://circleci.com/gh/WasiqB/coteafs-selenium</url>
+	</ciManagement>
+
+	<properties>
+		<coteafs.config.version>1.6.0</coteafs.config.version>
+		<coteafs.error.version>1.5.0</coteafs.error.version>
+		<coteafs.logger.version>1.6.0</coteafs.logger.version>
+		<selenium-version>3.14.0</selenium-version>
+		<commons.io.version>2.6</commons.io.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.github.wasiqb.coteafs</groupId>
+			<artifactId>configs</artifactId>
+			<version>${coteafs.config.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.yaml</groupId>
+					<artifactId>snakeyaml</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.github.wasiqb.coteafs</groupId>
+			<artifactId>error</artifactId>
+			<version>${coteafs.error.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.wasiqb.coteafs</groupId>
+			<artifactId>logger</artifactId>
+			<version>${coteafs.logger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.yaml</groupId>
+					<artifactId>snakeyaml</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons.io.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.truth</groupId>
+			<artifactId>truth</artifactId>
+			<version>${truth.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+	</dependencies>
+</project>
