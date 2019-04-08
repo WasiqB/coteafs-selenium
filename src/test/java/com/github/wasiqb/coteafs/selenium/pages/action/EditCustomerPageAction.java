@@ -15,32 +15,49 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
+import com.github.javafaker.Faker;
 import com.github.wasiqb.coteafs.selenium.core.BrowserPageAction;
-import com.github.wasiqb.coteafs.selenium.pages.LoginPage;
-import com.github.wasiqb.coteafs.selenium.pages.MainPage;
+import com.github.wasiqb.coteafs.selenium.pages.EditCustomerPage;
+import com.github.wasiqb.coteafs.selenium.pages.NewCustomerPage;
 
 /**
  * @author wasiqb
- * @since Sep 1, 2018 8:09:35 PM
+ * @since Apr 8, 2019 11:49:16 AM
  */
-public class LoginPageAction extends BrowserPageAction {
+public class EditCustomerPageAction extends BrowserPageAction {
 	/*
 	 * (non-Javadoc)
 	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
 	 */
 	@Override
 	public void perform () {
-		final LoginPage login = new LoginPage ();
-		login.userId ()
-			.enterText (value ("UserId"));
-		login.password ()
-			.enterText (value ("Password"));
-		login.signIn ()
+		final EditCustomerPage edit = new EditCustomerPage ();
+		edit.navbar ("Edit Customer")
 			.click ();
 
-		final MainPage main = new MainPage ();
-		main.managerIdBanner ()
-			.verifyText ()
-			.endsWith ("Manger Id : " + value ("UserId"));
+		edit.customerId ()
+			.enterText (value ("CustomerId"));
+		edit.submit ()
+			.click ();
+
+		final NewCustomerPage cust = new NewCustomerPage ();
+		final Faker fake = Faker.instance ();
+		cust.address ()
+			.enterText (fake.address ()
+				.fullAddress ());
+		cust.city ()
+			.enterText (fake.address ()
+				.city ());
+		cust.state ()
+			.enterText (fake.address ()
+				.state ());
+		cust.pin ()
+			.enterText (fake.address ()
+				.zipCode ());
+		cust.email ()
+			.enterText (fake.internet ()
+				.emailAddress ());
+		cust.submit ()
+			.click ();
 	}
 }

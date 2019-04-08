@@ -15,19 +15,27 @@
  */
 package com.github.wasiqb.coteafs.selenium;
 
+import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserTest;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
+import com.github.wasiqb.coteafs.selenium.pages.action.DeleteAccountPageAction;
+import com.github.wasiqb.coteafs.selenium.pages.action.EditCustomerPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
+import com.github.wasiqb.coteafs.selenium.pages.action.NewAccountPageAction;
+import com.github.wasiqb.coteafs.selenium.pages.action.NewCustomerPageAction;
 
 /**
  * @author Wasiq Bhamla
  * @since Aug 15, 2018 8:07:59 PM
  */
 public class SeleniumTest extends BrowserTest {
-	private MainPage main;
+	private String		accountId;
+	private String		customerId;
+	private MainPage	main;
 
 	/**
 	 * @author Wasiq Bhamla
@@ -35,8 +43,55 @@ public class SeleniumTest extends BrowserTest {
 	 */
 	@BeforeMethod
 	public void setupMethod () {
-		this.main.interact ()
-			.navigateTo ("http://cafetownsend-angular-rails.herokuapp.com/login");
+		this.main = new MainPage ();
+		this.main.onBrowser ()
+			.navigateTo (appSetting ().getUrl ());
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Apr 8, 2019 10:34:29 PM
+	 */
+	@Test
+	public void testDeleteAccount () {
+		final DeleteAccountPageAction acc = new DeleteAccountPageAction ();
+		acc.addInputValue ("AccountId", this.accountId)
+			.perform ();
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Apr 8, 2019 12:00:15 PM
+	 */
+	@Test
+	public void testEditCustomer () {
+		final EditCustomerPageAction cust = new EditCustomerPageAction ();
+		cust.perform ();
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Apr 8, 2019 10:06:01 PM
+	 */
+	@Test
+	public void testNewAccount () {
+		final NewAccountPageAction acc = new NewAccountPageAction ();
+		acc.addInputValue ("CustomerId", this.customerId)
+			.perform ();
+
+		this.accountId = acc.accountId ();
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Apr 8, 2019 10:52:16 AM
+	 */
+	@Test
+	public void testNewCustomer () {
+		final NewCustomerPageAction cust = new NewCustomerPageAction ();
+		cust.perform ();
+
+		this.customerId = cust.customerId ();
 	}
 
 	/**
@@ -46,8 +101,10 @@ public class SeleniumTest extends BrowserTest {
 	@Test
 	public void testSignIn () {
 		final LoginPageAction login = new LoginPageAction ();
-		login.addInputValue ("Email", "testerbuds@gmail.com")
-			.addInputValue ("Password", "123456")
+		login.addInputValue ("UserId", appSetting ().getParams ()
+			.get ("user"))
+			.addInputValue ("Password", appSetting ().getParams ()
+				.get ("password"))
 			.perform ();
 	}
 }

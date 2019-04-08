@@ -17,42 +17,32 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.ElementAction;
 
 /**
  * @author wasiqb
- * @since Aug 31, 2018 9:33:22 PM
+ * @since Apr 8, 2019 8:14:38 PM
  */
-public class LoginPage extends BrowserPage {
+public abstract class SuccessPage extends MainPage {
 	/**
 	 * @author wasiqb
-	 * @since Aug 31, 2018 9:40:05 PM
-	 * @return password
+	 * @since Apr 8, 2019 9:43:54 PM
+	 * @return message
 	 */
-	public ElementAction password () {
-		return form ().find (By.name ("password"));
+	public ElementAction message () {
+		return cell (0, 0);
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Aug 31, 2018 9:40:56 PM
-	 * @return signIn button
-	 */
-	public ElementAction signIn () {
-		return form ().find (By.name ("btnLogin"));
+	protected ElementAction cell (final int row) {
+		return cell (row, 1);
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Aug 31, 2018 9:34:38 PM
-	 * @return user id
-	 */
-	public ElementAction userId () {
-		return form ().find (By.name ("uid"));
+	protected ElementAction cell (final int row, final int col) {
+		return successTable ().finds (By.tagName ("tr"))
+			.get (row)
+			.finds (By.tagName ("td"))
+			.get (col);
 	}
 
-	private ElementAction form () {
-		return onElement (By.name ("frmLogin"));
-	}
+	protected abstract ElementAction successTable ();
 }

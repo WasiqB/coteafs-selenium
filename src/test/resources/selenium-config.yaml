@@ -1,5 +1,8 @@
 browser: CHROME
-url: http://automationpractice.com
+url: http://demo.guru99.com/V4/
+params:
+  user: mngr188669
+  password: qunuzej
 playback:
   screen_state: MAXIMIZED
   highlight: true
