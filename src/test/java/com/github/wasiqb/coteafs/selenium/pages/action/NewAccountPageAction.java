@@ -62,12 +62,10 @@ public class NewAccountPageAction extends BrowserPageAction {
 		success.message ()
 			.verifyText ()
 			.isEqualTo ("Account Generated Successfully!!!");
-
-		this.accountId = success.accountId ()
-			.text ();
-
 		success.customerId ()
 			.verifyText ()
 			.isEqualTo (value ("CustomerId"));
+		this.accountId = success.accountId ()
+			.text ();
 	}
 }

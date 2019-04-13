@@ -17,7 +17,7 @@ package com.github.wasiqb.coteafs.selenium;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserTest;
@@ -41,7 +41,7 @@ public class SeleniumTest extends BrowserTest {
 	 * @author Wasiq Bhamla
 	 * @since Aug 19, 2018 4:30:34 PM
 	 */
-	@BeforeMethod
+	@BeforeClass
 	public void setupMethod () {
 		this.main = new MainPage ();
 		this.main.onBrowser ()
@@ -66,7 +66,8 @@ public class SeleniumTest extends BrowserTest {
 	@Test
 	public void testEditCustomer () {
 		final EditCustomerPageAction cust = new EditCustomerPageAction ();
-		cust.perform ();
+		cust.addInputValue ("CustomerId", this.customerId)
+			.perform ();
 	}
 
 	/**

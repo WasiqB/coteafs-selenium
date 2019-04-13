@@ -19,6 +19,7 @@ import com.github.javafaker.Faker;
 import com.github.wasiqb.coteafs.selenium.core.BrowserPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.EditCustomerPage;
 import com.github.wasiqb.coteafs.selenium.pages.NewCustomerPage;
+import com.github.wasiqb.coteafs.selenium.pages.SuccessCustomerPage;
 
 /**
  * @author wasiqb
@@ -43,21 +44,44 @@ public class EditCustomerPageAction extends BrowserPageAction {
 		final NewCustomerPage cust = new NewCustomerPage ();
 		final Faker fake = Faker.instance ();
 		cust.address ()
+			.clear ();
+		cust.address ()
 			.enterText (fake.address ()
-				.fullAddress ());
+				.streetAddress ());
+		cust.city ()
+			.clear ();
 		cust.city ()
 			.enterText (fake.address ()
 				.city ());
 		cust.state ()
+			.clear ();
+		cust.state ()
 			.enterText (fake.address ()
 				.state ());
 		cust.pin ()
-			.enterText (fake.address ()
-				.zipCode ());
+			.clear ();
+		cust.pin ()
+			.enterText (fake.number ()
+				.digits (6));
+		cust.mobileNumber ()
+			.clear ();
+		cust.mobileNumber ()
+			.enterText (fake.number ()
+				.digits (10));
+		cust.email ()
+			.clear ();
 		cust.email ()
 			.enterText (fake.internet ()
 				.emailAddress ());
 		cust.submit ()
 			.click ();
+
+		final SuccessCustomerPage success = new SuccessCustomerPage ();
+		success.message ()
+			.verifyText ()
+			.isEqualTo ("Customer details updated Successfully!!!");
+		success.customerId ()
+			.verifyText ()
+			.isEqualTo (value ("CustomerId"));
 	}
 }

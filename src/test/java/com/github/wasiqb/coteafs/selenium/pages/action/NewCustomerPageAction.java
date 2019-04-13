@@ -49,19 +49,24 @@ public class NewCustomerPageAction extends BrowserPageAction {
 		cust.navbar ("New Customer")
 			.click ();
 		final String name = fake.name ()
-			.fullName ();
+			.firstName ();
 		cust.customerName ()
 			.enterText (name);
 		cust.gender (fake.demographic ()
 			.sex ()
 			.charAt (0));
-		final SimpleDateFormat df = new SimpleDateFormat ("ddMMyyyy");
-		cust.dob ()
-			.enterText (df.format (fake.date ()
-				.birthday (15, 50)));
+		final SimpleDateFormat df = new SimpleDateFormat ("dd-MM-yyyy");
+		final String [] dates = df.format (fake.date ()
+			.birthday (15, 50))
+			.split ("-");
+		for (final String date : dates) {
+			cust.dob ()
+				.enterText (date);
+		}
+
 		cust.address ()
 			.enterText (fake.address ()
-				.fullAddress ());
+				.streetAddress ());
 		cust.city ()
 			.enterText (fake.address ()
 				.city ());
@@ -69,8 +74,11 @@ public class NewCustomerPageAction extends BrowserPageAction {
 			.enterText (fake.address ()
 				.state ());
 		cust.pin ()
-			.enterText (fake.address ()
-				.zipCode ());
+			.enterText (fake.number ()
+				.digits (6));
+		cust.mobileNumber ()
+			.enterText (fake.number ()
+				.digits (10));
 		cust.email ()
 			.enterText (fake.internet ()
 				.emailAddress ());
@@ -81,6 +89,9 @@ public class NewCustomerPageAction extends BrowserPageAction {
 			.click ();
 
 		final SuccessCustomerPage success = new SuccessCustomerPage ();
+		success.message ()
+			.verifyText ()
+			.isEqualTo ("Customer Registered Successfully!!!");
 		success.customerName ()
 			.verifyText ()
 			.isEqualTo (name);
