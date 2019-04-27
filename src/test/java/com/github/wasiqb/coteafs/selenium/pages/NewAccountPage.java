@@ -17,42 +17,37 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.ElementAction;
 
 /**
  * @author wasiqb
- * @since Aug 31, 2018 9:33:22 PM
+ * @since Apr 8, 2019 12:03:03 PM
  */
-public class LoginPage extends BrowserPage {
+public class NewAccountPage extends EditCustomerPage {
 	/**
 	 * @author wasiqb
-	 * @since Aug 31, 2018 9:40:05 PM
-	 * @return password
+	 * @since Apr 8, 2019 12:05:04 PM
+	 * @return account type
 	 */
-	public ElementAction password () {
-		return form ().find (By.name ("password"));
+	public ElementAction accountType () {
+		return onElement (By.name ("selaccount"));
 	}
 
 	/**
 	 * @author wasiqb
-	 * @since Aug 31, 2018 9:40:56 PM
-	 * @return signIn button
+	 * @since Apr 8, 2019 12:06:07 PM
+	 * @return initial amount
 	 */
-	public ElementAction signIn () {
-		return form ().find (By.name ("btnLogin"));
+	public ElementAction initialDeposit () {
+		return onElement (By.name ("inideposit"));
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Aug 31, 2018 9:34:38 PM
-	 * @return user id
+	/*
+	 * (non-Javadoc)
+	 * @see com.github.wasiqb.coteafs.selenium.pages.EditCustomerPage#submit()
 	 */
-	public ElementAction userId () {
-		return form ().find (By.name ("uid"));
-	}
-
-	private ElementAction form () {
-		return onElement (By.name ("frmLogin"));
+	@Override
+	public ElementAction submit () {
+		return onElement (By.name ("button2"));
 	}
 }

@@ -16,6 +16,7 @@
 package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.google.common.truth.Truth.assertThat;
 import static java.lang.String.format;
 
 import java.io.File;
@@ -36,6 +37,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.truth.StringSubject;
 
 /**
  * @author Wasiq Bhamla
@@ -228,6 +231,26 @@ public class BrowserActions {
 	 */
 	public String title () {
 		return get (WebDriver::getTitle);
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Apr 15, 2019 8:43:28 PM
+	 * @return string subject
+	 */
+	public StringSubject verifyAcceptedAlertMessage () {
+		final String actual = acceptAlert ();
+		return assertThat (actual);
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Apr 15, 2019 8:44:10 PM
+	 * @return string subject
+	 */
+	public StringSubject verifyDismissedAlertMessage () {
+		final String actual = dismissAlert ();
+		return assertThat (actual);
 	}
 
 	EventFiringWebDriver driver () {

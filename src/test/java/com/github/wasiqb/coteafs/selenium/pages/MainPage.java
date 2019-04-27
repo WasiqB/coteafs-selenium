@@ -27,19 +27,30 @@ import com.github.wasiqb.coteafs.selenium.core.ElementAction;
 public class MainPage extends BrowserPage {
 	/**
 	 * @author wasiqb
-	 * @since Aug 31, 2018 9:11:41 PM
-	 * @return element
+	 * @since Apr 7, 2019 5:39:39 PM
+	 * @return manager welcome banner
 	 */
-	public ElementAction search () {
-		return interact (By.id ("search_query_top"));
+	public ElementAction managerIdBanner () {
+		return onElement (By.cssSelector ("tr.heading3 > td"));
 	}
 
 	/**
 	 * @author wasiqb
-	 * @since Aug 31, 2018 9:29:31 PM
-	 * @return element
+	 * @since Apr 7, 2019 5:42:12 PM
+	 * @param name
+	 * @return menu name
 	 */
-	public ElementAction signIn () {
-		return interact (By.className ("login"));
+	public ElementAction navbar (final String name) {
+		return navbar ().finds (By.cssSelector ("li > a"))
+			.stream ()
+			.filter (m -> m.text ()
+				.trim ()
+				.equals (name))
+			.findFirst ()
+			.get ();
+	}
+
+	private ElementAction navbar () {
+		return onElement (By.className ("menusubnav"));
 	}
 }

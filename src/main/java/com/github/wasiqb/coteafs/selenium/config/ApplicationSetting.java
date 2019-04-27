@@ -15,28 +15,33 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 2:41:06 PM
  */
 public class ApplicationSetting {
-	private AvailableBrowser	browser;
-	private boolean				headlessMode;
-	private String				hubUrl;
-	private PlaybackSetting		playback;
-	private String				url;
+	private AvailableBrowser		browser;
+	private boolean					headlessMode;
+	private String					hubUrl;
+	private Map <String, String>	params;
+	private PlaybackSetting			playback;
+	private String					url;
 
 	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 6, 2018 10:55:03 PM
+	 * @author wasiqb
+	 * @since Apr 7, 2019 5:12:10 PM
 	 */
 	public ApplicationSetting () {
+		this.params = new HashMap <> ();
 		this.browser = AvailableBrowser.CHROME;
 	}
 
 	/**
-	 * @author Wasiq Bhamla
-	 * @since Apr 8, 2018 3:01:35 PM
+	 * @author wasiqb
+	 * @since Apr 7, 2019 5:12:41 PM
 	 * @return the browser
 	 */
 	public AvailableBrowser getBrowser () {
@@ -53,6 +58,15 @@ public class ApplicationSetting {
 	}
 
 	/**
+	 * @author wasiqb
+	 * @since Apr 7, 2019 5:12:41 PM
+	 * @return the params
+	 */
+	public Map <String, String> getParams () {
+		return this.params;
+	}
+
+	/**
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:01:35 PM
 	 * @return the playback
@@ -62,8 +76,8 @@ public class ApplicationSetting {
 	}
 
 	/**
-	 * @author Wasiq Bhamla
-	 * @since Apr 8, 2018 3:01:35 PM
+	 * @author wasiqb
+	 * @since Apr 7, 2019 5:12:41 PM
 	 * @return the url
 	 */
 	public String getUrl () {
@@ -71,8 +85,8 @@ public class ApplicationSetting {
 	}
 
 	/**
-	 * @author Wasiq Bhamla
-	 * @since May 20, 2018 2:33:04 PM
+	 * @author wasiqb
+	 * @since Apr 7, 2019 5:12:41 PM
 	 * @return the headlessMode
 	 */
 	public boolean isHeadlessMode () {
@@ -80,8 +94,8 @@ public class ApplicationSetting {
 	}
 
 	/**
-	 * @author Wasiq Bhamla
-	 * @since Apr 8, 2018 3:01:35 PM
+	 * @author wasiqb
+	 * @since Apr 7, 2019 5:12:41 PM
 	 * @param browser
 	 *            the browser to set
 	 */
@@ -90,8 +104,8 @@ public class ApplicationSetting {
 	}
 
 	/**
-	 * @author Wasiq Bhamla
-	 * @since May 20, 2018 2:33:04 PM
+	 * @author wasiqb
+	 * @since Apr 7, 2019 5:12:41 PM
 	 * @param headlessMode
 	 *            the headlessMode to set
 	 */
@@ -110,6 +124,16 @@ public class ApplicationSetting {
 	}
 
 	/**
+	 * @author wasiqb
+	 * @since Apr 8, 2019 11:22:53 PM
+	 * @param params
+	 *            the params to set
+	 */
+	public void setParams (final Map <String, String> params) {
+		this.params = params;
+	}
+
+	/**
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:01:35 PM
 	 * @param playback
@@ -120,8 +144,8 @@ public class ApplicationSetting {
 	}
 
 	/**
-	 * @author Wasiq Bhamla
-	 * @since Apr 8, 2018 3:01:35 PM
+	 * @author wasiqb
+	 * @since Apr 7, 2019 5:12:41 PM
 	 * @param url
 	 *            the url to set
 	 */

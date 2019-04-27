@@ -136,8 +136,9 @@ public class ElementAction {
 		perform (e -> {
 			if (StringUtils.isNoneEmpty (text)) {
 				this.actions.pause (Duration.ofMillis (this.delays.getBeforeTyping ()))
-					.sendKeys (e, text)
-					.pause (Duration.ofMillis (this.delays.getAfterTyping ()))
+					.perform ();
+				e.sendKeys (text);
+				this.actions.pause (Duration.ofMillis (this.delays.getAfterTyping ()))
 					.perform ();
 			}
 		});

@@ -17,42 +17,28 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.ElementAction;
 
 /**
  * @author wasiqb
- * @since Aug 31, 2018 9:33:22 PM
+ * @since Apr 8, 2019 11:44:28 AM
  */
-public class LoginPage extends BrowserPage {
+public class EditCustomerPage extends MainPage {
 	/**
 	 * @author wasiqb
-	 * @since Aug 31, 2018 9:40:05 PM
-	 * @return password
+	 * @since Apr 8, 2019 11:45:14 AM
+	 * @return customer id
 	 */
-	public ElementAction password () {
-		return form ().find (By.name ("password"));
+	public ElementAction customerId () {
+		return onElement (By.name ("cusid"));
 	}
 
 	/**
 	 * @author wasiqb
-	 * @since Aug 31, 2018 9:40:56 PM
-	 * @return signIn button
+	 * @since Apr 8, 2019 11:46:15 AM
+	 * @return submit
 	 */
-	public ElementAction signIn () {
-		return form ().find (By.name ("btnLogin"));
-	}
-
-	/**
-	 * @author wasiqb
-	 * @since Aug 31, 2018 9:34:38 PM
-	 * @return user id
-	 */
-	public ElementAction userId () {
-		return form ().find (By.name ("uid"));
-	}
-
-	private ElementAction form () {
-		return onElement (By.name ("frmLogin"));
+	public ElementAction submit () {
+		return onElement (By.name ("AccSubmit"));
 	}
 }

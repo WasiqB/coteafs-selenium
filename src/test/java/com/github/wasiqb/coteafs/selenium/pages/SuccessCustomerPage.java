@@ -17,42 +17,37 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.ElementAction;
 
 /**
  * @author wasiqb
- * @since Aug 31, 2018 9:33:22 PM
+ * @since Apr 7, 2019 10:46:56 PM
  */
-public class LoginPage extends BrowserPage {
+public class SuccessCustomerPage extends SuccessPage {
 	/**
 	 * @author wasiqb
-	 * @since Aug 31, 2018 9:40:05 PM
-	 * @return password
+	 * @since Apr 7, 2019 10:38:33 PM
+	 * @return customer id
 	 */
-	public ElementAction password () {
-		return form ().find (By.name ("password"));
+	public ElementAction customerId () {
+		return successTable ().find (By.cssSelector ("tbody > tr:nth-child(4) > td:last-child"));
 	}
 
 	/**
 	 * @author wasiqb
-	 * @since Aug 31, 2018 9:40:56 PM
-	 * @return signIn button
+	 * @since Apr 7, 2019 10:47:54 PM
+	 * @return customer name
 	 */
-	public ElementAction signIn () {
-		return form ().find (By.name ("btnLogin"));
+	public ElementAction customerName () {
+		return successTable ().find (By.cssSelector ("tbody > tr:nth-child(5) > td:last-child"));
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Aug 31, 2018 9:34:38 PM
-	 * @return user id
+	/*
+	 * (non-Javadoc)
+	 * @see com.github.wasiqb.coteafs.selenium.pages.SuccessPage#successTable()
 	 */
-	public ElementAction userId () {
-		return form ().find (By.name ("uid"));
-	}
-
-	private ElementAction form () {
-		return onElement (By.name ("frmLogin"));
+	@Override
+	protected ElementAction successTable () {
+		return onElement (By.id ("customer"));
 	}
 }

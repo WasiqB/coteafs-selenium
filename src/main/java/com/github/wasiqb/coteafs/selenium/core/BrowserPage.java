@@ -28,7 +28,7 @@ public class BrowserPage {
 	 * @since Aug 19, 2018 4:16:51 PM
 	 * @return actions
 	 */
-	public BrowserActions interact () {
+	public BrowserActions onBrowser () {
 		return Browser.interact ();
 	}
 
@@ -38,8 +38,8 @@ public class BrowserPage {
 	 * @param locator
 	 * @return element action
 	 */
-	public ElementAction interact (final By locator) {
-		return new ElementAction (interact (), locator);
+	public ElementAction onElement (final By locator) {
+		return new ElementAction (onBrowser (), locator);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class BrowserPage {
 	 * @param element
 	 * @return element action
 	 */
-	public ElementAction interact (final WebElement element) {
-		return new ElementAction (interact (), element);
+	public ElementAction onElement (final WebElement element) {
+		return new ElementAction (onBrowser (), element);
 	}
 }

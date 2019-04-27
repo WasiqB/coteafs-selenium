@@ -15,32 +15,37 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import com.github.wasiqb.coteafs.selenium.core.BrowserPageAction;
-import com.github.wasiqb.coteafs.selenium.pages.LoginPage;
-import com.github.wasiqb.coteafs.selenium.pages.MainPage;
+import com.github.wasiqb.coteafs.selenium.pages.EditAccountPage;
 
 /**
  * @author wasiqb
- * @since Sep 1, 2018 8:09:35 PM
+ * @since Apr 8, 2019 10:26:00 PM
  */
-public class LoginPageAction extends BrowserPageAction {
+public class DeleteAccountPageAction extends BrowserPageAction {
 	/*
 	 * (non-Javadoc)
 	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
 	 */
 	@Override
 	public void perform () {
-		final LoginPage login = new LoginPage ();
-		login.userId ()
-			.enterText (value ("UserId"));
-		login.password ()
-			.enterText (value ("Password"));
-		login.signIn ()
+		final EditAccountPage acc = new EditAccountPage ();
+		acc.navbar ("Delete Account")
 			.click ();
 
-		final MainPage main = new MainPage ();
-		main.managerIdBanner ()
-			.verifyText ()
-			.endsWith ("Manger Id : " + value ("UserId"));
+		acc.accountId ()
+			.enterText (value ("AccountId"));
+		acc.submit ()
+			.click ();
+
+		String message = acc.onBrowser ()
+			.acceptAlert ();
+		assertThat (message).isEqualTo ("Do you really want to delete this Account?");
+
+		message = acc.onBrowser ()
+			.acceptAlert ();
+		assertThat (message).isEqualTo ("Account Deleted Sucessfully");
 	}
 }
