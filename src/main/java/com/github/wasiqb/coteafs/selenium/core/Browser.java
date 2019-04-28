@@ -24,6 +24,7 @@ import java.util.function.Consumer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.Options;
 import org.openqa.selenium.WebDriver.Timeouts;
@@ -41,6 +42,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import com.github.wasiqb.coteafs.selenium.config.AvailableBrowser;
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
 import com.github.wasiqb.coteafs.selenium.config.PlaybackSetting;
+import com.github.wasiqb.coteafs.selenium.config.ScreenResolution;
 
 /**
  * @author Wasiq Bhamla
@@ -67,45 +69,7 @@ public class Browser {
 		}
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Mar 21, 2019 9:15:09 PM
-	 * @return browser action
-	 */
-	public static BrowserActions interact () {
-		return new BrowserActions (driver ());
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 15, 2018 2:14:24 PM
-	 * @param browserName
-	 */
-	public static void start (final String browserName) {
-		log.info ("Starting driver...");
-		String target = browserName;
-		if (target == null) {
-			target = getProperty (BROWSER, appSetting ().getBrowser ()
-				.name ());
-		}
-		final AvailableBrowser browser = AvailableBrowser.valueOf (target.toUpperCase ());
-		final WebDriver driver = setupDriver (browser);
-		final EventFiringWebDriver wd = new EventFiringWebDriver (driver);
-		driver (wd);
-		setupDriverOptions ();
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 15, 2018 2:37:22 PM
-	 */
-	public static void stop () {
-		log.info ("Stopping driver...");
-		driver ().quit ();
-		driver (null);
-	}
-
-	static EventFiringWebDriver driver () {
+	private static EventFiringWebDriver driver () {
 		return driverThread.get ();
 	}
 
@@ -137,9 +101,10 @@ public class Browser {
 				break;
 			case NORMAL:
 			default:
-				manageWindow (w -> w.setSize (playback.getScreenResolution ()));
+				final ScreenResolution resolution = playback.getScreenResolution ();
+				manageWindow (w -> w
+					.setSize (new Dimension (resolution.getWidth (), resolution.getHeight ())));
 				break;
-
 		}
 	}
 
@@ -178,6 +143,44 @@ public class Browser {
 		final FirefoxOptions options = new FirefoxOptions (capabilities);
 		final GeckoDriverService firefoxService = GeckoDriverService.createDefaultService ();
 		return new FirefoxDriver (firefoxService, options);
+	}
+
+	/**
+	 * @return browser action
+	 * @author wasiqb
+	 * @since Mar 21, 2019 9:15:09 PM
+	 */
+	static BrowserActions interact () {
+		return new BrowserActions (driver ());
+	}
+
+	/**
+	 * @param browserName
+	 * @author Wasiq Bhamla
+	 * @since Aug 15, 2018 2:14:24 PM
+	 */
+	static void start (final String browserName) {
+		log.info ("Starting driver...");
+		String target = browserName;
+		if (target == null) {
+			target = getProperty (BROWSER, appSetting ().getBrowser ()
+				.name ());
+		}
+		final AvailableBrowser browser = AvailableBrowser.valueOf (target.toUpperCase ());
+		final WebDriver driver = setupDriver (browser);
+		final EventFiringWebDriver wd = new EventFiringWebDriver (driver);
+		driver (wd);
+		setupDriverOptions ();
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Aug 15, 2018 2:37:22 PM
+	 */
+	static void stop () {
+		log.info ("Stopping driver...");
+		driver ().quit ();
+		driver (null);
 	}
 
 	private Browser () {
