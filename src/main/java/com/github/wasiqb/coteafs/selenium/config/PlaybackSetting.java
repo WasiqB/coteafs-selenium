@@ -15,8 +15,6 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
-import org.openqa.selenium.Dimension;
-
 /**
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 2:45:29 PM
@@ -24,100 +22,118 @@ import org.openqa.selenium.Dimension;
 public class PlaybackSetting {
 	private DelaySetting		delays;
 	private boolean				highlight;
-	private Dimension			screenResolution;
+	private ScreenResolution	screenResolution;
 	private ScreenshotSetting	screenshot;
 	private ScreenState			screenState;
 
 	/**
 	 * @author Wasiq Bhamla
-	 * @since Apr 8, 2018 3:00:22 PM
+	 * @since Apr 28, 2019
+	 */
+	public PlaybackSetting () {
+		this.screenResolution = new ScreenResolution ();
+	}
+
+	/**
 	 * @return the delays
+	 *
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
 	 */
 	public DelaySetting getDelays () {
 		return this.delays;
 	}
 
 	/**
+	 * @return the screenResolution
+	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
-	 * @return the screenResolution
 	 */
-	public Dimension getScreenResolution () {
+	public ScreenResolution getScreenResolution () {
 		return this.screenResolution;
 	}
 
 	/**
+	 * @return the screenshot
+	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
-	 * @return the screenshot
 	 */
 	public ScreenshotSetting getScreenshot () {
 		return this.screenshot;
 	}
 
 	/**
+	 * @return the screenState
+	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
-	 * @return the screenState
 	 */
 	public ScreenState getScreenState () {
 		return this.screenState;
 	}
 
 	/**
+	 * @return the highlight
+	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
-	 * @return the highlight
 	 */
 	public boolean isHighlight () {
 		return this.highlight;
 	}
 
 	/**
+	 * @param delays
+	 * the delays to set
+	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
-	 * @param delays
-	 *            the delays to set
 	 */
 	public void setDelays (final DelaySetting delays) {
 		this.delays = delays;
 	}
 
 	/**
+	 * @param highlight
+	 * the highlight to set
+	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
-	 * @param highlight
-	 *            the highlight to set
 	 */
 	public void setHighlight (final boolean highlight) {
 		this.highlight = highlight;
 	}
 
 	/**
+	 * @param screenResolution
+	 * the screenSize to set
+	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
-	 * @param screenResolution
-	 *            the screenSize to set
 	 */
-	public void setScreenResolution (final Dimension screenResolution) {
+	public void setScreenResolution (final ScreenResolution screenResolution) {
 		this.screenResolution = screenResolution;
 	}
 
 	/**
+	 * @param screenshot
+	 * the screenshot to set
+	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
-	 * @param screenshot
-	 *            the screenshot to set
 	 */
 	public void setScreenshot (final ScreenshotSetting screenshot) {
 		this.screenshot = screenshot;
 	}
 
 	/**
+	 * @param screenState
+	 * the screenState to set
+	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
-	 * @param screenState
-	 *            the screenState to set
 	 */
 	public void setScreenState (final ScreenState screenState) {
 		this.screenState = screenState;

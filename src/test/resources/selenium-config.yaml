@@ -4,7 +4,7 @@ params:
   user: mngr188669
   password: qunuzej
 playback:
-  screen_state: MAXIMIZED
+  screen_state: NORMAL
   highlight: true
 #  screen_resolution:
 #    width: 1280
