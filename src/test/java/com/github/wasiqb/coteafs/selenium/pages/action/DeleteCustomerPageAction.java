@@ -16,34 +16,34 @@
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserPageAction;
-import com.github.wasiqb.coteafs.selenium.pages.EditAccountPage;
+import com.github.wasiqb.coteafs.selenium.pages.EditCustomerPage;
 
 /**
- * @author wasiqb
- * @since Apr 8, 2019 10:26:00 PM
+ * @author Wasiq Bhamla
+ * @since 29-Apr-2019
  */
-public class DeleteAccountPageAction extends BrowserPageAction {
+public class DeleteCustomerPageAction extends BrowserPageAction {
 	/*
 	 * (non-Javadoc)
 	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
 	 */
 	@Override
 	public void perform () {
-		final EditAccountPage acc = new EditAccountPage ();
-		acc.navbar ("Delete Account")
+		final EditCustomerPage edit = new EditCustomerPage ();
+		edit.navbar ("Delete Customer")
 			.click ();
 
-		acc.accountId ()
-			.enterText (value ("AccountId"));
-		acc.submit ()
+		edit.customerId ()
+			.enterText (value ("CustomerId"));
+		edit.submit ()
 			.click ();
 
-		acc.onBrowser ()
+		edit.onBrowser ()
 			.verifyAcceptedAlertMessage ()
-			.isEqualTo ("Do you really want to delete this Account?");
+			.isEqualTo ("Do you really want to delete this Customer?");
 
-		acc.onBrowser ()
+		edit.onBrowser ()
 			.verifyAcceptedAlertMessage ()
-			.isEqualTo ("Account Deleted Sucessfully");
+			.isEqualTo ("Customer deleted Successfully");
 	}
 }

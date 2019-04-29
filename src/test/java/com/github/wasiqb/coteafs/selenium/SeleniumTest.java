@@ -23,6 +23,7 @@ import org.testng.annotations.Test;
 import com.github.wasiqb.coteafs.selenium.core.BrowserTest;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.DeleteAccountPageAction;
+import com.github.wasiqb.coteafs.selenium.pages.action.DeleteCustomerPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.EditCustomerPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.NewAccountPageAction;
@@ -56,6 +57,17 @@ public class SeleniumTest extends BrowserTest {
 	public void testDeleteAccount () {
 		final DeleteAccountPageAction acc = new DeleteAccountPageAction ();
 		acc.addInputValue ("AccountId", this.accountId)
+			.perform ();
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 29-Apr-2019
+	 */
+	@Test
+	public void testDeleteCustomer () {
+		final DeleteCustomerPageAction acc = new DeleteCustomerPageAction ();
+		acc.addInputValue ("CustomerId", this.customerId)
 			.perform ();
 	}
 
