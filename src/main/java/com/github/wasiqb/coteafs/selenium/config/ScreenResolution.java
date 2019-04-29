@@ -67,4 +67,9 @@ public class ScreenResolution {
 	public void setWidth (final int width) {
 		this.width = width;
 	}
+
+	@Override
+	public String toString () {
+		return String.format ("ScreenResolution{height=%d, width=%d}", this.height, this.width);
+	}
 }

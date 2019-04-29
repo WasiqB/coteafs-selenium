@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-    <test name="Test" enabled="true">
-        <classes>
-            <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
-                <methods>
-                    <include name="testSignIn"/>
-                    <include name="testNewCustomer"/>
-                    <include name="testEditCustomer"/>
-                    <include name="testNewAccount"/>
-                    <include name="testDeleteAccount"/>
-                </methods>
-            </class>
-        </classes>
-    </test> <!-- Test -->
+	<test name="Test" enabled="true">
+		<classes>
+			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+				<methods>
+					<include name="testSignIn" />
+					<include name="testNewCustomer" />
+					<include name="testEditCustomer" />
+					<include name="testNewAccount" />
+					<include name="testDeleteAccount" />
+					<include name="testDeleteCustomer" />
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->

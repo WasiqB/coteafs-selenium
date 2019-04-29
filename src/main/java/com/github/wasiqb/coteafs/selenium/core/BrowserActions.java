@@ -45,8 +45,7 @@ import com.google.common.truth.StringSubject;
  * @since Aug 18, 2018 4:41:56 PM
  */
 public class BrowserActions {
-	private static final Logger log = LogManager.getLogger (BrowserActions.class);
-
+	private static final Logger			log	= LogManager.getLogger (BrowserActions.class);
 	private final EventFiringWebDriver	driver;
 	private final WebDriverWait			wait;
 
@@ -219,7 +218,7 @@ public class BrowserActions {
 				final WebDriver w = d.switchTo ()
 					.window (win);
 				if (w.getTitle ()
-					.contains (title)) { return; }
+					.contains (title)) return;
 			}
 		});
 	}
@@ -253,15 +252,15 @@ public class BrowserActions {
 		return assertThat (actual);
 	}
 
-	EventFiringWebDriver driver () {
-		return this.driver;
-	}
-
 	private <E> E get (final Function <EventFiringWebDriver, E> func) {
 		return func.apply (this.driver);
 	}
 
 	private void perform (final Consumer <EventFiringWebDriver> action) {
 		action.accept (this.driver);
+	}
+
+	EventFiringWebDriver driver () {
+		return this.driver;
 	}
 }
