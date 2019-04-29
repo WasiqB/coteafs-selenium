@@ -120,6 +120,9 @@ public class Browser {
 		log.info ("Setting up Chrome driver...");
 		final ChromeOptions chromeOptions = new ChromeOptions ();
 		chromeOptions.addArguments ("--dns-prefetch-disable");
+		if (appSetting ().isHeadlessMode ()) {
+			chromeOptions.addArguments ("--headless");
+		}
 		chromeOptions.setCapability (CapabilityType.ACCEPT_SSL_CERTS, true);
 		final ChromeDriverService chromeService = ChromeDriverService.createDefaultService ();
 		return new ChromeDriver (chromeService, chromeOptions);
