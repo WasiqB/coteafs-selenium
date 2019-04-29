@@ -51,7 +51,7 @@ jobs:
           name: Install Chrome
           command: |
             wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
+            sudo dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
       - run:
           name: Make driver executable
           command: chmod +x target/classes/drivers/linux/chromedriver
