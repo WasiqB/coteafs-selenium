@@ -10,6 +10,7 @@
 					<include name="testEditCustomer" />
 					<include name="testNewAccount" />
 					<include name="testDeleteAccount" />
+					<include name="testDeleteCustomer" />
 				</methods>
 			</class>
 		</classes>

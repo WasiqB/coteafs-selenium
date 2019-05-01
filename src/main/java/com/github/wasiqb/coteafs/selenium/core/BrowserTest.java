@@ -16,9 +16,9 @@
 package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.github.wasiqb.coteafs.selenium.core.Browser.close;
 import static com.github.wasiqb.coteafs.selenium.core.Browser.interact;
 import static com.github.wasiqb.coteafs.selenium.core.Browser.start;
-import static com.github.wasiqb.coteafs.selenium.core.Browser.stop;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -66,6 +66,6 @@ public class BrowserTest {
 	 */
 	@AfterTest (alwaysRun = true)
 	public void teardownTest () {
-		stop ();
+		close ();
 	}
 }
