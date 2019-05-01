@@ -72,7 +72,6 @@ public class ElementAction {
 	private WebElement					element;
 	private String						style;
 	private boolean						useBy;
-
 	private final WebDriverWait			wait;
 
 	/**
