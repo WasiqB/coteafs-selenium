@@ -23,6 +23,7 @@ import static java.lang.System.getProperty;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
+import com.github.wasiqb.coteafs.selenium.constants.OS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
@@ -36,6 +37,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.GeckoDriverService;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerDriverService;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -47,6 +51,7 @@ import com.github.wasiqb.coteafs.selenium.config.PlaybackSetting;
 import com.github.wasiqb.coteafs.selenium.config.ScreenResolution;
 import com.github.wasiqb.coteafs.selenium.config.ScreenState;
 import com.github.wasiqb.coteafs.selenium.listeners.DriverListner;
+import org.testng.Assert;
 
 /**
  * @author Wasiq Bhamla
@@ -132,6 +137,8 @@ public class Browser {
 		switch (browser) {
 			case CHROME:
 				return setupChromeDriver ();
+			case IE:
+				return setupIEDriver();
 			case FIREFOX:
 			default:
 				return setupFirefoxDriver ();
@@ -155,6 +162,24 @@ public class Browser {
 		final GeckoDriverService firefoxService = GeckoDriverService.createDefaultService ();
 		return new FirefoxDriver (firefoxService, options);
 	}
+
+	private static WebDriver setupIEDriver() {
+		log.info ("Setting up Internet Explorer driver...");
+		final InternetExplorerOptions ieOptions = new InternetExplorerOptions();
+		ieOptions.destructivelyEnsureCleanSession();
+		ieOptions.setCapability("requireWindowFocus", true);
+		ieOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+		final InternetExplorerDriverService ieService = InternetExplorerDriverService.createDefaultService();
+		if(OS.isMac() || OS.isUnix()) {
+			Assert.fail("IE is not supported.");
+		}
+		if (appSetting ().isHeadlessMode ()) {
+			Assert.fail("Internet Explorer can not run in headless mode, Set Headless setting to false in config.yaml");
+		}
+		return new InternetExplorerDriver(ieService,ieOptions);
+	}
+
+
 
 	/**
 	 * @return browser action
