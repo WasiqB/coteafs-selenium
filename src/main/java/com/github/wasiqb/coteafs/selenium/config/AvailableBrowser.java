@@ -32,7 +32,12 @@ public enum AvailableBrowser {
 	/**
 	 * Firefox.
 	 */
-	FIREFOX ("webdriver.gecko.driver", "geckodriver");
+	FIREFOX ("webdriver.gecko.driver", "geckodriver"),
+	/**
+	 * Internet Explorer Driver.
+	 */
+	IE ("webdriver.ie.driver", "IEDriverServer");
+
 
 	private static final String	DEFAULT_FOLDER	= "/src/main/resources/drivers/";
 

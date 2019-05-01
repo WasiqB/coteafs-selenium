@@ -1,11 +1,11 @@
-browser: CHROME
+browser: IE
 url: http://demo.guru99.com/V4/
-headless_mode: true
+headless_mode: false
 params:
   user: mngr192137
   password: YguzupA
 playback:
-  screen_state: NORMAL
+  screen_state: MAXIMIZED
   highlight: true
 #  screen_resolution:
 #    width: 1280
