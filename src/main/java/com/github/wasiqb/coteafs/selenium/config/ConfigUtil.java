@@ -38,4 +38,8 @@ public final class ConfigUtil {
 	public static ApplicationSetting appSetting () {
 		return setting;
 	}
+
+	private ConfigUtil () {
+		// Remove default constructor since class is static util class.
+	}
 }

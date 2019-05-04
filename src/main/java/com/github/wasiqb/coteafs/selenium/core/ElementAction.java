@@ -59,7 +59,9 @@ public class ElementAction {
 			sleep (delay);
 		}
 		catch (final InterruptedException e) {
-			LOG.error ("Error while pausing: {0}", e.getMessage ());
+			LOG.error ("Error while pausing: {}", e.getMessage ());
+			Thread.currentThread ()
+				.interrupt ();
 		}
 	}
 
@@ -181,12 +183,10 @@ public class ElementAction {
 	 * @since Aug 21, 2018 4:03:13 PM
 	 */
 	public void hover () {
-		perform (e -> {
-			this.actions.pause (ofMillis (this.delays.getBeforeMouseMove ()))
-				.moveToElement (e)
-				.pause (ofMillis (this.delays.getAfterMouseMove ()))
-				.perform ();
-		});
+		perform (e -> this.actions.pause (ofMillis (this.delays.getBeforeMouseMove ()))
+			.moveToElement (e)
+			.pause (ofMillis (this.delays.getAfterMouseMove ()))
+			.perform ());
 	}
 
 	/**

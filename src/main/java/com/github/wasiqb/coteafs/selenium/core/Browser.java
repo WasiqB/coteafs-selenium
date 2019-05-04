@@ -17,13 +17,11 @@ package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
-import static java.lang.String.format;
 import static java.lang.System.getProperty;
 
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-import com.github.wasiqb.coteafs.selenium.constants.OS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
@@ -44,14 +42,15 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.events.WebDriverEventListener;
+import org.testng.Assert;
 
 import com.github.wasiqb.coteafs.selenium.config.AvailableBrowser;
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
 import com.github.wasiqb.coteafs.selenium.config.PlaybackSetting;
 import com.github.wasiqb.coteafs.selenium.config.ScreenResolution;
 import com.github.wasiqb.coteafs.selenium.config.ScreenState;
+import com.github.wasiqb.coteafs.selenium.constants.OS;
 import com.github.wasiqb.coteafs.selenium.listeners.DriverListner;
-import org.testng.Assert;
 
 /**
  * @author Wasiq Bhamla
@@ -103,7 +102,7 @@ public class Browser {
 
 	private static void setScreenSize (final PlaybackSetting playback) {
 		final ScreenState state = playback.getScreenState ();
-		log.info (format ("Setting screen size of Browser to %s...", state));
+		log.info ("Setting screen size of Browser to {}...", state);
 		switch (state) {
 			case FULL_SCREEN:
 				manageWindow (Window::fullscreen);
@@ -114,7 +113,7 @@ public class Browser {
 			case NORMAL:
 			default:
 				final ScreenResolution resolution = playback.getScreenResolution ();
-				log.info (format ("Setting screen resolution to [%s]...", resolution));
+				log.info ("Setting screen resolution to [{}]...", resolution);
 				manageWindow (w -> w
 					.setSize (new Dimension (resolution.getWidth (), resolution.getHeight ())));
 				break;
@@ -138,7 +137,7 @@ public class Browser {
 			case CHROME:
 				return setupChromeDriver ();
 			case IE:
-				return setupIEDriver();
+				return setupIEDriver ();
 			case FIREFOX:
 			default:
 				return setupFirefoxDriver ();
@@ -163,22 +162,23 @@ public class Browser {
 		return new FirefoxDriver (firefoxService, options);
 	}
 
-	private static WebDriver setupIEDriver() {
+	private static WebDriver setupIEDriver () {
 		log.info ("Setting up Internet Explorer driver...");
-		final InternetExplorerOptions ieOptions = new InternetExplorerOptions();
-		ieOptions.destructivelyEnsureCleanSession();
-		ieOptions.setCapability("requireWindowFocus", true);
-		ieOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-		final InternetExplorerDriverService ieService = InternetExplorerDriverService.createDefaultService();
-		if(OS.isMac() || OS.isUnix()) {
-			Assert.fail("IE is not supported.");
+		final InternetExplorerOptions ieOptions = new InternetExplorerOptions ();
+		ieOptions.destructivelyEnsureCleanSession ();
+		ieOptions.setCapability ("requireWindowFocus", true);
+		ieOptions.setCapability (CapabilityType.ACCEPT_SSL_CERTS, true);
+		final InternetExplorerDriverService ieService = InternetExplorerDriverService
+			.createDefaultService ();
+		if (OS.isMac () || OS.isUnix ()) {
+			Assert.fail ("IE is not supported.");
 		}
 		if (appSetting ().isHeadlessMode ()) {
-			Assert.fail("Internet Explorer can not run in headless mode, Set Headless setting to false in config.yaml");
+			Assert.fail (
+				"Internet Explorer can not run in headless mode, Set Headless setting to false in config.yaml");
 		}
-		return new InternetExplorerDriver(ieService,ieOptions);
+		return new InternetExplorerDriver (ieService, ieOptions);
 	}
-
 
 	/**
 	 * @return browser action

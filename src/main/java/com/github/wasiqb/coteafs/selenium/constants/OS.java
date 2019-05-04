@@ -22,7 +22,7 @@ import static java.lang.System.getProperty;
  * @since Aug 10, 2018 2:37:10 PM
  */
 public class OS {
-	private static final String OS = getProperty ("os.name").toLowerCase ();
+	private static final String NAME = getProperty ("os.name").toLowerCase ();
 
 	/**
 	 * @author Wasiq Bhamla
@@ -30,7 +30,7 @@ public class OS {
 	 * @return is Mac
 	 */
 	public static boolean isMac () {
-		return OS.indexOf ("mac") >= 0;
+		return NAME.contains ("mac");
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class OS {
 	 * @return is unix
 	 */
 	public static boolean isUnix () {
-		return OS.indexOf ("nix") >= 0 || OS.indexOf ("nux") >= 0 || OS.indexOf ("aix") > 0;
+		return NAME.contains ("nix") || NAME.contains ("nux") || NAME.contains ("aix");
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class OS {
 	 * @return is win
 	 */
 	public static boolean isWindows () {
-		return OS.indexOf ("win") >= 0;
+		return NAME.contains ("win");
 	}
 
 	/**
@@ -57,9 +57,13 @@ public class OS {
 	 * @return platform
 	 */
 	public static String platform () {
-		if (isWindows ()) { return "win"; }
-		if (isMac ()) { return "mac"; }
-		if (isUnix ()) { return "linux"; }
+		if (isWindows ()) return "win";
+		if (isMac ()) return "mac";
+		if (isUnix ()) return "linux";
 		return null;
+	}
+
+	private OS () {
+		// Util class.
 	}
 }
