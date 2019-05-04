@@ -53,10 +53,9 @@ public class BrowserTest {
 		final boolean screenshotOnError = appSetting ().getPlayback ()
 			.getScreenshot ()
 			.isCaptureOnError ();
-		if (screenshotOnError && result.getStatus () == ITestResult.FAILURE) {
-			if (!interact ().isClosed ()) {
-				interact ().saveScreenshot ();
-			}
+		if (screenshotOnError && result.getStatus () == ITestResult.FAILURE
+			&& !interact ().isClosed ()) {
+			interact ().saveScreenshot ();
 		}
 	}
 

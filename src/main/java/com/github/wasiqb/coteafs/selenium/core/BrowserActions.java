@@ -31,7 +31,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -173,7 +172,7 @@ public class BrowserActions {
 	 * @return screenshot
 	 */
 	public byte [] saveScreenshot () {
-		return get (d -> ((TakesScreenshot) d).getScreenshotAs (OutputType.BYTES));
+		return get (d -> d.getScreenshotAs (OutputType.BYTES));
 	}
 
 	/**
@@ -182,10 +181,10 @@ public class BrowserActions {
 	 * @param filePath
 	 */
 	public void saveScreenshot (final String filePath) {
-		final File screenshot = get (d -> ((TakesScreenshot) d).getScreenshotAs (OutputType.FILE));
+		final File screenShot = get (d -> d.getScreenshotAs (OutputType.FILE));
 		try {
-			log.info (format ("Saving screenshot to file: %s...", filePath));
-			FileUtils.copyFile (screenshot, new File (filePath));
+			log.info ("Saving screen shot to file: {}...", filePath);
+			FileUtils.copyFile (screenShot, new File (filePath));
 		}
 		catch (final IOException e) {
 			log.error (format ("Error while saving screenshot to file: %s", filePath));

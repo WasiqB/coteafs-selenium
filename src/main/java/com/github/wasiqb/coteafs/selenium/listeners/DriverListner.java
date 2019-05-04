@@ -15,8 +15,6 @@
  */
 package com.github.wasiqb.coteafs.selenium.listeners;
 
-import static java.lang.String.format;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -65,8 +63,8 @@ public class DriverListner implements WebDriverEventListener {
 	public void afterChangeValueOf (final WebElement element, final WebDriver driver,
 		final CharSequence [] keysToSend) {
 		if (keysToSend != null) {
-			final String message = "Text [%s] has been entered...";
-			log.trace (format (message, (Object []) keysToSend));
+			final String message = "Text [{}] has been entered...";
+			log.trace (message, (Object []) keysToSend);
 		}
 	}
 
@@ -90,7 +88,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterFindBy (final By by, final WebElement element, final WebDriver driver) {
-		log.trace (format ("Element found using [%s]...", by));
+		log.trace ("Element found using [{}]...", by);
 	}
 
 	/*
@@ -111,7 +109,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterGetText (final WebElement element, final WebDriver driver, final String text) {
-		log.trace (format ("Got text [%s] from element...", text));
+		log.trace ("Got text [{}] from element...", text);
 	}
 
 	/*
@@ -153,7 +151,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterNavigateTo (final String url, final WebDriver driver) {
-		log.trace (format ("Navigated to url [%s]...", url));
+		log.trace ("Navigated to url [{}]...", url);
 	}
 
 	/*
@@ -164,7 +162,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterScript (final String script, final WebDriver driver) {
-		log.trace (format ("Script [%s] executed successfully...", script));
+		log.trace ("Script [{}] executed successfully...", script);
 	}
 
 	/*
@@ -175,7 +173,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterSwitchToWindow (final String windowName, final WebDriver driver) {
-		log.trace (format ("Window switched to [%s]...", windowName));
+		log.trace ("Window switched to [{}]...", windowName);
 	}
 
 	/*
@@ -211,7 +209,7 @@ public class DriverListner implements WebDriverEventListener {
 	public void beforeChangeValueOf (final WebElement element, final WebDriver driver,
 		final CharSequence [] keysToSend) {
 		if (keysToSend != null) {
-			log.info (format ("Writing text [%s]...", (Object []) keysToSend));
+			log.info ("Writing text [{}]...", (Object []) keysToSend);
 		}
 	}
 
@@ -235,7 +233,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeFindBy (final By by, final WebElement element, final WebDriver driver) {
-		log.trace (format ("Finding element by [%s]", by));
+		log.trace ("Finding element by [{}]", by);
 	}
 
 	/*
@@ -298,7 +296,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeNavigateTo (final String url, final WebDriver driver) {
-		log.info (format ("Navigating to [%s]...", url));
+		log.info ("Navigating to [{}]...", url);
 	}
 
 	/*
@@ -309,8 +307,8 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeScript (final String script, final WebDriver driver) {
-		final String message = "Executing script [%s]...";
-		log.trace (format (message, script));
+		final String message = "Executing script [{}]...";
+		log.trace (message, script);
 	}
 
 	/*
@@ -320,7 +318,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeSwitchToWindow (final String windowName, final WebDriver driver) {
-		log.info (format ("Switching to window [%s]...", windowName));
+		log.info ("Switching to window [{}]...", windowName);
 	}
 
 	/*
@@ -331,10 +329,10 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void onException (final Throwable throwable, final WebDriver driver) {
-		final String message = "Error occurred: %s";
-		log.error (format (message, throwable.getMessage ()));
+		final String message = "Error occurred: {}";
+		log.error (message, throwable.getMessage ());
 		for (final StackTraceElement stack : throwable.getStackTrace ()) {
-			log.error (format (message, stack));
+			log.error (message, stack);
 		}
 		log.catching (throwable);
 	}
