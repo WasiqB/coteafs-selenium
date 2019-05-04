@@ -34,13 +34,13 @@ Any PR raised should make sure following checks are successful:
 
 ### Project tracking
 
-We make sure that whatever is being committed to the code base, is tracked against an issue ticket. Hence, each planned versions are being tracked in `Project` tab on GitHub. Hence, it is mandatory to keep the ticket status updated for which you may be working on.
+I make sure that whatever is being committed to the code base, is tracked against an issue ticket. Hence, each planned versions are being tracked in `Project` tab on GitHub. Hence, it is mandatory to keep the ticket status updated for which you may be working on.
 
 ### Circle CI pipelines
 
-The framework is configured with Circle CI to run tests on **Chrome browser** to make sure that the framework is healthy. This integration is useful when there is multiple contributors working on the project and it is mandatory to add tests for the code you have written. These tests will be executed on every commits to the issue branch.
+The framework is configured with Circle CI to run tests on **Chrome browser** to make sure that the framework is healthy. This integration is useful when there are multiple contributors working on the project and it is mandatory to add tests for the code you have written. These tests will be executed on every commits to the issue branch.
 
-Following is the checks which are executed:
+Following are the checks which are executed:
 - Tests coverage
 - Static Code analysis
 
@@ -48,11 +48,11 @@ Following is the checks which are executed:
 
 When many contributors are working together, then there is always chance for different code styling. To make sure every member is using same coding style, it is advisable that you import code styling formatter from the [java formatter][formatter] repository into your IDE.
 
-Make sure to format the code before committing sending **PR**.
+Make sure to format the code before sending the **PR**.
 
 ### Test coverage
 
-For assuring quality of framework to prospective users, test coverage plays an important role. That's why we want to achieve a benchmark of **80% or more** of overall coverage. It will be advisable to add tests for any new code which you may be adding.
+For assuring quality of framework to prospective users, test coverage plays an important role. That's why I want to achieve a benchmark of **80% or more** of overall coverage. It will be advisable to add tests for any new code which you may be adding.
 
 ### SonarCloud Code Quality monitoring
 
@@ -60,7 +60,7 @@ For each commit to any of the branches described above, CI will also execute sta
 
 ## Issues and Suggestions.
 
-If you find any issue in the framework or you have some suggestions for enhancement in the framework then feel free to raise an issue for the same. Together we can make the framework even for solid and more easy for other Test Engineers to use in their daily Automation tasks.
+If you find any issue in the framework or you have some suggestions for enhancement in the framework then feel free to raise an issue for the same. Together we can make the framework even more effective and easy for other Test Engineers to use it in their daily Automation tasks.
 
 [sign-commit]: https://help.github.com/en/articles/signing-commits
 [formatter]: https://github.com/WasiqB/java-formatter
