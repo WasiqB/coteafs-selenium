@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017-2020, Wasiq Bhamla.
+ * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@ package com.github.wasiqb.coteafs.selenium.config;
 
 import static java.lang.System.getProperty;
 import static java.lang.System.setProperty;
+
+import java.net.URL;
 
 import com.github.wasiqb.coteafs.selenium.constants.OS;
 
@@ -38,10 +40,10 @@ public enum AvailableBrowser {
 	 */
 	IE ("webdriver.ie.driver", "IEDriverServer");
 
-	private static final String	DEFAULT_FOLDER	= "/src/main/resources/drivers/";
+	private static final String DEFAULT_FOLDER = "drivers/";
 
-	private String				driver;
-	private String				key;
+	private String driver;
+	private String key;
 
 	private AvailableBrowser (final String key, final String driver) {
 		this.key = key;
@@ -52,10 +54,10 @@ public enum AvailableBrowser {
 	private void setup () {
 		if (getProperty (this.key) == null) {
 			final StringBuilder sb = new StringBuilder ();
-			String dir = getProperty ("user.dir");
-			sb.append (dir)
-				.append (DEFAULT_FOLDER)
-				.append (OS.platform ())
+			final URL dir = AvailableBrowser.class.getClassLoader ()
+				.getResource (DEFAULT_FOLDER);
+			sb.append (dir.getPath ());
+			sb.append (OS.platform ())
 				.append ("/")
 				.append (this.driver);
 			if (OS.isWindows ()) {
