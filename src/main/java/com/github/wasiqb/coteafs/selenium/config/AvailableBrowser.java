@@ -29,11 +29,10 @@ public enum AvailableBrowser {
 	/**
 	 * Chrome.
 	 */
-	CHROME,FIREFOX
-	;
+	CHROME,FIREFOX;
+
 
 	private AvailableBrowser() {
-
 		driverSetUp();
 
 	}
@@ -41,7 +40,6 @@ public enum AvailableBrowser {
 		WebDriverManager.chromedriver().setup();
 
 	}
-
 
 	}
 
