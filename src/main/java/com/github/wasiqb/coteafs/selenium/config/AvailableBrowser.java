@@ -31,7 +31,6 @@ public enum AvailableBrowser {
 	 */
 	CHROME,FIREFOX;
 
-
 	private AvailableBrowser() {
 		driverSetUp();
 
