@@ -16,6 +16,7 @@
 package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.google.common.truth.Truth.assertThat;
+import static java.lang.Thread.sleep;
 import static java.text.MessageFormat.format;
 import static java.time.Duration.ofMillis;
 import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBe;
@@ -25,7 +26,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfEl
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -33,6 +33,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -50,6 +52,19 @@ import com.google.common.truth.StringSubject;
  * @since Aug 21, 2018 3:31:21 PM
  */
 public class ElementAction {
+	private static final Logger LOG = LogManager.getLogger (ElementAction.class);
+
+	private static void pause (final long delay) {
+		try {
+			sleep (delay);
+		}
+		catch (final InterruptedException e) {
+			LOG.error ("Error while pausing: {}", e.getMessage ());
+			Thread.currentThread ()
+				.interrupt ();
+		}
+	}
+
 	private final Actions				actions;
 	private boolean						alreadyHighlighted;
 	private final BrowserActions		browserAction;
@@ -120,10 +135,9 @@ public class ElementAction {
 	 */
 	public void click () {
 		perform (e -> {
-			this.actions.pause (Duration.ofMillis (this.delays.getBeforeClick ()))
-				.click (e)
-				.pause (Duration.ofMillis (this.delays.getAfterClick ()))
-				.perform ();
+			pause (this.delays.getBeforeClick ());
+			e.click ();
+			pause (this.delays.getAfterClick ());
 		});
 	}
 
@@ -135,11 +149,9 @@ public class ElementAction {
 	public void enterText (final String text) {
 		perform (e -> {
 			if (StringUtils.isNoneEmpty (text)) {
-				this.actions.pause (Duration.ofMillis (this.delays.getBeforeTyping ()))
-					.perform ();
+				pause (this.delays.getBeforeTyping ());
 				e.sendKeys (text);
-				this.actions.pause (Duration.ofMillis (this.delays.getAfterTyping ()))
-					.perform ();
+				pause (this.delays.getAfterTyping ());
 			}
 		});
 	}
@@ -171,12 +183,10 @@ public class ElementAction {
 	 * @since Aug 21, 2018 4:03:13 PM
 	 */
 	public void hover () {
-		perform (e -> {
-			this.actions.pause (ofMillis (this.delays.getBeforeMouseMove ()))
-				.moveToElement (e)
-				.pause (ofMillis (this.delays.getAfterMouseMove ()))
-				.perform ();
-		});
+		perform (e -> this.actions.pause (ofMillis (this.delays.getBeforeMouseMove ()))
+			.moveToElement (e)
+			.pause (ofMillis (this.delays.getAfterMouseMove ()))
+			.perform ());
 	}
 
 	/**
@@ -358,11 +368,6 @@ public class ElementAction {
 				"arguments[0].setAttribute('style', arguments[1] + arguments[2]);", this.element,
 				this.style, format ("color: {0}; border: 3px solid {0};", color));
 		}
-	}
-
-	private void pause (final long delay) {
-		this.actions.pause (Duration.ofMillis (delay))
-			.perform ();
 	}
 
 	private void perform (final Consumer <WebElement> action) {

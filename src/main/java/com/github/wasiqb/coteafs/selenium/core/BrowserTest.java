@@ -16,9 +16,9 @@
 package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.github.wasiqb.coteafs.selenium.core.Browser.close;
 import static com.github.wasiqb.coteafs.selenium.core.Browser.interact;
 import static com.github.wasiqb.coteafs.selenium.core.Browser.start;
-import static com.github.wasiqb.coteafs.selenium.core.Browser.stop;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -53,10 +53,9 @@ public class BrowserTest {
 		final boolean screenshotOnError = appSetting ().getPlayback ()
 			.getScreenshot ()
 			.isCaptureOnError ();
-		if (screenshotOnError && result.getStatus () == ITestResult.FAILURE) {
-			if (!interact ().isClosed ()) {
-				interact ().saveScreenshot ();
-			}
+		if (screenshotOnError && result.getStatus () == ITestResult.FAILURE
+			&& !interact ().isClosed ()) {
+			interact ().saveScreenshot ();
 		}
 	}
 
@@ -66,6 +65,6 @@ public class BrowserTest {
 	 */
 	@AfterTest (alwaysRun = true)
 	public void teardownTest () {
-		stop ();
+		close ();
 	}
 }
