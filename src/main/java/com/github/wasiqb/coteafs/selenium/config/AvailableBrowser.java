@@ -34,7 +34,11 @@ public enum AvailableBrowser {
 
 	private AvailableBrowser() {
 
-		new WebdrivermangerSetting();
+		driverSetUp();
+
+	}
+	private void driverSetUp(){
+		WebDriverManager.chromedriver().setup();
 
 	}
 

@@ -142,7 +142,7 @@ public class Browser {
 				return setupFirefoxDriver();
 
 			default:
-				return setupChromeDriver ();
+				return setupFirefoxDriver ();
 		}
 	}
 

@@ -1,6 +1,6 @@
 browser: CHROME
 url: http://demo.guru99.com/V4/
-headless_mode: false
+headless_mode: true
 params:
   user: mngr192137
   password: YguzupA
