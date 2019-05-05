@@ -133,14 +133,16 @@ public class Browser {
 	}
 
 	private static WebDriver setupDriver (final AvailableBrowser browser) {
+
+
 		switch (browser) {
 			case CHROME:
 				return setupChromeDriver ();
-			case IE:
-				return setupIEDriver ();
 			case FIREFOX:
+				return setupFirefoxDriver();
+
 			default:
-				return setupFirefoxDriver ();
+				return setupChromeDriver ();
 		}
 	}
 

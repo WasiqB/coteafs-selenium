@@ -19,6 +19,7 @@ import static java.lang.System.getProperty;
 import static java.lang.System.setProperty;
 
 import com.github.wasiqb.coteafs.selenium.constants.OS;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 /**
  * @author Wasiq Bhamla
@@ -28,40 +29,16 @@ public enum AvailableBrowser {
 	/**
 	 * Chrome.
 	 */
-	CHROME ("webdriver.chrome.driver", "chromedriver"),
-	/**
-	 * Firefox.
-	 */
-	FIREFOX ("webdriver.gecko.driver", "geckodriver"),
-	/**
-	 * Internet Explorer
-	 */
-	IE ("webdriver.ie.driver", "IEDriverServer");
+	CHROME,FIREFOX
+	;
 
-	private static final String	DEFAULT_FOLDER	= "/src/main/resources/drivers/";
+	private AvailableBrowser() {
 
-	private String				driver;
-	private String				key;
+		new WebdrivermangerSetting();
 
-	private AvailableBrowser (final String key, final String driver) {
-		this.key = key;
-		this.driver = driver;
-		setup ();
 	}
 
-	private void setup () {
-		if (getProperty (this.key) == null) {
-			final StringBuilder sb = new StringBuilder ();
-			String dir = getProperty ("user.dir");
-			sb.append (dir)
-				.append (DEFAULT_FOLDER)
-				.append (OS.platform ())
-				.append ("/")
-				.append (this.driver);
-			if (OS.isWindows ()) {
-				sb.append (".exe");
-			}
-			setProperty (this.key, sb.toString ());
-		}
+
 	}
-}
+
+
