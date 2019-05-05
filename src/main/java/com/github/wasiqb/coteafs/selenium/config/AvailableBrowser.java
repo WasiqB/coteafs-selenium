@@ -39,7 +39,6 @@ public enum AvailableBrowser {
 		WebDriverManager.chromedriver().setup();
 
 	}
-
 	}
 
 
