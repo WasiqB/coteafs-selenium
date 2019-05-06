@@ -14,12 +14,10 @@
  * limitations under the License.
  */
 package com.github.wasiqb.coteafs.selenium.config;
-
-import static java.lang.System.getProperty;
-import static java.lang.System.setProperty;
-
-import com.github.wasiqb.coteafs.selenium.constants.OS;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+
 
 /**
  * @author Wasiq Bhamla
@@ -29,16 +27,27 @@ public enum AvailableBrowser {
 	/**
 	 * Chrome.
 	 */
-	CHROME,FIREFOX;
+
+		CHROME, FIREFOX;
 
 	private AvailableBrowser() {
 		driverSetUp();
 
 	}
-	private void driverSetUp(){
-		WebDriverManager.chromedriver().setup();
+	private  void driverSetUp() {
+		String browser = AvailableBrowser.this.toString();
+		switch (browser) {
+			case "CHROME":
+				WebDriverManager.chromedriver().setup();
+				break;
+			default:
+			case "FIREFOX":
+				WebDriverManager.firefoxdriver().setup();
+				break;
+		}
+	}
+}
 
-	}
-	}
+
 
 
