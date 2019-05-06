@@ -28,7 +28,7 @@ public enum AvailableBrowser {
 	 * Chrome.
 	 */
 
-		CHROME, FIREFOX;
+		CHROME, FIREFOX,IE;
 
 	private AvailableBrowser() {
 		driverSetUp();
@@ -40,6 +40,9 @@ public enum AvailableBrowser {
 			case "CHROME":
 				WebDriverManager.chromedriver().setup();
 				break;
+			case "IE":
+				WebDriverManager.iedriver().setup();
+
 			default:
 			case "FIREFOX":
 				WebDriverManager.firefoxdriver().setup();
