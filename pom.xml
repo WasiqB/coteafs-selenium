@@ -32,6 +32,7 @@
 		<selenium-version>3.141.59</selenium-version>
 		<commons.io.version>2.6</commons.io.version>
 		<webdrivermanager-version>3.4.0</webdrivermanager-version>
+		<faker.version>0.17.2</faker.version>
 	</properties>
 
 	<dependencies>
@@ -101,7 +102,6 @@
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>${webdrivermanager-version}</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -111,13 +111,7 @@
 		<dependency>
 			<groupId>com.github.javafaker</groupId>
 			<artifactId>javafaker</artifactId>
-			<version>0.17.2</version>
-		</dependency>
-		<dependency>
-			<groupId>io.github.bonigarcia</groupId>
-			<artifactId>webdrivermanager</artifactId>
-			<version>3.4.0</version>
-			<scope>compile</scope>
+			<version>${faker.version}</version>
 		</dependency>
 	</dependencies>
 </project>

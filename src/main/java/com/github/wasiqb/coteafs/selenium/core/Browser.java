@@ -17,6 +17,9 @@ package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
+import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
+import static io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver;
+import static io.github.bonigarcia.wdm.WebDriverManager.iedriver;
 import static java.lang.System.getProperty;
 
 import java.util.concurrent.TimeUnit;
@@ -122,6 +125,7 @@ public class Browser {
 
 	private static WebDriver setupChromeDriver () {
 		log.info ("Setting up Chrome driver...");
+		chromedriver ().setup ();
 		final ChromeOptions chromeOptions = new ChromeOptions ();
 		chromeOptions.addArguments ("--dns-prefetch-disable");
 		if (appSetting ().isHeadlessMode ()) {
@@ -133,16 +137,14 @@ public class Browser {
 	}
 
 	private static WebDriver setupDriver (final AvailableBrowser browser) {
-
-
 		switch (browser) {
 			case CHROME:
 				return setupChromeDriver ();
 			case FIREFOX:
-				return setupFirefoxDriver();
-
-			default:
 				return setupFirefoxDriver ();
+			case IE:
+			default:
+				return setupIEDriver ();
 		}
 	}
 
@@ -158,6 +160,7 @@ public class Browser {
 
 	private static WebDriver setupFirefoxDriver () {
 		log.info ("Setting up Firefox driver...");
+		firefoxdriver ().setup ();
 		final DesiredCapabilities capabilities = DesiredCapabilities.firefox ();
 		final FirefoxOptions options = new FirefoxOptions (capabilities);
 		final GeckoDriverService firefoxService = GeckoDriverService.createDefaultService ();
@@ -166,13 +169,14 @@ public class Browser {
 
 	private static WebDriver setupIEDriver () {
 		log.info ("Setting up Internet Explorer driver...");
+		iedriver ().setup ();
 		final InternetExplorerOptions ieOptions = new InternetExplorerOptions ();
 		ieOptions.destructivelyEnsureCleanSession ();
 		ieOptions.setCapability ("requireWindowFocus", true);
 		ieOptions.setCapability (CapabilityType.ACCEPT_SSL_CERTS, true);
 		final InternetExplorerDriverService ieService = InternetExplorerDriverService
 			.createDefaultService ();
-		if (OS.isMac () || OS.isUnix ()) {
+		if (!OS.isWindows ()) {
 			Assert.fail ("IE is not supported.");
 		}
 		if (appSetting ().isHeadlessMode ()) {

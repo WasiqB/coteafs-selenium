@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 package com.github.wasiqb.coteafs.selenium.config;
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-
-
 
 /**
  * @author Wasiq Bhamla
@@ -27,30 +23,13 @@ public enum AvailableBrowser {
 	/**
 	 * Chrome.
 	 */
-
-		CHROME, FIREFOX,IE;
-
-	private AvailableBrowser() {
-		driverSetUp();
-
-	}
-	private  void driverSetUp() {
-		String browser = AvailableBrowser.this.toString();
-		switch (browser) {
-			case "CHROME":
-				WebDriverManager.chromedriver().setup();
-				break;
-			case "IE":
-				WebDriverManager.iedriver().setup();
-
-			default:
-			case "FIREFOX":
-				WebDriverManager.firefoxdriver().setup();
-				break;
-		}
-	}
+	CHROME,
+	/**
+	 * Firefox.
+	 */
+	FIREFOX,
+	/**
+	 * IE.
+	 */
+	IE;
 }
-
-
-
-
