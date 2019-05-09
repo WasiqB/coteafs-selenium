@@ -17,6 +17,10 @@ package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
+import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
+import static io.github.bonigarcia.wdm.WebDriverManager.edgedriver;
+import static io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver;
+import static io.github.bonigarcia.wdm.WebDriverManager.iedriver;
 import static java.lang.System.getProperty;
 
 import java.util.concurrent.TimeUnit;
@@ -32,6 +36,9 @@ import org.openqa.selenium.WebDriver.Window;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeDriverService;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.GeckoDriverService;
@@ -122,6 +129,7 @@ public class Browser {
 
 	private static WebDriver setupChromeDriver () {
 		log.info ("Setting up Chrome driver...");
+		chromedriver ().setup ();
 		final ChromeOptions chromeOptions = new ChromeOptions ();
 		chromeOptions.addArguments ("--dns-prefetch-disable");
 		if (appSetting ().isHeadlessMode ()) {
@@ -136,11 +144,13 @@ public class Browser {
 		switch (browser) {
 			case CHROME:
 				return setupChromeDriver ();
+			case FIREFOX:
+				return setupFirefoxDriver ();
 			case IE:
 				return setupIEDriver ();
-			case FIREFOX:
+			case EDGE:
 			default:
-				return setupFirefoxDriver ();
+				return setupEdgeDriver ();
 		}
 	}
 
@@ -154,8 +164,17 @@ public class Browser {
 		setScreenSize (playback);
 	}
 
+	private static WebDriver setupEdgeDriver () {
+		log.info ("Setting up Edge driver...");
+		edgedriver ().setup ();
+		final EdgeOptions options = new EdgeOptions ();
+		final EdgeDriverService service = EdgeDriverService.createDefaultService ();
+		return new EdgeDriver (service, options);
+	}
+
 	private static WebDriver setupFirefoxDriver () {
 		log.info ("Setting up Firefox driver...");
+		firefoxdriver ().setup ();
 		final DesiredCapabilities capabilities = DesiredCapabilities.firefox ();
 		final FirefoxOptions options = new FirefoxOptions (capabilities);
 		final GeckoDriverService firefoxService = GeckoDriverService.createDefaultService ();
@@ -164,13 +183,14 @@ public class Browser {
 
 	private static WebDriver setupIEDriver () {
 		log.info ("Setting up Internet Explorer driver...");
+		iedriver ().setup ();
 		final InternetExplorerOptions ieOptions = new InternetExplorerOptions ();
 		ieOptions.destructivelyEnsureCleanSession ();
 		ieOptions.setCapability ("requireWindowFocus", true);
 		ieOptions.setCapability (CapabilityType.ACCEPT_SSL_CERTS, true);
 		final InternetExplorerDriverService ieService = InternetExplorerDriverService
 			.createDefaultService ();
-		if (OS.isMac () || OS.isUnix ()) {
+		if (!OS.isWindows ()) {
 			Assert.fail ("IE is not supported.");
 		}
 		if (appSetting ().isHeadlessMode ()) {

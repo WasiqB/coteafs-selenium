@@ -31,6 +31,8 @@
 		<coteafs.logger.version>1.7.0</coteafs.logger.version>
 		<selenium-version>3.141.59</selenium-version>
 		<commons.io.version>2.6</commons.io.version>
+		<webdrivermanager-version>3.4.0</webdrivermanager-version>
+		<faker.version>0.17.2</faker.version>
 	</properties>
 
 	<dependencies>
@@ -97,6 +99,11 @@
 			<version>${selenium-version}</version>
 		</dependency>
 		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>${webdrivermanager-version}</version>
+		</dependency>
+		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>${guava.version}</version>
@@ -104,7 +111,7 @@
 		<dependency>
 			<groupId>com.github.javafaker</groupId>
 			<artifactId>javafaker</artifactId>
-			<version>0.17.2</version>
+			<version>${faker.version}</version>
 		</dependency>
 	</dependencies>
 </project>
