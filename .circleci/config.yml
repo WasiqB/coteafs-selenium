@@ -56,12 +56,6 @@ jobs:
             sudo apt-get update
             sudo apt-get install google-chrome-stable
       - run:
-          name: Make driver executable
-          command: |
-            pwd
-            ls
-            chmod +x src/main/resources/drivers/linux/chromedriver
-      - run:
           name: Run Tests with Sonar Coverage
           command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
       - save_cache:

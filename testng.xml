@@ -6,7 +6,7 @@
 			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
 				<methods>
 					<include name="testSignIn" />
-				<include name="testNewCustomer" />
+					<include name="testNewCustomer" />
 					<include name="testEditCustomer" />
 					<include name="testNewAccount" />
 					<include name="testDeleteAccount" />
