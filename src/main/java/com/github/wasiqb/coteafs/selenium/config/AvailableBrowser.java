@@ -25,6 +25,10 @@ public enum AvailableBrowser {
 	 */
 	CHROME,
 	/**
+	 * Edge.
+	 */
+	EDGE,
+	/**
 	 * Firefox.
 	 */
 	FIREFOX,

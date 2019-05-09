@@ -18,6 +18,7 @@ package com.github.wasiqb.coteafs.selenium.core;
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
+import static io.github.bonigarcia.wdm.WebDriverManager.edgedriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.iedriver;
 import static java.lang.System.getProperty;
@@ -35,6 +36,9 @@ import org.openqa.selenium.WebDriver.Window;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeDriverService;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.GeckoDriverService;
@@ -143,8 +147,10 @@ public class Browser {
 			case FIREFOX:
 				return setupFirefoxDriver ();
 			case IE:
-			default:
 				return setupIEDriver ();
+			case EDGE:
+			default:
+				return setupEdgeDriver ();
 		}
 	}
 
@@ -156,6 +162,14 @@ public class Browser {
 		manageTimeouts (t -> t.implicitlyWait (delays.getImplicit (), TimeUnit.SECONDS));
 		manageOptions (Options::deleteAllCookies);
 		setScreenSize (playback);
+	}
+
+	private static WebDriver setupEdgeDriver () {
+		log.info ("Setting up Edge driver...");
+		edgedriver ().setup ();
+		final EdgeOptions options = new EdgeOptions ();
+		final EdgeDriverService service = EdgeDriverService.createDefaultService ();
+		return new EdgeDriver (service, options);
 	}
 
 	private static WebDriver setupFirefoxDriver () {
