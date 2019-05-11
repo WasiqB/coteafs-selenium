@@ -85,6 +85,47 @@ public class Browser {
 		}
 	}
 
+	/**
+	 * @param browserName
+	 * @author Wasiq Bhamla
+	 * @since Aug 15, 2018 2:14:24 PM
+	 */
+	public static void start (final String browserName) {
+		log.info ("Starting the browser...");
+		String target = browserName;
+		if (target == null) {
+			target = getProperty (BROWSER, appSetting ().getBrowser ()
+				.name ());
+		}
+		final AvailableBrowser browser = AvailableBrowser.valueOf (target.toUpperCase ());
+		final WebDriver driver = setupDriver (browser);
+		final EventFiringWebDriver wd = new EventFiringWebDriver (driver);
+		listener = new DriverListner ();
+		wd.register (listener);
+		driver (wd);
+		setupDriverOptions ();
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since Aug 15, 2018 2:37:22 PM
+	 */
+	public static void stop () {
+		log.info ("Stopping the browser...");
+		driver ().unregister (listener)
+			.quit ();
+		driver (null);
+	}
+
+	/**
+	 * @return browser action
+	 * @author wasiqb
+	 * @since Mar 21, 2019 9:15:09 PM
+	 */
+	static BrowserActions interact () {
+		return new BrowserActions (driver ());
+	}
+
 	private static EventFiringWebDriver driver () {
 		return driverThread.get ();
 	}
@@ -198,47 +239,6 @@ public class Browser {
 				"Internet Explorer can not run in headless mode, Set Headless setting to false in config.yaml");
 		}
 		return new InternetExplorerDriver (ieService, ieOptions);
-	}
-
-	/**
-	 * @return browser action
-	 * @author wasiqb
-	 * @since Mar 21, 2019 9:15:09 PM
-	 */
-	static BrowserActions interact () {
-		return new BrowserActions (driver ());
-	}
-
-	/**
-	 * @param browserName
-	 * @author Wasiq Bhamla
-	 * @since Aug 15, 2018 2:14:24 PM
-	 */
-	static void start (final String browserName) {
-		log.info ("Starting the browser...");
-		String target = browserName;
-		if (target == null) {
-			target = getProperty (BROWSER, appSetting ().getBrowser ()
-				.name ());
-		}
-		final AvailableBrowser browser = AvailableBrowser.valueOf (target.toUpperCase ());
-		final WebDriver driver = setupDriver (browser);
-		final EventFiringWebDriver wd = new EventFiringWebDriver (driver);
-		listener = new DriverListner ();
-		wd.register (listener);
-		driver (wd);
-		setupDriverOptions ();
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 15, 2018 2:37:22 PM
-	 */
-	static void stop () {
-		log.info ("Stopping the browser...");
-		driver ().unregister (listener)
-			.quit ();
-		driver (null);
 	}
 
 	private Browser () {
