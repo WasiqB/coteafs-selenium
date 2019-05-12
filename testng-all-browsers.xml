@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test name="Chrome Test" enabled="false">
+		<parameter name="test.browser" value="CHROME" />
+		<classes>
+			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+				<methods>
+					<include name="testSignIn" />
+					<include name="testNewCustomer" />
+					<include name="testEditCustomer" />
+					<include name="testNewAccount" />
+					<include name="testDeleteAccount" />
+					<include name="testDeleteCustomer" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Firefox Test">
+		<parameter name="test.browser" value="FIREFOX" />
+		<classes>
+			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+				<methods>
+					<include name="testSignIn" />
+					<include name="testNewCustomer" />
+					<include name="testEditCustomer" />
+					<include name="testNewAccount" />
+					<include name="testDeleteAccount" />
+					<include name="testDeleteCustomer" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Edge Test" enabled="false">
+		<parameter name="test.browser" value="EDGE" />
+		<classes>
+			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+				<methods>
+					<include name="testSignIn" />
+					<include name="testNewCustomer" />
+					<include name="testEditCustomer" />
+					<include name="testNewAccount" />
+					<include name="testDeleteAccount" />
+					<include name="testDeleteCustomer" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="IE Test" enabled="false">
+		<parameter name="test.browser" value="IE" />
+		<classes>
+			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+				<methods>
+					<include name="testSignIn" />
+					<include name="testNewCustomer" />
+					<include name="testEditCustomer" />
+					<include name="testNewAccount" />
+					<include name="testDeleteAccount" />
+					<include name="testDeleteCustomer" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
