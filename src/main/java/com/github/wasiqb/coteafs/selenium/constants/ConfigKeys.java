@@ -23,7 +23,7 @@ public interface ConfigKeys {
 	/**
 	 * Browser key.
 	 */
-	String	BROWSER						= "coteafs.browser";
+	String	BROWSER						= "test.browser";
 	/**
 	 * Selenium default config key.
 	 */

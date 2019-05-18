@@ -1,7 +1,7 @@
 default: &default
   working_directory: ~/repo
   docker:
-    - image: circleci/openjdk:8-jdk
+    - image: circleci/openjdk:8u212-jdk-stretch
 version: 2
 jobs:
   code_checkout:
@@ -29,12 +29,12 @@ jobs:
     <<: *default
     steps:
       - restore_cache:
-          keys:
-            - repo-{{ .Branch }}-{{ .Revision }}
-            - repo-dependency-{{ .Branch }}-{{ .Revision }}
+          key: repo-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: repo-dependency-{{ .Branch }}-{{ .Revision }}
       - run:
           name: Build project
-          command: mvn clean install -DskipTests=true
+          command: mvn install -DskipTests
       - save_cache:
           key: repo-target-{{ .Branch }}-{{ .Revision }}
           paths:
@@ -43,10 +43,18 @@ jobs:
     <<: *default
     steps:
       - restore_cache:
-          keys:
-            - repo-{{ .Branch }}-{{ .Revision }}
-            - repo-dependencies-{{ .Branch }}-{{ .Revision }}
-            - repo-target-{{ .Branch }}-{{ .Revision }}
+          key: repo-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: repo-dependency-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: repo-target-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Install Chrome
+          command: |
+            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+            sudo apt-get update
+            sudo apt-get install google-chrome-stable
       - run:
           name: Run Tests with Sonar Coverage
           command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
@@ -58,14 +66,16 @@ jobs:
     <<: *default
     steps:
       - restore_cache:
-          keys:
-            - repo-{{ .Branch }}-{{ .Revision }}
-            - repo-dependencies-{{ .Branch }}-{{ .Revision }}
-            - repo-target-{{ .Branch }}-{{ .Revision }}
-            - repo-reports-{{ .Branch }}-{{ .Revision }}
+          key: repo-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: repo-dependency-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: repo-target-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: repo-reports-{{ .Branch }}-{{ .Revision }}
       - run:
           name: Update Sonar Analysis
-          command: mvn package sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.organization=$SONAR_ORG -Dsonar.login=$SONAR_KEY
+          command: mvn package sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.organization=$SONAR_ORG -Dsonar.login=$SONAR_KEY -DskipTests -Dsonar.pullrequest.base=develop -Dsonar.pullrequest.branch=$CIRCLE_BRANCH -Dsonar.pullrequest.key=5 -Dsonar.pullrequest.provider=GitHub -Dsonar.pullrequest.github.repository=WasiqB/coteafs-selenium
 
 filters: &all_branches
   branches:

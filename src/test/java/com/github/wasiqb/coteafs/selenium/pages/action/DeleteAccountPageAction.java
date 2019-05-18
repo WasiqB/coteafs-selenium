@@ -15,8 +15,6 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
-import static com.google.common.truth.Truth.assertThat;
-
 import com.github.wasiqb.coteafs.selenium.core.BrowserPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.EditAccountPage;
 
@@ -40,12 +38,12 @@ public class DeleteAccountPageAction extends BrowserPageAction {
 		acc.submit ()
 			.click ();
 
-		String message = acc.onBrowser ()
-			.acceptAlert ();
-		assertThat (message).isEqualTo ("Do you really want to delete this Account?");
+		acc.onBrowser ()
+			.verifyAcceptedAlertMessage ()
+			.isEqualTo ("Do you really want to delete this Account?");
 
-		message = acc.onBrowser ()
-			.acceptAlert ();
-		assertThat (message).isEqualTo ("Account Deleted Sucessfully");
+		acc.onBrowser ()
+			.verifyAcceptedAlertMessage ()
+			.isEqualTo ("Account Deleted Sucessfully");
 	}
 }
