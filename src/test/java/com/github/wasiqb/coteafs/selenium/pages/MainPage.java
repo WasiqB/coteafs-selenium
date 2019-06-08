@@ -18,7 +18,8 @@ package com.github.wasiqb.coteafs.selenium.pages;
 import org.openqa.selenium.By;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
-import com.github.wasiqb.coteafs.selenium.core.ElementAction;
+import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
+import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 
 /**
  * @author wasiqb
@@ -30,7 +31,7 @@ public class MainPage extends BrowserPage {
 	 * @since Apr 7, 2019 5:39:39 PM
 	 * @return manager welcome banner
 	 */
-	public ElementAction managerIdBanner () {
+	public IElementActions managerIdBanner () {
 		return onElement (By.cssSelector ("tr.heading3 > td"));
 	}
 
@@ -40,8 +41,8 @@ public class MainPage extends BrowserPage {
 	 * @param name
 	 * @return menu name
 	 */
-	public ElementAction navbar (final String name) {
-		return navbar ().finds (By.cssSelector ("li > a"))
+	public IMouseActions navbar (final String name) {
+		return (IMouseActions) navbar ().finds (By.cssSelector ("li > a"))
 			.stream ()
 			.filter (m -> m.text ()
 				.trim ()
@@ -50,7 +51,7 @@ public class MainPage extends BrowserPage {
 			.get ();
 	}
 
-	private ElementAction navbar () {
+	private IMouseActions navbar () {
 		return onElement (By.className ("menusubnav"));
 	}
 }

@@ -27,7 +27,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -40,10 +39,13 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.github.wasiqb.coteafs.selenium.config.ConfigUtil;
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
+import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 import com.google.common.truth.BooleanSubject;
 import com.google.common.truth.StringSubject;
 
@@ -51,7 +53,7 @@ import com.google.common.truth.StringSubject;
  * @author Wasiq Bhamla
  * @since Aug 21, 2018 3:31:21 PM
  */
-public class ElementAction {
+public class ElementAction implements ISelectboxActions, ITextboxActions {
 	private static final Logger LOG = LogManager.getLogger (ElementAction.class);
 
 	private static void pause (final long delay) {
@@ -111,28 +113,31 @@ public class ElementAction {
 			.getDelays ();
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 4:01:30 PM
-	 * @param name
-	 * @return attribute
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IElementActions#attribute(java.
+	 * lang.String)
 	 */
+	@Override
 	public String attribute (final String name) {
 		return get (e -> e.getAttribute (name));
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Mar 21, 2019 10:17:57 PM
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IElementActions#clear()
 	 */
+	@Override
 	public void clear () {
 		perform (WebElement::clear);
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 4:01:50 PM
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IMouseActions#click()
 	 */
+	@Override
 	public void click () {
 		perform (e -> {
 			pause (this.delays.getBeforeClick ());
@@ -141,11 +146,36 @@ public class ElementAction {
 		});
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 4:02:12 PM
-	 * @param text
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.ISelectboxActions#deselect(java.
+	 * lang.String)
 	 */
+	@Override
+	public void deselect (final String text) {
+		final Select select = new Select (this.element);
+		select.deselectByValue (text);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.ISelectboxActions#deselectAll()
+	 */
+	@Override
+	public void deselectAll () {
+		final Select select = new Select (this.element);
+		select.deselectAll ();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.ITextboxActions#enterText(java.
+	 * lang.String)
+	 */
+	@Override
 	public void enterText (final String text) {
 		perform (e -> {
 			if (StringUtils.isNoneEmpty (text)) {
@@ -156,32 +186,37 @@ public class ElementAction {
 		});
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 9:46:09 PM
-	 * @param byLocator
-	 * @return child element.
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IFindableElement#find(org.openqa.
+	 * selenium.By)
 	 */
+	@Override
+	@SuppressWarnings ("unchecked")
 	public ElementAction find (final By byLocator) {
 		return get (e -> new ElementAction (this.browserAction, e.findElement (byLocator)));
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 9:46:27 PM
-	 * @param byLocator
-	 * @return list of children.
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IFindableElement#finds(org.openqa
+	 * .selenium.By)
 	 */
+	@Override
+	@SuppressWarnings ("unchecked")
 	public List <ElementAction> finds (final By byLocator) {
 		return get (e -> e.findElements (byLocator)).stream ()
 			.map (e -> new ElementAction (this.browserAction, e))
 			.collect (Collectors.toList ());
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 4:03:13 PM
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IMouseActions#hover()
 	 */
+	@Override
 	public void hover () {
 		perform (e -> this.actions.pause (ofMillis (this.delays.getBeforeMouseMove ()))
 			.moveToElement (e)
@@ -189,125 +224,127 @@ public class ElementAction {
 			.perform ());
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 8:21:09 PM
-	 * @return is displayed
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IElementActions#isDisplayed()
 	 */
+	@Override
 	public boolean isDisplayed () {
 		return get (WebElement::isDisplayed);
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 8:21:20 PM
-	 * @return is enabled
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IElementActions#isEnabled()
 	 */
+	@Override
 	public boolean isEnabled () {
 		return get (WebElement::isEnabled);
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 8:21:35 PM
-	 * @return is selected
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IElementActions#isSelected()
 	 */
+	@Override
 	public boolean isSelected () {
 		return get (WebElement::isSelected);
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 8:22:06 PM
-	 * @param keys
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IKeyboardActions#pressKey(org.
+	 * openqa.selenium.Keys[])
 	 */
+	@Override
 	public void pressKey (final Keys... keys) {
 		perform (e -> e.sendKeys (keys));
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 8:22:37 PM
-	 * @param value
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.ISelectboxActions#select(java.
+	 * lang.String)
 	 */
+	@Override
 	public void select (final String value) {
 		perform (e -> {
-			click ();
-			final List <WebElement> options = e.findElements (By.tagName ("option"));
-			final Optional <ElementAction> option = options.stream ()
-				.map (o -> new ElementAction (this.browserAction, o))
-				.filter (s -> s.text ()
-					.trim ()
-					.equalsIgnoreCase (value))
-				.findFirst ();
-			if (option.isPresent ()) {
-				option.get ()
-					.click ();
-			}
+			final Select select = new Select (e);
+			select.selectByVisibleText (value);
 		});
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 8:23:06 PM
-	 * @return text
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IElementActions#text()
 	 */
+	@Override
 	public String text () {
 		return get (WebElement::getText);
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Mar 21, 2019 10:37:04 PM
-	 * @param attribute
-	 * @return verify attribute
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IVerifyElement#verifyAttribute(
+	 * java.lang.String)
 	 */
+	@Override
 	public StringSubject verifyAttribute (final String attribute) {
 		return assertThat (attribute (attribute));
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Mar 21, 2019 10:38:06 PM
-	 * @return verify is displayed
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IVerifyElement#verifyDisplayed()
 	 */
+	@Override
 	public BooleanSubject verifyDisplayed () {
 		return assertThat (isDisplayed ()).named ("Is Displayed?");
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Mar 21, 2019 10:38:55 PM
-	 * @return verify is enabled
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IVerifyElement#verifyEnabled()
 	 */
+	@Override
 	public BooleanSubject verifyEnabled () {
 		return assertThat (isEnabled ()).named ("Is Enabled?");
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Mar 21, 2019 10:44:01 PM
-	 * @return verify is selected
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IVerifyElement#verifySelected()
 	 */
+	@Override
 	public BooleanSubject verifySelected () {
 		return assertThat (isSelected ()).named ("Is Selected?");
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Mar 21, 2019 10:45:45 PM
-	 * @return verify element text
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IVerifyElement#verifyText()
 	 */
+	@Override
 	public StringSubject verifyText () {
 		return assertThat (text ());
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 9:34:15 PM
-	 * @param attribute
-	 * @param value
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IWaitStrategy#
+	 * waitUntilAttributeIs(java.lang.String, java.lang.String)
 	 */
+	@Override
 	public void waitUntilAttributeIs (final String attribute, final String value) {
 		if (this.useBy) {
 			waitUntilLocatorAttributeIs (attribute, value);
@@ -317,10 +354,13 @@ public class ElementAction {
 		}
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 9:34:26 PM
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IWaitStrategy#waitUntilClickable(
+	 * )
 	 */
+	@Override
 	public void waitUntilClickable () {
 		if (this.useBy) {
 			waitUntilLocatorClickable ();
@@ -330,10 +370,13 @@ public class ElementAction {
 		}
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 9:34:22 PM
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IWaitStrategy#waitUntilInvisible(
+	 * )
 	 */
+	@Override
 	public void waitUntilInvisible () {
 		if (this.useBy) {
 			waitUntilLocatorInvisible ();
@@ -343,10 +386,12 @@ public class ElementAction {
 		}
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 8:23:15 PM
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IWaitStrategy#waitUntilVisible()
 	 */
+	@Override
 	public void waitUntilVisible () {
 		if (this.useBy) {
 			waitUntilLocatorVisible ();
@@ -364,7 +409,7 @@ public class ElementAction {
 	private void highlight (final String color) {
 		if (!this.alreadyHighlighted) {
 			this.style = this.element.getAttribute ("style");
-			this.browserAction.executeScript (
+			this.browserAction.execute (
 				"arguments[0].setAttribute('style', arguments[1] + arguments[2]);", this.element,
 				this.style, format ("color: {0}; border: 3px solid {0};", color));
 		}
@@ -384,7 +429,7 @@ public class ElementAction {
 
 	private void unhighlight () {
 		if (!this.alreadyHighlighted) {
-			this.browserAction.executeScript ("arguments[0].setAttribute('style', arguments[1]);",
+			this.browserAction.execute ("arguments[0].setAttribute('style', arguments[1]);",
 				this.element, this.style);
 			this.alreadyHighlighted = true;
 		}

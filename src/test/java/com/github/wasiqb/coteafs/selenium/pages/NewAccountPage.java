@@ -17,7 +17,9 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.ElementAction;
+import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 
 /**
  * @author wasiqb
@@ -29,7 +31,7 @@ public class NewAccountPage extends EditCustomerPage {
 	 * @since Apr 8, 2019 12:05:04 PM
 	 * @return account type
 	 */
-	public ElementAction accountType () {
+	public ISelectboxActions accountType () {
 		return onElement (By.name ("selaccount"));
 	}
 
@@ -38,7 +40,7 @@ public class NewAccountPage extends EditCustomerPage {
 	 * @since Apr 8, 2019 12:06:07 PM
 	 * @return initial amount
 	 */
-	public ElementAction initialDeposit () {
+	public ITextboxActions initialDeposit () {
 		return onElement (By.name ("inideposit"));
 	}
 
@@ -47,7 +49,7 @@ public class NewAccountPage extends EditCustomerPage {
 	 * @see com.github.wasiqb.coteafs.selenium.pages.EditCustomerPage#submit()
 	 */
 	@Override
-	public ElementAction submit () {
+	public IMouseActions submit () {
 		return onElement (By.name ("button2"));
 	}
 }
