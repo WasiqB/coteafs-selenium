@@ -31,8 +31,8 @@
 		<coteafs.logger.version>1.7.0</coteafs.logger.version>
 		<selenium-version>3.141.59</selenium-version>
 		<commons.io.version>2.6</commons.io.version>
-		<webdrivermanager-version>3.4.0</webdrivermanager-version>
-		<faker.version>0.17.2</faker.version>
+		<webdrivermanager-version>3.6.1</webdrivermanager-version>
+		<faker.version>0.18</faker.version>
 	</properties>
 
 	<dependencies>

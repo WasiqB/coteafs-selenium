@@ -18,37 +18,51 @@ package com.github.wasiqb.coteafs.selenium.core;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.github.wasiqb.coteafs.selenium.core.page.IPage;
+
 /**
  * @author Wasiq Bhamla
  * @since Aug 19, 2018 4:15:31 PM
  */
-public class BrowserPage {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 19, 2018 4:16:51 PM
-	 * @return actions
-	 */
-	public BrowserActions onBrowser () {
-		return Browser.interact ();
-	}
+public class BrowserPage implements IPage <BrowserActions, WebElement, ElementAction> {
+	private final Browser browser;
 
 	/**
-	 * @author wasiqb
-	 * @since Aug 29, 2018 10:35:20 PM
-	 * @param locator
-	 * @return element action
+	 * @author Wasiq Bhamla
+	 * @since 02-Jun-2019
 	 */
+	public BrowserPage () {
+		this.browser = new Browser ();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IPage#onDriver()
+	 */
+	@Override
+	public BrowserActions onDriver () {
+		return new BrowserActions (this.browser.getDriver ());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IPage#onElement(org.openqa.
+	 * selenium.By)
+	 */
+	@Override
 	public ElementAction onElement (final By locator) {
-		return new ElementAction (onBrowser (), locator);
+		return new ElementAction (onDriver (), locator);
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 21, 2018 9:38:00 PM
-	 * @param element
-	 * @return element action
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IPage#onElement(org.openqa.
+	 * selenium.WebElement)
 	 */
+	@Override
 	public ElementAction onElement (final WebElement element) {
-		return new ElementAction (onBrowser (), element);
+		return new ElementAction (onDriver (), element);
 	}
 }
