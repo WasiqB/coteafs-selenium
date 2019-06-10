@@ -15,9 +15,11 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.support.How;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
+import com.github.wasiqb.coteafs.selenium.core.PageFactory;
+import com.github.wasiqb.coteafs.selenium.core.annotation.Find;
 import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
@@ -27,22 +29,21 @@ import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
  * @since Aug 31, 2018 9:33:22 PM
  */
 public class LoginPage extends BrowserPage {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return email
-	 */
-	public ITextboxActions email () {
-		return form ().find (By.name ("emailid"));
-	}
+	@Find (strategy = How.NAME, locator = "frmLogin")
+	private IElementActions	form;
+	@Find (strategy = How.NAME, locator = "password", parent = "form")
+	private ITextboxActions	password;
+	@Find (strategy = How.NAME, locator = "btnLogin", parent = "form")
+	private IMouseActions	signIn;
+	@Find (strategy = How.NAME, locator = "uid", parent = "form")
+	private ITextboxActions	uid;
 
 	/**
 	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return here link
+	 * @since 09-Jun-2019
 	 */
-	public IMouseActions here () {
-		return onElement (By.linkText ("here"));
+	public LoginPage () {
+		PageFactory.init (this);
 	}
 
 	/**
@@ -51,7 +52,7 @@ public class LoginPage extends BrowserPage {
 	 * @return password
 	 */
 	public ITextboxActions password () {
-		return form ().find (By.name ("password"));
+		return this.password;
 	}
 
 	/**
@@ -60,7 +61,7 @@ public class LoginPage extends BrowserPage {
 	 * @return signIn button
 	 */
 	public IMouseActions signIn () {
-		return form ().find (By.name ("btnLogin"));
+		return this.signIn;
 	}
 
 	/**
@@ -69,10 +70,6 @@ public class LoginPage extends BrowserPage {
 	 * @return user id
 	 */
 	public ITextboxActions userId () {
-		return form ().find (By.name ("uid"));
-	}
-
-	private IElementActions form () {
-		return onElement (By.name ("frmLogin"));
+		return this.uid;
 	}
 }

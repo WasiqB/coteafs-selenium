@@ -13,17 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.wasiqb.coteafs.selenium.core.element;
+package com.github.wasiqb.coteafs.selenium.core.enums;
 
 /**
  * @author Wasiq Bhamla
- * @since 07-Jun-2019
+ * @since 09-Jun-2019
  */
-public interface ITextboxActions extends IKeyboardActions {
+public enum WaitStrategy {
 	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @param text
+	 * Wait until clickable.
 	 */
-	void enterText (String text);
+	CLICKABLE,
+	/**
+	 * Wait until invisible.
+	 */
+	INVISIBLE,
+	/**
+	 * Wait until visible.
+	 */
+	VISIBLE;
 }
