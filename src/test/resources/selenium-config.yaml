@@ -2,8 +2,8 @@ browser: CHROME
 url: http://demo.guru99.com/V4/
 headless_mode: true
 params:
-  user: mngr192137
-  password: YguzupA
+  user: mngr26593
+  password: abc@123
 playback:
   screen_state: NORMAL
   highlight: true

@@ -13,46 +13,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.wasiqb.coteafs.selenium.core;
+package com.github.wasiqb.coteafs.selenium.core.page;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author wasiqb
+ * @param <T>
  * @since Sep 1, 2018 4:28:28 PM
  */
-public abstract class BrowserPageAction {
+public abstract class AbstractPageAction <T extends AbstractPageAction <T>> implements IPageAction {
 	private final Map <String, Object> values;
 
 	/**
 	 * @author wasiqb
 	 * @since Sep 1, 2018 8:04:10 PM
 	 */
-	public BrowserPageAction () {
+	public AbstractPageAction () {
 		this.values = new HashMap <> ();
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Sep 1, 2018 8:05:35 PM
-	 * @param element
-	 * @param value
-	 * @return instance
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IPageAction#addInputValue(java.
+	 * lang.String, java.lang.Object)
 	 */
-	public BrowserPageAction addInputValue (final String element, final Object value) {
+	@SuppressWarnings ("unchecked")
+	@Override
+	public T addInputValue (final String element, final Object value) {
 		this.values.put (element, value);
-		return this;
+		return (T) this;
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Sep 1, 2018 8:07:57 PM
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IPageAction#value(java.lang.
+	 * String)
 	 */
-	public abstract void perform ();
-
+	@Override
 	@SuppressWarnings ("unchecked")
-	protected <T> T value (final String element) {
-		return (T) this.values.get (element);
+	public <E> E value (final String element) {
+		return (E) this.values.get (element);
 	}
 }

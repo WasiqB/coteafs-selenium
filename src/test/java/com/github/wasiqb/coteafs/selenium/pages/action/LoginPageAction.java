@@ -15,7 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
-import com.github.wasiqb.coteafs.selenium.core.BrowserPageAction;
+import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.LoginPage;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 
@@ -23,7 +23,7 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
  * @author wasiqb
  * @since Sep 1, 2018 8:09:35 PM
  */
-public class LoginPageAction extends BrowserPageAction {
+public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
 	/*
 	 * (non-Javadoc)
 	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
@@ -38,9 +38,26 @@ public class LoginPageAction extends BrowserPageAction {
 		login.signIn ()
 			.click ();
 
+		// final String message = login.onDriver ()
+		// .alert (AlertDecision.ACCEPT);
+
+		// if (message == null) {
 		final MainPage main = new MainPage ();
 		main.managerIdBanner ()
 			.verifyText ()
 			.endsWith ("Manger Id : " + value ("UserId"));
+		// }
+		// else {
+		// login.here ()
+		// .click ();
+		// login.email ()
+		// .enterText ("abc@gmail.com");
+		//
+		// final LoginCredentials creds = new LoginCredentials ();
+		// final String userId = creds.userId ()
+		// .text ();
+		// final String password = creds.password ()
+		// .text ();
+		// }
 	}
 }
