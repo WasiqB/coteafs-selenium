@@ -19,7 +19,9 @@ import static java.lang.String.format;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.ElementAction;
+import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
+import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 
 /**
  * @author wasiqb
@@ -31,7 +33,7 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 5:59:04 PM
 	 * @return address
 	 */
-	public ElementAction address () {
+	public ITextboxActions address () {
 		return onElement (By.name ("addr"));
 	}
 
@@ -40,7 +42,7 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 6:00:33 PM
 	 * @return city
 	 */
-	public ElementAction city () {
+	public ITextboxActions city () {
 		return onElement (By.name ("city"));
 	}
 
@@ -49,7 +51,7 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 5:50:30 PM
 	 * @return name
 	 */
-	public ElementAction customerName () {
+	public ITextboxActions customerName () {
 		return onElement (By.name ("name"));
 	}
 
@@ -58,7 +60,7 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 5:58:17 PM
 	 * @return dob
 	 */
-	public ElementAction dob () {
+	public ITextboxActions dob () {
 		return onElement (By.name ("dob"));
 	}
 
@@ -67,7 +69,7 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 10:23:52 PM
 	 * @return email
 	 */
-	public ElementAction email () {
+	public ITextboxActions email () {
 		return onElement (By.name ("emailid"));
 	}
 
@@ -77,8 +79,8 @@ public class NewCustomerPage extends MainPage {
 	 * @param gender
 	 * @return gender
 	 */
-	public ElementAction gender (final char gender) {
-		if (gender != 'm' && gender != 'f') { return gender ('m'); }
+	public IMouseActions gender (final char gender) {
+		if (gender != 'm' && gender != 'f') return gender ('m');
 		return onElement (By.cssSelector (format ("input[name='rad1'][value='%s']", gender)));
 	}
 
@@ -87,7 +89,7 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 5:50:00 PM
 	 * @return header
 	 */
-	public ElementAction header () {
+	public IElementActions header () {
 		return onElement (By.className ("heading3"));
 	}
 
@@ -96,7 +98,7 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 10:23:08 PM
 	 * @return mobile no
 	 */
-	public ElementAction mobileNumber () {
+	public ITextboxActions mobileNumber () {
 		return onElement (By.name ("telephoneno"));
 	}
 
@@ -105,7 +107,7 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 10:26:57 PM
 	 * @return password
 	 */
-	public ElementAction password () {
+	public ITextboxActions password () {
 		return onElement (By.name ("password"));
 	}
 
@@ -114,7 +116,7 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 6:04:02 PM
 	 * @return pin
 	 */
-	public ElementAction pin () {
+	public ITextboxActions pin () {
 		return onElement (By.name ("pinno"));
 	}
 
@@ -123,7 +125,7 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 6:02:57 PM
 	 * @return state
 	 */
-	public ElementAction state () {
+	public ITextboxActions state () {
 		return onElement (By.name ("state"));
 	}
 
@@ -132,7 +134,7 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 10:27:48 PM
 	 * @return submit
 	 */
-	public ElementAction submit () {
+	public IMouseActions submit () {
 		return onElement (By.name ("sub"));
 	}
 }

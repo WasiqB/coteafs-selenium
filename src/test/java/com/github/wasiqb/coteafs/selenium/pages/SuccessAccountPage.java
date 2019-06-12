@@ -17,7 +17,7 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.ElementAction;
+import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
 
 /**
  * @author wasiqb
@@ -29,7 +29,7 @@ public class SuccessAccountPage extends SuccessPage {
 	 * @since Apr 8, 2019 8:31:20 PM
 	 * @return account id
 	 */
-	public ElementAction accountId () {
+	public IElementActions accountId () {
 		return cell (3);
 	}
 
@@ -38,7 +38,7 @@ public class SuccessAccountPage extends SuccessPage {
 	 * @since Apr 8, 2019 8:34:58 PM
 	 * @return customer id
 	 */
-	public ElementAction customerId () {
+	public IElementActions customerId () {
 		return cell (4);
 	}
 
@@ -47,7 +47,7 @@ public class SuccessAccountPage extends SuccessPage {
 	 * @see com.github.wasiqb.coteafs.selenium.pages.SuccessPage#successTable()
 	 */
 	@Override
-	protected ElementAction successTable () {
+	protected IElementActions successTable () {
 		return onElement (By.id ("account"));
 	}
 }

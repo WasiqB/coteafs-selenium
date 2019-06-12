@@ -17,18 +17,11 @@ package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.google.common.truth.Truth.assertThat;
-import static java.lang.String.format;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -37,21 +30,22 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.github.wasiqb.coteafs.selenium.core.driver.IWebDriverActions;
+import com.github.wasiqb.coteafs.selenium.core.enums.AlertDecision;
 import com.google.common.truth.StringSubject;
 
 /**
  * @author Wasiq Bhamla
  * @since Aug 18, 2018 4:41:56 PM
  */
-public class BrowserActions {
-	private static final Logger			log	= LogManager.getLogger (BrowserActions.class);
+public class BrowserActions implements IWebDriverActions {
 	private final EventFiringWebDriver	driver;
 	private final WebDriverWait			wait;
 
 	/**
 	 * @author Wasiq Bhamla
+	 * @since 02-Jun-2019
 	 * @param driver
-	 * @since Aug 18, 2018 4:41:56 PM
 	 */
 	public BrowserActions (final EventFiringWebDriver driver) {
 		this.driver = driver;
@@ -60,153 +54,147 @@ public class BrowserActions {
 			.getExplicit ());
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 5:07:46 PM
-	 * @return message
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IDriverActions#alert(com.github.
+	 * wasiqb.coteafs.selenium.core.ext.AlertDecision)
 	 */
-	public String acceptAlert () {
+	@Override
+	public String alert (final AlertDecision decision) {
 		final Alert alert = this.wait.until (ExpectedConditions.alertIsPresent ());
 		String message = null;
 		if (alert != null) {
 			message = alert.getText ();
-			alert.accept ();
+			if (decision == AlertDecision.ACCEPT) {
+				alert.accept ();
+			}
+			else {
+				alert.dismiss ();
+			}
 		}
 		return message;
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 5:09:37 PM
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IWebDriverActions#back()
 	 */
+	@Override
 	public void back () {
 		perform (d -> d.navigate ()
 			.back ());
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 5:07:23 PM
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IWebDriverActions#deleteCookies()
 	 */
+	@Override
 	public void deleteCookies () {
 		perform (d -> d.manage ()
 			.deleteAllCookies ());
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 5:04:47 PM
-	 * @return message
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IDriverActions#driverWait()
 	 */
-	public String dismissAlert () {
-		final Alert alert = this.wait.until (ExpectedConditions.alertIsPresent ());
-		String message = StringUtils.EMPTY;
-		if (alert != null) {
-			message = alert.getText ();
-			alert.dismiss ();
-		}
-		return message;
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 5:04:13 PM
-	 * @return wait
-	 */
+	@Override
 	public WebDriverWait driverWait () {
 		return this.wait;
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 6:13:46 PM
-	 * @param script
-	 * @param args
-	 * @return output
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IDriverActions#execute(java.lang.
+	 * String)
 	 */
 	@SuppressWarnings ("unchecked")
-	public <E> E executeScript (final String script, final Object... args) {
-		return (E) get (d -> d.executeScript (script, args));
+	@Override
+	public <T> T execute (final String script, final Object... args) {
+		return (T) get (
+			d -> ((RemoteWebDriver) d.getWrappedDriver ()).executeScript (script, args));
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 5:09:56 PM
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IWebDriverActions#forward()
 	 */
+	@Override
 	public void forward () {
 		perform (d -> d.navigate ()
 			.forward ());
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 5:03:36 PM
-	 * @return is closed
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IDriverActions#isClosed()
 	 */
+	@Override
 	public boolean isClosed () {
 		return get (d -> ((RemoteWebDriver) d.getWrappedDriver ()).getSessionId () == null);
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 5:08:41 PM
-	 * @param url
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IWebDriverActions#navigateTo(java
+	 * .lang.String)
 	 */
+	@Override
 	public void navigateTo (final String url) {
 		perform (d -> d.navigate ()
 			.to (url));
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 5:09:14 PM
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IWebDriverActions#refresh()
 	 */
+	@Override
 	public void refresh () {
 		perform (d -> d.navigate ()
 			.refresh ());
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 4:59:27 PM
-	 * @return screenshot
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IDriverActions#saveScreenshot()
 	 */
+	@Override
 	public byte [] saveScreenshot () {
-		return get (d -> d.getScreenshotAs (OutputType.BYTES));
+		return get (
+			d -> ((RemoteWebDriver) d.getWrappedDriver ()).getScreenshotAs (OutputType.BYTES));
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 22, 2018 2:45:55 PM
-	 * @param filePath
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IWebDriverActions#switchWindow()
 	 */
-	public void saveScreenshot (final String filePath) {
-		final File screenShot = get (d -> d.getScreenshotAs (OutputType.FILE));
-		try {
-			log.info ("Saving screen shot to file: {}...", filePath);
-			FileUtils.copyFile (screenShot, new File (filePath));
-		}
-		catch (final IOException e) {
-			log.error (format ("Error while saving screenshot to file: %s", filePath));
-			log.catching (e);
-		}
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 4:58:54 PM
-	 */
-	public void switchToMain () {
+	@Override
+	public void switchWindow () {
 		perform (d -> d.switchTo ()
 			.defaultContent ());
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 4:55:09 PM
-	 * @param title
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IWebDriverActions#switchWindow(
+	 * java.lang.String)
 	 */
-	public void switchToWindow (final String title) {
+	@Override
+	public void switchWindow (final String title) {
 		perform (d -> {
 			final String currentHandle = d.getWindowHandle ();
 			final Set <String> wins = d.getWindowHandles ();
@@ -222,40 +210,42 @@ public class BrowserActions {
 		});
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 4:54:38 PM
-	 * @return title
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IDriverActions#title()
 	 */
+	@Override
 	public String title () {
 		return get (WebDriver::getTitle);
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 15, 2019 8:43:28 PM
-	 * @return string subject
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IDriverActions#verifyAlertMessage
+	 * (com.github.wasiqb.coteafs.selenium.core.ext.AlertDecision)
 	 */
-	public StringSubject verifyAcceptedAlertMessage () {
-		final String actual = acceptAlert ();
+	@Override
+	public StringSubject verifyAlertMessage (final AlertDecision decision) {
+		final String actual = alert (decision);
 		return assertThat (actual);
 	}
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 15, 2019 8:44:10 PM
-	 * @return string subject
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IDriverActions#verifyTitle()
 	 */
-	public StringSubject verifyDismissedAlertMessage () {
-		final String actual = dismissAlert ();
-		return assertThat (actual);
+	@Override
+	public StringSubject verifyTitle () {
+		return assertThat (title ());
 	}
 
-	private <E> E get (final Function <EventFiringWebDriver, E> func) {
+	protected <E> E get (final Function <EventFiringWebDriver, E> func) {
 		return func.apply (this.driver);
 	}
 
-	private void perform (final Consumer <EventFiringWebDriver> action) {
+	protected void perform (final Consumer <EventFiringWebDriver> action) {
 		action.accept (this.driver);
 	}
 
