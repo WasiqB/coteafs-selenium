@@ -15,8 +15,6 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages;
 
-import org.openqa.selenium.support.How;
-
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.PageFactory;
 import com.github.wasiqb.coteafs.selenium.core.annotation.Find;
@@ -29,13 +27,13 @@ import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
  * @since Aug 31, 2018 9:33:22 PM
  */
 public class LoginPage extends BrowserPage {
-	@Find (strategy = How.NAME, locator = "frmLogin")
+	@Find (name = "frmLogin")
 	private IElementActions	form;
-	@Find (strategy = How.NAME, locator = "password", parent = "form")
+	@Find (name = "password", parent = "form")
 	private ITextboxActions	password;
-	@Find (strategy = How.NAME, locator = "btnLogin", parent = "form")
+	@Find (name = "btnLogin", parent = "form")
 	private IMouseActions	signIn;
-	@Find (strategy = How.NAME, locator = "uid", parent = "form")
+	@Find (name = "uid", parent = "form")
 	private ITextboxActions	uid;
 
 	/**

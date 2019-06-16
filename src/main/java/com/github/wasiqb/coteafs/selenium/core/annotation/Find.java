@@ -23,8 +23,6 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.openqa.selenium.support.How;
-
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 
 /**
@@ -37,24 +35,59 @@ import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 public @interface Find {
 	/**
 	 * @author Wasiq Bhamla
-	 * @since 09-Jun-2019
-	 * @return find locator
+	 * @since 16-Jun-2019
+	 * @return class name
 	 */
-	public String locator () default EMPTY;
+	public String className () default EMPTY;
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 16-Jun-2019
+	 * @return css
+	 */
+	public String css () default EMPTY;
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 09-Jun-2019
+	 * @return id
+	 */
+	public String id () default EMPTY;
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 16-Jun-2019
+	 * @return link text
+	 */
+	public String linkText () default EMPTY;
 
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 10-Jun-2019
+	 * @return name
+	 */
+	public String name () default EMPTY;
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 16-Jun-2019
 	 * @return parent
 	 */
 	public String parent () default EMPTY;
 
 	/**
 	 * @author Wasiq Bhamla
-	 * @since 09-Jun-2019
-	 * @return find strategy
+	 * @since 16-Jun-2019
+	 * @return partial link text.
 	 */
-	public How strategy () default How.ID;
+	public String partialLinkText () default EMPTY;
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 16-Jun-2019
+	 * @return tag name
+	 */
+	public String tagName () default EMPTY;
 
 	/**
 	 * @author Wasiq Bhamla
@@ -62,4 +95,11 @@ public @interface Find {
 	 * @return wait strategy
 	 */
 	public WaitStrategy waitStrategy () default WaitStrategy.VISIBLE;
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 16-Jun-2019
+	 * @return xpath
+	 */
+	public String xpath () default EMPTY;
 }

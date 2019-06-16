@@ -15,15 +15,13 @@
  */
 package com.github.wasiqb.coteafs.selenium.core;
 
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ByIdOrName;
 
 import com.github.wasiqb.coteafs.selenium.core.annotation.Find;
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
@@ -67,16 +65,6 @@ public final class PageFactory {
 	}
 
 	private static <D extends IDriverActions, E extends WebElement, A extends IElementActions,
-		T extends IPage <D, E, A>> void findElements (final Find find, final Field field,
-			final T page) {
-		final ParameterizedType listType = (ParameterizedType) field.getGenericType ();
-		final Type cls = listType.getActualTypeArguments () [0];
-		if (IElementActions.class.isAssignableFrom (cls.getClass ())) {
-			// TODO: WIll be done later.
-		}
-	}
-
-	private static <D extends IDriverActions, E extends WebElement, A extends IElementActions,
 		T extends IPage <D, E, A>> void findForField (final T page, final Field field) {
 		if (field.isAnnotationPresent (Find.class)) {
 			final Find find = field.getAnnotation (Find.class);
@@ -87,13 +75,7 @@ public final class PageFactory {
 				findForField (page, parentField);
 				parentValue = getValue (parent, page);
 			}
-			final Class <?> type = field.getType ();
-			if (List.class.isAssignableFrom (type)) {
-				findElements (find, field, page);
-			}
-			else {
-				findElement (find, field, page, parentValue);
-			}
+			findElement (find, field, page, parentValue);
 		}
 	}
 
@@ -110,30 +92,15 @@ public final class PageFactory {
 	}
 
 	private static By getLocator (final Find find) {
-		switch (find.strategy ()) {
-			case CLASS_NAME:
-				return By.className (find.locator ());
-			case CSS:
-				return By.cssSelector (find.locator ());
-			case ID:
-				return By.id (find.locator ());
-			case ID_OR_NAME:
-				return new ByIdOrName (find.locator ());
-			case LINK_TEXT:
-				return By.linkText (find.locator ());
-			case NAME:
-				return By.name (find.locator ());
-			case PARTIAL_LINK_TEXT:
-				return By.partialLinkText (find.locator ());
-			case TAG_NAME:
-				return By.tagName (find.locator ());
-			case XPATH:
-				return By.xpath (find.locator ());
-			case UNSET:
-			default:
-				break;
-		}
-		return null;
+		if (isNotEmpty (find.id ())) return By.id (find.id ());
+		if (isNotEmpty (find.name ())) return By.name (find.name ());
+		if (isNotEmpty (find.className ())) return By.className (find.className ());
+		if (isNotEmpty (find.css ())) return By.cssSelector (find.css ());
+		if (isNotEmpty (find.linkText ())) return By.linkText (find.linkText ());
+		if (isNotEmpty (find.partialLinkText ()))
+			return By.partialLinkText (find.partialLinkText ());
+		if (isNotEmpty (find.xpath ())) return By.xpath (find.xpath ());
+		return By.tagName (find.tagName ());
 	}
 
 	@SuppressWarnings ("unchecked")
