@@ -20,6 +20,8 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import java.lang.reflect.Field;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -33,6 +35,8 @@ import com.github.wasiqb.coteafs.selenium.core.page.IPage;
  * @since 09-Jun-2019
  */
 public final class PageFactory {
+	private static final Logger LOG = LogManager.getLogger (PageFactory.class);
+
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 09-Jun-2019
@@ -44,6 +48,7 @@ public final class PageFactory {
 	 */
 	public static <D extends IDriverActions, E extends WebElement, A extends IElementActions,
 		T extends IPage <D, E, A>> void init (final T page) {
+		LOG.info ("Finding elements available on the page.");
 		final Field [] fields = page.getClass ()
 			.getDeclaredFields ();
 		for (final Field field : fields) {
@@ -75,6 +80,7 @@ public final class PageFactory {
 				findForField (page, parentField);
 				parentValue = getValue (parent, page);
 			}
+			LOG.info ("Finding element {} using locator {}.", field.getName (), getLocator (find));
 			findElement (find, field, page, parentValue);
 		}
 	}
@@ -86,21 +92,25 @@ public final class PageFactory {
 				.getDeclaredField (name);
 		}
 		catch (NoSuchFieldException | SecurityException e) {
-			e.printStackTrace ();
+			LOG.error ("Error occurred while getting field info.");
+			LOG.catching (e);
 		}
 		return null;
 	}
 
 	private static By getLocator (final Find find) {
 		if (isNotEmpty (find.id ())) return By.id (find.id ());
-		if (isNotEmpty (find.name ())) return By.name (find.name ());
 		if (isNotEmpty (find.className ())) return By.className (find.className ());
-		if (isNotEmpty (find.css ())) return By.cssSelector (find.css ());
+		if (isNotEmpty (find.name ())) return By.name (find.name ());
+		if (isNotEmpty (find.tagName ())) return By.tagName (find.tagName ());
 		if (isNotEmpty (find.linkText ())) return By.linkText (find.linkText ());
 		if (isNotEmpty (find.partialLinkText ()))
 			return By.partialLinkText (find.partialLinkText ());
+		if (isNotEmpty (find.css ())) return By.cssSelector (find.css ());
 		if (isNotEmpty (find.xpath ())) return By.xpath (find.xpath ());
-		return By.tagName (find.tagName ());
+		LOG.fatal (
+			"No locator info found. Kindly set proper locator details to find the element...");
+		return null;
 	}
 
 	@SuppressWarnings ("unchecked")
@@ -116,7 +126,8 @@ public final class PageFactory {
 			return (A) field.get (page);
 		}
 		catch (IllegalArgumentException | IllegalAccessException | SecurityException e) {
-			e.printStackTrace ();
+			LOG.error ("Error occurred while getting element field value.");
+			LOG.catching (e);
 		}
 		finally {
 			if (field != null) {
@@ -136,7 +147,8 @@ public final class PageFactory {
 			field.set (page, element);
 		}
 		catch (IllegalArgumentException | IllegalAccessException e) {
-			e.printStackTrace ();
+			LOG.error ("Error occurred while setting element field value.");
+			LOG.catching (e);
 		}
 		finally {
 			field.setAccessible (false);
