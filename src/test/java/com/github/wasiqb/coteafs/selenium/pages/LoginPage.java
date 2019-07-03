@@ -15,9 +15,9 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages;
 
+import org.openqa.selenium.By;
+
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
-import com.github.wasiqb.coteafs.selenium.core.PageFactory;
-import com.github.wasiqb.coteafs.selenium.core.annotation.Find;
 import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
@@ -27,30 +27,13 @@ import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
  * @since Aug 31, 2018 9:33:22 PM
  */
 public class LoginPage extends BrowserPage {
-	@Find (name = "frmLogin")
-	private IElementActions	form;
-	@Find (name = "password", parent = "form")
-	private ITextboxActions	password;
-	@Find (name = "btnLogin", parent = "form")
-	private IMouseActions	signIn;
-	@Find (name = "uid", parent = "form")
-	private ITextboxActions	uid;
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 09-Jun-2019
-	 */
-	public LoginPage () {
-		PageFactory.init (this);
-	}
-
 	/**
 	 * @author wasiqb
 	 * @since Aug 31, 2018 9:40:05 PM
 	 * @return password
 	 */
 	public ITextboxActions password () {
-		return this.password;
+		return form ().find (By.name ("password"));
 	}
 
 	/**
@@ -59,7 +42,7 @@ public class LoginPage extends BrowserPage {
 	 * @return signIn button
 	 */
 	public IMouseActions signIn () {
-		return this.signIn;
+		return form ().find (By.name ("btnLogin"));
 	}
 
 	/**
@@ -68,6 +51,10 @@ public class LoginPage extends BrowserPage {
 	 * @return user id
 	 */
 	public ITextboxActions userId () {
-		return this.uid;
+		return form ().find (By.name ("uid"));
+	}
+
+	private IElementActions form () {
+		return onElement (By.name ("frmLogin"));
 	}
 }
