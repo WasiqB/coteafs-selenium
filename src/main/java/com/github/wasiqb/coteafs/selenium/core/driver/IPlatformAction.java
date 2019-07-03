@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017, Wasiq Bhamla.
+ * Copyright (c) 2019, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,40 +15,25 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.driver;
 
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.google.common.truth.StringSubject;
+import com.github.wasiqb.coteafs.selenium.core.enums.Platform;
+import com.github.wasiqb.coteafs.selenium.core.enums.PlatformOs;
 
 /**
  * @author Wasiq Bhamla
- * @since 06-Jun-2019
+ * @since 03-Jul-2019
  */
-public interface IDriverActions extends IScriptAction, IAlertAction, IScreenAction {
+public interface IPlatformAction {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
-	 * @return wait.
+	 * @return platform
 	 */
-	WebDriverWait driverWait ();
+	Platform getPlatform ();
 
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
-	 * @return is driver closed.
+	 * @return platform os.
 	 */
-	boolean isClosed ();
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return title
-	 */
-	String title ();
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 08-Jun-2019
-	 * @return string subject
-	 */
-	StringSubject verifyTitle ();
+	PlatformOs getPlatformOs ();
 }

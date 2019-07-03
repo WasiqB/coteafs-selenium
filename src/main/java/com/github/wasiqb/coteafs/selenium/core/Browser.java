@@ -188,7 +188,7 @@ public class Browser implements IWebDriver {
 	 */
 	@SuppressWarnings ("unchecked")
 	@Override
-	public BrowserActions interact () {
+	public BrowserActions perform () {
 		return new BrowserActions (getDriver ());
 	}
 

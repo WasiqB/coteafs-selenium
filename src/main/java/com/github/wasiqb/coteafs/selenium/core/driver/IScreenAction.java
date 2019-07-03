@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017, Wasiq Bhamla.
+ * Copyright (c) 2019, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,40 +15,15 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.driver;
 
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.google.common.truth.StringSubject;
-
 /**
  * @author Wasiq Bhamla
- * @since 06-Jun-2019
+ * @since 03-Jul-2019
  */
-public interface IDriverActions extends IScriptAction, IAlertAction, IScreenAction {
+public interface IScreenAction {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
-	 * @return wait.
+	 * @return screenshot
 	 */
-	WebDriverWait driverWait ();
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return is driver closed.
-	 */
-	boolean isClosed ();
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return title
-	 */
-	String title ();
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 08-Jun-2019
-	 * @return string subject
-	 */
-	StringSubject verifyTitle ();
+	byte [] saveScreenshot ();
 }
