@@ -17,6 +17,7 @@ package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.google.common.truth.Truth.assertThat;
+import static java.time.Duration.ofMillis;
 
 import java.util.Set;
 import java.util.function.Consumer;
@@ -49,9 +50,9 @@ public class BrowserActions implements IWebDriverActions {
 	 */
 	public BrowserActions (final EventFiringWebDriver driver) {
 		this.driver = driver;
-		this.wait = new WebDriverWait (driver, appSetting ().getPlayback ()
+		this.wait = new WebDriverWait (driver, ofMillis (appSetting ().getPlayback ()
 			.getDelays ()
-			.getExplicit ());
+			.getExplicit ()));
 	}
 
 	/*

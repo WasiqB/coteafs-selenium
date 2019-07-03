@@ -37,7 +37,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeDriverService;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -102,14 +101,13 @@ public class Browser implements IWebDriver {
 		log.info ("Setting up Edge driver...");
 		edgedriver ().setup ();
 		final EdgeOptions options = new EdgeOptions ();
-		final EdgeDriverService service = EdgeDriverService.createDefaultService ();
-		return new EdgeDriver (service, options);
+		return new EdgeDriver (options);
 	}
 
 	private static WebDriver setupFirefoxDriver () {
 		log.info ("Setting up Firefox driver...");
 		firefoxdriver ().setup ();
-		final DesiredCapabilities capabilities = DesiredCapabilities.firefox ();
+		final DesiredCapabilities capabilities = new DesiredCapabilities ();
 		final FirefoxOptions options = new FirefoxOptions (capabilities);
 		final GeckoDriverService firefoxService = GeckoDriverService.createDefaultService ();
 		return new FirefoxDriver (firefoxService, options);
