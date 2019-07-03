@@ -28,24 +28,6 @@ import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
  */
 public class LoginPage extends BrowserPage {
 	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return email
-	 */
-	public ITextboxActions email () {
-		return form ().find (By.name ("emailid"));
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return here link
-	 */
-	public IMouseActions here () {
-		return onElement (By.linkText ("here"));
-	}
-
-	/**
 	 * @author wasiqb
 	 * @since Aug 31, 2018 9:40:05 PM
 	 * @return password

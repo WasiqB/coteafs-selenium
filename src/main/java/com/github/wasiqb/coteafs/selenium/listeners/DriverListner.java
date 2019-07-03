@@ -28,7 +28,7 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
  * @since Apr 28, 2019
  */
 public class DriverListner implements WebDriverEventListener {
-	private static final Logger log = LogManager.getLogger (DriverListner.class);
+	private static final Logger LOG = LogManager.getLogger (DriverListner.class);
 
 	/*
 	 * (non-Javadoc)
@@ -38,7 +38,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterAlertAccept (final WebDriver driver) {
-		log.trace ("Alert dialog accepted...");
+		LOG.trace ("Alert dialog accepted...");
 	}
 
 	/*
@@ -49,7 +49,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterAlertDismiss (final WebDriver driver) {
-		log.trace ("Alert dialog dismissed...");
+		LOG.trace ("Alert dialog dismissed...");
 	}
 
 	/*
@@ -64,7 +64,7 @@ public class DriverListner implements WebDriverEventListener {
 		final CharSequence [] keysToSend) {
 		if (keysToSend != null) {
 			final String message = "Text [{}] has been entered...";
-			log.trace (message, (Object []) keysToSend);
+			LOG.trace (message, (Object []) keysToSend);
 		}
 	}
 
@@ -76,7 +76,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterClickOn (final WebElement element, final WebDriver driver) {
-		log.trace ("Clicked on element...");
+		LOG.trace ("Clicked on element...");
 	}
 
 	/*
@@ -88,7 +88,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterFindBy (final By by, final WebElement element, final WebDriver driver) {
-		log.trace ("Element found using [{}]...", by);
+		LOG.trace ("Element found using [{}]...", by);
 	}
 
 	/*
@@ -98,7 +98,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public <X> void afterGetScreenshotAs (final OutputType <X> target, final X screenshot) {
-		log.trace ("Taken screenshot successfully...");
+		LOG.trace ("Taken screenshot successfully...");
 	}
 
 	/*
@@ -109,7 +109,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterGetText (final WebElement element, final WebDriver driver, final String text) {
-		log.trace ("Got text [{}] from element...", text);
+		LOG.trace ("Got text [{}] from element...", text);
 	}
 
 	/*
@@ -120,7 +120,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterNavigateBack (final WebDriver driver) {
-		log.trace ("Navigated backward...");
+		LOG.trace ("Navigated backward...");
 	}
 
 	/*
@@ -130,7 +130,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterNavigateForward (final WebDriver driver) {
-		log.trace ("Navigated forward...");
+		LOG.trace ("Navigated forward...");
 	}
 
 	/*
@@ -140,7 +140,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterNavigateRefresh (final WebDriver driver) {
-		log.trace ("Page refreshed...");
+		LOG.trace ("Page refreshed...");
 	}
 
 	/*
@@ -151,7 +151,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterNavigateTo (final String url, final WebDriver driver) {
-		log.trace ("Navigated to url [{}]...", url);
+		LOG.trace ("Navigated to url [{}]...", url);
 	}
 
 	/*
@@ -162,7 +162,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterScript (final String script, final WebDriver driver) {
-		log.trace ("Script [{}] executed successfully...", script);
+		LOG.trace ("Script [{}] executed successfully...", script);
 	}
 
 	/*
@@ -173,7 +173,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterSwitchToWindow (final String windowName, final WebDriver driver) {
-		log.trace ("Window switched to [{}]...", windowName);
+		LOG.trace ("Window switched to [{}]...", windowName);
 	}
 
 	/*
@@ -184,7 +184,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeAlertAccept (final WebDriver driver) {
-		log.info ("Accepting Alert pop-up...");
+		LOG.info ("Accepting Alert pop-up...");
 	}
 
 	/*
@@ -195,7 +195,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeAlertDismiss (final WebDriver driver) {
-		log.info ("Dismissing Alert pop-up...");
+		LOG.info ("Dismissing Alert pop-up...");
 	}
 
 	/*
@@ -209,7 +209,7 @@ public class DriverListner implements WebDriverEventListener {
 	public void beforeChangeValueOf (final WebElement element, final WebDriver driver,
 		final CharSequence [] keysToSend) {
 		if (keysToSend != null) {
-			log.info ("Writing text [{}]...", (Object []) keysToSend);
+			LOG.info ("Writing text [{}]...", (Object []) keysToSend);
 		}
 	}
 
@@ -221,7 +221,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeClickOn (final WebElement element, final WebDriver driver) {
-		log.info ("Clicking on Element...");
+		LOG.info ("Clicking on Element...");
 	}
 
 	/*
@@ -233,7 +233,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeFindBy (final By by, final WebElement element, final WebDriver driver) {
-		log.trace ("Finding element by [{}]", by);
+		LOG.trace ("Finding element by [{}]", by);
 	}
 
 	/*
@@ -243,7 +243,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public <X> void beforeGetScreenshotAs (final OutputType <X> target) {
-		log.trace ("Taking screenshot...");
+		LOG.trace ("Taking screenshot...");
 	}
 
 	/*
@@ -254,7 +254,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeGetText (final WebElement element, final WebDriver driver) {
-		log.trace ("Getting text from element...");
+		LOG.trace ("Getting text from element...");
 	}
 
 	/*
@@ -265,7 +265,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeNavigateBack (final WebDriver driver) {
-		log.info ("Navigating back...");
+		LOG.info ("Navigating back...");
 	}
 
 	/*
@@ -275,7 +275,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeNavigateForward (final WebDriver driver) {
-		log.info ("Navigating forward...");
+		LOG.info ("Navigating forward...");
 	}
 
 	/*
@@ -285,7 +285,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeNavigateRefresh (final WebDriver driver) {
-		log.info ("Refreshing the page...");
+		LOG.info ("Refreshing the page...");
 	}
 
 	/*
@@ -296,7 +296,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeNavigateTo (final String url, final WebDriver driver) {
-		log.info ("Navigating to [{}]...", url);
+		LOG.info ("Navigating to [{}]...", url);
 	}
 
 	/*
@@ -308,7 +308,7 @@ public class DriverListner implements WebDriverEventListener {
 	@Override
 	public void beforeScript (final String script, final WebDriver driver) {
 		final String message = "Executing script [{}]...";
-		log.trace (message, script);
+		LOG.trace (message, script);
 	}
 
 	/*
@@ -318,7 +318,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeSwitchToWindow (final String windowName, final WebDriver driver) {
-		log.info ("Switching to window [{}]...", windowName);
+		LOG.info ("Switching to window [{}]...", windowName);
 	}
 
 	/*
@@ -329,11 +329,10 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void onException (final Throwable throwable, final WebDriver driver) {
-		final String message = "Error occurred: {}";
-		log.error (message, throwable.getMessage ());
+		LOG.error ("Error occurred: {}", throwable.getMessage ());
 		for (final StackTraceElement stack : throwable.getStackTrace ()) {
-			log.error (message, stack);
+			LOG.error ("\tat: {}", stack);
 		}
-		log.catching (throwable);
+		LOG.catching (throwable);
 	}
 }

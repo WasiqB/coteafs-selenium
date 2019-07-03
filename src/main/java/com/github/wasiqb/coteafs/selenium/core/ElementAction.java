@@ -16,6 +16,7 @@
 package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
 import static java.lang.Thread.sleep;
 import static java.text.MessageFormat.format;
 import static java.time.Duration.ofMillis;
@@ -306,7 +307,7 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	 */
 	@Override
 	public BooleanSubject verifyDisplayed () {
-		return assertThat (isDisplayed ()).named ("Is Displayed?");
+		return assertWithMessage ("Is Displayed?").that (isDisplayed ());
 	}
 
 	/*
@@ -316,7 +317,7 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	 */
 	@Override
 	public BooleanSubject verifyEnabled () {
-		return assertThat (isEnabled ()).named ("Is Enabled?");
+		return assertWithMessage ("Is Enabled?").that (isEnabled ());
 	}
 
 	/*
@@ -326,7 +327,7 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	 */
 	@Override
 	public BooleanSubject verifySelected () {
-		return assertThat (isSelected ()).named ("Is Selected?");
+		return assertWithMessage ("Is Selected?").that (isSelected ());
 	}
 
 	/*

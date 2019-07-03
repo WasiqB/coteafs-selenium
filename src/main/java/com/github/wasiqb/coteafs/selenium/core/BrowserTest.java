@@ -56,9 +56,9 @@ public class BrowserTest {
 			.getScreenshot ()
 			.isCaptureOnError ();
 		if (screenshotOnError && result.getStatus () == ITestResult.FAILURE
-			&& !this.browser.interact ()
+			&& !this.browser.perform ()
 				.isClosed ()) {
-			this.browser.interact ()
+			this.browser.perform ()
 				.saveScreenshot ();
 		}
 	}

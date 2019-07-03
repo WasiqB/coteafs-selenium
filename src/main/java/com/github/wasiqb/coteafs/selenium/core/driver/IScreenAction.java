@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017, Wasiq Bhamla.
+ * Copyright (c) 2019, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.wasiqb.coteafs.selenium.core.element;
+package com.github.wasiqb.coteafs.selenium.core.driver;
 
 /**
  * @author Wasiq Bhamla
- * @since 07-Jun-2019
+ * @since 03-Jul-2019
  */
-public interface ITextboxActions extends IKeyboardActions {
+public interface IScreenAction {
 	/**
 	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @param text
+	 * @since 06-Jun-2019
+	 * @return screenshot
 	 */
-	void enterText (String text);
+	byte [] saveScreenshot ();
 }

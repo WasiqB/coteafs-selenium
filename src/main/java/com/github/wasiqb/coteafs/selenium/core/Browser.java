@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 - 2020, Wasiq Bhamla.
+ * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -188,7 +188,7 @@ public class Browser implements IWebDriver {
 	 */
 	@SuppressWarnings ("unchecked")
 	@Override
-	public BrowserActions interact () {
+	public BrowserActions perform () {
 		return new BrowserActions (getDriver ());
 	}
 
