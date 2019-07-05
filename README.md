@@ -18,6 +18,26 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.wasiqb.coteafs/selenium.svg)][maven]
 [![Github Releases](https://img.shields.io/github/downloads/WasiqB/coteafs-selenium/total.svg)](https://github.com/WasiqB/coteafs-selenium/releases)
 
+## What is this Framework about?
+
+This is a Selenium WebDriver wrapper Framework which enables robust, maintainable and easy to write test scripting. _**It supports latest Selenium WebDriver 4.0 (Alpha)**_ and is ready for main Selenium upgrade.
+
+## How it is easy to write Tests with this Framework?
+
+Writing tests involves the following steps:
+
+1. :wrench: Config file
+1. :page_facing_up: Page object
+1. :runner: Page Action
+1. :ballot_box_with_check: Tests
+
+### :wrench: Config file.
+
+Config file is by default searched in `src/test/resources` folder. The name of the config file is by default considered as `selenium-config.yaml`. But the same can be overridden by using System property `coteafs.selenium.config` where you can specify the new config file for the test.
+
+#### Sample Config file
+
+`src/test/resources/selenium-config.yaml`
 
 ```yaml
 browser: CHROME     # CHROME, EDGE, FIREFOX, IE.
@@ -51,6 +71,81 @@ playback:   # Playback settings.
     capture_on_error: false # screenshot on error.
 ```
 
+> **Note:** If you find any config not working, feel free to raise an [issue][].
+
+### :page_facing_up: Page objects
+
+To know how to write tests, it's best to see the example as it is self explanatory. We'll look only Login page for this and other samples.
+
+> Just one thing to remember, you need to extend `BrowserPage` class for every page. You can add a flavour of inheritance also if you want to.
+
+#### Sample Page object
+
+```java
+package com.github.wasiqb.coteafs.selenium.pages;
+
+import org.openqa.selenium.By;
+
+import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
+import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
+import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
+
+public class LoginPage extends BrowserPage {
+  public ITextboxActions password () {
+    return form ().find (By.name ("password"));
+  }
+
+  public IMouseActions signIn () {
+    return form ().find (By.name ("btnLogin"));
+  }
+
+  public ITextboxActions userId () {
+    return form ().find (By.name ("uid"));
+  }
+
+  private IElementActions form () {
+    return onElement (By.name ("frmLogin"));
+  }
+}
+```
+
+### :runner: Page Action
+
+This is a new concept, here you can define actions specific to each page. This approach abstracts out the page action flows and helps in modularising the classes. So whenever the flow of the page changes, you need to change only at single place.
+
+> For every page action you need to extend `AbstractPageAction`. Since it is a generic class, you need to pass the action class name as it's generic type.
+
+#### Sample page action
+
+```java
+package com.github.wasiqb.coteafs.selenium.pages.action;
+
+import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
+import com.github.wasiqb.coteafs.selenium.pages.LoginPage;
+import com.github.wasiqb.coteafs.selenium.pages.MainPage;
+
+public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
+  @Override
+  public void perform () {
+    final LoginPage login = new LoginPage ();
+    login.userId ()
+      .enterText (value ("UserId"));
+    login.password ()
+      .enterText (value ("Password"));
+    login.signIn ()
+      .click ();
+
+    final MainPage main = new MainPage ();
+    main.managerIdBanner ()
+      .verifyText ()
+      .endsWith ("Manger Id : " + value ("UserId"));
+  }
+}
+```
+
+### :ballot_box_with_check: Tests
+
 
 ## :pushpin: Usage?
 
@@ -66,9 +161,9 @@ You can use the following dependency into your `pom.xml` to use this library.
 
 ## :question: Need Assistance?
 * Directly chat with me on my [site][] and I'll revert to you as soon as possible.
-* Discuss your queries by writing to me @ wasbhamla2005@gmail.com
-* If you find any issue which is bottleneck for you, [search the issue tracker][] to see if it is already raised.
-* If not raised, then you can create a [new issue][] with required details as mentioned in the issue template.
+* Discuss your queries by writing to me @ [wasbhamla2005@gmail.com][mail]
+* If you find any issue which is bottleneck for you, [search the issue tracker][tracker] to see if it is already raised.
+* If not raised, then you can create a [new issue][issue] with required details as mentioned in the issue template.
 
 ## :star: What you do if you like the project?
 - Spread the word with your network.
@@ -115,6 +210,7 @@ You can use the following dependency into your `pom.xml` to use this library.
 [coverage]: https://sonarcloud.io/component_measures?id=com.github.wasiqb.coteafs%3Aselenium&metric=Coverage
 [maven]: https://maven-badges.herokuapp.com/maven-central/com.github.wasiqb.coteafs/selenium
 [site]: https://wasiqb.github.io
-[search the issue tracker]: https://github.com/WasiqB/coteafs-selenium/issues?q=something
-[new issue]: https://github.com/WasiqB/coteafs-selenium/issues/new
+[tracker]: https://github.com/WasiqB/coteafs-selenium/issues?q=something
+[issue]: https://github.com/WasiqB/coteafs-selenium/issues/new
 [contributing]: .github/CONTRIBUTING.md
+[mail]: mailto:wasbhamla2005@gmail.com
