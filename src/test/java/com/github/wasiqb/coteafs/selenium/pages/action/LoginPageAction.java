@@ -38,26 +38,9 @@ public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
 		login.signIn ()
 			.click ();
 
-		// final String message = login.onDriver ()
-		// .alert (AlertDecision.ACCEPT);
-
-		// if (message == null) {
 		final MainPage main = new MainPage ();
 		main.managerIdBanner ()
 			.verifyText ()
 			.endsWith ("Manger Id : " + value ("UserId"));
-		// }
-		// else {
-		// login.here ()
-		// .click ();
-		// login.email ()
-		// .enterText ("abc@gmail.com");
-		//
-		// final LoginCredentials creds = new LoginCredentials ();
-		// final String userId = creds.userId ()
-		// .text ();
-		// final String password = creds.password ()
-		// .text ();
-		// }
 	}
 }
