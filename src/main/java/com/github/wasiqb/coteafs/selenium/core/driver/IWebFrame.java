@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017, Wasiq Bhamla.
+ * Copyright (c) 2019, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,37 +17,26 @@ package com.github.wasiqb.coteafs.selenium.core.driver;
 
 /**
  * @author Wasiq Bhamla
- * @since 06-Jun-2019
+ * @since 06-Jul-2019
  */
-public interface IWebDriverActions extends IDriverActions, IWebWindow, IWebFrame {
+public interface IWebFrame {
 	/**
 	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
+	 * @since 06-Jul-2019
 	 */
-	void back ();
+	void switchFrame ();
 
 	/**
 	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
+	 * @since 06-Jul-2019
+	 * @param index
 	 */
-	void deleteCookies ();
+	void switchFrame (int index);
 
 	/**
 	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
+	 * @since 06-Jul-2019
+	 * @param nameOrId
 	 */
-	void forward ();
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @param url
-	 */
-	void navigateTo (String url);
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 */
-	void refresh ();
+	void switchFrame (String nameOrId);
 }
