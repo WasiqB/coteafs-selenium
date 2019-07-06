@@ -16,7 +16,7 @@
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
 import com.github.javafaker.Faker;
-import com.github.wasiqb.coteafs.selenium.core.BrowserPageAction;
+import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.EditCustomerPage;
 import com.github.wasiqb.coteafs.selenium.pages.NewCustomerPage;
 import com.github.wasiqb.coteafs.selenium.pages.SuccessCustomerPage;
@@ -25,7 +25,7 @@ import com.github.wasiqb.coteafs.selenium.pages.SuccessCustomerPage;
  * @author wasiqb
  * @since Apr 8, 2019 11:49:16 AM
  */
-public class EditCustomerPageAction extends BrowserPageAction {
+public class EditCustomerPageAction extends AbstractPageAction <EditCustomerPageAction> {
 	/*
 	 * (non-Javadoc)
 	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()

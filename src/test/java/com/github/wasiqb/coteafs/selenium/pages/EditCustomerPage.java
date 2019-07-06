@@ -17,7 +17,8 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.ElementAction;
+import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 
 /**
  * @author wasiqb
@@ -29,7 +30,7 @@ public class EditCustomerPage extends MainPage {
 	 * @since Apr 8, 2019 11:45:14 AM
 	 * @return customer id
 	 */
-	public ElementAction customerId () {
+	public ITextboxActions customerId () {
 		return onElement (By.name ("cusid"));
 	}
 
@@ -38,7 +39,7 @@ public class EditCustomerPage extends MainPage {
 	 * @since Apr 8, 2019 11:46:15 AM
 	 * @return submit
 	 */
-	public ElementAction submit () {
+	public IMouseActions submit () {
 		return onElement (By.name ("AccSubmit"));
 	}
 }

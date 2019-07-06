@@ -17,9 +17,6 @@ package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
-import static com.github.wasiqb.coteafs.selenium.core.Browser.close;
-import static com.github.wasiqb.coteafs.selenium.core.Browser.interact;
-import static com.github.wasiqb.coteafs.selenium.core.Browser.start;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -33,6 +30,8 @@ import org.testng.annotations.Parameters;
  * @since Sep 13, 2018 9:54:10 PM
  */
 public class BrowserTest {
+	private Browser browser;
+
 	/**
 	 * @author wasiqb
 	 * @since Sep 13, 2018 9:55:41 PM
@@ -41,7 +40,9 @@ public class BrowserTest {
 	@Parameters (BROWSER)
 	@BeforeTest (alwaysRun = true)
 	public void setupTest (@Optional final String browserName) {
-		start (browserName);
+		this.browser = new Browser ();
+		this.browser.setBrowserUnderTest (browserName);
+		this.browser.start ();
 	}
 
 	/**
@@ -55,8 +56,10 @@ public class BrowserTest {
 			.getScreenshot ()
 			.isCaptureOnError ();
 		if (screenshotOnError && result.getStatus () == ITestResult.FAILURE
-			&& !interact ().isClosed ()) {
-			interact ().saveScreenshot ();
+			&& !this.browser.perform ()
+				.isClosed ()) {
+			this.browser.perform ()
+				.saveScreenshot ();
 		}
 	}
 
@@ -66,6 +69,6 @@ public class BrowserTest {
 	 */
 	@AfterTest (alwaysRun = true)
 	public void teardownTest () {
-		close ();
+		this.browser.stop ();
 	}
 }

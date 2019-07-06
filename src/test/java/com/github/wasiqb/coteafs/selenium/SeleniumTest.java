@@ -45,7 +45,7 @@ public class SeleniumTest extends BrowserTest {
 	@BeforeClass
 	public void setupMethod () {
 		this.main = new MainPage ();
-		this.main.onBrowser ()
+		this.main.onDriver ()
 			.navigateTo (appSetting ().getUrl ());
 	}
 
