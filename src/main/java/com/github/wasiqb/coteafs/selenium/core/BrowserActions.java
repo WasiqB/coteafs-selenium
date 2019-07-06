@@ -180,6 +180,16 @@ public class BrowserActions implements IWebDriverActions {
 	/*
 	 * (non-Javadoc)
 	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.driver.IWebFrame#switchFrame()
+	 */
+	@Override
+	public void switchFrame () {
+		switchFrame (0);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see
 	 * com.github.wasiqb.coteafs.selenium.core.driver.IWebFrame#switchFrame(int)
 	 */
 	@Override

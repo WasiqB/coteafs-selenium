@@ -23,6 +23,12 @@ public interface IWebFrame {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 06-Jul-2019
+	 */
+	void switchFrame ();
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 06-Jul-2019
 	 * @param index
 	 */
 	void switchFrame (int index);
