@@ -22,6 +22,19 @@
 
 This is a Selenium WebDriver wrapper Framework which enables robust, maintainable and easy to write test scripting. _**It supports latest Selenium WebDriver 4.0 (Alpha)**_ and is ready for main Selenium upgrade.
 
+## What are this features offers?
+
+Nobody uses anything without knowing what it offers. Some of the key features which this framework offers are as follows:
+
+- Latest Selenium WebDriver 4.0 (Alpha 2)
+- On-demand highlighting of Elements
+- On-demand delay of test execution by allowing predefined delays
+- On-demand headless mode
+- Parallel execution of tests on different browsers
+- Support Chrome, Firefox, IE and Edge
+- Allow execution of test in Docker container
+- CI / CD ready
+
 ## How it is easy to write Tests with this Framework?
 
 Writing tests involves the following steps:
@@ -115,6 +128,7 @@ public class LoginPage extends BrowserPage {
 This is a new concept, here you can define actions specific to each page. This approach abstracts out the page action flows and helps in modularising the classes. So whenever the flow of the page changes, you need to change only at single place.
 
 > For every page action you need to extend `AbstractPageAction`. Since it is a generic class, you need to pass the action class name as it's generic type.
+> Also, `perform` method needs to be implemented for every action class.
 
 #### Sample page action
 
@@ -146,6 +160,45 @@ public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
 
 ### :ballot_box_with_check: Tests
 
+Test which are written using this framework is slightly different then usual. In the tests, Page actions is used instead of page objects. This can be demonstrated as shown below.
+
+#### Sample Test
+
+> Every test class extends `BrowserTest` class.
+
+```java
+package com.github.wasiqb.coteafs.selenium;
+
+import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import com.github.wasiqb.coteafs.selenium.core.BrowserTest;
+import com.github.wasiqb.coteafs.selenium.pages.MainPage;
+import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
+
+public class SeleniumTest extends BrowserTest {
+	private MainPage	main;
+
+	@BeforeClass
+	public void setupMethod () {
+		this.main = new MainPage ();
+		this.main.onDriver ()
+			.navigateTo (appSetting ().getUrl ());
+	}
+
+	@Test
+	public void testSignIn () {
+		final LoginPageAction login = new LoginPageAction ();
+		login.addInputValue ("UserId", appSetting ().getParams ()
+			.get ("user"))
+			.addInputValue ("Password", appSetting ().getParams ()
+				.get ("password"))
+			.perform ();
+	}
+}
+```
 
 ## :pushpin: Usage?
 
