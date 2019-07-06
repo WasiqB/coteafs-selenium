@@ -18,11 +18,11 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.wasiqb.coteafs/selenium.svg)][maven]
 [![Github Releases](https://img.shields.io/github/downloads/WasiqB/coteafs-selenium/total.svg)](https://github.com/WasiqB/coteafs-selenium/releases)
 
-## What is this Framework about?
+## :question: What is this Framework about?
 
 This is a Selenium WebDriver wrapper Framework which enables robust, maintainable and easy to write test scripting. _**It supports latest Selenium WebDriver 4.0 (Alpha)**_ and is ready for main Selenium upgrade.
 
-## What are this features offers?
+## :bulb: What features does this framework offer?
 
 Nobody uses anything without knowing what it offers. Some of the key features which this framework offers are as follows:
 
@@ -32,10 +32,9 @@ Nobody uses anything without knowing what it offers. Some of the key features wh
 - On-demand headless mode
 - Parallel execution of tests on different browsers
 - Support Chrome, Firefox, IE and Edge
-- Allow execution of test in Docker container
 - CI / CD ready
 
-## How it is easy to write Tests with this Framework?
+## :smile: How it is easy to write Tests with this Framework?
 
 Writing tests involves the following steps:
 
@@ -88,9 +87,9 @@ playback:   # Playback settings.
 
 ### :page_facing_up: Page objects
 
-To know how to write tests, it's best to see the example as it is self explanatory. We'll look only Login page for this and other samples.
+To know how to write tests, it's best to see the example as it is self explanatory. Lets have a look at the Login page of Guru99 demo site.
 
-> Just one thing to remember, you need to extend `BrowserPage` class for every page. You can add a flavour of inheritance also if you want to.
+> Remember, `BrowserPage` class needs to be extended for every page and also a flavour of inheritance can be added as per requirement.
 
 #### Sample Page object
 
@@ -158,9 +157,9 @@ public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
 }
 ```
 
-### :ballot_box_with_check: Tests
+### :white_check_mark: Tests
 
-Test which are written using this framework is slightly different then usual. In the tests, Page actions is used instead of page objects. This can be demonstrated as shown below.
+Test which are written using this framework are slightly different than usual. In the tests, Page actions is used instead of page objects. This can be demonstrated as shown below:
 
 #### Sample Test
 
@@ -179,24 +178,24 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
 
 public class SeleniumTest extends BrowserTest {
-	private MainPage	main;
+  private MainPage	main;
 
-	@BeforeClass
-	public void setupMethod () {
-		this.main = new MainPage ();
-		this.main.onDriver ()
-			.navigateTo (appSetting ().getUrl ());
-	}
+  @BeforeClass
+  public void setupMethod () {
+    this.main = new MainPage ();
+	  this.main.onDriver ()
+      .navigateTo (appSetting ().getUrl ());
+  }
 
-	@Test
-	public void testSignIn () {
-		final LoginPageAction login = new LoginPageAction ();
-		login.addInputValue ("UserId", appSetting ().getParams ()
-			.get ("user"))
-			.addInputValue ("Password", appSetting ().getParams ()
-				.get ("password"))
-			.perform ();
-	}
+  @Test
+  public void testSignIn () {
+    final LoginPageAction login = new LoginPageAction ();
+    login.addInputValue ("UserId", appSetting ().getParams ()
+      .get ("user"))
+      .addInputValue ("Password", appSetting ().getParams ()
+        .get ("password"))
+      .perform ();
+  }
 }
 ```
 
@@ -208,24 +207,26 @@ You can use the following dependency into your `pom.xml` to use this library.
 <dependency>
   <groupId>com.github.wasiqb.coteafs</groupId>
   <artifactId>selenium</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
 ## :question: Need Assistance?
-* Directly chat with me on my [site][] and I'll revert to you as soon as possible.
-* Discuss your queries by writing to me @ [wasbhamla2005@gmail.com][mail]
-* If you find any issue which is bottleneck for you, [search the issue tracker][tracker] to see if it is already raised.
-* If not raised, then you can create a [new issue][issue] with required details as mentioned in the issue template.
 
-## :star: What you do if you like the project?
+- Directly chat with me on my [site][] and I'll revert to you as soon as possible.
+- Discuss your queries by writing to me @ [wasbhamla2005@gmail.com][mail]
+- If you find any issue which is bottleneck for you, [search the issue tracker][tracker] to see if it is already raised.
+- If not raised, then you can create a [new issue][issue] with required details as mentioned in the issue template.
+
+## :star2: What you do if you like the project?
+
 - Spread the word with your network.
 - **Star** the project to make the project popular.
 - Stay updated with the project progress by **Watching** it.
 - **Contribute** to fix open issues, documentations or add new features. To know more, see our [contributing][] page.
 - I would be delighted if you can **Sponsor** this project and provide your support to open source development by clicking on the Sponsor button on the top of this repository.
 
-## :heavy_check_mark: Contributors
+## :white_check_mark: Contributors
 
 <div>
   <ul>
