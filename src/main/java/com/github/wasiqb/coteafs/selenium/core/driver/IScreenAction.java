@@ -19,6 +19,7 @@ package com.github.wasiqb.coteafs.selenium.core.driver;
  * @author Wasiq Bhamla
  * @since 03-Jul-2019
  */
+@FunctionalInterface
 public interface IScreenAction {
 	/**
 	 * @author Wasiq Bhamla
