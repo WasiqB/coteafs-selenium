@@ -75,7 +75,7 @@ jobs:
           key: repo-reports-{{ .Branch }}-{{ .Revision }}
       - run:
           name: Update Sonar Analysis
-          command: mvn package sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.organization=$SONAR_ORG -Dsonar.login=$SONAR_KEY -DskipTests -Dsonar.pullrequest.base=develop -Dsonar.pullrequest.branch=$CIRCLE_BRANCH -Dsonar.pullrequest.key=5 -Dsonar.pullrequest.provider=GitHub -Dsonar.pullrequest.github.repository=WasiqB/coteafs-selenium
+          command: mvn package sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.organization=$SONAR_ORG -Dsonar.login=$SONAR_KEY -DskipTests -Dsonar.branch.name=$CIRCLE_BRANCH
 
 filters: &all_branches
   branches:
