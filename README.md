@@ -214,6 +214,14 @@ You can use the following dependency into your `pom.xml` to use this library.
 </dependency>
 ```
 
+Or you can add the following into your `build.gradle` file.
+
+```gradle
+
+compile "com.github.wasiqb.coteafs:selenium:2.0.0"
+
+```
+
 ## :question: Need Assistance?
 
 - Directly chat with me on my [site][] and I'll revert to you as soon as possible.
