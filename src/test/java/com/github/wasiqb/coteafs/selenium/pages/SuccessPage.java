@@ -17,7 +17,7 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.ElementAction;
+import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
 
 /**
  * @author wasiqb
@@ -29,20 +29,20 @@ public abstract class SuccessPage extends MainPage {
 	 * @since Apr 8, 2019 9:43:54 PM
 	 * @return message
 	 */
-	public ElementAction message () {
+	public IElementActions message () {
 		return cell (0, 0);
 	}
 
-	protected ElementAction cell (final int row) {
+	protected IElementActions cell (final int row) {
 		return cell (row, 1);
 	}
 
-	protected ElementAction cell (final int row, final int col) {
+	protected IElementActions cell (final int row, final int col) {
 		return successTable ().finds (By.tagName ("tr"))
 			.get (row)
 			.finds (By.tagName ("td"))
 			.get (col);
 	}
 
-	protected abstract ElementAction successTable ();
+	protected abstract IElementActions successTable ();
 }

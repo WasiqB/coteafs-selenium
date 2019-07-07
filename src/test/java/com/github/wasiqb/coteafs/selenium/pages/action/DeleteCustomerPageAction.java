@@ -15,14 +15,15 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
-import com.github.wasiqb.coteafs.selenium.core.BrowserPageAction;
+import com.github.wasiqb.coteafs.selenium.core.enums.AlertDecision;
+import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.EditCustomerPage;
 
 /**
  * @author Wasiq Bhamla
  * @since 29-Apr-2019
  */
-public class DeleteCustomerPageAction extends BrowserPageAction {
+public class DeleteCustomerPageAction extends AbstractPageAction <DeleteCustomerPageAction> {
 	/*
 	 * (non-Javadoc)
 	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
@@ -34,16 +35,16 @@ public class DeleteCustomerPageAction extends BrowserPageAction {
 			.click ();
 
 		edit.customerId ()
-			.enterText (value ("CustomerId"));
+			.enterText (value ("CustomerId").toString ());
 		edit.submit ()
 			.click ();
 
-		edit.onBrowser ()
-			.verifyAcceptedAlertMessage ()
+		edit.onDriver ()
+			.verifyAlertMessage (AlertDecision.ACCEPT)
 			.isEqualTo ("Do you really want to delete this Customer?");
 
-		edit.onBrowser ()
-			.verifyAcceptedAlertMessage ()
+		edit.onDriver ()
+			.verifyAlertMessage (AlertDecision.ACCEPT)
 			.isEqualTo ("Customer deleted Successfully");
 	}
 }

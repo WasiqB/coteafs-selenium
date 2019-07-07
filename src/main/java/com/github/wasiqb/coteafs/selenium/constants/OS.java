@@ -17,6 +17,8 @@ package com.github.wasiqb.coteafs.selenium.constants;
 
 import static java.lang.System.getProperty;
 
+import com.github.wasiqb.coteafs.selenium.core.enums.PlatformOs;
+
 /**
  * @author Wasiq Bhamla
  * @since Aug 10, 2018 2:37:10 PM
@@ -56,10 +58,10 @@ public class OS {
 	 * @since Aug 10, 2018 2:50:40 PM
 	 * @return platform
 	 */
-	public static String platform () {
-		if (isWindows ()) return "win";
-		if (isMac ()) return "mac";
-		if (isUnix ()) return "linux";
+	public static PlatformOs platform () {
+		if (isWindows ()) return PlatformOs.WINDOWS;
+		if (isMac ()) return PlatformOs.MAC;
+		if (isUnix ()) return PlatformOs.LINUX;
 		return null;
 	}
 

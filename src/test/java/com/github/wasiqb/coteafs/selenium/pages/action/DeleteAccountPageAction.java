@@ -15,14 +15,15 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
-import com.github.wasiqb.coteafs.selenium.core.BrowserPageAction;
+import com.github.wasiqb.coteafs.selenium.core.enums.AlertDecision;
+import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.EditAccountPage;
 
 /**
  * @author wasiqb
  * @since Apr 8, 2019 10:26:00 PM
  */
-public class DeleteAccountPageAction extends BrowserPageAction {
+public class DeleteAccountPageAction extends AbstractPageAction <DeleteAccountPageAction> {
 	/*
 	 * (non-Javadoc)
 	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
@@ -38,12 +39,12 @@ public class DeleteAccountPageAction extends BrowserPageAction {
 		acc.submit ()
 			.click ();
 
-		acc.onBrowser ()
-			.verifyAcceptedAlertMessage ()
+		acc.onDriver ()
+			.verifyAlertMessage (AlertDecision.ACCEPT)
 			.isEqualTo ("Do you really want to delete this Account?");
 
-		acc.onBrowser ()
-			.verifyAcceptedAlertMessage ()
+		acc.onDriver ()
+			.verifyAlertMessage (AlertDecision.ACCEPT)
 			.isEqualTo ("Account Deleted Sucessfully");
 	}
 }

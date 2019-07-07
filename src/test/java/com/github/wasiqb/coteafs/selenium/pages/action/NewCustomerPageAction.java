@@ -18,7 +18,7 @@ package com.github.wasiqb.coteafs.selenium.pages.action;
 import java.text.SimpleDateFormat;
 
 import com.github.javafaker.Faker;
-import com.github.wasiqb.coteafs.selenium.core.BrowserPageAction;
+import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.NewCustomerPage;
 import com.github.wasiqb.coteafs.selenium.pages.SuccessCustomerPage;
 
@@ -26,7 +26,7 @@ import com.github.wasiqb.coteafs.selenium.pages.SuccessCustomerPage;
  * @author wasiqb
  * @since Apr 7, 2019 10:51:02 PM
  */
-public class NewCustomerPageAction extends BrowserPageAction {
+public class NewCustomerPageAction extends AbstractPageAction <NewCustomerPageAction> {
 	private String id;
 
 	/**

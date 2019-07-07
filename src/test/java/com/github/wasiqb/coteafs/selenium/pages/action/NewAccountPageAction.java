@@ -16,7 +16,7 @@
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
 import com.github.javafaker.Faker;
-import com.github.wasiqb.coteafs.selenium.core.BrowserPageAction;
+import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.NewAccountPage;
 import com.github.wasiqb.coteafs.selenium.pages.SuccessAccountPage;
 
@@ -24,7 +24,7 @@ import com.github.wasiqb.coteafs.selenium.pages.SuccessAccountPage;
  * @author wasiqb
  * @since Apr 8, 2019 8:05:24 PM
  */
-public class NewAccountPageAction extends BrowserPageAction {
+public class NewAccountPageAction extends AbstractPageAction <NewAccountPageAction> {
 	private String accountId;
 
 	/**

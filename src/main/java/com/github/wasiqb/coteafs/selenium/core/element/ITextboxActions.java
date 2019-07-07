@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 - 2020, Wasiq Bhamla.
+ * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,27 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.wasiqb.coteafs.selenium.config;
+package com.github.wasiqb.coteafs.selenium.core.element;
 
 /**
  * @author Wasiq Bhamla
- * @since Apr 8, 2018 2:42:01 PM
+ * @since 07-Jun-2019
  */
-public enum AvailableBrowser {
+public interface ITextboxActions extends IKeyboardActions {
 	/**
-	 * Chrome.
+	 * @author Wasiq Bhamla
+	 * @since 07-Jun-2019
+	 * @param text
 	 */
-	CHROME,
-	/**
-	 * Edge.
-	 */
-	EDGE,
-	/**
-	 * Firefox.
-	 */
-	FIREFOX,
-	/**
-	 * IE.
-	 */
-	IE;
+	void enterText (String text);
 }

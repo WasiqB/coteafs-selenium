@@ -15,6 +15,8 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
+import com.github.wasiqb.coteafs.selenium.core.enums.ScreenState;
+
 /**
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 2:45:29 PM

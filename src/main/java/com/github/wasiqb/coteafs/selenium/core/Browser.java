@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 - 2020, Wasiq Bhamla.
+ * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeDriverService;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -48,125 +47,28 @@ import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.testng.Assert;
 
-import com.github.wasiqb.coteafs.selenium.config.AvailableBrowser;
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
 import com.github.wasiqb.coteafs.selenium.config.PlaybackSetting;
 import com.github.wasiqb.coteafs.selenium.config.ScreenResolution;
-import com.github.wasiqb.coteafs.selenium.config.ScreenState;
 import com.github.wasiqb.coteafs.selenium.constants.OS;
+import com.github.wasiqb.coteafs.selenium.core.driver.IWebDriver;
+import com.github.wasiqb.coteafs.selenium.core.enums.ApplicationType;
+import com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser;
+import com.github.wasiqb.coteafs.selenium.core.enums.Platform;
+import com.github.wasiqb.coteafs.selenium.core.enums.PlatformOs;
+import com.github.wasiqb.coteafs.selenium.core.enums.ScreenState;
 import com.github.wasiqb.coteafs.selenium.listeners.DriverListner;
 
 /**
  * @author Wasiq Bhamla
  * @since Aug 15, 2018 2:11:13 PM
  */
-public class Browser {
+public class Browser implements IWebDriver {
 	private static final ThreadLocal <EventFiringWebDriver>	driverThread	= new ThreadLocal <> ();
-	private static WebDriverEventListener					listener;
 	private static final Logger								log				= LogManager
 		.getLogger (Browser.class);
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 18, 2018 6:06:32 PM
-	 */
-	public static void close () {
-		final int handles = driver ().getWindowHandles ()
-			.size ();
-		if (handles > 1) {
-			log.info ("Closing the browser...");
-			driver ().close ();
-		}
-		else {
-			stop ();
-		}
-	}
-
-	/**
-	 * @param browserName
-	 * @author Wasiq Bhamla
-	 * @since Aug 15, 2018 2:14:24 PM
-	 */
-	public static void start (final String browserName) {
-		log.info ("Starting the browser...");
-		String target = browserName;
-		if (target == null) {
-			target = getProperty (BROWSER, appSetting ().getBrowser ()
-				.name ());
-		}
-		final AvailableBrowser browser = AvailableBrowser.valueOf (target.toUpperCase ());
-		final WebDriver driver = setupDriver (browser);
-		final EventFiringWebDriver wd = new EventFiringWebDriver (driver);
-		listener = new DriverListner ();
-		wd.register (listener);
-		driver (wd);
-		setupDriverOptions ();
-	}
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 15, 2018 2:37:22 PM
-	 */
-	public static void stop () {
-		log.info ("Stopping the browser...");
-		driver ().unregister (listener)
-			.quit ();
-		driver (null);
-	}
-
-	/**
-	 * @return browser action
-	 * @author wasiqb
-	 * @since Mar 21, 2019 9:15:09 PM
-	 */
-	static BrowserActions interact () {
-		return new BrowserActions (driver ());
-	}
-
-	private static EventFiringWebDriver driver () {
-		return driverThread.get ();
-	}
-
-	private static void driver (final EventFiringWebDriver driver) {
-		driverThread.set (driver);
-	}
-
-	private static void manageOptions (final Consumer <Options> options) {
-		options.accept (driver ().manage ());
-	}
-
-	private static void manageTimeouts (final Consumer <Timeouts> timeouts) {
-		timeouts.accept (driver ().manage ()
-			.timeouts ());
-	}
-
-	private static void manageWindow (final Consumer <Window> window) {
-		window.accept (driver ().manage ()
-			.window ());
-	}
-
-	private static void setScreenSize (final PlaybackSetting playback) {
-		final ScreenState state = playback.getScreenState ();
-		log.info ("Setting screen size of Browser to {}...", state);
-		switch (state) {
-			case FULL_SCREEN:
-				manageWindow (Window::fullscreen);
-				break;
-			case MAXIMIZED:
-				manageWindow (Window::maximize);
-				break;
-			case NORMAL:
-			default:
-				final ScreenResolution resolution = playback.getScreenResolution ();
-				log.info ("Setting screen resolution to [{}]...", resolution);
-				manageWindow (w -> w
-					.setSize (new Dimension (resolution.getWidth (), resolution.getHeight ())));
-				break;
-		}
-	}
 
 	private static WebDriver setupChromeDriver () {
 		log.info ("Setting up Chrome driver...");
@@ -188,41 +90,30 @@ public class Browser {
 			case FIREFOX:
 				return setupFirefoxDriver ();
 			case IE:
-				return setupIEDriver ();
+				return setupIeDriver ();
 			case EDGE:
 			default:
 				return setupEdgeDriver ();
 		}
 	}
 
-	private static void setupDriverOptions () {
-		final PlaybackSetting playback = appSetting ().getPlayback ();
-		final DelaySetting delays = playback.getDelays ();
-		manageTimeouts (t -> t.pageLoadTimeout (delays.getPageLoad (), TimeUnit.SECONDS));
-		manageTimeouts (t -> t.setScriptTimeout (delays.getScriptLoad (), TimeUnit.SECONDS));
-		manageTimeouts (t -> t.implicitlyWait (delays.getImplicit (), TimeUnit.SECONDS));
-		manageOptions (Options::deleteAllCookies);
-		setScreenSize (playback);
-	}
-
 	private static WebDriver setupEdgeDriver () {
 		log.info ("Setting up Edge driver...");
 		edgedriver ().setup ();
 		final EdgeOptions options = new EdgeOptions ();
-		final EdgeDriverService service = EdgeDriverService.createDefaultService ();
-		return new EdgeDriver (service, options);
+		return new EdgeDriver (options);
 	}
 
 	private static WebDriver setupFirefoxDriver () {
 		log.info ("Setting up Firefox driver...");
 		firefoxdriver ().setup ();
-		final DesiredCapabilities capabilities = DesiredCapabilities.firefox ();
+		final DesiredCapabilities capabilities = new DesiredCapabilities ();
 		final FirefoxOptions options = new FirefoxOptions (capabilities);
 		final GeckoDriverService firefoxService = GeckoDriverService.createDefaultService ();
 		return new FirefoxDriver (firefoxService, options);
 	}
 
-	private static WebDriver setupIEDriver () {
+	private static WebDriver setupIeDriver () {
 		log.info ("Setting up Internet Explorer driver...");
 		iedriver ().setup ();
 		final InternetExplorerOptions ieOptions = new InternetExplorerOptions ();
@@ -241,7 +132,151 @@ public class Browser {
 		return new InternetExplorerDriver (ieService, ieOptions);
 	}
 
-	private Browser () {
-		// This is a static util class.
+	private String				browserName;
+	private final DriverListner	listener;
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 06-Jun-2019
+	 */
+	public Browser () {
+		this.listener = new DriverListner ();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IDriver#getApplicationType()
+	 */
+	@Override
+	public ApplicationType getApplicationType () {
+		return ApplicationType.WEB;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IDriver#getDriver()
+	 */
+	@Override
+	public EventFiringWebDriver getDriver () {
+		return driverThread.get ();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IDriver#getPlatform()
+	 */
+	@Override
+	public Platform getPlatform () {
+		return Platform.DESKTOP;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IDriver#getPlatformOs()
+	 */
+	@Override
+	public PlatformOs getPlatformOs () {
+		return OS.platform ();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IDriver#interact()
+	 */
+	@SuppressWarnings ("unchecked")
+	@Override
+	public BrowserActions perform () {
+		return new BrowserActions (getDriver ());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IWebDriver#setBrowserUnderTest(
+	 * com.github.wasiqb.coteafs.selenium.config.AvailableBrowser)
+	 */
+	@Override
+	public void setBrowserUnderTest (final String browser) {
+		this.browserName = browser;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IDriver#start()
+	 */
+	@Override
+	public void start () {
+		log.info ("Starting the browser...");
+		String target = this.browserName;
+		if (target == null) {
+			target = getProperty (BROWSER, appSetting ().getBrowser ()
+				.name ());
+		}
+		final AvailableBrowser browser = AvailableBrowser.valueOf (target.toUpperCase ());
+		final WebDriver driver = setupDriver (browser);
+		final EventFiringWebDriver wd = new EventFiringWebDriver (driver);
+		wd.register (this.listener);
+		driver (wd);
+		setupDriverOptions ();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IDriver#stop()
+	 */
+	@Override
+	public void stop () {
+		log.info ("Stopping the browser...");
+		getDriver ().quit ();
+		driver (null);
+	}
+
+	private void manageOptions (final Consumer <Options> options) {
+		options.accept (getDriver ().manage ());
+	}
+
+	private void manageTimeouts (final Consumer <Timeouts> timeouts) {
+		timeouts.accept (getDriver ().manage ()
+			.timeouts ());
+	}
+
+	private void manageWindow (final Consumer <Window> window) {
+		window.accept (getDriver ().manage ()
+			.window ());
+	}
+
+	private void setScreenSize (final PlaybackSetting playback) {
+		final ScreenState state = playback.getScreenState ();
+		log.info ("Setting screen size of Browser to {}...", state);
+		switch (state) {
+			case FULL_SCREEN:
+				manageWindow (Window::fullscreen);
+				break;
+			case MAXIMIZED:
+				manageWindow (Window::maximize);
+				break;
+			case NORMAL:
+			default:
+				final ScreenResolution resolution = playback.getScreenResolution ();
+				log.info ("Setting screen resolution to [{}]...", resolution);
+				manageWindow (w -> w
+					.setSize (new Dimension (resolution.getWidth (), resolution.getHeight ())));
+				break;
+		}
+	}
+
+	private void setupDriverOptions () {
+		final PlaybackSetting playback = appSetting ().getPlayback ();
+		final DelaySetting delays = playback.getDelays ();
+		manageTimeouts (t -> t.pageLoadTimeout (delays.getPageLoad (), TimeUnit.SECONDS));
+		manageTimeouts (t -> t.setScriptTimeout (delays.getScriptLoad (), TimeUnit.SECONDS));
+		manageTimeouts (t -> t.implicitlyWait (delays.getImplicit (), TimeUnit.SECONDS));
+		manageOptions (Options::deleteAllCookies);
+		setScreenSize (playback);
+	}
+
+	protected void driver (final EventFiringWebDriver driver) {
+		driverThread.set (driver);
 	}
 }
