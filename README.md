@@ -181,12 +181,12 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
 
 public class SeleniumTest extends BrowserTest {
-  private MainPage	main;
+  private MainPage main;
 
   @BeforeClass
   public void setupMethod () {
     this.main = new MainPage ();
-	  this.main.onDriver ()
+    this.main.onDriver ()
       .navigateTo (appSetting ().getUrl ());
   }
 
@@ -214,6 +214,12 @@ You can use the following dependency into your `pom.xml` to use this library.
 </dependency>
 ```
 
+Or you can add the following into your `build.gradle` file.
+
+ ```gradle
+ compile "com.github.wasiqb.coteafs:selenium:2.0.0"
+ ```
+ 
 ## :question: Need Assistance?
 
 - Directly chat with me on my [site][] and I'll revert to you as soon as possible.
