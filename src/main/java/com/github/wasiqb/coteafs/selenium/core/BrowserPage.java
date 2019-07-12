@@ -18,6 +18,7 @@ package com.github.wasiqb.coteafs.selenium.core;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 import com.github.wasiqb.coteafs.selenium.core.page.IPage;
 
 /**
@@ -58,11 +59,36 @@ public class BrowserPage implements IPage <BrowserActions, WebElement, ElementAc
 	/*
 	 * (non-Javadoc)
 	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.page.IPage#onElement(org.openqa.
+	 * selenium.By, com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy)
+	 */
+	@Override
+	public ElementAction onElement (final By locator, final WaitStrategy strategy) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see
 	 * com.github.wasiqb.coteafs.selenium.core.ext.IPage#onElement(org.openqa.
 	 * selenium.WebElement)
 	 */
 	@Override
 	public ElementAction onElement (final WebElement element) {
 		return new ElementAction (onDriver (), element);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.page.IPage#onElement(org.openqa.
+	 * selenium.WebElement,
+	 * com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy)
+	 */
+	@Override
+	public ElementAction onElement (final WebElement element, final WaitStrategy strategy) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
