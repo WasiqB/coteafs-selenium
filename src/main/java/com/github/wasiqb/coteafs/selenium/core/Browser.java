@@ -137,6 +137,9 @@ public class Browser implements IWebDriver {
 
 	private static WebDriver setupSafariDriver () {
 		log.info ("Setting up Safari driver...");
+		if (!OS.isMac ()) {
+			Assert.fail ("Safari is not supported.");
+		}
 		if (appSetting ().isHeadlessMode ()) {
 			log.warn ("Safari does not support Headless mode. Hence, ignoring the same...");
 		}
