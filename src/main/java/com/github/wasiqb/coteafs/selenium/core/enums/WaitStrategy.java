@@ -29,6 +29,10 @@ public enum WaitStrategy {
 	 */
 	INVISIBLE,
 	/**
+	 * None.
+	 */
+	NONE,
+	/**
 	 * Wait until visible.
 	 */
 	VISIBLE;
