@@ -46,6 +46,8 @@ import org.openqa.selenium.ie.InternetExplorerDriverService;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.Assert;
 
@@ -92,8 +94,10 @@ public class Browser implements IWebDriver {
 			case IE:
 				return setupIeDriver ();
 			case EDGE:
-			default:
 				return setupEdgeDriver ();
+			case SAFARI:
+			default:
+				return setupSafariDriver ();
 		}
 	}
 
@@ -126,10 +130,21 @@ public class Browser implements IWebDriver {
 			Assert.fail ("IE is not supported.");
 		}
 		if (appSetting ().isHeadlessMode ()) {
-			Assert.fail (
-				"Internet Explorer can not run in headless mode, Set Headless setting to false in config.yaml");
+			log.warn ("IE does not support headless mode. Hence, ignoring the same...");
 		}
 		return new InternetExplorerDriver (ieService, ieOptions);
+	}
+
+	private static WebDriver setupSafariDriver () {
+		log.info ("Setting up Safari driver...");
+		if (!OS.isMac ()) {
+			Assert.fail ("Safari is not supported.");
+		}
+		if (appSetting ().isHeadlessMode ()) {
+			log.warn ("Safari does not support Headless mode. Hence, ignoring the same...");
+		}
+		final SafariOptions options = new SafariOptions ();
+		return new SafariDriver (options);
 	}
 
 	private String				browserName;
