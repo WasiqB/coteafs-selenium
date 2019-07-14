@@ -64,8 +64,7 @@ public class BrowserPage implements IPage <BrowserActions, WebElement, ElementAc
 	 */
 	@Override
 	public ElementAction onElement (final By locator, final WaitStrategy strategy) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ElementAction (onDriver (), locator, strategy);
 	}
 
 	/*
@@ -88,7 +87,6 @@ public class BrowserPage implements IPage <BrowserActions, WebElement, ElementAc
 	 */
 	@Override
 	public ElementAction onElement (final WebElement element, final WaitStrategy strategy) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ElementAction (onDriver (), element, strategy);
 	}
 }
