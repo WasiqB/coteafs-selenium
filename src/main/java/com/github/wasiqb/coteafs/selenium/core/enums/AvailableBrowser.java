@@ -35,5 +35,9 @@ public enum AvailableBrowser {
 	/**
 	 * IE.
 	 */
-	IE;
+	IE,
+	/**
+	 * Safari.
+	 */
+	SAFARI;
 }
