@@ -34,7 +34,7 @@ Nobody uses anything without knowing what it offers. Some of the key features wh
 - On-demand delay of test execution by allowing predefined delays
 - On-demand headless mode
 - Parallel execution of tests on different browsers
-- Support Chrome, Firefox, IE and Edge
+- Support Chrome, Safari, Firefox, IE and Edge
 - CI / CD ready
 
 ## :smile: How it is easy to write Tests with this Framework?
@@ -55,7 +55,7 @@ Config file is by default searched in `src/test/resources` folder. The name of t
 `src/test/resources/selenium-config.yaml`
 
 ```yaml
-browser: CHROME     # CHROME, EDGE, FIREFOX, IE.
+browser: CHROME     # CHROME, SAFARI, EDGE, FIREFOX, IE.
 url: http://demo.guru99.com/V4/   # Application URL.
 headless_mode: false    # true, for headless, else false.
 params:     # test specific map.
@@ -210,7 +210,7 @@ You can use the following dependency into your `pom.xml` to use this library.
 <dependency>
   <groupId>com.github.wasiqb.coteafs</groupId>
   <artifactId>selenium</artifactId>
-  <version>2.0.0</version>
+  <version>2.1.0</version>
 </dependency>
 ```
 
@@ -247,6 +247,11 @@ Or you can add the following into your `build.gradle` file.
     <li>
       <a href="https://github.com/mfaisalkhatri">
         <img alt="Mohammad Faisal Khatri: Framework Tester." src="https://github.com/mfaisalkhatri.png" width=100 height=100 />
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/jayeshd7">
+        <img alt="Jayesh Dalal: Framework Contributor." src="https://github.com/jayeshd7.png" width=100 height=100 />
       </a>
     </li>
   </ul>

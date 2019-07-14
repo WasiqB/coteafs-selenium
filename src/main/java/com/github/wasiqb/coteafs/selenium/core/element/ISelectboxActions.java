@@ -15,6 +15,8 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.element;
 
+import java.util.List;
+
 /**
  * @author Wasiq Bhamla
  * @since 07-Jun-2019
@@ -23,20 +25,69 @@ public interface ISelectboxActions extends IKeyboardActions {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
-	 * @param text
-	 */
-	void deselect (String text);
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
 	 */
 	void deselectAll ();
 
 	/**
 	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @param text
+	 * @since 12-Jul-2019
+	 * @param index
 	 */
-	void select (String text);
+	void deselectByIndex (int index);
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 07-Jun-2019
+	 * @param value
+	 */
+	void deselectByText (String value);
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 12-Jul-2019
+	 * @param value
+	 */
+	void deselectByValue (String value);
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 12-Jul-2019
+	 * @return is multi select
+	 */
+	boolean isMultiSelect ();
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 12-Jul-2019
+	 * @return all options
+	 */
+	List <IElementActions> options ();
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 12-Jul-2019
+	 * @param index
+	 */
+	void selectByIndex (int index);
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 07-Jun-2019
+	 * @param value
+	 */
+	void selectByText (String value);
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 12-Jul-2019
+	 * @param value
+	 */
+	void selectByValue (String value);
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 12-Jul-2019
+	 * @return all selected options
+	 */
+	List <IElementActions> selectedOptions ();
 }

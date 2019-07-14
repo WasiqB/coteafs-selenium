@@ -20,6 +20,7 @@ import org.openqa.selenium.WebElement;
 
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
+import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 
 /**
  * @author Wasiq Bhamla
@@ -46,9 +47,27 @@ public interface IPage <B extends IDriverActions, E extends WebElement, T extend
 
 	/**
 	 * @author Wasiq Bhamla
+	 * @since 12-Jul-2019
+	 * @param locator
+	 * @param strategy
+	 * @return element action
+	 */
+	T onElement (By locator, WaitStrategy strategy);
+
+	/**
+	 * @author Wasiq Bhamla
 	 * @since 08-Jun-2019
 	 * @param element
 	 * @return element action
 	 */
 	T onElement (E element);
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 12-Jul-2019
+	 * @param element
+	 * @param strategy
+	 * @return element action
+	 */
+	T onElement (E element, WaitStrategy strategy);
 }

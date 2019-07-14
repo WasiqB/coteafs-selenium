@@ -45,8 +45,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.github.wasiqb.coteafs.selenium.config.ConfigUtil;
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
+import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
+import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 import com.google.common.truth.BooleanSubject;
 import com.google.common.truth.StringSubject;
 
@@ -75,6 +77,7 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	private final DelaySetting			delays;
 	private final EventFiringWebDriver	driver;
 	private WebElement					element;
+	private WaitStrategy				strategy;
 	private String						style;
 	private boolean						useBy;
 	private final WebDriverWait			wait;
@@ -92,6 +95,19 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	}
 
 	/**
+	 * @author Wasiq Bhamla
+	 * @since 12-Jul-2019
+	 * @param browserAction
+	 * @param by
+	 * @param strategy
+	 */
+	public ElementAction (final BrowserActions browserAction, final By by,
+		final WaitStrategy strategy) {
+		this (browserAction, by);
+		this.strategy = strategy;
+	}
+
+	/**
 	 * @author wasiqb
 	 * @since Mar 21, 2019 10:16:16 PM
 	 * @param browserAction
@@ -103,6 +119,19 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 		this.useBy = false;
 	}
 
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 12-Jul-2019
+	 * @param browserAction
+	 * @param element
+	 * @param strategy
+	 */
+	public ElementAction (final BrowserActions browserAction, final WebElement element,
+		final WaitStrategy strategy) {
+		this (browserAction, element);
+		this.strategy = strategy;
+	}
+
 	private ElementAction (final BrowserActions browserAction) {
 		this.browserAction = browserAction;
 		this.driver = browserAction.driver ();
@@ -112,6 +141,7 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 		this.delays = ConfigUtil.appSetting ()
 			.getPlayback ()
 			.getDelays ();
+		this.strategy = WaitStrategy.NONE;
 	}
 
 	/*
@@ -150,24 +180,52 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	/*
 	 * (non-Javadoc)
 	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.ext.ISelectboxActions#deselect(java.
-	 * lang.String)
-	 */
-	@Override
-	public void deselect (final String text) {
-		final Select select = new Select (this.element);
-		select.deselectByValue (text);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see @see
 	 * com.github.wasiqb.coteafs.selenium.core.ext.ISelectboxActions#deselectAll()
 	 */
 	@Override
 	public void deselectAll () {
 		final Select select = new Select (this.element);
 		select.deselectAll ();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions#
+	 * deselectByIndex(int)
+	 */
+	@Override
+	public void deselectByIndex (final int index) {
+		perform (e -> {
+			final Select select = new Select (e);
+			select.deselectByIndex (index);
+		});
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.ISelectboxActions#deselect(java.
+	 * lang.String)
+	 */
+	@Override
+	public void deselectByText (final String value) {
+		perform (e -> {
+			final Select select = new Select (e);
+			select.deselectByVisibleText (value);
+		});
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions#
+	 * deselectByValue(java.lang.String)
+	 */
+	@Override
+	public void deselectByValue (final String value) {
+		perform (e -> {
+			final Select select = new Select (e);
+			select.deselectByValue (value);
+		});
 	}
 
 	/*
@@ -247,12 +305,41 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 
 	/*
 	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions#
+	 * isMultiSelect()
+	 */
+	@Override
+	public boolean isMultiSelect () {
+		return get (e -> {
+			final Select select = new Select (e);
+			return select.isMultiple ();
+		});
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see @see
 	 * com.github.wasiqb.coteafs.selenium.core.ext.IElementActions#isSelected()
 	 */
 	@Override
 	public boolean isSelected () {
 		return get (WebElement::isSelected);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions#options()
+	 */
+	@Override
+	public List <IElementActions> options () {
+		return get (e -> {
+			final Select select = new Select (e);
+			return select.getOptions ()
+				.stream ()
+				.map (o -> new ElementAction (this.browserAction, o))
+				.collect (Collectors.toList ());
+		});
 	}
 
 	/*
@@ -268,15 +355,57 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 
 	/*
 	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions#
+	 * selectByIndex(int)
+	 */
+	@Override
+	public void selectByIndex (final int index) {
+		perform (e -> {
+			final Select select = new Select (e);
+			select.selectByIndex (index);
+		});
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see @see
 	 * com.github.wasiqb.coteafs.selenium.core.ext.ISelectboxActions#select(java.
 	 * lang.String)
 	 */
 	@Override
-	public void select (final String value) {
+	public void selectByText (final String value) {
 		perform (e -> {
 			final Select select = new Select (e);
 			select.selectByVisibleText (value);
+		});
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions#
+	 * selectByValue(java.lang.String)
+	 */
+	@Override
+	public void selectByValue (final String value) {
+		perform (e -> {
+			final Select select = new Select (e);
+			select.selectByValue (value);
+		});
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions#
+	 * selectedOptions()
+	 */
+	@Override
+	public List <IElementActions> selectedOptions () {
+		return get (e -> {
+			final Select select = new Select (e);
+			return select.getAllSelectedOptions ()
+				.stream ()
+				.map (o -> new ElementAction (this.browserAction, o))
+				.collect (Collectors.toList ());
 		});
 	}
 
@@ -422,7 +551,7 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	}
 
 	private void prepareForAction (final String color) {
-		waitUntilVisible ();
+		waitForStrategy ();
 		highlight (color);
 		pause (this.delays.getHighlight ());
 		unhighlight ();
@@ -433,6 +562,30 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 			this.browserAction.execute ("arguments[0].setAttribute('style', arguments[1]);",
 				this.element, this.style);
 			this.alreadyHighlighted = true;
+		}
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 12-Jul-2019
+	 */
+	private void waitForStrategy () {
+		switch (this.strategy) {
+			case CLICKABLE:
+				waitUntilClickable ();
+				break;
+			case VISIBLE:
+				waitUntilVisible ();
+				break;
+			case INVISIBLE:
+				waitUntilInvisible ();
+				break;
+			case NONE:
+			default:
+				if (this.useBy) {
+					this.element = this.driver.findElement (this.by);
+				}
+				break;
 		}
 	}
 
