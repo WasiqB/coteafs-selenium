@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +20,13 @@ package com.github.wasiqb.coteafs.selenium.core.driver;
  * @since 03-Jul-2019
  */
 public interface IServiceAction {
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 24-Jul-2019
+	 * @return is running
+	 */
+	boolean isRunning ();
+
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019

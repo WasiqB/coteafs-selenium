@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -46,6 +46,7 @@ import org.openqa.selenium.ie.InternetExplorerDriverService;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -195,6 +196,11 @@ public class Browser implements IWebDriver {
 		return OS.platform ();
 	}
 
+	@Override
+	public boolean isRunning () {
+		return ((RemoteWebDriver) getDriver ().getWrappedDriver ()).getSessionId () != null;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IDriver#interact()
@@ -247,6 +253,10 @@ public class Browser implements IWebDriver {
 		driver (null);
 	}
 
+	protected void driver (final EventFiringWebDriver driver) {
+		driverThread.set (driver);
+	}
+
 	private void manageOptions (final Consumer <Options> options) {
 		options.accept (getDriver ().manage ());
 	}
@@ -289,9 +299,5 @@ public class Browser implements IWebDriver {
 		manageTimeouts (t -> t.implicitlyWait (delays.getImplicit (), TimeUnit.SECONDS));
 		manageOptions (Options::deleteAllCookies);
 		setScreenSize (playback);
-	}
-
-	protected void driver (final EventFiringWebDriver driver) {
-		driverThread.set (driver);
 	}
 }

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -131,16 +131,6 @@ public class BrowserActions implements IWebDriverActions {
 	public void forward () {
 		perform (d -> d.navigate ()
 			.forward ());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.ext.IDriverActions#isClosed()
-	 */
-	@Override
-	public boolean isClosed () {
-		return get (d -> ((RemoteWebDriver) d.getWrappedDriver ()).getSessionId () == null);
 	}
 
 	/*
