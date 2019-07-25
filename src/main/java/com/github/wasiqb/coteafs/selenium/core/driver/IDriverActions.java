@@ -34,13 +34,6 @@ public interface IDriverActions extends IScriptAction, IAlertAction, IScreenActi
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
-	 * @return is driver closed.
-	 */
-	boolean isClosed ();
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
 	 * @return title
 	 */
 	String title ();
