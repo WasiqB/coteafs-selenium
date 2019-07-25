@@ -17,12 +17,20 @@ package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.google.common.truth.Truth.assertThat;
+import static java.lang.String.format;
 import static java.time.Duration.ofSeconds;
+import static org.apache.commons.io.FileUtils.copyFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -31,6 +39,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
 import com.github.wasiqb.coteafs.selenium.core.driver.IWebDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.enums.AlertDecision;
 import com.google.common.truth.StringSubject;
@@ -40,6 +49,8 @@ import com.google.common.truth.StringSubject;
  * @since Aug 18, 2018 4:41:56 PM
  */
 public class BrowserActions implements IWebDriverActions {
+	private static final Logger			LOG	= LogManager.getLogger (BrowserActions.class);
+
 	private final EventFiringWebDriver	driver;
 	private final WebDriverWait			wait;
 
@@ -75,6 +86,17 @@ public class BrowserActions implements IWebDriverActions {
 			}
 		}
 		return message;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see @see
+	 * com.github.wasiqb.coteafs.selenium.core.ext.IDriverActions#saveScreenshot()
+	 */
+	@Override
+	public byte [] attachScreenshot () {
+		return get (
+			d -> ((RemoteWebDriver) d.getWrappedDriver ()).getScreenshotAs (OutputType.BYTES));
 	}
 
 	/*
@@ -156,15 +178,31 @@ public class BrowserActions implements IWebDriverActions {
 			.refresh ());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.ext.IDriverActions#saveScreenshot()
-	 */
 	@Override
-	public byte [] saveScreenshot () {
-		return get (
-			d -> ((RemoteWebDriver) d.getWrappedDriver ()).getScreenshotAs (OutputType.BYTES));
+	public void saveScreenshot () {
+		final ScreenshotSetting setting = appSetting ().getPlayback ()
+			.getScreenshot ();
+		final String path = setting.getPath ();
+		final String prefix = setting.getPrefix ();
+		final SimpleDateFormat date = new SimpleDateFormat ("yyyyMMdd-HHmmss");
+		final String timeStamp = date.format (Calendar.getInstance ()
+			.getTime ());
+		final String fileName = "%s/%s-%s.%s";
+		saveScreenshot (format (fileName, path, prefix, timeStamp, "jpeg"));
+	}
+
+	@Override
+	public void saveScreenshot (final String path) {
+		final String msg = "Capturing screenshot and saving at [{}]...";
+		LOG.info (msg, path);
+		try {
+			final File srcFiler = this.driver.getScreenshotAs (OutputType.FILE);
+			copyFile (srcFiler, new File (path));
+		}
+		catch (IOException e) {
+			LOG.error ("Error while saving screenshot.", e);
+			LOG.catching (e);
+		}
 	}
 
 	/*
