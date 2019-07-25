@@ -56,6 +56,7 @@ import com.google.common.truth.StringSubject;
  * @author Wasiq Bhamla
  * @since Aug 21, 2018 3:31:21 PM
  */
+@SuppressWarnings ("unchecked")
 public class ElementAction implements ISelectboxActions, ITextboxActions {
 	private static final Logger LOG = LogManager.getLogger (ElementAction.class);
 
@@ -184,8 +185,10 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	 */
 	@Override
 	public void deselectAll () {
-		final Select select = new Select (this.element);
-		select.deselectAll ();
+		perform (e -> {
+			final Select select = new Select (e);
+			select.deselectAll ();
+		});
 	}
 
 	/*
@@ -245,6 +248,12 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 		});
 	}
 
+	@Override
+	public ElementAction find (final By byLocator, final WaitStrategy strategy) {
+		waitForStrategy (byLocator, strategy);
+		return get (e -> new ElementAction (this.browserAction, e.findElement (byLocator)));
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * @see @see
@@ -252,9 +261,16 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	 * selenium.By)
 	 */
 	@Override
-	@SuppressWarnings ("unchecked")
 	public ElementAction find (final By byLocator) {
 		return get (e -> new ElementAction (this.browserAction, e.findElement (byLocator)));
+	}
+
+	@Override
+	public List <ElementAction> finds (final By byLocator, final WaitStrategy strategy) {
+		waitForStrategy (byLocator, strategy);
+		return get (e -> e.findElements (byLocator)).stream ()
+			.map (e -> new ElementAction (this.browserAction, e))
+			.collect (Collectors.toList ());
 	}
 
 	/*
@@ -264,7 +280,6 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	 * .selenium.By)
 	 */
 	@Override
-	@SuppressWarnings ("unchecked")
 	public List <ElementAction> finds (final By byLocator) {
 		return get (e -> e.findElements (byLocator)).stream ()
 			.map (e -> new ElementAction (this.browserAction, e))
@@ -565,10 +580,6 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 		}
 	}
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 12-Jul-2019
-	 */
 	private void waitForStrategy () {
 		switch (this.strategy) {
 			case CLICKABLE:
@@ -587,6 +598,11 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 				}
 				break;
 		}
+	}
+
+	private void waitForStrategy (By locator, WaitStrategy newStrategy) {
+		ElementAction elementAction = new ElementAction (browserAction, locator, newStrategy);
+		elementAction.waitForStrategy ();
 	}
 
 	private void waitUntilLocatorAttributeIs (final String attribute, final String value) {
