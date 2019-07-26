@@ -33,11 +33,11 @@ public abstract class SuccessPage extends MainPage {
 		return cell (0, 0);
 	}
 
-	protected IElementActions cell (final int row) {
+	IElementActions cell (final int row) {
 		return cell (row, 1);
 	}
 
-	protected IElementActions cell (final int row, final int col) {
+	private IElementActions cell (final int row, final int col) {
 		return successTable ().finds (By.tagName ("tr"))
 			.get (row)
 			.finds (By.tagName ("td"))
