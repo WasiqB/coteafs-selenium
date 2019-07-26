@@ -249,9 +249,9 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	}
 
 	@Override
-	public ElementAction find (final By byLocator, final WaitStrategy strategy) {
+	public <E extends IElementActions> E find (final By byLocator, final WaitStrategy strategy) {
 		waitForStrategy (byLocator, strategy);
-		return get (e -> new ElementAction (this.browserAction, e.findElement (byLocator)));
+		return get (e -> (E) new ElementAction (this.browserAction, e.findElement (byLocator)));
 	}
 
 	/*
@@ -261,15 +261,16 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	 * selenium.By)
 	 */
 	@Override
-	public ElementAction find (final By byLocator) {
-		return get (e -> new ElementAction (this.browserAction, e.findElement (byLocator)));
+	public <E extends IElementActions> E find (final By byLocator) {
+		return get (e -> (E) new ElementAction (this.browserAction, e.findElement (byLocator)));
 	}
 
 	@Override
-	public List <ElementAction> finds (final By byLocator, final WaitStrategy strategy) {
+	public <E extends IElementActions> List <E> finds (final By byLocator,
+		final WaitStrategy strategy) {
 		waitForStrategy (byLocator, strategy);
 		return get (e -> e.findElements (byLocator)).stream ()
-			.map (e -> new ElementAction (this.browserAction, e))
+			.map (e -> (E) new ElementAction (this.browserAction, e))
 			.collect (Collectors.toList ());
 	}
 
@@ -280,9 +281,9 @@ public class ElementAction implements ISelectboxActions, ITextboxActions {
 	 * .selenium.By)
 	 */
 	@Override
-	public List <ElementAction> finds (final By byLocator) {
+	public <E extends IElementActions> List <E> finds (final By byLocator) {
 		return get (e -> e.findElements (byLocator)).stream ()
-			.map (e -> new ElementAction (this.browserAction, e))
+			.map (e -> (E) new ElementAction (this.browserAction, e))
 			.collect (Collectors.toList ());
 	}
 

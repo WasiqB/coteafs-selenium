@@ -42,7 +42,7 @@ public class MainPage extends BrowserPage {
 	 * @return menu name
 	 */
 	public IMouseActions navbar (final String name) {
-		return (IMouseActions) navbar ().finds (By.cssSelector ("li > a"))
+		return navbar (). <IMouseActions>finds (By.cssSelector ("li > a"))
 			.stream ()
 			.filter (m -> m.text ()
 				.trim ()
