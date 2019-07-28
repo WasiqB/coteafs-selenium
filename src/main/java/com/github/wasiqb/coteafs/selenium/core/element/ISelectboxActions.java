@@ -21,7 +21,7 @@ import java.util.List;
  * @author Wasiq Bhamla
  * @since 07-Jun-2019
  */
-public interface ISelectboxActions extends IKeyboardActions {
+public interface ISelectboxActions extends IMouseActions {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
@@ -61,7 +61,7 @@ public interface ISelectboxActions extends IKeyboardActions {
 	 * @since 12-Jul-2019
 	 * @return all options
 	 */
-	List <IMouseActions> options ();
+	<T extends IMouseActions> List <T> options ();
 
 	/**
 	 * @author Wasiq Bhamla
@@ -89,5 +89,5 @@ public interface ISelectboxActions extends IKeyboardActions {
 	 * @since 12-Jul-2019
 	 * @return all selected options
 	 */
-	List <IMouseActions> selectedOptions ();
+	<T extends IMouseActions> List <T> selectedOptions ();
 }

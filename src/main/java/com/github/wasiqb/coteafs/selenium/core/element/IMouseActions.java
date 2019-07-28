@@ -19,7 +19,7 @@ package com.github.wasiqb.coteafs.selenium.core.element;
  * @author Wasiq Bhamla
  * @since 07-Jun-2019
  */
-public interface IMouseActions extends IVerifyElement {
+public interface IMouseActions extends IFindableAction {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019

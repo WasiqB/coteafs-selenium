@@ -15,16 +15,11 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.element;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
-import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 
@@ -35,7 +30,7 @@ import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
  * @param <D>
  * @param <B>
  */
-public class SelectboxAction <E extends WebElement, D extends WebDriver,
+public abstract class SelectboxAction <E extends WebElement, D extends WebDriver,
 	B extends IDriverActions <D>> extends KeyboardAction <E, D, B> implements ISelectboxActions {
 	protected SelectboxAction (final B browserAction, final By by, final WaitStrategy strategy) {
 		super (browserAction, by, strategy);
@@ -52,91 +47,5 @@ public class SelectboxAction <E extends WebElement, D extends WebDriver,
 	protected SelectboxAction (final B browserAction, final E element,
 		final WaitStrategy strategy) {
 		super (browserAction, element, strategy);
-	}
-
-	@Override
-	public void deselectAll () {
-		perform (e -> {
-			final Select select = new Select (e);
-			select.deselectAll ();
-		});
-	}
-
-	@Override
-	public void deselectByIndex (final int index) {
-		perform (e -> {
-			final Select select = new Select (e);
-			select.deselectByIndex (index);
-		});
-	}
-
-	@Override
-	public void deselectByText (final String value) {
-		perform (e -> {
-			final Select select = new Select (e);
-			select.deselectByVisibleText (value);
-		});
-	}
-
-	@Override
-	public void deselectByValue (final String value) {
-		perform (e -> {
-			final Select select = new Select (e);
-			select.deselectByValue (value);
-		});
-	}
-
-	@Override
-	public boolean isMultiSelect () {
-		return get (e -> {
-			final Select select = new Select (e);
-			return select.isMultiple ();
-		});
-	}
-
-	@Override
-	public List <IMouseActions> options () {
-		return get (e -> {
-			final Select select = new Select (e);
-			return select.getOptions ()
-				.stream ()
-				.map (o -> new MouseAction <> (this.browserAction, o))
-				.collect (Collectors.toList ());
-		});
-	}
-
-	@Override
-	public void selectByIndex (final int index) {
-		perform (e -> {
-			final Select select = new Select (e);
-			select.selectByIndex (index);
-		});
-	}
-
-	@Override
-	public void selectByText (final String value) {
-		perform (e -> {
-			final Select select = new Select (e);
-			select.selectByVisibleText (value);
-		});
-	}
-
-	@Override
-	public void selectByValue (final String value) {
-		perform (e -> {
-			final Select select = new Select (e);
-			select.selectByValue (value);
-		});
-	}
-
-	@Override
-	public List <IMouseActions> selectedOptions () {
-		return get (e -> {
-			final Select select = new Select (e);
-			return select.getAllSelectedOptions ()
-				.stream ()
-				.map (o -> new MouseAction <> (this.browserAction, o))
-				.collect (Collectors.toList ());
-		});
 	}
 }

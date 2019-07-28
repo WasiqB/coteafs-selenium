@@ -101,6 +101,6 @@ public class BrowserPage implements IPage <BrowserActions, WebElement> {
 
 	@Override
 	public ITextboxActions onTextbox (final By locator) {
-		return null;
+		return new WebTextboxAction (onDriver (), locator);
 	}
 }

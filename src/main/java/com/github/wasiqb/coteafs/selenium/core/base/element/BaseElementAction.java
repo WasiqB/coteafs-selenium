@@ -15,6 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.element;
 
+import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 import static java.text.MessageFormat.format;
 import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBe;
@@ -59,10 +60,10 @@ public class BaseElementAction <E extends WebElement, D extends WebDriver,
 		}
 		catch (final InterruptedException e) {
 			LOG.error ("Error while pausing: {}", e.getMessage ());
-			Thread.currentThread ()
-				.interrupt ();
+			currentThread ().interrupt ();
 		}
 	}
+
 	protected final B			browserAction;
 	final Actions				actions;
 	final DelaySetting			delays;

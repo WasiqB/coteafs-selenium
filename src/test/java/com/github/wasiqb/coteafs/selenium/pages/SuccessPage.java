@@ -17,7 +17,6 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.base.element.MouseAction;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 
 /**
@@ -41,9 +40,8 @@ public abstract class SuccessPage extends MainPage {
 	}
 
 	private IMouseActions cell (final int row, final int col) {
-		return successTable ().finds (By.tagName ("tr"))
-			.get (row)
-			. <MouseAction>finds (By.tagName ("td"))
-			.get (col);
+		return (IMouseActions) ((IMouseActions) successTable ().finds (By.tagName ("tr"))
+			.get (row)).finds (By.tagName ("td"))
+				.get (col);
 	}
 }

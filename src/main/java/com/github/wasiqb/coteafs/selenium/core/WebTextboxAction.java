@@ -19,16 +19,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import com.github.wasiqb.coteafs.selenium.core.base.element.TextboxAction;
+import com.github.wasiqb.coteafs.selenium.core.base.element.AbstractElementAction;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 
 /**
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
+@SuppressWarnings ("unchecked")
 public class WebTextboxAction
-	extends TextboxAction <WebElement, EventFiringWebDriver, BrowserActions> {
-	protected WebTextboxAction (final BrowserActions browserAction, final By by) {
+	extends AbstractElementAction <WebElement, EventFiringWebDriver, BrowserActions> {
+	WebTextboxAction (final BrowserActions browserAction, final By by) {
 		super (browserAction, by);
 	}
 

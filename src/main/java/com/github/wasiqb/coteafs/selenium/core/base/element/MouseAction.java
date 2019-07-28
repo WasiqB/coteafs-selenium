@@ -15,8 +15,6 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.element;
 
-import static java.time.Duration.ofMillis;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,9 +30,8 @@ import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
  * @param <D>
  * @param <B>
  */
-public class MouseAction <E extends WebElement, D extends WebDriver, B extends IDriverActions <D>>
-	extends VerifyElement <E, D, B> implements IMouseActions {
-
+public abstract class MouseAction <E extends WebElement, D extends WebDriver,
+	B extends IDriverActions <D>> extends KeyboardAction <E, D, B> implements IMouseActions {
 	protected MouseAction (final B browserAction, final By by, final WaitStrategy strategy) {
 		super (browserAction, by, strategy);
 	}
@@ -49,22 +46,5 @@ public class MouseAction <E extends WebElement, D extends WebDriver, B extends I
 
 	protected MouseAction (final B browserAction, final E element, final WaitStrategy strategy) {
 		super (browserAction, element, strategy);
-	}
-
-	@Override
-	public void click () {
-		perform (e -> {
-			pause (this.delays.getBeforeClick ());
-			e.click ();
-			pause (this.delays.getAfterClick ());
-		});
-	}
-
-	@Override
-	public void hover () {
-		perform (e -> this.actions.pause (ofMillis (this.delays.getBeforeMouseMove ()))
-			.moveToElement (e)
-			.pause (ofMillis (this.delays.getAfterMouseMove ()))
-			.perform ());
 	}
 }

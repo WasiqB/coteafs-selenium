@@ -19,14 +19,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import com.github.wasiqb.coteafs.selenium.core.base.element.MouseAction;
+import com.github.wasiqb.coteafs.selenium.core.base.element.AbstractElementAction;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 
 /**
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-class WebMouseAction extends MouseAction <WebElement, EventFiringWebDriver, BrowserActions> {
+@SuppressWarnings ("unchecked")
+public class WebMouseAction
+	extends AbstractElementAction <WebElement, EventFiringWebDriver, BrowserActions> {
 	WebMouseAction (final BrowserActions browserAction, final By by, final WaitStrategy strategy) {
 		super (browserAction, by, strategy);
 	}

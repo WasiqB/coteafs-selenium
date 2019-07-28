@@ -19,15 +19,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import com.github.wasiqb.coteafs.selenium.core.base.element.SelectboxAction;
+import com.github.wasiqb.coteafs.selenium.core.base.element.AbstractElementAction;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 
 /**
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-class WebSelectboxAction
-	extends SelectboxAction <WebElement, EventFiringWebDriver, BrowserActions> {
+public class WebSelectboxAction
+	extends AbstractElementAction <WebElement, EventFiringWebDriver, BrowserActions> {
 	WebSelectboxAction (final BrowserActions browserAction, final By by,
 		final WaitStrategy strategy) {
 		super (browserAction, by, strategy);

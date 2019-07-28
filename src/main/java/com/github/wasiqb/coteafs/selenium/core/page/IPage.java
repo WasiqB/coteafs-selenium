@@ -37,7 +37,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param element
 	 * @return element action
 	 */
-	IMouseActions onClickable (E element);
+	<T extends IMouseActions> T onClickable (E element);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -46,7 +46,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param strategy
 	 * @return element action
 	 */
-	IMouseActions onClickable (E element, WaitStrategy strategy);
+	<T extends IMouseActions> T onClickable (E element, WaitStrategy strategy);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -55,7 +55,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param strategy
 	 * @return element action
 	 */
-	IMouseActions onClickable (By locator, WaitStrategy strategy);
+	<T extends IMouseActions> T onClickable (By locator, WaitStrategy strategy);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -63,7 +63,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param locator
 	 * @return element action
 	 */
-	IMouseActions onClickable (By locator);
+	<T extends IMouseActions> T onClickable (By locator);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -78,7 +78,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param element
 	 * @return element action
 	 */
-	ISelectboxActions onDropdown (E element);
+	<T extends ISelectboxActions> T onDropdown (E element);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -87,7 +87,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param strategy
 	 * @return element action
 	 */
-	ISelectboxActions onDropdown (E element, WaitStrategy strategy);
+	<T extends ISelectboxActions> T onDropdown (E element, WaitStrategy strategy);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -96,7 +96,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param strategy
 	 * @return element action
 	 */
-	ISelectboxActions onDropdown (By locator, WaitStrategy strategy);
+	<T extends ISelectboxActions> T onDropdown (By locator, WaitStrategy strategy);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -104,7 +104,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param locator
 	 * @return element action
 	 */
-	ISelectboxActions onDropdown (By locator);
+	<T extends ISelectboxActions> T onDropdown (By locator);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -112,7 +112,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param element
 	 * @return element action
 	 */
-	ITextboxActions onTextbox (E element);
+	<T extends ITextboxActions> T onTextbox (E element);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -121,7 +121,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param strategy
 	 * @return element action
 	 */
-	ITextboxActions onTextbox (E element, WaitStrategy strategy);
+	<T extends ITextboxActions> T onTextbox (E element, WaitStrategy strategy);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -130,7 +130,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param strategy
 	 * @return element action
 	 */
-	ITextboxActions onTextbox (By locator, WaitStrategy strategy);
+	<T extends ITextboxActions> T onTextbox (By locator, WaitStrategy strategy);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -138,5 +138,5 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @param locator
 	 * @return element action
 	 */
-	ITextboxActions onTextbox (By locator);
+	<T extends ITextboxActions> T onTextbox (By locator);
 }

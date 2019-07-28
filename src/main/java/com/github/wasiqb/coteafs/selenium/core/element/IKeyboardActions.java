@@ -21,7 +21,7 @@ import org.openqa.selenium.Keys;
  * @author Wasiq Bhamla
  * @since 08-Jun-2019
  */
-public interface IKeyboardActions extends IMouseActions {
+public interface IKeyboardActions extends IVerifyElement {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019

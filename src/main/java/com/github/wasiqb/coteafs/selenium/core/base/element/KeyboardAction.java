@@ -31,9 +31,8 @@ import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
  * @param <D>
  * @param <B>
  */
-public class KeyboardAction <E extends WebElement, D extends WebDriver,
-	B extends IDriverActions <D>> extends MouseAction <E, D, B> implements IKeyboardActions {
-
+public abstract class KeyboardAction <E extends WebElement, D extends WebDriver,
+	B extends IDriverActions <D>> extends VerifyElement <E, D, B> implements IKeyboardActions {
 	KeyboardAction (final B browserAction, final By by, final WaitStrategy strategy) {
 		super (browserAction, by, strategy);
 	}

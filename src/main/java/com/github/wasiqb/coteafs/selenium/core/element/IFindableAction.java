@@ -25,7 +25,7 @@ import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public interface IFindableAction extends IWaitStrategy {
+public interface IFindableAction extends IKeyboardActions {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 27-Jul-2019
@@ -33,7 +33,7 @@ public interface IFindableAction extends IWaitStrategy {
 	 * locator
 	 * @return actions
 	 */
-	<E extends IFindableAction> E find (final By byLocator);
+	<E extends IMouseActions> E find (final By byLocator);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -44,7 +44,7 @@ public interface IFindableAction extends IWaitStrategy {
 	 * wait strategy
 	 * @return list of actions
 	 */
-	<E extends IFindableAction> E find (final By byLocator, WaitStrategy strategy);
+	<E extends IMouseActions> E find (final By byLocator, WaitStrategy strategy);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -53,7 +53,7 @@ public interface IFindableAction extends IWaitStrategy {
 	 * locator
 	 * @return list of actions
 	 */
-	<E extends IFindableAction> List <E> finds (final By byLocator);
+	<E extends IMouseActions> List <E> finds (final By byLocator);
 
 	/**
 	 * @author Wasiq Bhamla
@@ -64,5 +64,5 @@ public interface IFindableAction extends IWaitStrategy {
 	 * wait strategy
 	 * @return list of actions
 	 */
-	<E extends IFindableAction> List <E> finds (final By byLocator, WaitStrategy strategy);
+	<E extends IMouseActions> List <E> finds (final By byLocator, WaitStrategy strategy);
 }

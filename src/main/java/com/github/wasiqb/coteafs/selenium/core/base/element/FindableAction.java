@@ -15,14 +15,15 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.element;
 
-import static org.apache.commons.lang3.StringUtils.isNoneEmpty;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
-import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.IFindableAction;
+import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 
 /**
@@ -32,38 +33,31 @@ import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
  * @param <D>
  * @param <B>
  */
-public class TextboxAction <E extends WebElement, D extends WebDriver, B extends IDriverActions <D>>
-	extends KeyboardAction <E, D, B> implements ITextboxActions {
-	protected TextboxAction (final B browserAction, final By by, final WaitStrategy strategy) {
+public abstract class FindableAction <E extends WebElement, D extends WebDriver,
+	B extends IDriverActions <D>> extends KeyboardAction <E, D, B> implements IFindableAction {
+	protected FindableAction (final B browserAction, final By by, final WaitStrategy strategy) {
 		super (browserAction, by, strategy);
 	}
 
-	protected TextboxAction (final B browserAction, final E element) {
+	protected FindableAction (final B browserAction, final E element) {
 		super (browserAction, element);
 	}
 
-	protected TextboxAction (final B browserAction, final By by) {
+	protected FindableAction (final B browserAction, final By by) {
 		super (browserAction, by);
 	}
 
-	protected TextboxAction (final B browserAction, final E element, final WaitStrategy strategy) {
+	protected FindableAction (final B browserAction, final E element, final WaitStrategy strategy) {
 		super (browserAction, element, strategy);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.ext.ITextboxActions#enterText(java.
-	 * lang.String)
-	 */
 	@Override
-	public void enterText (final String text) {
-		perform (e -> {
-			if (isNoneEmpty (text)) {
-				pause (this.delays.getBeforeTyping ());
-				e.sendKeys (text);
-				pause (this.delays.getAfterTyping ());
-			}
-		});
+	public <T extends IMouseActions> T find (final By byLocator) {
+		return find (byLocator, WaitStrategy.NONE);
+	}
+
+	@Override
+	public <T extends IMouseActions> List <T> finds (final By byLocator) {
+		return finds (byLocator, WaitStrategy.NONE);
 	}
 }

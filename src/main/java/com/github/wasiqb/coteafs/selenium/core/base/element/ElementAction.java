@@ -31,7 +31,7 @@ import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
  * @param <B>
  */
 public class ElementAction <E extends WebElement, D extends WebDriver, B extends IDriverActions <D>>
-	extends FinadableAction <E, D, B> implements IElementActions {
+	extends BaseElementAction <E, D, B> implements IElementActions {
 	protected ElementAction (final B browserAction, final By by, final WaitStrategy strategy) {
 		super (browserAction, by, strategy);
 	}
