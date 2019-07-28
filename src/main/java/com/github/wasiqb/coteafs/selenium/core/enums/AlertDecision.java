@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,5 +27,5 @@ public enum AlertDecision {
 	/**
 	 * Dismiss alert.
 	 */
-	DISMISS;
+	DISMISS
 }

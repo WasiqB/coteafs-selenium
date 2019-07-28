@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -64,7 +64,7 @@ public class DriverListner implements WebDriverEventListener {
 		final CharSequence [] keysToSend) {
 		if (keysToSend != null) {
 			final String message = "Text [{}] has been entered...";
-			LOG.trace (message, (Object []) keysToSend);
+			LOG.trace (message, (Object) keysToSend);
 		}
 	}
 
@@ -209,7 +209,7 @@ public class DriverListner implements WebDriverEventListener {
 	public void beforeChangeValueOf (final WebElement element, final WebDriver driver,
 		final CharSequence [] keysToSend) {
 		if (keysToSend != null) {
-			LOG.info ("Writing text [{}]...", (Object []) keysToSend);
+			LOG.info ("Writing text [{}]...", (Object) keysToSend);
 		}
 	}
 

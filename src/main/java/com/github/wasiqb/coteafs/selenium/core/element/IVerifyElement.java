@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,11 +22,12 @@ import com.google.common.truth.StringSubject;
  * @author Wasiq Bhamla
  * @since 07-Jun-2019
  */
-public interface IVerifyElement {
+public interface IVerifyElement extends IElementActions {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param attribute
+	 * element attribute
 	 * @return subject
 	 */
 	StringSubject verifyAttribute (final String attribute);

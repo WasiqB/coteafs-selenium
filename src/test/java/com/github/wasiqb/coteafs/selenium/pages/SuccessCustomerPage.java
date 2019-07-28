@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +17,7 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
+import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 
 /**
  * @author wasiqb
@@ -29,7 +29,7 @@ public class SuccessCustomerPage extends SuccessPage {
 	 * @since Apr 7, 2019 10:38:33 PM
 	 * @return customer id
 	 */
-	public IElementActions customerId () {
+	public IMouseActions customerId () {
 		return successTable ().find (By.cssSelector ("tbody > tr:nth-child(4) > td:last-child"));
 	}
 
@@ -38,7 +38,7 @@ public class SuccessCustomerPage extends SuccessPage {
 	 * @since Apr 7, 2019 10:47:54 PM
 	 * @return customer name
 	 */
-	public IElementActions customerName () {
+	public IMouseActions customerName () {
 		return successTable ().find (By.cssSelector ("tbody > tr:nth-child(5) > td:last-child"));
 	}
 
@@ -47,7 +47,7 @@ public class SuccessCustomerPage extends SuccessPage {
 	 * @see com.github.wasiqb.coteafs.selenium.pages.SuccessPage#successTable()
 	 */
 	@Override
-	protected IElementActions successTable () {
-		return onElement (By.id ("customer"));
+	protected IMouseActions successTable () {
+		return onClickable (By.id ("customer"));
 	}
 }

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +17,7 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
+import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 
 /**
  * @author wasiqb
@@ -29,7 +29,7 @@ public class SuccessAccountPage extends SuccessPage {
 	 * @since Apr 8, 2019 8:31:20 PM
 	 * @return account id
 	 */
-	public IElementActions accountId () {
+	public IMouseActions accountId () {
 		return cell (3);
 	}
 
@@ -38,7 +38,7 @@ public class SuccessAccountPage extends SuccessPage {
 	 * @since Apr 8, 2019 8:34:58 PM
 	 * @return customer id
 	 */
-	public IElementActions customerId () {
+	public IMouseActions customerId () {
 		return cell (4);
 	}
 
@@ -47,7 +47,7 @@ public class SuccessAccountPage extends SuccessPage {
 	 * @see com.github.wasiqb.coteafs.selenium.pages.SuccessPage#successTable()
 	 */
 	@Override
-	protected IElementActions successTable () {
-		return onElement (By.id ("account"));
+	protected IMouseActions successTable () {
+		return onClickable (By.id ("account"));
 	}
 }

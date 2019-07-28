@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +18,9 @@ package com.github.wasiqb.coteafs.selenium.core;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 import com.github.wasiqb.coteafs.selenium.core.page.IPage;
 
@@ -25,7 +28,7 @@ import com.github.wasiqb.coteafs.selenium.core.page.IPage;
  * @author Wasiq Bhamla
  * @since Aug 19, 2018 4:15:31 PM
  */
-public class BrowserPage implements IPage <BrowserActions, WebElement, ElementAction> {
+public class BrowserPage implements IPage <BrowserActions, WebElement> {
 	private final Browser browser;
 
 	/**
@@ -36,57 +39,68 @@ public class BrowserPage implements IPage <BrowserActions, WebElement, ElementAc
 		this.browser = new Browser ();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see com.github.wasiqb.coteafs.selenium.core.ext.IPage#onDriver()
-	 */
+	@Override
+	public IMouseActions onClickable (final WebElement element) {
+		return new WebMouseAction (onDriver (), element);
+	}
+
+	@Override
+	public IMouseActions onClickable (final WebElement element, final WaitStrategy strategy) {
+		return new WebMouseAction (onDriver (), element, strategy);
+	}
+
+	@Override
+	public IMouseActions onClickable (final By locator, final WaitStrategy strategy) {
+		return new WebMouseAction (onDriver (), locator, strategy);
+	}
+
+	@Override
+	public IMouseActions onClickable (final By locator) {
+		return new WebMouseAction (onDriver (), locator);
+	}
+
 	@Override
 	public BrowserActions onDriver () {
 		return new BrowserActions (this.browser.getDriver ());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.ext.IPage#onElement(org.openqa.
-	 * selenium.By)
-	 */
 	@Override
-	public ElementAction onElement (final By locator) {
-		return new ElementAction (onDriver (), locator);
+	public ISelectboxActions onDropdown (final WebElement element) {
+		return new WebSelectboxAction (onDriver (), element);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.page.IPage#onElement(org.openqa.
-	 * selenium.By, com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy)
-	 */
 	@Override
-	public ElementAction onElement (final By locator, final WaitStrategy strategy) {
-		return new ElementAction (onDriver (), locator, strategy);
+	public ISelectboxActions onDropdown (final WebElement element, final WaitStrategy strategy) {
+		return new WebSelectboxAction (onDriver (), element, strategy);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.ext.IPage#onElement(org.openqa.
-	 * selenium.WebElement)
-	 */
 	@Override
-	public ElementAction onElement (final WebElement element) {
-		return new ElementAction (onDriver (), element);
+	public ISelectboxActions onDropdown (final By locator, final WaitStrategy strategy) {
+		return new WebSelectboxAction (onDriver (), locator, strategy);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.page.IPage#onElement(org.openqa.
-	 * selenium.WebElement,
-	 * com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy)
-	 */
 	@Override
-	public ElementAction onElement (final WebElement element, final WaitStrategy strategy) {
-		return new ElementAction (onDriver (), element, strategy);
+	public ISelectboxActions onDropdown (final By locator) {
+		return new WebSelectboxAction (onDriver (), locator);
+	}
+
+	@Override
+	public ITextboxActions onTextbox (final WebElement element) {
+		return new WebTextboxAction (onDriver (), element);
+	}
+
+	@Override
+	public ITextboxActions onTextbox (final WebElement element, final WaitStrategy strategy) {
+		return new WebTextboxAction (onDriver (), element, strategy);
+	}
+
+	@Override
+	public ITextboxActions onTextbox (final By locator, final WaitStrategy strategy) {
+		return new WebTextboxAction (onDriver (), locator, strategy);
+	}
+
+	@Override
+	public ITextboxActions onTextbox (final By locator) {
+		return null;
 	}
 }

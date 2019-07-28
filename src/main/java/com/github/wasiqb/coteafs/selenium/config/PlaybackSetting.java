@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017-2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,8 +25,8 @@ public class PlaybackSetting {
 	private DelaySetting		delays;
 	private boolean				highlight;
 	private ScreenResolution	screenResolution;
-	private ScreenshotSetting	screenshot;
 	private ScreenState			screenState;
+	private ScreenshotSetting	screenshot;
 
 	/**
 	 * @author Wasiq Bhamla
@@ -57,16 +57,6 @@ public class PlaybackSetting {
 	}
 
 	/**
-	 * @return the screenshot
-	 *
-	 * @author Wasiq Bhamla
-	 * @since Apr 8, 2018 3:00:22 PM
-	 */
-	public ScreenshotSetting getScreenshot () {
-		return this.screenshot;
-	}
-
-	/**
 	 * @return the screenState
 	 *
 	 * @author Wasiq Bhamla
@@ -74,6 +64,16 @@ public class PlaybackSetting {
 	 */
 	public ScreenState getScreenState () {
 		return this.screenState;
+	}
+
+	/**
+	 * @return the screenshot
+	 *
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 */
+	public ScreenshotSetting getScreenshot () {
+		return this.screenshot;
 	}
 
 	/**
@@ -120,17 +120,6 @@ public class PlaybackSetting {
 	}
 
 	/**
-	 * @param screenshot
-	 * the screenshot to set
-	 *
-	 * @author Wasiq Bhamla
-	 * @since Apr 8, 2018 3:00:22 PM
-	 */
-	public void setScreenshot (final ScreenshotSetting screenshot) {
-		this.screenshot = screenshot;
-	}
-
-	/**
 	 * @param screenState
 	 * the screenState to set
 	 *
@@ -139,5 +128,16 @@ public class PlaybackSetting {
 	 */
 	public void setScreenState (final ScreenState screenState) {
 		this.screenState = screenState;
+	}
+
+	/**
+	 * @param screenshot
+	 * the screenshot to set
+	 *
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 */
+	public void setScreenshot (final ScreenshotSetting screenshot) {
+		this.screenshot = screenshot;
 	}
 }

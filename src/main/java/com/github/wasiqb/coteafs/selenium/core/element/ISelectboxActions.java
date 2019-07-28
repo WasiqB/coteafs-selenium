@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -61,7 +61,7 @@ public interface ISelectboxActions extends IKeyboardActions {
 	 * @since 12-Jul-2019
 	 * @return all options
 	 */
-	List <IElementActions> options ();
+	List <IMouseActions> options ();
 
 	/**
 	 * @author Wasiq Bhamla
@@ -89,5 +89,5 @@ public interface ISelectboxActions extends IKeyboardActions {
 	 * @since 12-Jul-2019
 	 * @return all selected options
 	 */
-	List <IElementActions> selectedOptions ();
+	List <IMouseActions> selectedOptions ();
 }

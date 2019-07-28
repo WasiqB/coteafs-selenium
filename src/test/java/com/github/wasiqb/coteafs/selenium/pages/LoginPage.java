@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,6 @@ package com.github.wasiqb.coteafs.selenium.pages;
 import org.openqa.selenium.By;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
-import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 
@@ -54,7 +53,7 @@ public class LoginPage extends BrowserPage {
 		return form ().find (By.name ("uid"));
 	}
 
-	private IElementActions form () {
-		return onElement (By.name ("frmLogin"));
+	private IMouseActions form () {
+		return onClickable (By.name ("frmLogin"));
 	}
 }

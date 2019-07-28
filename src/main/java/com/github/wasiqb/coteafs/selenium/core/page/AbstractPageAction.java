@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,12 +34,6 @@ public abstract class AbstractPageAction <T extends AbstractPageAction <T>> impl
 		this.values = new HashMap <> ();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.ext.IPageAction#addInputValue(java.
-	 * lang.String, java.lang.Object)
-	 */
 	@SuppressWarnings ("unchecked")
 	@Override
 	public T addInputValue (final String element, final Object value) {
@@ -47,12 +41,6 @@ public abstract class AbstractPageAction <T extends AbstractPageAction <T>> impl
 		return (T) this;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.ext.IPageAction#value(java.lang.
-	 * String)
-	 */
 	@Override
 	@SuppressWarnings ("unchecked")
 	public <E> E value (final String element) {
