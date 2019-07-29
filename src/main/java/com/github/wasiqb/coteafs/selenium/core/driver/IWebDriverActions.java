@@ -21,6 +21,7 @@ import org.openqa.selenium.WebDriver;
  * @author Wasiq Bhamla
  * @since 06-Jun-2019
  * @param <D>
+ * Driver
  */
 public interface IWebDriverActions <D extends WebDriver> extends IDriverActions <D> {
 	/**
@@ -45,6 +46,7 @@ public interface IWebDriverActions <D extends WebDriver> extends IDriverActions 
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
 	 * @param url
+	 * URL
 	 */
 	void navigateTo (String url);
 

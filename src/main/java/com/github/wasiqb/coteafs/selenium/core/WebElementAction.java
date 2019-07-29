@@ -13,38 +13,36 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.github.wasiqb.coteafs.selenium.core.base.element;
+package com.github.wasiqb.coteafs.selenium.core;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
-import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
+import com.github.wasiqb.coteafs.selenium.core.base.element.AbstractElementAction;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 
 /**
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
- * @param <E>
- * @param <D>
- * @param <B>
  */
-public abstract class MouseAction <E extends WebElement, D extends WebDriver,
-	B extends IDriverActions <D>> extends KeyboardAction <E, D, B> implements IMouseActions {
-	protected MouseAction (final B browserAction, final By by, final WaitStrategy strategy) {
+public class WebElementAction
+	extends AbstractElementAction <WebElement, EventFiringWebDriver, BrowserActions> {
+	WebElementAction (final BrowserActions browserAction, final By by,
+		final WaitStrategy strategy) {
 		super (browserAction, by, strategy);
 	}
 
-	protected MouseAction (final B browserAction, final E element) {
+	WebElementAction (final BrowserActions browserAction, final WebElement element) {
 		super (browserAction, element);
 	}
 
-	protected MouseAction (final B browserAction, final By by) {
+	WebElementAction (final BrowserActions browserAction, final By by) {
 		super (browserAction, by);
 	}
 
-	protected MouseAction (final B browserAction, final E element, final WaitStrategy strategy) {
+	WebElementAction (final BrowserActions browserAction, final WebElement element,
+		final WaitStrategy strategy) {
 		super (browserAction, element, strategy);
 	}
 }

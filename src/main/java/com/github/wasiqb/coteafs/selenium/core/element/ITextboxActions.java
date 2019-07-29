@@ -24,6 +24,7 @@ public interface ITextboxActions extends IMouseActions {
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param text
+	 * input text
 	 */
 	void enterText (String text);
 }

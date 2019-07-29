@@ -30,6 +30,7 @@ public interface IWebFrame {
 	 * @author Wasiq Bhamla
 	 * @since 06-Jul-2019
 	 * @param index
+	 * frame index
 	 */
 	void switchFrame (int index);
 
@@ -37,6 +38,7 @@ public interface IWebFrame {
 	 * @author Wasiq Bhamla
 	 * @since 06-Jul-2019
 	 * @param nameOrId
+	 * frame name or id
 	 */
 	void switchFrame (String nameOrId);
 }

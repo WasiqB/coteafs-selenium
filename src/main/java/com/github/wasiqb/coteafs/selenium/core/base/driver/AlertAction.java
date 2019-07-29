@@ -31,7 +31,7 @@ import com.google.common.truth.StringSubject;
  * @param <D>
  */
 public class AlertAction <D extends WebDriver> extends ScreenAction <D> implements IAlertAction {
-	protected AlertAction (final D driver) {
+	AlertAction (final D driver) {
 		super (driver);
 	}
 

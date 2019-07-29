@@ -35,6 +35,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 08-Jun-2019
 	 * @param element
+	 * element
 	 * @return element action
 	 */
 	<T extends IMouseActions> T onClickable (E element);
@@ -43,7 +44,9 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param element
+	 * element
 	 * @param strategy
+	 * wait strategy
 	 * @return element action
 	 */
 	<T extends IMouseActions> T onClickable (E element, WaitStrategy strategy);
@@ -52,7 +55,9 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param locator
+	 * locator
 	 * @param strategy
+	 * strategy
 	 * @return element action
 	 */
 	<T extends IMouseActions> T onClickable (By locator, WaitStrategy strategy);
@@ -61,6 +66,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 08-Jun-2019
 	 * @param locator
+	 * locator
 	 * @return element action
 	 */
 	<T extends IMouseActions> T onClickable (By locator);
@@ -76,6 +82,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 08-Jun-2019
 	 * @param element
+	 * element
 	 * @return element action
 	 */
 	<T extends ISelectboxActions> T onDropdown (E element);
@@ -84,7 +91,9 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param element
+	 * element
 	 * @param strategy
+	 * strategy
 	 * @return element action
 	 */
 	<T extends ISelectboxActions> T onDropdown (E element, WaitStrategy strategy);
@@ -93,7 +102,9 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param locator
+	 * locator
 	 * @param strategy
+	 * strategy
 	 * @return element action
 	 */
 	<T extends ISelectboxActions> T onDropdown (By locator, WaitStrategy strategy);
@@ -102,6 +113,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 08-Jun-2019
 	 * @param locator
+	 * locator
 	 * @return element action
 	 */
 	<T extends ISelectboxActions> T onDropdown (By locator);
@@ -110,6 +122,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 08-Jun-2019
 	 * @param element
+	 * element
 	 * @return element action
 	 */
 	<T extends ITextboxActions> T onTextbox (E element);
@@ -118,7 +131,9 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param element
+	 * element
 	 * @param strategy
+	 * strategy
 	 * @return element action
 	 */
 	<T extends ITextboxActions> T onTextbox (E element, WaitStrategy strategy);
@@ -127,7 +142,9 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param locator
+	 * locator
 	 * @param strategy
+	 * strategy
 	 * @return element action
 	 */
 	<T extends ITextboxActions> T onTextbox (By locator, WaitStrategy strategy);
@@ -136,6 +153,7 @@ public interface IPage <B extends IDriverActions, E extends WebElement> {
 	 * @author Wasiq Bhamla
 	 * @since 08-Jun-2019
 	 * @param locator
+	 * locator
 	 * @return element action
 	 */
 	<T extends ITextboxActions> T onTextbox (By locator);

@@ -63,7 +63,7 @@ public class DriverListner implements WebDriverEventListener {
 	public void afterChangeValueOf (final WebElement element, final WebDriver driver,
 		final CharSequence [] keysToSend) {
 		if (keysToSend != null) {
-			final String message = "Text [{}] has been entered...";
+			final String message = "Text {} has been entered...";
 			LOG.trace (message, (Object) keysToSend);
 		}
 	}
@@ -88,7 +88,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterFindBy (final By by, final WebElement element, final WebDriver driver) {
-		LOG.trace ("Element found using [{}]...", by);
+		LOG.trace ("Element found using {}...", by);
 	}
 
 	/*
@@ -109,7 +109,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterGetText (final WebElement element, final WebDriver driver, final String text) {
-		LOG.trace ("Got text [{}] from element...", text);
+		LOG.trace ("Got text {} from element...", text);
 	}
 
 	/*
@@ -151,7 +151,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterNavigateTo (final String url, final WebDriver driver) {
-		LOG.trace ("Navigated to url [{}]...", url);
+		LOG.trace ("Navigated to url {}...", url);
 	}
 
 	/*
@@ -162,7 +162,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterScript (final String script, final WebDriver driver) {
-		LOG.trace ("Script [{}] executed successfully...", script);
+		LOG.trace ("Script {} executed successfully...", script);
 	}
 
 	/*
@@ -173,7 +173,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void afterSwitchToWindow (final String windowName, final WebDriver driver) {
-		LOG.trace ("Window switched to [{}]...", windowName);
+		LOG.trace ("Window switched to {}...", windowName);
 	}
 
 	/*
@@ -209,7 +209,7 @@ public class DriverListner implements WebDriverEventListener {
 	public void beforeChangeValueOf (final WebElement element, final WebDriver driver,
 		final CharSequence [] keysToSend) {
 		if (keysToSend != null) {
-			LOG.info ("Writing text [{}]...", (Object) keysToSend);
+			LOG.info ("Writing text {}...", (Object) keysToSend);
 		}
 	}
 
@@ -233,7 +233,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeFindBy (final By by, final WebElement element, final WebDriver driver) {
-		LOG.trace ("Finding element by [{}]", by);
+		LOG.trace ("Finding element by {}", by);
 	}
 
 	/*
@@ -296,7 +296,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeNavigateTo (final String url, final WebDriver driver) {
-		LOG.info ("Navigating to [{}]...", url);
+		LOG.info ("Navigating to {}...", url);
 	}
 
 	/*
@@ -307,7 +307,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeScript (final String script, final WebDriver driver) {
-		final String message = "Executing script [{}]...";
+		final String message = "Executing script {}...";
 		LOG.trace (message, script);
 	}
 
@@ -318,7 +318,7 @@ public class DriverListner implements WebDriverEventListener {
 	 */
 	@Override
 	public void beforeSwitchToWindow (final String windowName, final WebDriver driver) {
-		LOG.info ("Switching to window [{}]...", windowName);
+		LOG.info ("Switching to window {}...", windowName);
 	}
 
 	/*

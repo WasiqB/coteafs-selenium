@@ -23,6 +23,7 @@ import java.util.Map;
  * @param <T>
  * @since Sep 1, 2018 4:28:28 PM
  */
+@SuppressWarnings ("unchecked")
 public abstract class AbstractPageAction <T extends AbstractPageAction <T>> implements IPageAction {
 	private final Map <String, Object> values;
 
@@ -34,7 +35,6 @@ public abstract class AbstractPageAction <T extends AbstractPageAction <T>> impl
 		this.values = new HashMap <> ();
 	}
 
-	@SuppressWarnings ("unchecked")
 	@Override
 	public T addInputValue (final String element, final Object value) {
 		this.values.put (element, value);
@@ -42,7 +42,6 @@ public abstract class AbstractPageAction <T extends AbstractPageAction <T>> impl
 	}
 
 	@Override
-	@SuppressWarnings ("unchecked")
 	public <E> E value (final String element) {
 		return (E) this.values.get (element);
 	}

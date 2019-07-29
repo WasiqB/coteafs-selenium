@@ -28,6 +28,7 @@ import com.github.wasiqb.coteafs.selenium.core.page.IPage;
  * @author Wasiq Bhamla
  * @since Aug 19, 2018 4:15:31 PM
  */
+@SuppressWarnings ("unchecked")
 public class BrowserPage implements IPage <BrowserActions, WebElement> {
 	private final Browser browser;
 
@@ -41,22 +42,22 @@ public class BrowserPage implements IPage <BrowserActions, WebElement> {
 
 	@Override
 	public IMouseActions onClickable (final WebElement element) {
-		return new WebMouseAction (onDriver (), element);
+		return new WebElementAction (onDriver (), element);
 	}
 
 	@Override
 	public IMouseActions onClickable (final WebElement element, final WaitStrategy strategy) {
-		return new WebMouseAction (onDriver (), element, strategy);
+		return new WebElementAction (onDriver (), element, strategy);
 	}
 
 	@Override
 	public IMouseActions onClickable (final By locator, final WaitStrategy strategy) {
-		return new WebMouseAction (onDriver (), locator, strategy);
+		return new WebElementAction (onDriver (), locator, strategy);
 	}
 
 	@Override
 	public IMouseActions onClickable (final By locator) {
-		return new WebMouseAction (onDriver (), locator);
+		return new WebElementAction (onDriver (), locator);
 	}
 
 	@Override
@@ -66,41 +67,41 @@ public class BrowserPage implements IPage <BrowserActions, WebElement> {
 
 	@Override
 	public ISelectboxActions onDropdown (final WebElement element) {
-		return new WebSelectboxAction (onDriver (), element);
+		return new WebElementAction (onDriver (), element);
 	}
 
 	@Override
 	public ISelectboxActions onDropdown (final WebElement element, final WaitStrategy strategy) {
-		return new WebSelectboxAction (onDriver (), element, strategy);
+		return new WebElementAction (onDriver (), element, strategy);
 	}
 
 	@Override
 	public ISelectboxActions onDropdown (final By locator, final WaitStrategy strategy) {
-		return new WebSelectboxAction (onDriver (), locator, strategy);
+		return new WebElementAction (onDriver (), locator, strategy);
 	}
 
 	@Override
 	public ISelectboxActions onDropdown (final By locator) {
-		return new WebSelectboxAction (onDriver (), locator);
+		return new WebElementAction (onDriver (), locator);
 	}
 
 	@Override
 	public ITextboxActions onTextbox (final WebElement element) {
-		return new WebTextboxAction (onDriver (), element);
+		return new WebElementAction (onDriver (), element);
 	}
 
 	@Override
 	public ITextboxActions onTextbox (final WebElement element, final WaitStrategy strategy) {
-		return new WebTextboxAction (onDriver (), element, strategy);
+		return new WebElementAction (onDriver (), element, strategy);
 	}
 
 	@Override
 	public ITextboxActions onTextbox (final By locator, final WaitStrategy strategy) {
-		return new WebTextboxAction (onDriver (), locator, strategy);
+		return new WebElementAction (onDriver (), locator, strategy);
 	}
 
 	@Override
 	public ITextboxActions onTextbox (final By locator) {
-		return new WebTextboxAction (onDriver (), locator);
+		return new WebElementAction (onDriver (), locator);
 	}
 }

@@ -24,6 +24,7 @@ public interface IElementActions extends IWaitStrategy {
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param name
+	 * attribute name
 	 * @return attribute
 	 */
 	String attribute (String name);

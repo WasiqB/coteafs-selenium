@@ -36,6 +36,7 @@ public class MainPage extends BrowserPage {
 
 	/**
 	 * @param name
+	 * name
 	 *
 	 * @return menu name
 	 *

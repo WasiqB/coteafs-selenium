@@ -63,9 +63,8 @@ public class BaseElementAction <E extends WebElement, D extends WebDriver,
 			currentThread ().interrupt ();
 		}
 	}
-
-	protected final B			browserAction;
 	final Actions				actions;
+	final B						browserAction;
 	final DelaySetting			delays;
 	private boolean				alreadyHighlighted;
 	private By					by;

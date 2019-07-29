@@ -27,6 +27,7 @@ public interface IAlertAction {
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
 	 * @param decision
+	 * alert decision
 	 * @return message
 	 */
 	String alert (AlertDecision decision);
@@ -35,6 +36,7 @@ public interface IAlertAction {
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
 	 * @param decision
+	 * alert decision
 	 * @return string subject
 	 */
 	StringSubject verifyAlertMessage (AlertDecision decision);

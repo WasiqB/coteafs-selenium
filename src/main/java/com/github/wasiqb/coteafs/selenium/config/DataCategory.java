@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,6 +38,7 @@ public class DataCategory {
 	 * @author wasiqb
 	 * @since Sep 13, 2018 2:03:20 PM
 	 * @param dataName
+	 * name
 	 * @return data
 	 */
 	public Object getData (final String dataName) {
@@ -66,7 +67,7 @@ public class DataCategory {
 	 * @author wasiqb
 	 * @since Sep 10, 2018 5:49:26 PM
 	 * @param dataList
-	 *            the dataList to set
+	 * the dataList to set
 	 */
 	public void setDatas (final Map <String, Object> dataList) {
 		this.datas = dataList;
@@ -76,7 +77,7 @@ public class DataCategory {
 	 * @author wasiqb
 	 * @since Sep 10, 2018 5:49:26 PM
 	 * @param name
-	 *            the name to set
+	 * the name to set
 	 */
 	public void setName (final String name) {
 		this.name = name;

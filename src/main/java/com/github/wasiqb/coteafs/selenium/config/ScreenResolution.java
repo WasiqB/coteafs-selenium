@@ -53,6 +53,7 @@ public class ScreenResolution {
 	/**
 	 * @author Wasiq Bhamla
 	 * @param height
+	 * height
 	 * @since 28 Apr 2019
 	 */
 	public void setHeight (final int height) {
@@ -62,6 +63,7 @@ public class ScreenResolution {
 	/**
 	 * @author Wasiq Bhamla
 	 * @param width
+	 * width
 	 * @since 28 Apr 2019
 	 */
 	public void setWidth (final int width) {

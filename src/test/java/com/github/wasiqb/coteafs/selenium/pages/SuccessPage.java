@@ -40,8 +40,9 @@ public abstract class SuccessPage extends MainPage {
 	}
 
 	private IMouseActions cell (final int row, final int col) {
-		return (IMouseActions) ((IMouseActions) successTable ().finds (By.tagName ("tr"))
-			.get (row)).finds (By.tagName ("td"))
-				.get (col);
+		return successTable ().finds (By.tagName ("tr"))
+			.get (row)
+			.finds (By.tagName ("td"))
+			.get (col);
 	}
 }
