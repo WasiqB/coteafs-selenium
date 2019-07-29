@@ -21,6 +21,7 @@ import com.google.common.truth.StringSubject;
 
 /**
  * @author Wasiq Bhamla
+ * @param <D>
  * @since 06-Jun-2019
  */
 public interface IDriverActions <D extends WebDriver>

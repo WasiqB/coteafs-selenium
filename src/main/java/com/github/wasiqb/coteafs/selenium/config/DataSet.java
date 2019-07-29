@@ -45,7 +45,7 @@ public class DataSet {
 	 * @author wasiqb
 	 * @since Sep 10, 2018 5:48:55 PM
 	 * @param name
-	 * the name to set
+	 *     the name to set
 	 */
 	public void setName (final String name) {
 		this.name = name;
@@ -55,7 +55,7 @@ public class DataSet {
 	 * @author wasiqb
 	 * @since Sep 10, 2018 5:48:55 PM
 	 * @param value
-	 * the value to set
+	 *     the value to set
 	 */
 	public void setValue (final Object value) {
 		this.value = value;

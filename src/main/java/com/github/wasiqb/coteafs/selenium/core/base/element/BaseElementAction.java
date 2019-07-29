@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2019, Wasiq Bhamla.
- *  
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- *  
+ *
  *          http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -63,6 +63,7 @@ public class BaseElementAction <E extends WebElement, D extends WebDriver,
 			currentThread ().interrupt ();
 		}
 	}
+
 	final Actions				actions;
 	final B						browserAction;
 	final DelaySetting			delays;
@@ -75,14 +76,17 @@ public class BaseElementAction <E extends WebElement, D extends WebDriver,
 	private boolean				useBy;
 	private final WebDriverWait	wait;
 
-	BaseElementAction (final B browserAction, final E element, final WaitStrategy strategy) {
-		this (browserAction, element);
-		if (strategy != null) this.strategy = strategy;
+	BaseElementAction (final B browserAction, final By by) {
+		this (browserAction);
+		this.by = by;
+		this.useBy = true;
 	}
 
 	BaseElementAction (final B browserAction, final By by, final WaitStrategy strategy) {
 		this (browserAction, by);
-		if (strategy != null) this.strategy = strategy;
+		if (strategy != null) {
+			this.strategy = strategy;
+		}
 	}
 
 	BaseElementAction (final B browserAction, final E element) {
@@ -91,10 +95,11 @@ public class BaseElementAction <E extends WebElement, D extends WebDriver,
 		this.useBy = false;
 	}
 
-	BaseElementAction (final B browserAction, final By by) {
-		this (browserAction);
-		this.by = by;
-		this.useBy = true;
+	BaseElementAction (final B browserAction, final E element, final WaitStrategy strategy) {
+		this (browserAction, element);
+		if (strategy != null) {
+			this.strategy = strategy;
+		}
 	}
 
 	private BaseElementAction (final B browserAction) {

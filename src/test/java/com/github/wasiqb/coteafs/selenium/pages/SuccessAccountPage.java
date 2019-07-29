@@ -42,10 +42,6 @@ public class SuccessAccountPage extends SuccessPage {
 		return cell (4);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.pages.SuccessPage#successTable()
-	 */
 	@Override
 	protected IMouseActions successTable () {
 		return onClickable (By.id ("account"));

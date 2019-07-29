@@ -30,7 +30,7 @@ public interface IWebWindow {
 	 * @author Wasiq Bhamla
 	 * @since 16-Jun-2019
 	 * @param title
-	 * window title
+	 *     window title
 	 */
 	void switchWindow (String title);
 }

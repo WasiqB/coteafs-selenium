@@ -26,7 +26,7 @@ public interface IKeyboardActions extends IVerifyElement {
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param keys
-	 * Keys
+	 *     Keys
 	 */
 	void pressKey (Keys... keys);
 }

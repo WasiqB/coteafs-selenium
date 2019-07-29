@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2019, Wasiq Bhamla.
- *  
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- *  
+ *
  *          http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,7 +42,11 @@ import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 @SuppressWarnings ("unchecked")
 public class AbstractElementAction <E extends WebElement, D extends WebDriver,
 	B extends IDriverActions <D>> extends FindableAction <E, D, B>
-	implements ITextboxActions, ISelectboxActions, IMouseActions {
+	implements ITextboxActions, ISelectboxActions {
+	protected AbstractElementAction (final B browserAction, final By by) {
+		super (browserAction, by);
+	}
+
 	protected AbstractElementAction (final B browserAction, final By by,
 		final WaitStrategy strategy) {
 		super (browserAction, by, strategy);
@@ -50,10 +54,6 @@ public class AbstractElementAction <E extends WebElement, D extends WebDriver,
 
 	protected AbstractElementAction (final B browserAction, final E element) {
 		super (browserAction, element);
-	}
-
-	protected AbstractElementAction (final B browserAction, final By by) {
-		super (browserAction, by);
 	}
 
 	protected AbstractElementAction (final B browserAction, final E element,
@@ -151,7 +151,7 @@ public class AbstractElementAction <E extends WebElement, D extends WebDriver,
 			final Select select = new Select (e);
 			return select.getOptions ()
 				.stream ()
-				.map (o -> (T) new AbstractElementAction (this.browserAction, o))
+				.map (o -> (T) new AbstractElementAction <> (this.browserAction, o))
 				.collect (Collectors.toList ());
 		});
 	}
@@ -186,7 +186,7 @@ public class AbstractElementAction <E extends WebElement, D extends WebDriver,
 			final Select select = new Select (e);
 			return select.getAllSelectedOptions ()
 				.stream ()
-				.map (o -> (T) new AbstractElementAction (this.browserAction, o))
+				.map (o -> (T) new AbstractElementAction <> (this.browserAction, o))
 				.collect (Collectors.toList ());
 		});
 	}

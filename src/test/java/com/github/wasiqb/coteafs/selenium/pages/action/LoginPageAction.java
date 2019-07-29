@@ -24,10 +24,6 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
  * @since Sep 1, 2018 8:09:35 PM
  */
 public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
-	 */
 	@Override
 	public void perform () {
 		final LoginPage login = new LoginPage ();

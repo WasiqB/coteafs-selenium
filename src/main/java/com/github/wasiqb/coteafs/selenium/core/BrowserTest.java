@@ -36,7 +36,7 @@ public class BrowserTest {
 	 * @author wasiqb
 	 * @since Sep 13, 2018 9:55:41 PM
 	 * @param browserName
-	 * Browser name
+	 *     Browser name
 	 */
 	@Parameters (BROWSER)
 	@BeforeTest (alwaysRun = true)
@@ -50,7 +50,7 @@ public class BrowserTest {
 	 * @author wasiqb
 	 * @since Mar 21, 2019 6:46:47 PM
 	 * @param result
-	 * test result
+	 *     test result
 	 */
 	@AfterMethod (alwaysRun = true)
 	public void teardownMethod (final ITestResult result) {

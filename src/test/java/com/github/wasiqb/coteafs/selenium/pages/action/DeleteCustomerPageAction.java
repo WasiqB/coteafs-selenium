@@ -24,10 +24,6 @@ import com.github.wasiqb.coteafs.selenium.pages.EditCustomerPage;
  * @since 29-Apr-2019
  */
 public class DeleteCustomerPageAction extends AbstractPageAction <DeleteCustomerPageAction> {
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
-	 */
 	@Override
 	public void perform () {
 		final EditCustomerPage edit = new EditCustomerPage ();

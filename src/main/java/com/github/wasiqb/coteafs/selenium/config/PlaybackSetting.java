@@ -25,8 +25,8 @@ public class PlaybackSetting {
 	private DelaySetting		delays;
 	private boolean				highlight;
 	private ScreenResolution	screenResolution;
-	private ScreenState			screenState;
 	private ScreenshotSetting	screenshot;
+	private ScreenState			screenState;
 
 	/**
 	 * @author Wasiq Bhamla
@@ -38,7 +38,6 @@ public class PlaybackSetting {
 
 	/**
 	 * @return the delays
-	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
 	 */
@@ -48,7 +47,6 @@ public class PlaybackSetting {
 
 	/**
 	 * @return the screenResolution
-	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
 	 */
@@ -57,18 +55,7 @@ public class PlaybackSetting {
 	}
 
 	/**
-	 * @return the screenState
-	 *
-	 * @author Wasiq Bhamla
-	 * @since Apr 8, 2018 3:00:22 PM
-	 */
-	public ScreenState getScreenState () {
-		return this.screenState;
-	}
-
-	/**
 	 * @return the screenshot
-	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
 	 */
@@ -77,8 +64,16 @@ public class PlaybackSetting {
 	}
 
 	/**
+	 * @return the screenState
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 */
+	public ScreenState getScreenState () {
+		return this.screenState;
+	}
+
+	/**
 	 * @return the highlight
-	 *
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
 	 */
@@ -88,8 +83,7 @@ public class PlaybackSetting {
 
 	/**
 	 * @param delays
-	 * the delays to set
-	 *
+	 *     the delays to set
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
 	 */
@@ -99,8 +93,7 @@ public class PlaybackSetting {
 
 	/**
 	 * @param highlight
-	 * the highlight to set
-	 *
+	 *     the highlight to set
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
 	 */
@@ -110,8 +103,7 @@ public class PlaybackSetting {
 
 	/**
 	 * @param screenResolution
-	 * the screenSize to set
-	 *
+	 *     the screenSize to set
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
 	 */
@@ -120,24 +112,22 @@ public class PlaybackSetting {
 	}
 
 	/**
-	 * @param screenState
-	 * the screenState to set
-	 *
-	 * @author Wasiq Bhamla
-	 * @since Apr 8, 2018 3:00:22 PM
-	 */
-	public void setScreenState (final ScreenState screenState) {
-		this.screenState = screenState;
-	}
-
-	/**
 	 * @param screenshot
-	 * the screenshot to set
-	 *
+	 *     the screenshot to set
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:00:22 PM
 	 */
 	public void setScreenshot (final ScreenshotSetting screenshot) {
 		this.screenshot = screenshot;
+	}
+
+	/**
+	 * @param screenState
+	 *     the screenState to set
+	 * @author Wasiq Bhamla
+	 * @since Apr 8, 2018 3:00:22 PM
+	 */
+	public void setScreenState (final ScreenState screenState) {
+		this.screenState = screenState;
 	}
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2019, Wasiq Bhamla.
- *  
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- *  
+ *
  *          http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,9 +18,6 @@ package com.github.wasiqb.coteafs.selenium.core.base.driver;
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.core.enums.Platform.DESKTOP;
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.openqa.selenium.WebDriver.Options;
-import static org.openqa.selenium.WebDriver.Timeouts;
-import static org.openqa.selenium.WebDriver.Window;
 
 import java.util.function.Consumer;
 
@@ -28,6 +25,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver.Options;
+import org.openqa.selenium.WebDriver.Timeouts;
+import org.openqa.selenium.WebDriver.Window;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
@@ -35,24 +35,24 @@ import com.github.wasiqb.coteafs.selenium.config.PlaybackSetting;
 import com.github.wasiqb.coteafs.selenium.config.ScreenResolution;
 import com.github.wasiqb.coteafs.selenium.constants.OS;
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriver;
-import com.github.wasiqb.coteafs.selenium.core.driver.IServiceAction;
 import com.github.wasiqb.coteafs.selenium.core.enums.Platform;
 import com.github.wasiqb.coteafs.selenium.core.enums.ScreenState;
 
 /**
  * @author Wasiq Bhamla
+ * @param <D>
  * @since 26-Jul-2019
  */
 @SuppressWarnings ("unchecked")
 public abstract class AbstractDriver <D extends WebDriver> extends PlatformAction
-	implements IServiceAction, IDriver <D> {
+	implements IDriver <D> {
+	private static final ThreadLocal <Object>	driverThread	= new ThreadLocal <> ();
 	private static final Logger					LOG				= LogManager
 		.getLogger (AbstractDriver.class);
-	private static final ThreadLocal <Object>	driverThread	= new ThreadLocal <> ();
 
 	/**
 	 * @param platform
-	 * target platform
+	 *     target platform
 	 * @author Wasiq Bhamla
 	 * @since 26-Jul-2019
 	 */

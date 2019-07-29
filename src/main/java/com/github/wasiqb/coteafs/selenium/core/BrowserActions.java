@@ -34,7 +34,7 @@ public class BrowserActions extends WebDriverAction <EventFiringWebDriver>
 	 * @author Wasiq Bhamla
 	 * @since 02-Jun-2019
 	 * @param driver
-	 * driver
+	 *     driver
 	 */
 	BrowserActions (final EventFiringWebDriver driver) {
 		super (driver);

@@ -44,10 +44,6 @@ public class NewAccountPage extends EditCustomerPage {
 		return onTextbox (By.name ("inideposit"));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.pages.EditCustomerPage#submit()
-	 */
 	@Override
 	public IMouseActions submit () {
 		return onClickable (By.name ("button2"));

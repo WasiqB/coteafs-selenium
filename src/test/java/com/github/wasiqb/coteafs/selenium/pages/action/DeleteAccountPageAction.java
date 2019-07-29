@@ -24,10 +24,6 @@ import com.github.wasiqb.coteafs.selenium.pages.EditAccountPage;
  * @since Apr 8, 2019 10:26:00 PM
  */
 public class DeleteAccountPageAction extends AbstractPageAction <DeleteAccountPageAction> {
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
-	 */
 	@Override
 	public void perform () {
 		final EditAccountPage acc = new EditAccountPage ();

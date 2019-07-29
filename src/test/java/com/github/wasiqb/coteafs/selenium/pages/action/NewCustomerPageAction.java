@@ -38,10 +38,6 @@ public class NewCustomerPageAction extends AbstractPageAction <NewCustomerPageAc
 		return this.id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
-	 */
 	@Override
 	public void perform () {
 		final Faker fake = Faker.instance ();

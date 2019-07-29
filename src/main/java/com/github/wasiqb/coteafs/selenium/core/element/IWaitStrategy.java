@@ -24,9 +24,9 @@ public interface IWaitStrategy {
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param attribute
-	 * element attribute
+	 *     element attribute
 	 * @param value
-	 * attribute value
+	 *     attribute value
 	 */
 	void waitUntilAttributeIs (final String attribute, final String value);
 

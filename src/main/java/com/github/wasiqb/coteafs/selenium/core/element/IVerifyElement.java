@@ -27,7 +27,7 @@ public interface IVerifyElement extends IElementActions {
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param attribute
-	 * element attribute
+	 *     element attribute
 	 * @return subject
 	 */
 	StringSubject verifyAttribute (final String attribute);

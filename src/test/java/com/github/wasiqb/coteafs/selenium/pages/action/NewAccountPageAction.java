@@ -36,10 +36,6 @@ public class NewAccountPageAction extends AbstractPageAction <NewAccountPageActi
 		return this.accountId;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
-	 */
 	@Override
 	public void perform () {
 		final Faker fake = Faker.instance ();

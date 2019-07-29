@@ -32,7 +32,7 @@ public interface ISelectboxActions extends IMouseActions {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param index
-	 * item indoex
+	 *     item indoex
 	 */
 	void deselectByIndex (int index);
 
@@ -40,7 +40,7 @@ public interface ISelectboxActions extends IMouseActions {
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param value
-	 * item value
+	 *     item value
 	 */
 	void deselectByText (String value);
 
@@ -48,7 +48,7 @@ public interface ISelectboxActions extends IMouseActions {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param value
-	 * item value
+	 *     item value
 	 */
 	void deselectByValue (String value);
 
@@ -70,7 +70,7 @@ public interface ISelectboxActions extends IMouseActions {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param index
-	 * item indoex
+	 *     item indoex
 	 */
 	void selectByIndex (int index);
 
@@ -78,7 +78,7 @@ public interface ISelectboxActions extends IMouseActions {
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param value
-	 * item value
+	 *     item value
 	 */
 	void selectByText (String value);
 
@@ -86,7 +86,7 @@ public interface ISelectboxActions extends IMouseActions {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param value
-	 * item value
+	 *     item value
 	 */
 	void selectByValue (String value);
 

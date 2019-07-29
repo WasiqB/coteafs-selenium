@@ -65,7 +65,7 @@ public class ScreenshotSetting {
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:01:16 PM
 	 * @param captureOnError
-	 * the captureOnError to set
+	 *     the captureOnError to set
 	 */
 	public void setCaptureOnError (final boolean captureOnError) {
 		this.captureOnError = captureOnError;
@@ -75,7 +75,7 @@ public class ScreenshotSetting {
 	 * @author Wasiq Bhamla
 	 * @since May 1, 2018 4:58:36 PM
 	 * @param extension
-	 * the extension to set
+	 *     the extension to set
 	 */
 	public void setExtension (final String extension) {
 		this.extension = extension;
@@ -85,7 +85,7 @@ public class ScreenshotSetting {
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:01:16 PM
 	 * @param path
-	 * the path to set
+	 *     the path to set
 	 */
 	public void setPath (final String path) {
 		this.path = path;
@@ -95,7 +95,7 @@ public class ScreenshotSetting {
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:01:16 PM
 	 * @param prefix
-	 * the prefix to set
+	 *     the prefix to set
 	 */
 	public void setPrefix (final String prefix) {
 		this.prefix = prefix;

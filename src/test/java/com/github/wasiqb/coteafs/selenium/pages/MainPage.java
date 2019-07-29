@@ -27,7 +27,6 @@ import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 public class MainPage extends BrowserPage {
 	/**
 	 * @return manager welcome banner
-	 *
 	 * @since Apr 7, 2019 5:39:39 PM
 	 */
 	public IMouseActions managerIdBanner () {
@@ -36,10 +35,8 @@ public class MainPage extends BrowserPage {
 
 	/**
 	 * @param name
-	 * name
-	 *
+	 *     name
 	 * @return menu name
-	 *
 	 * @since Apr 7, 2019 5:42:12 PM
 	 */
 	public IMouseActions navbar (final String name) {

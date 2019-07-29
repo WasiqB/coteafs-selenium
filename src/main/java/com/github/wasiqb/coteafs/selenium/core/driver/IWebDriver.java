@@ -26,7 +26,7 @@ public interface IWebDriver extends IDriver <EventFiringWebDriver> {
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
 	 * @param browser
-	 * Browser under test
+	 *     Browser under test
 	 */
 	void setBrowserUnderTest (String browser);
 }

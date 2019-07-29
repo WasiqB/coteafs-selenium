@@ -24,11 +24,11 @@ public interface IPageAction {
 	 * @author Wasiq Bhamla
 	 * @since 08-Jun-2019
 	 * @param <T>
-	 * page action
+	 *     page action
 	 * @param element
-	 * element alias
+	 *     element alias
 	 * @param value
-	 * element input value
+	 *     element input value
 	 * @return page action
 	 */
 	<T extends IPageAction> T addInputValue (final String element, final Object value);
@@ -43,9 +43,9 @@ public interface IPageAction {
 	 * @author Wasiq Bhamla
 	 * @since 08-Jun-2019
 	 * @param <T>
-	 * input value
+	 *     input value
 	 * @param element
-	 * element alias
+	 *     element alias
 	 * @return input value
 	 */
 	<T> T value (final String element);

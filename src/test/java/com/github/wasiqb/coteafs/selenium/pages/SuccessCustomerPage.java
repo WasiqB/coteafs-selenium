@@ -42,10 +42,6 @@ public class SuccessCustomerPage extends SuccessPage {
 		return successTable ().find (By.cssSelector ("tbody > tr:nth-child(5) > td:last-child"));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.pages.SuccessPage#successTable()
-	 */
 	@Override
 	protected IMouseActions successTable () {
 		return onClickable (By.id ("customer"));

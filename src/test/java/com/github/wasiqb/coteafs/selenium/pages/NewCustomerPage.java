@@ -76,7 +76,7 @@ public class NewCustomerPage extends MainPage {
 	 * @author wasiqb
 	 * @since Apr 7, 2019 5:52:55 PM
 	 * @param gender
-	 * Gender
+	 *     Gender
 	 * @return gender
 	 */
 	public IMouseActions gender (final char gender) {
