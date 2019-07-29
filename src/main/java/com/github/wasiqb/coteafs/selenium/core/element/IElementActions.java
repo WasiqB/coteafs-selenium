@@ -15,21 +15,16 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.element;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
-
-import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
-
 /**
  * @author Wasiq Bhamla
  * @since 07-Jun-2019
  */
-public interface IElementActions extends IVerifyElement, IWaitStrategy {
+public interface IElementActions extends IWaitStrategy {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param name
+	 *     attribute name
 	 * @return attribute
 	 */
 	String attribute (String name);
@@ -39,40 +34,6 @@ public interface IElementActions extends IVerifyElement, IWaitStrategy {
 	 * @since 07-Jun-2019
 	 */
 	void clear ();
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 08-Jun-2019
-	 * @param byLocator
-	 * @return actions
-	 */
-	<E extends IElementActions> E find (final By byLocator);
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 25-Jul-2019
-	 * @param byLocator
-	 * @param strategy
-	 * @return list of actions
-	 */
-	<E extends IElementActions> E find (final By byLocator, WaitStrategy strategy);
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 08-Jun-2019
-	 * @param byLocator
-	 * @return list of actions
-	 */
-	<E extends IElementActions> List <E> finds (final By byLocator);
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 25-Jul-2019
-	 * @param byLocator
-	 * @param strategy
-	 * @return list of actions
-	 */
-	<E extends IElementActions> List <E> finds (final By byLocator, WaitStrategy strategy);
 
 	/**
 	 * @author Wasiq Bhamla

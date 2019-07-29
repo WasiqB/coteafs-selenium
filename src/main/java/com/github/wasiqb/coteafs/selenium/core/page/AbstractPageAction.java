@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,6 +23,7 @@ import java.util.Map;
  * @param <T>
  * @since Sep 1, 2018 4:28:28 PM
  */
+@SuppressWarnings ("unchecked")
 public abstract class AbstractPageAction <T extends AbstractPageAction <T>> implements IPageAction {
 	private final Map <String, Object> values;
 
@@ -34,27 +35,13 @@ public abstract class AbstractPageAction <T extends AbstractPageAction <T>> impl
 		this.values = new HashMap <> ();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.ext.IPageAction#addInputValue(java.
-	 * lang.String, java.lang.Object)
-	 */
-	@SuppressWarnings ("unchecked")
 	@Override
 	public T addInputValue (final String element, final Object value) {
 		this.values.put (element, value);
 		return (T) this;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * com.github.wasiqb.coteafs.selenium.core.ext.IPageAction#value(java.lang.
-	 * String)
-	 */
 	@Override
-	@SuppressWarnings ("unchecked")
 	public <E> E value (final String element) {
 		return (E) this.values.get (element);
 	}

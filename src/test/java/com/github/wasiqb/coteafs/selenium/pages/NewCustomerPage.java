@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +19,6 @@ import static java.lang.String.format;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 
@@ -34,7 +33,7 @@ public class NewCustomerPage extends MainPage {
 	 * @return address
 	 */
 	public ITextboxActions address () {
-		return onElement (By.name ("addr"));
+		return onTextbox (By.name ("addr"));
 	}
 
 	/**
@@ -43,7 +42,7 @@ public class NewCustomerPage extends MainPage {
 	 * @return city
 	 */
 	public ITextboxActions city () {
-		return onElement (By.name ("city"));
+		return onTextbox (By.name ("city"));
 	}
 
 	/**
@@ -52,7 +51,7 @@ public class NewCustomerPage extends MainPage {
 	 * @return name
 	 */
 	public ITextboxActions customerName () {
-		return onElement (By.name ("name"));
+		return onTextbox (By.name ("name"));
 	}
 
 	/**
@@ -61,7 +60,7 @@ public class NewCustomerPage extends MainPage {
 	 * @return dob
 	 */
 	public ITextboxActions dob () {
-		return onElement (By.name ("dob"));
+		return onTextbox (By.name ("dob"));
 	}
 
 	/**
@@ -70,18 +69,19 @@ public class NewCustomerPage extends MainPage {
 	 * @return email
 	 */
 	public ITextboxActions email () {
-		return onElement (By.name ("emailid"));
+		return onTextbox (By.name ("emailid"));
 	}
 
 	/**
 	 * @author wasiqb
 	 * @since Apr 7, 2019 5:52:55 PM
 	 * @param gender
+	 *     Gender
 	 * @return gender
 	 */
 	public IMouseActions gender (final char gender) {
 		if (gender != 'm' && gender != 'f') return gender ('m');
-		return onElement (By.cssSelector (format ("input[name='rad1'][value='%s']", gender)));
+		return onClickable (By.cssSelector (format ("input[name='rad1'][value='%s']", gender)));
 	}
 
 	/**
@@ -89,8 +89,8 @@ public class NewCustomerPage extends MainPage {
 	 * @since Apr 7, 2019 5:50:00 PM
 	 * @return header
 	 */
-	public IElementActions header () {
-		return onElement (By.className ("heading3"));
+	public IMouseActions header () {
+		return onClickable (By.className ("heading3"));
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class NewCustomerPage extends MainPage {
 	 * @return mobile no
 	 */
 	public ITextboxActions mobileNumber () {
-		return onElement (By.name ("telephoneno"));
+		return onTextbox (By.name ("telephoneno"));
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class NewCustomerPage extends MainPage {
 	 * @return password
 	 */
 	public ITextboxActions password () {
-		return onElement (By.name ("password"));
+		return onTextbox (By.name ("password"));
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class NewCustomerPage extends MainPage {
 	 * @return pin
 	 */
 	public ITextboxActions pin () {
-		return onElement (By.name ("pinno"));
+		return onTextbox (By.name ("pinno"));
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class NewCustomerPage extends MainPage {
 	 * @return state
 	 */
 	public ITextboxActions state () {
-		return onElement (By.name ("state"));
+		return onTextbox (By.name ("state"));
 	}
 
 	/**
@@ -135,6 +135,6 @@ public class NewCustomerPage extends MainPage {
 	 * @return submit
 	 */
 	public IMouseActions submit () {
-		return onElement (By.name ("sub"));
+		return onClickable (By.name ("sub"));
 	}
 }

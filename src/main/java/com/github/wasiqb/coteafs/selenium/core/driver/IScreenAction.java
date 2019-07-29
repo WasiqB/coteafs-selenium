@@ -35,6 +35,7 @@ public interface IScreenAction {
 
 	/**
 	 * @author Wasiq Bhamla
+	 * @param path
 	 * @since 25-Jul-2019
 	 */
 	void saveScreenshot (String path);

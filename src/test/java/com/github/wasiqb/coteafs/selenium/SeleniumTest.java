@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,9 +34,8 @@ import com.github.wasiqb.coteafs.selenium.pages.action.NewCustomerPageAction;
  * @since Aug 15, 2018 8:07:59 PM
  */
 public class SeleniumTest extends BrowserTest {
-	private String		accountId;
-	private String		customerId;
-	private MainPage	main;
+	private String	accountId;
+	private String	customerId;
 
 	/**
 	 * @author Wasiq Bhamla
@@ -44,8 +43,8 @@ public class SeleniumTest extends BrowserTest {
 	 */
 	@BeforeClass
 	public void setupMethod () {
-		this.main = new MainPage ();
-		this.main.onDriver ()
+		final MainPage main = new MainPage ();
+		main.onDriver ()
 			.navigateTo (appSetting ().getUrl ());
 	}
 

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,10 +24,6 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
  * @since Sep 1, 2018 8:09:35 PM
  */
 public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
-	 */
 	@Override
 	public void perform () {
 		final LoginPage login = new LoginPage ();

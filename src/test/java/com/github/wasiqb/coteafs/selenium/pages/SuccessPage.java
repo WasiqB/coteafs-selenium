@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +17,7 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import org.openqa.selenium.By;
 
-import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
+import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 
 /**
  * @author wasiqb
@@ -29,20 +29,20 @@ public abstract class SuccessPage extends MainPage {
 	 * @since Apr 8, 2019 9:43:54 PM
 	 * @return message
 	 */
-	public IElementActions message () {
+	public IMouseActions message () {
 		return cell (0, 0);
 	}
 
-	IElementActions cell (final int row) {
+	protected abstract IMouseActions successTable ();
+
+	IMouseActions cell (final int row) {
 		return cell (row, 1);
 	}
 
-	private IElementActions cell (final int row, final int col) {
+	private IMouseActions cell (final int row, final int col) {
 		return successTable ().finds (By.tagName ("tr"))
 			.get (row)
 			.finds (By.tagName ("td"))
 			.get (col);
 	}
-
-	protected abstract IElementActions successTable ();
 }

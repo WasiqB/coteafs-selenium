@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,8 +24,11 @@ public interface IScriptAction {
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
 	 * @param <T>
+	 *     output type
 	 * @param script
+	 *     script
 	 * @param args
+	 *     args
 	 * @return result
 	 */
 	<T> T execute (final String script, final Object... args);
