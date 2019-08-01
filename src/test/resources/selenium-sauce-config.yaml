@@ -1,15 +1,29 @@
 browser: CHROME
 url: http://demo.guru99.com/V4/
 headless_mode: true
+remote:
+  user_id: ${cloud_user}
+  password: ${cloud_key}
+  protocol: HTTPS
+  url: ondemand.saucelabs.com
+  source: SAUCELABS
+#  port: 80
+  capabilities:
+    browserName: chrome
+    browserVersion: 75.0
+    platformVersion: Windows 10
+  cloud_capabilities:
+    seleniumVersion: 3.141.59
+    name: Sauce-[Java] Sample Test
 params:
   user: mngr26593
   password: abc@123
 playback:
   screen_state: NORMAL
   highlight: true
-  screen_resolution:
-    width: 1280
-    height: 768
+#  screen_resolution:
+#    width: 1280
+#    height: 768
   delays:
     implicit: 60
     explicit: 60

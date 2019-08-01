@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-	<test name="Test" enabled="true">
+<suite name="Suite" parallel="tests" thread-count="2">
+	<test name="Test Local">
 		<classes>
 			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
 				<methods>
@@ -14,5 +14,37 @@
 				</methods>
 			</class>
 		</classes>
-	</test> <!-- Test -->
+	</test>
+	<test name="Test BrowserStack">
+		<parameter name="test.browser" value="REMOTE" />
+		<parameter name="test.config" value="/selenium-bs-config.yaml" />
+		<classes>
+			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+				<methods>
+					<include name="testSignIn" />
+					<include name="testNewCustomer" />
+					<include name="testEditCustomer" />
+					<include name="testNewAccount" />
+					<include name="testDeleteAccount" />
+					<include name="testDeleteCustomer" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Test SauceLabs" enabled="false">
+		<parameter name="test.browser" value="REMOTE" />
+		<parameter name="test.config" value="/selenium-sauce-config.yaml" />
+		<classes>
+			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+				<methods>
+					<include name="testSignIn" />
+					<include name="testNewCustomer" />
+					<include name="testEditCustomer" />
+					<include name="testNewAccount" />
+					<include name="testDeleteAccount" />
+					<include name="testDeleteCustomer" />
+				</methods>
+			</class>
+		</classes>
+	</test>
 </suite> <!-- Suite -->

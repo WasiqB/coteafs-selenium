@@ -25,6 +25,10 @@ public interface ConfigKeys {
 	 */
 	String	BROWSER						= "test.browser";
 	/**
+	 * Config file key.
+	 */
+	String	CONFIG						= "test.config";
+	/**
 	 * Selenium default config key.
 	 */
 	String	COTEAFS_CONFIG_DEFAULT_FILE	= "/selenium-config.yaml";

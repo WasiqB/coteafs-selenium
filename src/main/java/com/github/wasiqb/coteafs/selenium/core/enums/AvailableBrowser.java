@@ -39,5 +39,9 @@ public enum AvailableBrowser {
 	/**
 	 * Safari.
 	 */
-	SAFARI
+	SAFARI,
+	/**
+	 * Remote Grid or Cloud instance.
+	 */
+	REMOTE
 }

@@ -30,6 +30,7 @@ public class ApplicationSetting {
 	private String					hubUrl;
 	private Map <String, String>	params;
 	private PlaybackSetting			playback;
+	private RemoteSetting			remote;
 	private String					url;
 
 	/**
@@ -75,6 +76,15 @@ public class ApplicationSetting {
 	 */
 	public PlaybackSetting getPlayback () {
 		return this.playback;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 01-Aug-2019
+	 * @return remote
+	 */
+	public RemoteSetting getRemote () {
+		return this.remote;
 	}
 
 	/**
@@ -143,6 +153,15 @@ public class ApplicationSetting {
 	 */
 	public void setPlayback (final PlaybackSetting playback) {
 		this.playback = playback;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 01-Aug-2019
+	 * @param remote
+	 */
+	public void setRemote (final RemoteSetting remote) {
+		this.remote = remote;
 	}
 
 	/**
