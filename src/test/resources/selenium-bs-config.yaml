@@ -1,6 +1,18 @@
 browser: CHROME
 url: http://demo.guru99.com/V4/
-headless_mode: true
+remote:
+  user_id: ${CLOUD_USER}
+  password: ${CLOUD_KEY}
+  protocol: HTTPS
+  url: hub-cloud.browserstack.com
+  source: BROWSERSTACK
+  capabilities:
+    browser: Chrome
+    browser_version: 75.0
+    os: Windows
+    os_version: 10
+    resolution: 1024x768
+    name: Bstack-[Java] Sample Test
 params:
   user: mngr26593
   password: abc@123

@@ -23,9 +23,17 @@ import static io.github.bonigarcia.wdm.WebDriverManager.edgedriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.iedriver;
 import static java.lang.System.getProperty;
+import static java.text.MessageFormat.format;
+import static java.util.Objects.requireNonNull;
+import static org.apache.logging.log4j.util.Strings.isNotEmpty;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -40,16 +48,19 @@ import org.openqa.selenium.ie.InternetExplorerDriverService;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.Assert;
 
+import com.github.wasiqb.coteafs.selenium.config.RemoteSetting;
 import com.github.wasiqb.coteafs.selenium.constants.OS;
 import com.github.wasiqb.coteafs.selenium.core.base.driver.AbstractDriver;
 import com.github.wasiqb.coteafs.selenium.core.driver.IWebDriver;
 import com.github.wasiqb.coteafs.selenium.core.enums.ApplicationType;
 import com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser;
+import com.github.wasiqb.coteafs.selenium.core.enums.RemoteSource;
 import com.github.wasiqb.coteafs.selenium.listeners.DriverListner;
 
 /**
@@ -59,6 +70,37 @@ import com.github.wasiqb.coteafs.selenium.listeners.DriverListner;
 @SuppressWarnings ("unchecked")
 public class Browser extends AbstractDriver <EventFiringWebDriver> implements IWebDriver {
 	private static final Logger LOG = LogManager.getLogger (Browser.class);
+
+	private static WebDriver createRemoteSession (final RemoteSetting remoteSetting,
+		final MutableCapabilities caps) {
+		LOG.info ("Creating remote session...");
+		final String url = remoteSetting.getUrl ();
+		final String user = remoteSetting.getUserId ();
+		final String pass = remoteSetting.getPassword ();
+		final StringBuilder urlBuilder = new StringBuilder (remoteSetting.getProtocol ()
+			.getPrefix ());
+		if (isNotEmpty (user)) {
+			urlBuilder.append (user)
+				.append (":")
+				.append (requireNonNull (pass, "Cloud Password cannot be empty."))
+				.append ("@");
+		}
+		urlBuilder.append (url);
+		final int port = remoteSetting.getPort ();
+		if (port > 0) {
+			urlBuilder.append (":")
+				.append (port);
+		}
+		urlBuilder.append ("/wd/hub");
+		try {
+			final URL remoteUrl = new URL (urlBuilder.toString ());
+			return new RemoteWebDriver (remoteUrl, caps);
+		}
+		catch (final MalformedURLException e) {
+			LOG.error ("Error occurred while creating remote session: ", e);
+		}
+		return null;
+	}
 
 	private static WebDriver setupChromeDriver () {
 		LOG.info ("Setting up Chrome driver...");
@@ -73,6 +115,13 @@ public class Browser extends AbstractDriver <EventFiringWebDriver> implements IW
 		return new ChromeDriver (chromeService, chromeOptions);
 	}
 
+	private static void setupCloud (final RemoteSetting remoteSetting,
+		final DesiredCapabilities caps, final String source) {
+		final Map <String, Object> capabilities = remoteSetting.getCapabilities ();
+		capabilities.forEach (caps::setCapability);
+		caps.setCapability (format ("{0}:options", source), remoteSetting.getCloudCapabilities ());
+	}
+
 	private static WebDriver setupDriver (final AvailableBrowser browser) {
 		switch (browser) {
 			case CHROME:
@@ -84,8 +133,10 @@ public class Browser extends AbstractDriver <EventFiringWebDriver> implements IW
 			case EDGE:
 				return setupEdgeDriver ();
 			case SAFARI:
-			default:
 				return setupSafariDriver ();
+			case REMOTE:
+			default:
+				return setupRemote ();
 		}
 	}
 
@@ -121,6 +172,25 @@ public class Browser extends AbstractDriver <EventFiringWebDriver> implements IW
 			LOG.warn ("IE does not support headless mode. Hence, ignoring the same...");
 		}
 		return new InternetExplorerDriver (ieService, ieOptions);
+	}
+
+	private static WebDriver setupRemote () {
+		LOG.info ("Setting up Remote driver...");
+		final RemoteSetting remoteSetting = appSetting ().getRemote ();
+		final RemoteSource source = remoteSetting.getSource ();
+		final DesiredCapabilities caps = new DesiredCapabilities ();
+		switch (source) {
+			case SAUCELABS:
+				setupCloud (remoteSetting, caps, "sauce");
+				break;
+			case BROWSERSTACK:
+				setupCloud (remoteSetting, caps, "bstack");
+				break;
+			case GRID:
+			default:
+				break;
+		}
+		return createRemoteSession (remoteSetting, caps);
 	}
 
 	private static WebDriver setupSafariDriver () {

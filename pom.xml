@@ -33,6 +33,7 @@
 		<commons.io.version>2.6</commons.io.version>
 		<webdrivermanager-version>3.6.2</webdrivermanager-version>
 		<faker.version>0.18</faker.version>
+		<commons.text.version>1.7</commons.text.version>
 	</properties>
 
 	<dependencies>
@@ -56,6 +57,11 @@
 			<groupId>com.github.wasiqb.coteafs</groupId>
 			<artifactId>logger</artifactId>
 			<version>${coteafs.logger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>${commons.text.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
