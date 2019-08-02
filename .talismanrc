@@ -1,0 +1,7 @@
+fileignoreconfig:
+- filename: src/test/resources/selenium-bs-config.yaml
+  checksum: 58ee5c2cdde4697ed33c1d05119254e328473628878663a46288a4fd9735a1e8
+  ignore_detectors: []
+- filename: src/test/resources/selenium-sauce-config.yaml
+  checksum: cd9a44b0cbd255c5d74db10c5ceaea1a862359cf2b1bd9a69ac033794299c410
+  ignore_detectors: []
