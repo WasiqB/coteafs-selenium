@@ -1,8 +1,8 @@
 browser: CHROME
 url: http://demo.guru99.com/V4/
 remote:
-  user_id: ${cloud_user}
-  password: ${cloud_key}
+  user_id: ${CLOUD_USER}
+  password: ${CLOUD_KEY}
   protocol: HTTPS
   url: hub-cloud.browserstack.com
   source: BROWSERSTACK

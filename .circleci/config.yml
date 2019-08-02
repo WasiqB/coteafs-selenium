@@ -57,7 +57,7 @@ jobs:
             sudo apt-get install google-chrome-stable
       - run:
           name: Run Tests with Sonar Coverage
-          command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
+          command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test -DCLOUD_USER=$BS_USER -DCLOUD_KEY=$BS_KEY
       - save_cache:
           key: repo-reports-{{ .Branch }}-{{ .Revision }}
           paths:
