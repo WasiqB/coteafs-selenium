@@ -15,6 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core;
 
+import static com.github.wasiqb.coteafs.error.util.ErrorUtil.fail;
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
 import static com.github.wasiqb.coteafs.selenium.core.enums.Platform.DESKTOP;
@@ -24,6 +25,7 @@ import static io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.iedriver;
 import static java.lang.System.getProperty;
 import static java.text.MessageFormat.format;
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static org.apache.logging.log4j.util.Strings.isNotEmpty;
 
@@ -54,6 +56,7 @@ import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.Assert;
 
+import com.github.wasiqb.coteafs.selenium.config.DriverSetting;
 import com.github.wasiqb.coteafs.selenium.config.RemoteSetting;
 import com.github.wasiqb.coteafs.selenium.constants.OS;
 import com.github.wasiqb.coteafs.selenium.core.base.driver.AbstractDriver;
@@ -61,7 +64,10 @@ import com.github.wasiqb.coteafs.selenium.core.driver.IWebDriver;
 import com.github.wasiqb.coteafs.selenium.core.enums.ApplicationType;
 import com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser;
 import com.github.wasiqb.coteafs.selenium.core.enums.RemoteSource;
+import com.github.wasiqb.coteafs.selenium.error.DriverNotSetupError;
 import com.github.wasiqb.coteafs.selenium.listeners.DriverListner;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 /**
  * @author Wasiq Bhamla
@@ -102,9 +108,9 @@ public class Browser extends AbstractDriver <EventFiringWebDriver> implements IW
 		return null;
 	}
 
-	private static WebDriver setupChromeDriver () {
+	private static WebDriver setupChromeDriver () throws MalformedURLException {
 		LOG.info ("Setting up Chrome driver...");
-		chromedriver ().setup ();
+		setupDriver (chromedriver ());
 		final ChromeOptions chromeOptions = new ChromeOptions ();
 		chromeOptions.addArguments ("--dns-prefetch-disable");
 		if (appSetting ().isHeadlessMode ()) {
@@ -123,42 +129,62 @@ public class Browser extends AbstractDriver <EventFiringWebDriver> implements IW
 	}
 
 	private static WebDriver setupDriver (final AvailableBrowser browser) {
-		switch (browser) {
-			case CHROME:
-				return setupChromeDriver ();
-			case FIREFOX:
-				return setupFirefoxDriver ();
-			case IE:
-				return setupIeDriver ();
-			case EDGE:
-				return setupEdgeDriver ();
-			case SAFARI:
-				return setupSafariDriver ();
-			case REMOTE:
-			default:
-				return setupRemote ();
+		try {
+			switch (browser) {
+				case CHROME:
+					return setupChromeDriver ();
+				case FIREFOX:
+					return setupFirefoxDriver ();
+				case IE:
+					return setupIeDriver ();
+				case EDGE:
+					return setupEdgeDriver ();
+				case SAFARI:
+					return setupSafariDriver ();
+				case REMOTE:
+				default:
+					return setupRemote ();
+			}
 		}
+		catch (final MalformedURLException e) {
+			LOG.error ("URL is malformed.", e);
+			LOG.catching (e);
+		}
+		return null;
 	}
 
-	private static WebDriver setupEdgeDriver () {
+	private static void setupDriver (final WebDriverManager manager) throws MalformedURLException {
+		final DriverSetting driver = appSetting ().getDriver ();
+		if (!isNull (driver)) {
+			if (isNotEmpty (driver.getVersion ())) manager.version (driver.getVersion ());
+			if (isNotEmpty (driver.getExeUrl ()))
+				manager.driverRepositoryUrl (new URL (driver.getExeUrl ()));
+			if (driver.isForceCache ()) manager.forceCache ();
+			if (driver.isForceDownload ()) manager.forceDownload ();
+			if (isNotEmpty (driver.getPath ())) manager.targetPath (driver.getPath ());
+		}
+		manager.setup ();
+	}
+
+	private static WebDriver setupEdgeDriver () throws MalformedURLException {
 		LOG.info ("Setting up Edge driver...");
-		edgedriver ().setup ();
+		setupDriver (edgedriver ());
 		final EdgeOptions options = new EdgeOptions ();
 		return new EdgeDriver (options);
 	}
 
-	private static WebDriver setupFirefoxDriver () {
+	private static WebDriver setupFirefoxDriver () throws MalformedURLException {
 		LOG.info ("Setting up Firefox driver...");
-		firefoxdriver ().setup ();
+		setupDriver (firefoxdriver ());
 		final DesiredCapabilities capabilities = new DesiredCapabilities ();
 		final FirefoxOptions options = new FirefoxOptions (capabilities);
 		final GeckoDriverService firefoxService = GeckoDriverService.createDefaultService ();
 		return new FirefoxDriver (firefoxService, options);
 	}
 
-	private static WebDriver setupIeDriver () {
+	private static WebDriver setupIeDriver () throws MalformedURLException {
 		LOG.info ("Setting up Internet Explorer driver...");
-		iedriver ().setup ();
+		setupDriver (iedriver ());
 		final InternetExplorerOptions ieOptions = new InternetExplorerOptions ();
 		ieOptions.destructivelyEnsureCleanSession ();
 		ieOptions.setCapability ("requireWindowFocus", true);
@@ -242,6 +268,7 @@ public class Browser extends AbstractDriver <EventFiringWebDriver> implements IW
 		}
 		final AvailableBrowser browser = AvailableBrowser.valueOf (target.toUpperCase ());
 		final WebDriver driver = setupDriver (browser);
+		if (isNull (driver)) fail (DriverNotSetupError.class, "Driver was not setup properly.");
 		final EventFiringWebDriver wd = new EventFiringWebDriver (driver);
 		wd.register (this.listener);
 		driver (wd);
