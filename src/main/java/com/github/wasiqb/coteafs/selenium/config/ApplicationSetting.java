@@ -26,6 +26,7 @@ import com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser;
  */
 public class ApplicationSetting {
 	private AvailableBrowser		browser;
+	private DriverSetting			driver;
 	private boolean					headlessMode;
 	private String					hubUrl;
 	private Map <String, String>	params;
@@ -49,6 +50,15 @@ public class ApplicationSetting {
 	 */
 	public AvailableBrowser getBrowser () {
 		return this.browser;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 03-Aug-2019
+	 * @return driver setting
+	 */
+	public DriverSetting getDriver () {
+		return this.driver;
 	}
 
 	/**
@@ -113,6 +123,15 @@ public class ApplicationSetting {
 	 */
 	public void setBrowser (final AvailableBrowser browser) {
 		this.browser = browser;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 03-Aug-2019
+	 * @param driver
+	 */
+	public void setDriver (final DriverSetting driver) {
+		this.driver = driver;
 	}
 
 	/**

@@ -1,6 +1,12 @@
 browser: CHROME
 url: http://demo.guru99.com/V4/
 headless_mode: true
+#driver:
+#  force_cache: true
+#  force_download: true
+#  path: /drivers/
+#  version: 2.14
+#  exe_url: https://driver/download/url
 params:
   user: mngr26593
   password: abc@123
