@@ -115,7 +115,7 @@ playback:   # Playback settings.
 
 ### :page_facing_up: Page objects
 
-To know how to write tests, it's best to see the example as it is self explanatory. Lets have a look at the Login page of Guru99 demo site.
+Checkout the following examples which will guide you in writing tests. Lets have a look at the Login page of Guru99 demo site.
 
 > Remember, `BrowserPage` class needs to be extended for every page and also a flavour of inheritance can be added as per requirement.
 
@@ -177,7 +177,7 @@ public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
     login.password ()
       .enterText (value (PASS));
     login.signIn ()
-	    .click ();
+      .click ();
 
     final MainPage main = new MainPage ();
     main.managerIdBanner ()
@@ -276,7 +276,7 @@ Or you can add the following into your `build.gradle` file.
   </a>
 </p>
 
-For allowing us to run our unit tests on different platforms.
+For allowing us to run our unit tests on different cloud platforms.
 
 ## :white_check_mark: Contributors
 

@@ -1,6 +1,6 @@
 browser: CHROME
 url: http://demo.guru99.com/V4/
-headless_mode: true
+headless_mode: false
 #driver:
 #  force_cache: true
 #  force_download: true

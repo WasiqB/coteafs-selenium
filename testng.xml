@@ -30,7 +30,7 @@
 			</class>
 		</classes>
 	</test>
-	<test name="Test BrowserStack">
+	<test name="Test BrowserStack" enabled="false">
 		<parameter name="test.browser" value="REMOTE" />
 		<parameter name="test.config" value="/selenium-bs-config.yaml" />
 		<classes>

@@ -15,6 +15,8 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
+import static java.text.MessageFormat.format;
+
 import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.LoginPage;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
@@ -24,7 +26,13 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
  * @since Sep 1, 2018 8:09:35 PM
  */
 public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
+	/**
+	 * Password key.
+	 */
 	public static final String	PASS	= "password";
+	/**
+	 * User Id key.
+	 */
 	public static final String	USER_ID	= "userId";
 
 	@Override
@@ -40,6 +48,6 @@ public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
 		final MainPage main = new MainPage ();
 		main.managerIdBanner ()
 			.verifyText ()
-			.endsWith ("Manger Id : " + value ("UserId"));
+			.endsWith (format ("Manger Id : {0}", value (USER_ID).toString ()));
 	}
 }
