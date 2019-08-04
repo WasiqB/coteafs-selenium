@@ -27,7 +27,7 @@ import static java.lang.System.getProperty;
 import static java.text.MessageFormat.format;
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
-import static org.apache.logging.log4j.util.Strings.isNotEmpty;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -125,7 +125,10 @@ public class Browser extends AbstractDriver <EventFiringWebDriver> implements IW
 		final DesiredCapabilities caps, final String source) {
 		final Map <String, Object> capabilities = remoteSetting.getCapabilities ();
 		capabilities.forEach (caps::setCapability);
-		caps.setCapability (format ("{0}:options", source), remoteSetting.getCloudCapabilities ());
+		if (isNotEmpty (source)) {
+			caps.setCapability (format ("{0}:options", source),
+				remoteSetting.getCloudCapabilities ());
+		}
 	}
 
 	private static WebDriver setupDriver (final AvailableBrowser browser) {
@@ -214,6 +217,7 @@ public class Browser extends AbstractDriver <EventFiringWebDriver> implements IW
 				break;
 			case GRID:
 			default:
+				setupCloud (remoteSetting, caps, null);
 				break;
 		}
 		return createRemoteSession (remoteSetting, caps);

@@ -30,6 +30,22 @@
 			</class>
 		</classes>
 	</test>
+	<test name="Test Grid">
+		<parameter name="test.browser" value="REMOTE" />
+		<parameter name="test.config" value="/selenium-grid-config.yaml" />
+		<classes>
+			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+				<methods>
+					<include name="testSignIn" />
+					<include name="testNewCustomer" />
+					<include name="testEditCustomer" />
+					<include name="testNewAccount" />
+					<include name="testDeleteAccount" />
+					<include name="testDeleteCustomer" />
+				</methods>
+			</class>
+		</classes>
+	</test>
 	<test name="Test BrowserStack">
 		<parameter name="test.browser" value="REMOTE" />
 		<parameter name="test.config" value="/selenium-bs-config.yaml" />

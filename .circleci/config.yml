@@ -2,6 +2,7 @@ default: &default
   working_directory: ~/repo
   docker:
     - image: circleci/openjdk:8u212-jdk-stretch
+    - image: selenium/standalone-chrome:latest
 version: 2
 jobs:
   code_checkout:
