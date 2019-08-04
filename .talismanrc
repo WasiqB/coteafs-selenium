@@ -5,3 +5,6 @@ fileignoreconfig:
 - filename: src/test/resources/selenium-sauce-config.yaml
   checksum: cd9a44b0cbd255c5d74db10c5ceaea1a862359cf2b1bd9a69ac033794299c410
   ignore_detectors: []
+- filename: README.md
+  checksum: 74c3a77b9495fed2bb3a07ce4987a4e1c3b770424fae8db5c8e67d7676d7c493
+  ignore_detectors: []

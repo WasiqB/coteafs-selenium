@@ -29,13 +29,16 @@ This is a Selenium WebDriver wrapper Framework which enables robust, maintainabl
 
 Nobody uses anything without knowing what it offers. Some of the key features which this framework offers are as follows:
 
-- Latest Selenium WebDriver 4.0 (Alpha 2)
-- On-demand highlighting of Elements
-- On-demand delay of test execution by allowing predefined delays
-- On-demand headless mode
-- Parallel execution of tests on different browsers
-- Support Chrome, Safari, Firefox, IE and Edge
-- CI / CD ready
+- Latest Selenium WebDriver 4.0 (Alpha 2).
+- Supports Chrome, Safari, Firefox, IE and Edge
+- Supports execution on BrowserStack.
+- Supports execution on Selenium Grid.
+- On-demand highlighting of Elements.
+- On-demand delay of test execution by allowing predefined delays.
+- On-demand headless mode.
+- Interfaced architecture for different UI components which helps in better code readability.
+- Parallel execution of tests on different browsers.
+- CI / CD ready.
 
 ## :smile: How it is easy to write Tests with this Framework?
 
@@ -55,9 +58,31 @@ Config file is by default searched in `src/test/resources` folder. The name of t
 `src/test/resources/selenium-config.yaml`
 
 ```yaml
-browser: CHROME     # CHROME, SAFARI, EDGE, FIREFOX, IE.
+browser: CHROME           # CHROME, SAFARI, EDGE, FIREFOX, IE.
 url: http://demo.guru99.com/V4/   # Application URL.
-headless_mode: false    # true, for headless, else false.
+headless_mode: false      # true, for headless, else false.
+driver:                   # Driver manager specific settings.
+  force_cache: true       # true, false (default). Forces to use cached driver.
+  force_download: true    # true, false (default). Forces to download driver each time.
+  path: /drivers/         # Local path where drivers will searched for.
+  version: 2.14           # Version of driver.
+  exe_url: https://driver/download/url    # Driver download URL.
+remote:                   # Remote settings block (required when Browser is Remote).
+  user_id: ${CLOUD_USER}  # Cloud User. Not required for Grid.
+  password: ${CLOUD_KEY}  # Cloud Key. Not required for Grid.
+  protocol: HTTPS         # HTTP, HTTPS. Default HTTP.
+  url: hub-cloud.browserstack.com   # Remote hub URL
+  source: BROWSERSTACK    # BROWSERSTACK, GRID, SAUCELABS
+  capabilities:           # Remote capabilities.
+    browser: Chrome
+    browser_version: 75.0
+    os: Windows
+    os_version: 10
+    resolution: 1024x768
+    name: Any Test name
+  cloud_capabilities:     # Cloud specific capabilities.
+    seleniumVersion: 3.141.59
+    name: Sauce-[Java] Sample Test
 params:     # test specific map.
   user: <test-specific-user>
   password: <test-specific-password>
@@ -90,7 +115,7 @@ playback:   # Playback settings.
 
 ### :page_facing_up: Page objects
 
-To know how to write tests, it's best to see the example as it is self explanatory. Lets have a look at the Login page of Guru99 demo site.
+Checkout the following examples which will guide you in writing tests. Lets have a look at the Login page of Guru99 demo site.
 
 > Remember, `BrowserPage` class needs to be extended for every page and also a flavour of inheritance can be added as per requirement.
 
@@ -102,7 +127,6 @@ package com.github.wasiqb.coteafs.selenium.pages;
 import org.openqa.selenium.By;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
-import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 
@@ -119,8 +143,8 @@ public class LoginPage extends BrowserPage {
     return form ().find (By.name ("uid"));
   }
 
-  private IElementActions form () {
-    return onElement (By.name ("frmLogin"));
+  private IMouseActions form () {
+    return onClickable (By.name ("frmLogin"));
   }
 }
 ```
@@ -142,13 +166,16 @@ import com.github.wasiqb.coteafs.selenium.pages.LoginPage;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 
 public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
+  public static final String PASS = "password";
+  public static final String USER_ID = "userId";
+
   @Override
   public void perform () {
     final LoginPage login = new LoginPage ();
     login.userId ()
-      .enterText (value ("UserId"));
+      .enterText (value (USER_ID));
     login.password ()
-      .enterText (value ("Password"));
+      .enterText (value (PASS));
     login.signIn ()
       .click ();
 
@@ -172,6 +199,8 @@ Test which are written using this framework are slightly different than usual. I
 package com.github.wasiqb.coteafs.selenium;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction.PASS;
+import static com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction.USER_ID;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -181,21 +210,19 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
 
 public class SeleniumTest extends BrowserTest {
-  private MainPage main;
-
   @BeforeClass
   public void setupMethod () {
-    this.main = new MainPage ();
-    this.main.onDriver ()
+    final MainPage main = new MainPage ();
+    main.onDriver ()
       .navigateTo (appSetting ().getUrl ());
   }
 
   @Test
   public void testSignIn () {
     final LoginPageAction login = new LoginPageAction ();
-    login.addInputValue ("UserId", appSetting ().getParams ()
+    login.addInputValue (USER_ID, appSetting ().getParams ()
       .get ("user"))
-      .addInputValue ("Password", appSetting ().getParams ()
+      .addInputValue (PASS, appSetting ().getParams ()
         .get ("password"))
       .perform ();
   }
@@ -210,16 +237,16 @@ You can use the following dependency into your `pom.xml` to use this library.
 <dependency>
   <groupId>com.github.wasiqb.coteafs</groupId>
   <artifactId>selenium</artifactId>
-  <version>2.1.0</version>
+  <version>3.0.0</version>
 </dependency>
 ```
 
 Or you can add the following into your `build.gradle` file.
 
  ```gradle
- compile "com.github.wasiqb.coteafs:selenium:2.0.0"
+ compile "com.github.wasiqb.coteafs:selenium:3.0.0"
  ```
- 
+
 ## :question: Need Assistance?
 
 - Directly chat with me on my [site][] and I'll revert to you as soon as possible.
@@ -234,6 +261,22 @@ Or you can add the following into your `build.gradle` file.
 - Stay updated with the project progress by **Watching** it.
 - **Contribute** to fix open issues, documentations or add new features. To know more, see our [contributing][] page.
 - I would be delighted if you can **Sponsor** this project and provide your support to open source development by clicking on the Sponsor button on the top of this repository.
+
+## :gift_heart: Thanks for the support.
+
+<p align="left">
+  <a href="http://browserstack.com">
+    <img src="assets/browserstack-logo.png" width=300 />
+  </a>
+</p>
+
+<p align="left">
+  <a href="https://saucelabs.com">
+    <img src="assets/SauceLabs-logo.png" width=300 />
+  </a>
+</p>
+
+For allowing us to run our unit tests on different cloud platforms.
 
 ## :white_check_mark: Contributors
 
