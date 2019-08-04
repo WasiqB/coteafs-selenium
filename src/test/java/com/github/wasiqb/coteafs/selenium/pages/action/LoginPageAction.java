@@ -24,13 +24,16 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
  * @since Sep 1, 2018 8:09:35 PM
  */
 public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
+	public static final String	PASS	= "password";
+	public static final String	USER_ID	= "userId";
+
 	@Override
 	public void perform () {
 		final LoginPage login = new LoginPage ();
 		login.userId ()
-			.enterText (value ("UserId"));
+			.enterText (value (USER_ID));
 		login.password ()
-			.enterText (value ("Password"));
+			.enterText (value (PASS));
 		login.signIn ()
 			.click ();
 
