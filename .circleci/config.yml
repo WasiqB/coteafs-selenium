@@ -43,6 +43,8 @@ jobs:
   test:
     <<: *default
     steps:
+      - attach_workspace:
+          at: .
       - restore_cache:
           key: repo-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
