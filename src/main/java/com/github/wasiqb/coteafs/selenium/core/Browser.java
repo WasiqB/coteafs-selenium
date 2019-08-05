@@ -80,16 +80,18 @@ public class Browser extends AbstractDriver <EventFiringWebDriver> implements IW
 	private static WebDriver createRemoteSession (final RemoteSetting remoteSetting,
 		final MutableCapabilities caps) {
 		LOG.info ("Creating remote session...");
-		final String url = remoteSetting.getUrl ();
-		final String user = remoteSetting.getUserId ();
-		final String pass = remoteSetting.getPassword ();
 		final StringBuilder urlBuilder = new StringBuilder (remoteSetting.getProtocol ()
 			.getPrefix ());
-		if (isNotEmpty (user)) {
-			urlBuilder.append (user)
-				.append (":")
-				.append (requireNonNull (pass, "Cloud Password cannot be empty."))
-				.append ("@");
+		final String url = remoteSetting.getUrl ();
+		if (remoteSetting.getSource () != RemoteSource.GRID) {
+			final String user = remoteSetting.getUserId ();
+			final String pass = remoteSetting.getPassword ();
+			if (isNotEmpty (user)) {
+				urlBuilder.append (user)
+					.append (":")
+					.append (requireNonNull (pass, "Cloud Password cannot be empty."))
+					.append ("@");
+			}
 		}
 		urlBuilder.append (url);
 		final int port = remoteSetting.getPort ();
