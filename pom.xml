@@ -29,6 +29,7 @@
 		<coteafs.config.version>1.8.0</coteafs.config.version>
 		<coteafs.error.version>1.7.0</coteafs.error.version>
 		<coteafs.logger.version>1.8.0</coteafs.logger.version>
+		<coteafs.listener.version>1.2.0</coteafs.listener.version>
 		<selenium-version>4.0.0-alpha-2</selenium-version>
 		<commons.io.version>2.6</commons.io.version>
 		<webdrivermanager-version>3.6.2</webdrivermanager-version>
@@ -47,6 +48,11 @@
 					<artifactId>snakeyaml</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.github.wasiqb.coteafs</groupId>
+			<artifactId>listeners</artifactId>
+			<version>${coteafs.listener.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.wasiqb.coteafs</groupId>
