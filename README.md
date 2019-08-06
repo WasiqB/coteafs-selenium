@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">Selenium WebDriver wrapper Framework which supports Automation of most of the web browsers.</h1>
+<h1 align="center">Selenium WebDriver wrapper Framework in Java, which supports Automation of most of the web browsers.</h1>
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)][home]
 [![CircleCI](https://circleci.com/gh/WasiqB/coteafs-selenium.svg?style=svg)][circleci]
@@ -31,14 +31,15 @@ Nobody uses anything without knowing what it offers. Some of the key features wh
 
 - Latest Selenium WebDriver 4.0 (Alpha 2).
 - Supports Chrome, Safari, Firefox, IE and Edge
-- Supports execution on BrowserStack.
-- Supports execution on Selenium Grid.
+- Supports execution on BrowserStack and Selenium Grid.
 - On-demand highlighting of Elements.
 - On-demand delay of test execution by allowing predefined delays.
 - On-demand headless mode.
-- Interfaced architecture for different UI components which helps in better code readability.
+- Supports all major test frameworks like TestNG, JUnit, Cucumber, etc.
+- Supports logging of events to Log file.
+- Extensible framework which allows extending the framework as required.
 - Parallel execution of tests on different browsers.
-- CI / CD ready.
+- Inline verification of elements.
 
 ## :smile: How it is easy to write Tests with this Framework?
 
