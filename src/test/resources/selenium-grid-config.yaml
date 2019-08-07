@@ -1,0 +1,37 @@
+browser: CHROME
+url: http://demo.guru99.com/V4/
+headless_mode: true
+remote:
+  url: localhost
+  port: 4444
+  source: GRID
+  capabilities:
+    browserName: chrome
+    version: 75.0
+    platform: Windows 10
+params:
+  user: mngr26593
+  password: abc@123
+playback:
+  screen_state: NORMAL
+  highlight: true
+#  screen_resolution:
+#    width: 1280
+#    height: 768
+  delays:
+    implicit: 60
+    explicit: 60
+    before_key_press: 0
+    after_key_press: 0
+    before_mouse_move: 0
+    after_mouse_move: 0
+    before_click: 0
+    after_click: 0
+    page_load: 60
+    script_load: 60
+    highlight: 500
+  screenshot:
+    path: ~/screenshots
+    prefix: SCR
+    extension: jpeg
+    capture_on_error: false

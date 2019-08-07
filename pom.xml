@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>selenium</artifactId>
@@ -29,10 +29,12 @@
 		<coteafs.config.version>1.8.0</coteafs.config.version>
 		<coteafs.error.version>1.7.0</coteafs.error.version>
 		<coteafs.logger.version>1.8.0</coteafs.logger.version>
+		<coteafs.listener.version>1.2.0</coteafs.listener.version>
 		<selenium-version>4.0.0-alpha-2</selenium-version>
 		<commons.io.version>2.6</commons.io.version>
-		<webdrivermanager-version>3.6.1</webdrivermanager-version>
-		<faker.version>0.18</faker.version>
+		<webdrivermanager-version>3.6.2</webdrivermanager-version>
+		<faker.version>1.0.0</faker.version>
+		<commons.text.version>1.7</commons.text.version>
 	</properties>
 
 	<dependencies>
@@ -49,6 +51,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.github.wasiqb.coteafs</groupId>
+			<artifactId>listeners</artifactId>
+			<version>${coteafs.listener.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.wasiqb.coteafs</groupId>
 			<artifactId>error</artifactId>
 			<version>${coteafs.error.version}</version>
 		</dependency>
@@ -56,6 +63,11 @@
 			<groupId>com.github.wasiqb.coteafs</groupId>
 			<artifactId>logger</artifactId>
 			<version>${coteafs.logger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>${commons.text.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>

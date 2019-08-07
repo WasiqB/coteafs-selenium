@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017-2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -56,19 +56,19 @@ public class DelaySetting {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 2:58:50 PM
-	 * @return the afterKeyPress
+	 * @return the afterMouseMove
 	 */
-	public long getAfterTyping () {
-		return this.afterKeyPress;
+	public long getAfterMouseMove () {
+		return this.afterMouseMove;
 	}
 
 	/**
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 2:58:50 PM
-	 * @return the afterMouseMove
+	 * @return the afterKeyPress
 	 */
-	public long getAfterMouseMove () {
-		return this.afterMouseMove;
+	public long getAfterTyping () {
+		return this.afterKeyPress;
 	}
 
 	/**
@@ -83,19 +83,19 @@ public class DelaySetting {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 2:58:50 PM
-	 * @return the beforeKeyPress
+	 * @return the beforeMouseMove
 	 */
-	public long getBeforeTyping () {
-		return this.beforeKeyPress;
+	public long getBeforeMouseMove () {
+		return this.beforeMouseMove;
 	}
 
 	/**
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 2:58:50 PM
-	 * @return the beforeMouseMove
+	 * @return the beforeKeyPress
 	 */
-	public long getBeforeMouseMove () {
-		return this.beforeMouseMove;
+	public long getBeforeTyping () {
+		return this.beforeKeyPress;
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class DelaySetting {
 	 * @author Wasiq Bhamla
 	 * @since May 1, 2018 4:53:44 PM
 	 * @param afterClick
-	 *            the afterClick to set
+	 *     the afterClick to set
 	 */
 	public void setAfterClick (final long afterClick) {
 		this.afterClick = afterClick;
@@ -157,7 +157,7 @@ public class DelaySetting {
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 2:58:50 PM
 	 * @param afterKeyPress
-	 *            the afterKeyPress to set
+	 *     the afterKeyPress to set
 	 */
 	public void setAfterKeyPress (final long afterKeyPress) {
 		this.afterKeyPress = afterKeyPress;
@@ -167,7 +167,7 @@ public class DelaySetting {
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 2:58:50 PM
 	 * @param afterMouseMove
-	 *            the afterMouseMove to set
+	 *     the afterMouseMove to set
 	 */
 	public void setAfterMouseMove (final long afterMouseMove) {
 		this.afterMouseMove = afterMouseMove;
@@ -177,7 +177,7 @@ public class DelaySetting {
 	 * @author Wasiq Bhamla
 	 * @since May 1, 2018 4:53:44 PM
 	 * @param beforeClick
-	 *            the beforeClick to set
+	 *     the beforeClick to set
 	 */
 	public void setBeforeClick (final long beforeClick) {
 		this.beforeClick = beforeClick;
@@ -187,7 +187,7 @@ public class DelaySetting {
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 2:58:50 PM
 	 * @param beforeKeyPress
-	 *            the beforeKeyPress to set
+	 *     the beforeKeyPress to set
 	 */
 	public void setBeforeKeyPress (final long beforeKeyPress) {
 		this.beforeKeyPress = beforeKeyPress;
@@ -197,7 +197,7 @@ public class DelaySetting {
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 2:58:50 PM
 	 * @param beforeMouseMove
-	 *            the beforeMouseMove to set
+	 *     the beforeMouseMove to set
 	 */
 	public void setBeforeMouseMove (final long beforeMouseMove) {
 		this.beforeMouseMove = beforeMouseMove;
@@ -207,7 +207,7 @@ public class DelaySetting {
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 2:58:50 PM
 	 * @param explicit
-	 *            the explicit to set
+	 *     the explicit to set
 	 */
 	public void setExplicit (final long explicit) {
 		this.explicit = explicit;
@@ -217,7 +217,7 @@ public class DelaySetting {
 	 * @author wasiqb
 	 * @since Aug 31, 2018 10:15:33 PM
 	 * @param highlight
-	 *            the highlight to set
+	 *     the highlight to set
 	 */
 	public void setHighlight (final long highlight) {
 		this.highlight = highlight;
@@ -227,7 +227,7 @@ public class DelaySetting {
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 2:58:50 PM
 	 * @param implicit
-	 *            the implicit to set
+	 *     the implicit to set
 	 */
 	public void setImplicit (final long implicit) {
 		this.implicit = implicit;
@@ -237,7 +237,7 @@ public class DelaySetting {
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 2:58:50 PM
 	 * @param pageLoad
-	 *            the pageLoad to set
+	 *     the pageLoad to set
 	 */
 	public void setPageLoad (final long pageLoad) {
 		this.pageLoad = pageLoad;
@@ -247,7 +247,7 @@ public class DelaySetting {
 	 * @author Wasiq Bhamla
 	 * @since May 1, 2018 4:56:52 PM
 	 * @param scriptLoad
-	 *            the scriptLoad to set
+	 *     the scriptLoad to set
 	 */
 	public void setScriptLoad (final long scriptLoad) {
 		this.scriptLoad = scriptLoad;

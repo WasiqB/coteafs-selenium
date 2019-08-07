@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,19 +15,16 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.element;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
-
 /**
  * @author Wasiq Bhamla
  * @since 07-Jun-2019
  */
-public interface IElementActions extends IVerifyElement, IWaitStrategy {
+public interface IElementActions extends IWaitStrategy {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param name
+	 *     attribute name
 	 * @return attribute
 	 */
 	String attribute (String name);
@@ -37,22 +34,6 @@ public interface IElementActions extends IVerifyElement, IWaitStrategy {
 	 * @since 07-Jun-2019
 	 */
 	void clear ();
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 08-Jun-2019
-	 * @param byLocator
-	 * @return actions
-	 */
-	<E extends IElementActions> E find (final By byLocator);
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 08-Jun-2019
-	 * @param byLocator
-	 * @return list of actions
-	 */
-	<E extends IElementActions> List <E> finds (final By byLocator);
 
 	/**
 	 * @author Wasiq Bhamla

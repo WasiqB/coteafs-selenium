@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,6 +30,7 @@ public interface IWebWindow {
 	 * @author Wasiq Bhamla
 	 * @since 16-Jun-2019
 	 * @param title
+	 *     window title
 	 */
 	void switchWindow (String title);
 }
