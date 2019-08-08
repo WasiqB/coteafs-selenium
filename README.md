@@ -162,6 +162,8 @@ This is a new concept, here you can define actions specific to each page. This a
 ```java
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
+import static java.text.MessageFormat.format;
+
 import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.LoginPage;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
@@ -183,7 +185,7 @@ public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
     final MainPage main = new MainPage ();
     main.managerIdBanner ()
       .verifyText ()
-      .endsWith ("Manger Id : " + value ("UserId"));
+      .endsWith (format ("Manger Id : {0}", value (USER_ID).toString ()));
   }
 }
 ```
