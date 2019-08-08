@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +17,10 @@ package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
+import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.CONFIG;
+import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.COTEAFS_CONFIG_KEY;
+import static java.lang.System.setProperty;
+import static org.apache.logging.log4j.util.Strings.isNotEmpty;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -36,10 +40,15 @@ public class BrowserTest {
 	 * @author wasiqb
 	 * @since Sep 13, 2018 9:55:41 PM
 	 * @param browserName
+	 *     Browser name
+	 * @param configFile
 	 */
-	@Parameters (BROWSER)
+	@Parameters ({ BROWSER, CONFIG })
 	@BeforeTest (alwaysRun = true)
-	public void setupTest (@Optional final String browserName) {
+	public void setupTest (@Optional final String browserName, @Optional final String configFile) {
+		if (isNotEmpty (configFile)) {
+			setProperty (COTEAFS_CONFIG_KEY, configFile);
+		}
 		this.browser = new Browser ();
 		this.browser.setBrowserUnderTest (browserName);
 		this.browser.start ();
@@ -49,6 +58,7 @@ public class BrowserTest {
 	 * @author wasiqb
 	 * @since Mar 21, 2019 6:46:47 PM
 	 * @param result
+	 *     test result
 	 */
 	@AfterMethod (alwaysRun = true)
 	public void teardownMethod (final ITestResult result) {
@@ -56,10 +66,9 @@ public class BrowserTest {
 			.getScreenshot ()
 			.isCaptureOnError ();
 		if (screenshotOnError && result.getStatus () == ITestResult.FAILURE
-			&& !this.browser.perform ()
-				.isClosed ()) {
+			&& !this.browser.isRunning ()) {
 			this.browser.perform ()
-				.saveScreenshot ();
+				.attachScreenshot ();
 		}
 	}
 

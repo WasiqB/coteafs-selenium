@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,10 +26,6 @@ import com.github.wasiqb.coteafs.selenium.pages.SuccessCustomerPage;
  * @since Apr 8, 2019 11:49:16 AM
  */
 public class EditCustomerPageAction extends AbstractPageAction <EditCustomerPageAction> {
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
-	 */
 	@Override
 	public void perform () {
 		final EditCustomerPage edit = new EditCustomerPage ();

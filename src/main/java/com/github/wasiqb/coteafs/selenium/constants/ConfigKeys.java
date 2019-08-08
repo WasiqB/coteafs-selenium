@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,6 +24,10 @@ public interface ConfigKeys {
 	 * Browser key.
 	 */
 	String	BROWSER						= "test.browser";
+	/**
+	 * Config file key.
+	 */
+	String	CONFIG						= "test.config";
 	/**
 	 * Selenium default config key.
 	 */

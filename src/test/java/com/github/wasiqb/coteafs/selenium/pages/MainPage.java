@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,6 @@ package com.github.wasiqb.coteafs.selenium.pages;
 import org.openqa.selenium.By;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
-import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 
 /**
@@ -27,22 +26,21 @@ import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
  */
 public class MainPage extends BrowserPage {
 	/**
-	 * @author wasiqb
-	 * @since Apr 7, 2019 5:39:39 PM
 	 * @return manager welcome banner
+	 * @since Apr 7, 2019 5:39:39 PM
 	 */
-	public IElementActions managerIdBanner () {
-		return onElement (By.cssSelector ("tr.heading3 > td"));
+	public IMouseActions managerIdBanner () {
+		return onClickable (By.cssSelector ("tr.heading3 > td"));
 	}
 
 	/**
-	 * @author wasiqb
-	 * @since Apr 7, 2019 5:42:12 PM
 	 * @param name
+	 *     name
 	 * @return menu name
+	 * @since Apr 7, 2019 5:42:12 PM
 	 */
 	public IMouseActions navbar (final String name) {
-		return (IMouseActions) navbar ().finds (By.cssSelector ("li > a"))
+		return navbar ().finds (By.cssSelector ("li > a"))
 			.stream ()
 			.filter (m -> m.text ()
 				.trim ()
@@ -52,6 +50,6 @@ public class MainPage extends BrowserPage {
 	}
 
 	private IMouseActions navbar () {
-		return onElement (By.className ("menusubnav"));
+		return onClickable (By.className ("menusubnav"));
 	}
 }

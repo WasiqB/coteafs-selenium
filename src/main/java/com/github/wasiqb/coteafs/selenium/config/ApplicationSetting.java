@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017-2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,10 +26,12 @@ import com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser;
  */
 public class ApplicationSetting {
 	private AvailableBrowser		browser;
+	private DriverSetting			driver;
 	private boolean					headlessMode;
 	private String					hubUrl;
 	private Map <String, String>	params;
 	private PlaybackSetting			playback;
+	private RemoteSetting			remote;
 	private String					url;
 
 	/**
@@ -48,6 +50,15 @@ public class ApplicationSetting {
 	 */
 	public AvailableBrowser getBrowser () {
 		return this.browser;
+	}
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 03-Aug-2019
+	 * @return driver setting
+	 */
+	public DriverSetting getDriver () {
+		return this.driver;
 	}
 
 	/**
@@ -78,6 +89,15 @@ public class ApplicationSetting {
 	}
 
 	/**
+	 * @author Wasiq Bhamla
+	 * @since 01-Aug-2019
+	 * @return remote
+	 */
+	public RemoteSetting getRemote () {
+		return this.remote;
+	}
+
+	/**
 	 * @author wasiqb
 	 * @since Apr 7, 2019 5:12:41 PM
 	 * @return the url
@@ -99,17 +119,26 @@ public class ApplicationSetting {
 	 * @author wasiqb
 	 * @since Apr 7, 2019 5:12:41 PM
 	 * @param browser
-	 *            the browser to set
+	 *     the browser to set
 	 */
 	public void setBrowser (final AvailableBrowser browser) {
 		this.browser = browser;
 	}
 
 	/**
+	 * @author Wasiq Bhamla
+	 * @since 03-Aug-2019
+	 * @param driver
+	 */
+	public void setDriver (final DriverSetting driver) {
+		this.driver = driver;
+	}
+
+	/**
 	 * @author wasiqb
 	 * @since Apr 7, 2019 5:12:41 PM
 	 * @param headlessMode
-	 *            the headlessMode to set
+	 *     the headlessMode to set
 	 */
 	public void setHeadlessMode (final boolean headlessMode) {
 		this.headlessMode = headlessMode;
@@ -119,7 +148,7 @@ public class ApplicationSetting {
 	 * @author Wasiq Bhamla
 	 * @since May 1, 2018 5:01:07 PM
 	 * @param hubUrl
-	 *            the hubUrl to set
+	 *     the hubUrl to set
 	 */
 	public void setHubUrl (final String hubUrl) {
 		this.hubUrl = hubUrl;
@@ -129,7 +158,7 @@ public class ApplicationSetting {
 	 * @author wasiqb
 	 * @since Apr 8, 2019 11:22:53 PM
 	 * @param params
-	 *            the params to set
+	 *     the params to set
 	 */
 	public void setParams (final Map <String, String> params) {
 		this.params = params;
@@ -139,17 +168,26 @@ public class ApplicationSetting {
 	 * @author Wasiq Bhamla
 	 * @since Apr 8, 2018 3:01:35 PM
 	 * @param playback
-	 *            the playback to set
+	 *     the playback to set
 	 */
 	public void setPlayback (final PlaybackSetting playback) {
 		this.playback = playback;
 	}
 
 	/**
+	 * @author Wasiq Bhamla
+	 * @since 01-Aug-2019
+	 * @param remote
+	 */
+	public void setRemote (final RemoteSetting remote) {
+		this.remote = remote;
+	}
+
+	/**
 	 * @author wasiqb
 	 * @since Apr 7, 2019 5:12:41 PM
 	 * @param url
-	 *            the url to set
+	 *     the url to set
 	 */
 	public void setUrl (final String url) {
 		this.url = url;

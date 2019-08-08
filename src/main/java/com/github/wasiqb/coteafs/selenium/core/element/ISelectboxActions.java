@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,7 @@ import java.util.List;
  * @author Wasiq Bhamla
  * @since 07-Jun-2019
  */
-public interface ISelectboxActions extends IKeyboardActions {
+public interface ISelectboxActions extends IMouseActions {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
@@ -32,6 +32,7 @@ public interface ISelectboxActions extends IKeyboardActions {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param index
+	 *     item indoex
 	 */
 	void deselectByIndex (int index);
 
@@ -39,6 +40,7 @@ public interface ISelectboxActions extends IKeyboardActions {
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param value
+	 *     item value
 	 */
 	void deselectByText (String value);
 
@@ -46,6 +48,7 @@ public interface ISelectboxActions extends IKeyboardActions {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param value
+	 *     item value
 	 */
 	void deselectByValue (String value);
 
@@ -61,12 +64,13 @@ public interface ISelectboxActions extends IKeyboardActions {
 	 * @since 12-Jul-2019
 	 * @return all options
 	 */
-	List <IElementActions> options ();
+	<T extends IMouseActions> List <T> options ();
 
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param index
+	 *     item indoex
 	 */
 	void selectByIndex (int index);
 
@@ -74,6 +78,7 @@ public interface ISelectboxActions extends IKeyboardActions {
 	 * @author Wasiq Bhamla
 	 * @since 07-Jun-2019
 	 * @param value
+	 *     item value
 	 */
 	void selectByText (String value);
 
@@ -81,6 +86,7 @@ public interface ISelectboxActions extends IKeyboardActions {
 	 * @author Wasiq Bhamla
 	 * @since 12-Jul-2019
 	 * @param value
+	 *     item value
 	 */
 	void selectByValue (String value);
 
@@ -89,5 +95,5 @@ public interface ISelectboxActions extends IKeyboardActions {
 	 * @since 12-Jul-2019
 	 * @return all selected options
 	 */
-	List <IElementActions> selectedOptions ();
+	<T extends IMouseActions> List <T> selectedOptions ();
 }

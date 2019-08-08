@@ -1,15 +1,21 @@
 browser: CHROME
 url: http://demo.guru99.com/V4/
 headless_mode: true
+#driver:
+#  force_cache: true
+#  force_download: true
+#  path: /drivers/
+#  version: 2.14
+#  exe_url: https://driver/download/url
 params:
   user: mngr26593
   password: abc@123
 playback:
   screen_state: NORMAL
   highlight: true
-#  screen_resolution:
-#    width: 1280
-#    height: 768
+  screen_resolution:
+    width: 1280
+    height: 768
   delays:
     implicit: 60
     explicit: 60

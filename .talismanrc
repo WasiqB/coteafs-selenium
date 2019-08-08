@@ -1,0 +1,16 @@
+fileignoreconfig:
+- filename: src/test/resources/selenium-bs-config.yaml
+  checksum: 58ee5c2cdde4697ed33c1d05119254e328473628878663a46288a4fd9735a1e8
+  ignore_detectors: []
+- filename: src/test/resources/selenium-sauce-config.yaml
+  checksum: cd9a44b0cbd255c5d74db10c5ceaea1a862359cf2b1bd9a69ac033794299c410
+  ignore_detectors: []
+- filename: src/test/resources/selenium-grid-config.yaml
+  checksum: d535c8e2797160c953f3be54b986dbc66a3fd98897a154b4bb035b70d675289c
+  ignore_detectors: []
+- filename: src/main/java/com/github/wasiqb/coteafs/selenium/core/Browser.java
+  checksum: 829abdf49b09ebd7d9d5803a425f7e8b2b99a2e03265a1e9d1f6b5cdaf0b6376
+  ignore_detectors: []
+- filename: README.md
+  checksum: 74c3a77b9495fed2bb3a07ce4987a4e1c3b770424fae8db5c8e67d7676d7c493
+  ignore_detectors: []

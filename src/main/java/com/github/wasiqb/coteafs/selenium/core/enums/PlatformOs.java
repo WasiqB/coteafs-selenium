@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -43,5 +43,5 @@ public enum PlatformOs {
 	/**
 	 * Windows.
 	 */
-	WINDOWS;
+	WINDOWS
 }

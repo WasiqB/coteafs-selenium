@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,303 +30,144 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
 public class DriverListner implements WebDriverEventListener {
 	private static final Logger LOG = LogManager.getLogger (DriverListner.class);
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#afterAlertAccept(
-	 * org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void afterAlertAccept (final WebDriver driver) {
 		LOG.trace ("Alert dialog accepted...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#afterAlertDismiss(
-	 * org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void afterAlertDismiss (final WebDriver driver) {
 		LOG.trace ("Alert dialog dismissed...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#afterChangeValueOf(
-	 * org.openqa.selenium.WebElement, org.openqa.selenium.WebDriver,
-	 * java.lang.CharSequence[])
-	 */
 	@Override
 	public void afterChangeValueOf (final WebElement element, final WebDriver driver,
 		final CharSequence [] keysToSend) {
 		if (keysToSend != null) {
-			final String message = "Text [{}] has been entered...";
-			LOG.trace (message, (Object []) keysToSend);
+			final String message = "Text {} has been entered...";
+			LOG.trace (message, (Object) keysToSend);
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#afterClickOn(org.
-	 * openqa.selenium.WebElement, org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void afterClickOn (final WebElement element, final WebDriver driver) {
 		LOG.trace ("Clicked on element...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#afterFindBy(org.
-	 * openqa.selenium.By, org.openqa.selenium.WebElement,
-	 * org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void afterFindBy (final By by, final WebElement element, final WebDriver driver) {
-		LOG.trace ("Element found using [{}]...", by);
+		LOG.trace ("Element found using {}...", by);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see org.openqa.selenium.support.events.WebDriverEventListener#
-	 * afterGetScreenshotAs(org.openqa.selenium.OutputType, java.lang.Object)
-	 */
 	@Override
 	public <X> void afterGetScreenshotAs (final OutputType <X> target, final X screenshot) {
 		LOG.trace ("Taken screenshot successfully...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#afterGetText(org.
-	 * openqa.selenium.WebElement, org.openqa.selenium.WebDriver, java.lang.String)
-	 */
 	@Override
 	public void afterGetText (final WebElement element, final WebDriver driver, final String text) {
-		LOG.trace ("Got text [{}] from element...", text);
+		LOG.trace ("Got text {} from element...", text);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#afterNavigateBack(
-	 * org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void afterNavigateBack (final WebDriver driver) {
 		LOG.trace ("Navigated backward...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.openqa.selenium.support.events.WebDriverEventListener#
-	 * afterNavigateForward(org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void afterNavigateForward (final WebDriver driver) {
 		LOG.trace ("Navigated forward...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.openqa.selenium.support.events.WebDriverEventListener#
-	 * afterNavigateRefresh(org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void afterNavigateRefresh (final WebDriver driver) {
 		LOG.trace ("Page refreshed...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#afterNavigateTo(
-	 * java.lang.String, org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void afterNavigateTo (final String url, final WebDriver driver) {
-		LOG.trace ("Navigated to url [{}]...", url);
+		LOG.trace ("Navigated to url {}...", url);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#afterScript(java.
-	 * lang.String, org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void afterScript (final String script, final WebDriver driver) {
-		LOG.trace ("Script [{}] executed successfully...", script);
+		LOG.trace ("Script {} executed successfully...", script);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#afterSwitchToWindow
-	 * (java.lang.String, org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void afterSwitchToWindow (final String windowName, final WebDriver driver) {
-		LOG.trace ("Window switched to [{}]...", windowName);
+		LOG.trace ("Window switched to {}...", windowName);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#beforeAlertAccept(
-	 * org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void beforeAlertAccept (final WebDriver driver) {
 		LOG.info ("Accepting Alert pop-up...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#beforeAlertDismiss(
-	 * org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void beforeAlertDismiss (final WebDriver driver) {
 		LOG.info ("Dismissing Alert pop-up...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#beforeChangeValueOf
-	 * (org.openqa.selenium.WebElement, org.openqa.selenium.WebDriver,
-	 * java.lang.CharSequence[])
-	 */
 	@Override
 	public void beforeChangeValueOf (final WebElement element, final WebDriver driver,
 		final CharSequence [] keysToSend) {
 		if (keysToSend != null) {
-			LOG.info ("Writing text [{}]...", (Object []) keysToSend);
+			LOG.info ("Writing text {}...", (Object) keysToSend);
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#beforeClickOn(org.
-	 * openqa.selenium.WebElement, org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void beforeClickOn (final WebElement element, final WebDriver driver) {
 		LOG.info ("Clicking on Element...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#beforeFindBy(org.
-	 * openqa.selenium.By, org.openqa.selenium.WebElement,
-	 * org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void beforeFindBy (final By by, final WebElement element, final WebDriver driver) {
-		LOG.trace ("Finding element by [{}]", by);
+		LOG.trace ("Finding element by {}", by);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see org.openqa.selenium.support.events.WebDriverEventListener#
-	 * beforeGetScreenshotAs(org.openqa.selenium.OutputType)
-	 */
 	@Override
 	public <X> void beforeGetScreenshotAs (final OutputType <X> target) {
 		LOG.trace ("Taking screenshot...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#beforeGetText(org.
-	 * openqa.selenium.WebElement, org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void beforeGetText (final WebElement element, final WebDriver driver) {
 		LOG.trace ("Getting text from element...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#beforeNavigateBack(
-	 * org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void beforeNavigateBack (final WebDriver driver) {
 		LOG.info ("Navigating back...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.openqa.selenium.support.events.WebDriverEventListener#
-	 * beforeNavigateForward(org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void beforeNavigateForward (final WebDriver driver) {
 		LOG.info ("Navigating forward...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.openqa.selenium.support.events.WebDriverEventListener#
-	 * beforeNavigateRefresh(org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void beforeNavigateRefresh (final WebDriver driver) {
 		LOG.info ("Refreshing the page...");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#beforeNavigateTo(
-	 * java.lang.String, org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void beforeNavigateTo (final String url, final WebDriver driver) {
-		LOG.info ("Navigating to [{}]...", url);
+		LOG.info ("Navigating to {}...", url);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#beforeScript(java.
-	 * lang.String, org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void beforeScript (final String script, final WebDriver driver) {
-		final String message = "Executing script [{}]...";
+		final String message = "Executing script {}...";
 		LOG.trace (message, script);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.openqa.selenium.support.events.WebDriverEventListener#
-	 * beforeSwitchToWindow(java.lang.String, org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void beforeSwitchToWindow (final String windowName, final WebDriver driver) {
-		LOG.info ("Switching to window [{}]...", windowName);
+		LOG.info ("Switching to window {}...", windowName);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.openqa.selenium.support.events.WebDriverEventListener#onException(java.
-	 * lang.Throwable, org.openqa.selenium.WebDriver)
-	 */
 	@Override
 	public void onException (final Throwable throwable, final WebDriver driver) {
 		LOG.error ("Error occurred: {}", throwable.getMessage ());

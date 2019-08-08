@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017-2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -53,6 +53,7 @@ public class ScreenResolution {
 	/**
 	 * @author Wasiq Bhamla
 	 * @param height
+	 *     height
 	 * @since 28 Apr 2019
 	 */
 	public void setHeight (final int height) {
@@ -62,6 +63,7 @@ public class ScreenResolution {
 	/**
 	 * @author Wasiq Bhamla
 	 * @param width
+	 *     width
 	 * @since 28 Apr 2019
 	 */
 	public void setWidth (final int width) {

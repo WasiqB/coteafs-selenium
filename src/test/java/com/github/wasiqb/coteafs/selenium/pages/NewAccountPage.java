@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +32,7 @@ public class NewAccountPage extends EditCustomerPage {
 	 * @return account type
 	 */
 	public ISelectboxActions accountType () {
-		return onElement (By.name ("selaccount"));
+		return onDropdown (By.name ("selaccount"));
 	}
 
 	/**
@@ -41,15 +41,11 @@ public class NewAccountPage extends EditCustomerPage {
 	 * @return initial amount
 	 */
 	public ITextboxActions initialDeposit () {
-		return onElement (By.name ("inideposit"));
+		return onTextbox (By.name ("inideposit"));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.pages.EditCustomerPage#submit()
-	 */
 	@Override
 	public IMouseActions submit () {
-		return onElement (By.name ("button2"));
+		return onClickable (By.name ("button2"));
 	}
 }

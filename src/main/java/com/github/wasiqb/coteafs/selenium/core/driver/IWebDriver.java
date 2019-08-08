@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,6 +26,7 @@ public interface IWebDriver extends IDriver <EventFiringWebDriver> {
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
 	 * @param browser
+	 *     Browser under test
 	 */
 	void setBrowserUnderTest (String browser);
 }

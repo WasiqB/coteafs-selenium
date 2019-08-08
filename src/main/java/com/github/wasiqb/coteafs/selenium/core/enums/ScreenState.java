@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017-2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,5 +31,5 @@ public enum ScreenState {
 	/**
 	 * Normal.
 	 */
-	NORMAL;
+	NORMAL
 }

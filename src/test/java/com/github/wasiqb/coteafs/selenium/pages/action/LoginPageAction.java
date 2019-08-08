@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +15,8 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
+import static java.text.MessageFormat.format;
+
 import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.LoginPage;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
@@ -24,23 +26,28 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
  * @since Sep 1, 2018 8:09:35 PM
  */
 public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
-	/*
-	 * (non-Javadoc)
-	 * @see com.github.wasiqb.coteafs.selenium.core.BrowserPageAction#perform()
+	/**
+	 * Password key.
 	 */
+	public static final String	PASS	= "password";
+	/**
+	 * User Id key.
+	 */
+	public static final String	USER_ID	= "userId";
+
 	@Override
 	public void perform () {
 		final LoginPage login = new LoginPage ();
 		login.userId ()
-			.enterText (value ("UserId"));
+			.enterText (value (USER_ID));
 		login.password ()
-			.enterText (value ("Password"));
+			.enterText (value (PASS));
 		login.signIn ()
 			.click ();
 
 		final MainPage main = new MainPage ();
 		main.managerIdBanner ()
 			.verifyText ()
-			.endsWith ("Manger Id : " + value ("UserId"));
+			.endsWith (format ("Manger Id : {0}", value (USER_ID).toString ()));
 	}
 }

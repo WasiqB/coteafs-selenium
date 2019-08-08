@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,5 +25,18 @@ public interface IScreenAction {
 	 * @since 06-Jun-2019
 	 * @return screenshot
 	 */
-	byte [] saveScreenshot ();
+	byte [] attachScreenshot ();
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @since 25-Jul-2019
+	 */
+	void saveScreenshot ();
+
+	/**
+	 * @author Wasiq Bhamla
+	 * @param path
+	 * @since 25-Jul-2019
+	 */
+	void saveScreenshot (String path);
 }

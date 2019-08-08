@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 - 2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,8 @@
 package com.github.wasiqb.coteafs.selenium;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction.PASS;
+import static com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction.USER_ID;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -34,9 +36,8 @@ import com.github.wasiqb.coteafs.selenium.pages.action.NewCustomerPageAction;
  * @since Aug 15, 2018 8:07:59 PM
  */
 public class SeleniumTest extends BrowserTest {
-	private String		accountId;
-	private String		customerId;
-	private MainPage	main;
+	private String	accountId;
+	private String	customerId;
 
 	/**
 	 * @author Wasiq Bhamla
@@ -44,8 +45,8 @@ public class SeleniumTest extends BrowserTest {
 	 */
 	@BeforeClass
 	public void setupMethod () {
-		this.main = new MainPage ();
-		this.main.onDriver ()
+		final MainPage main = new MainPage ();
+		main.onDriver ()
 			.navigateTo (appSetting ().getUrl ());
 	}
 
@@ -114,9 +115,9 @@ public class SeleniumTest extends BrowserTest {
 	@Test
 	public void testSignIn () {
 		final LoginPageAction login = new LoginPageAction ();
-		login.addInputValue ("UserId", appSetting ().getParams ()
+		login.addInputValue (USER_ID, appSetting ().getParams ()
 			.get ("user"))
-			.addInputValue ("Password", appSetting ().getParams ()
+			.addInputValue (PASS, appSetting ().getParams ()
 				.get ("password"))
 			.perform ();
 	}

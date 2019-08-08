@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,29 +15,17 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.driver;
 
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebDriver;
 
 import com.google.common.truth.StringSubject;
 
 /**
  * @author Wasiq Bhamla
+ * @param <D>
  * @since 06-Jun-2019
  */
-public interface IDriverActions extends IScriptAction, IAlertAction, IScreenAction {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return wait.
-	 */
-	WebDriverWait driverWait ();
-
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return is driver closed.
-	 */
-	boolean isClosed ();
-
+public interface IDriverActions <D extends WebDriver>
+	extends IScriptAction, IAlertAction, IScreenAction, IWaitAction <D> {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019

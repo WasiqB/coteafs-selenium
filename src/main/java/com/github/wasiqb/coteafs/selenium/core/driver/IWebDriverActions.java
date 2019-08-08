@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,11 +15,15 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.driver;
 
+import org.openqa.selenium.WebDriver;
+
 /**
  * @author Wasiq Bhamla
  * @since 06-Jun-2019
+ * @param <D>
+ *     Driver
  */
-public interface IWebDriverActions extends IDriverActions, IWebWindow, IWebFrame {
+public interface IWebDriverActions <D extends WebDriver> extends IDriverActions <D> {
 	/**
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
@@ -42,6 +46,7 @@ public interface IWebDriverActions extends IDriverActions, IWebWindow, IWebFrame
 	 * @author Wasiq Bhamla
 	 * @since 06-Jun-2019
 	 * @param url
+	 *     URL
 	 */
 	void navigateTo (String url);
 
