@@ -7,6 +7,7 @@
 <h1 align="center">Selenium WebDriver wrapper Framework in Java, which supports Automation of most of the web browsers.</h1>
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)][home]
+[![Gitter](https://badges.gitter.im/WasiqB/coteafs-selenium.svg)](https://gitter.im/WasiqB/coteafs-selenium?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![CircleCI](https://circleci.com/gh/WasiqB/coteafs-selenium.svg?style=svg)][circleci]
 [![Test Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.github.wasiqb.coteafs%3Aselenium&metric=coverage)][coverage]
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.github.wasiqb.coteafs%3Aselenium&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.wasiqb.coteafs%3Aselenium)
@@ -23,34 +24,61 @@
 
 ## :question: What is this Framework about?
 
-This is a Selenium WebDriver wrapper Framework which enables robust, maintainable and easy to write test scripting. _**It supports latest Selenium WebDriver 4.0 (Alpha)**_ and is ready for main Selenium upgrade.
+This is a Selenium WebDriver wrapper Framework which enables robust, maintainable and easy to write test scripts. _**It supports latest Selenium WebDriver 4.0 (Alpha)**_ and is ready for main Selenium upgrade.
 
 ## :bulb: What features does this framework offer?
 
-Nobody uses anything without knowing what it offers. Some of the key features which this framework offers are as follows:
+Some of the key features which this framework offers are as follows:
 
-- Latest Selenium WebDriver 4.0 (Alpha 2).
-- Supports Chrome, Safari, Firefox, IE and Edge
-- Supports execution on BrowserStack and Selenium Grid.
-- On-demand highlighting of Elements.
-- On-demand delay of test execution by allowing predefined delays.
-- On-demand headless mode.
-- Supports all major test frameworks like TestNG, JUnit, Cucumber, etc.
-- Supports logging of events to Log file.
-- Extensible framework which allows extending the framework as required.
-- Parallel execution of tests on different browsers.
-- Inline verification of elements.
+:point_right: Latest Selenium WebDriver 4.0 (Alpha 2).
+
+:point_right: Minimal learning curve.
+
+:point_right: Supports Chrome, Safari, Firefox, IE and Edge
+
+:point_right: Supports execution on BrowserStack and Selenium Grid.
+
+:point_right: On-demand highlighting of Elements.
+
+:point_right: On-demand delay of test execution by allowing predefined delays.
+
+:point_right: On-demand headless mode.
+
+:point_right: Inline verification of elements.
+
+:point_right: Supports logging of events to Log file.
+
+:point_right: Supports all major test frameworks like TestNG, JUnit, Cucumber, etc.
+
+:point_right: Parallel execution of tests on different browsers.
+
+:point_right: Extensible framework which allows extending the framework as required.
+
+## :pushpin: Usage?
+
+You can use the following dependency into your `pom.xml` to use this library.
+
+```xml
+<dependency>
+  <groupId>com.github.wasiqb.coteafs</groupId>
+  <artifactId>selenium</artifactId>
+  <version>3.0.0</version>
+</dependency>
+```
+
+Or you can add the following into your `build.gradle` file.
+
+ ```gradle
+ compile "com.github.wasiqb.coteafs:selenium:3.0.0"
+ ```
 
 ## :smile: How it is easy to write Tests with this Framework?
 
-Writing tests involves the following steps:
+Getting hands-on with this framework requires minimal time. You can start writing tests in following 4 simple steps.
 
-1. :wrench: Config file
-1. :page_facing_up: Page object
-1. :runner: Page Action
-1. :ballot_box_with_check: Tests
-
-### :wrench: Config file.
+<details>
+  <summary><strong>1. :wrench: Create Config file</strong></summary>
+  <br/>
 
 Config file is by default searched in `src/test/resources` folder. The name of the config file is by default considered as `selenium-config.yaml`. But the same can be overridden by using System property `coteafs.selenium.config` where you can specify the new config file for the test.
 
@@ -114,7 +142,11 @@ playback:   # Playback settings.
 
 > **Note:** If you find any config not working, feel free to raise an [issue][].
 
-### :page_facing_up: Page objects
+</details>
+
+<details>
+  <summary><strong>2. :page_facing_up: Create Page object class</strong></summary>
+  <br/>
 
 Checkout the following examples which will guide you in writing tests. Lets have a look at the Login page of Guru99 demo site.
 
@@ -150,7 +182,11 @@ public class LoginPage extends BrowserPage {
 }
 ```
 
-### :runner: Page Action
+</details>
+
+<details>
+  <summary><strong>3. :runner: Create Page Action class</strong></summary>
+  <br/>
 
 This is a new concept, here you can define actions specific to each page. This approach abstracts out the page action flows and helps in modularising the classes. So whenever the flow of the page changes, you need to change only at single place.
 
@@ -190,7 +226,11 @@ public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
 }
 ```
 
-### :white_check_mark: Tests
+</details>
+
+<details>
+  <summary><strong>4. :ballot_box_with_check: Write Test class</strong></summary>
+  <br/>
 
 Test which are written using this framework are slightly different than usual. In the tests, Page actions is used instead of page objects. This can be demonstrated as shown below:
 
@@ -232,26 +272,11 @@ public class SeleniumTest extends BrowserTest {
 }
 ```
 
-## :pushpin: Usage?
-
-You can use the following dependency into your `pom.xml` to use this library.
-
-```xml
-<dependency>
-  <groupId>com.github.wasiqb.coteafs</groupId>
-  <artifactId>selenium</artifactId>
-  <version>3.0.0</version>
-</dependency>
-```
-
-Or you can add the following into your `build.gradle` file.
-
- ```gradle
- compile "com.github.wasiqb.coteafs:selenium:3.0.0"
- ```
+</details>
 
 ## :question: Need Assistance?
 
+- You can chat with us on our [Gitter][gitter] room.
 - Directly chat with me on my [site][] and I'll revert to you as soon as possible.
 - Discuss your queries by writing to me @ [wasbhamla2005@gmail.com][mail]
 - If you find any issue which is bottleneck for you, [search the issue tracker][tracker] to see if it is already raised.
@@ -270,12 +295,6 @@ Or you can add the following into your `build.gradle` file.
 <p align="left">
   <a href="http://browserstack.com">
     <img src="assets/browserstack-logo.png" width=300 />
-  </a>
-</p>
-
-<p align="left">
-  <a href="https://saucelabs.com">
-    <img src="assets/SauceLabs-logo.png" width=300 />
   </a>
 </p>
 
@@ -319,6 +338,7 @@ For allowing us to run our unit tests on different cloud platforms.
   </a>
 </p>
 
+[gitter]: https://gitter.im/WasiqB/coteafs-selenium
 [home]: https://github.com/wasiqb/coteafs-selenium
 [circleci]: https://circleci.com/gh/WasiqB/coteafs-selenium
 [coverage]: https://sonarcloud.io/component_measures?id=com.github.wasiqb.coteafs%3Aselenium&metric=Coverage
