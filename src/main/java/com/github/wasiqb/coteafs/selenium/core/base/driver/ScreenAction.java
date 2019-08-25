@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
+import com.github.wasiqb.coteafs.selenium.core.driver.IScreenAction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -31,41 +33,38 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
-import com.github.wasiqb.coteafs.selenium.core.driver.IScreenAction;
-
 /**
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  * @param <D>
  */
 public class ScreenAction <D extends WebDriver> extends ScriptAction <D> implements IScreenAction {
-	private static final Logger LOG = LogManager.getLogger (AbstractDriverAction.class);
+	private static final Logger LOG = LogManager.getLogger (ScreenAction.class);
 
 	ScreenAction (final D driver) {
 		super (driver);
 	}
 
 	@Override
-	public byte [] attachScreenshot () {
+    public byte[] attachScreenshot () {
 		return get (d -> ((RemoteWebDriver) d).getScreenshotAs (OutputType.BYTES));
 	}
 
 	@Override
-	public void saveScreenshot () {
+    public void saveScreenshot () {
 		final ScreenshotSetting setting = appSetting ().getPlayback ()
-			.getScreenshot ();
+            .getScreenshot ();
 		final String path = setting.getPath ();
 		final String prefix = setting.getPrefix ();
 		final SimpleDateFormat date = new SimpleDateFormat ("yyyyMMdd-HHmmss");
 		final String timeStamp = date.format (Calendar.getInstance ()
-			.getTime ());
+            .getTime ());
 		final String fileName = "%s/%s-%s.%s";
 		saveScreenshot (format (fileName, path, prefix, timeStamp, "jpeg"));
 	}
 
 	@Override
-	public void saveScreenshot (final String path) {
+    public void saveScreenshot (final String path) {
 		final String msg = "Capturing screenshot and saving at [{}]...";
 		LOG.info (msg, path);
 		try {

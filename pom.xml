@@ -30,7 +30,7 @@
 		<coteafs.error.version>1.7.0</coteafs.error.version>
 		<coteafs.logger.version>1.8.0</coteafs.logger.version>
 		<coteafs.listener.version>1.2.0</coteafs.listener.version>
-		<selenium-version>4.0.0-alpha-2</selenium-version>
+		<selenium-version>3.141.59</selenium-version>
 		<commons.io.version>2.6</commons.io.version>
 		<webdrivermanager-version>3.6.2</webdrivermanager-version>
 		<faker.version>1.0.0</faker.version>

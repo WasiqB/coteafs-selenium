@@ -21,10 +21,9 @@ import static java.time.Duration.ofSeconds;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import com.github.wasiqb.coteafs.selenium.core.driver.IWaitAction;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.github.wasiqb.coteafs.selenium.core.driver.IWaitAction;
 
 /**
  * @author Wasiq Bhamla
@@ -39,7 +38,8 @@ public class BaseDriverAction <D extends WebDriver> implements IWaitAction <D> {
 		this.driver = driver;
 		this.wait = new WebDriverWait (driver, ofSeconds (appSetting ().getPlayback ()
 			.getDelays ()
-			.getExplicit ()));
+			.getExplicit ())
+			.getSeconds ());
 	}
 
 	@Override
