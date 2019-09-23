@@ -26,14 +26,12 @@ import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public class WebElementAction
-	extends AbstractElementAction <WebElement, EventFiringWebDriver, BrowserActions> {
+class WebElementAction extends AbstractElementAction <WebElement, EventFiringWebDriver, BrowserActions> {
 	WebElementAction (final BrowserActions browserAction, final By by) {
 		super (browserAction, by);
 	}
 
-	WebElementAction (final BrowserActions browserAction, final By by,
-		final WaitStrategy strategy) {
+	WebElementAction (final BrowserActions browserAction, final By by, final WaitStrategy strategy) {
 		super (browserAction, by, strategy);
 	}
 
@@ -41,8 +39,7 @@ public class WebElementAction
 		super (browserAction, element);
 	}
 
-	WebElementAction (final BrowserActions browserAction, final WebElement element,
-		final WaitStrategy strategy) {
+	WebElementAction (final BrowserActions browserAction, final WebElement element, final WaitStrategy strategy) {
 		super (browserAction, element, strategy);
 	}
 }
