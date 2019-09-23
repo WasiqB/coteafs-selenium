@@ -18,15 +18,15 @@ package com.github.wasiqb.coteafs.selenium.core.base.element;
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IVerifyElement;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 import com.google.common.truth.BooleanSubject;
 import com.google.common.truth.StringSubject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 /**
  * @author Wasiq Bhamla
@@ -35,46 +35,46 @@ import com.google.common.truth.StringSubject;
  * @param <D>
  * @param <B>
  */
-public class VerifyElement <E extends WebElement, D extends WebDriver, B extends IDriverActions <D>>
-	extends ElementAction <E, D, B> implements IVerifyElement {
-	VerifyElement (final B browserAction, final By by) {
-		super (browserAction, by);
-	}
+public class VerifyElement<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
+    extends ElementAction<E, D, B> implements IVerifyElement {
+    VerifyElement (final B browserAction, final By by) {
+        super (browserAction, by);
+    }
 
-	VerifyElement (final B browserAction, final By by, final WaitStrategy strategy) {
-		super (browserAction, by, strategy);
-	}
+    VerifyElement (final B browserAction, final By by, final WaitStrategy strategy) {
+        super (browserAction, by, strategy);
+    }
 
-	VerifyElement (final B browserAction, final E element) {
-		super (browserAction, element);
-	}
+    VerifyElement (final B browserAction, final E element) {
+        super (browserAction, element);
+    }
 
-	VerifyElement (final B browserAction, final E element, final WaitStrategy strategy) {
-		super (browserAction, element, strategy);
-	}
+    VerifyElement (final B browserAction, final E element, final WaitStrategy strategy) {
+        super (browserAction, element, strategy);
+    }
 
-	@Override
-	public StringSubject verifyAttribute (final String attribute) {
-		return assertThat (attribute (attribute));
-	}
+    @Override
+    public StringSubject verifyAttribute (final String attribute) {
+        return assertThat (attribute (attribute));
+    }
 
-	@Override
-	public BooleanSubject verifyDisplayed () {
-		return assertWithMessage ("Is Displayed?").that (isDisplayed ());
-	}
+    @Override
+    public BooleanSubject verifyDisplayed () {
+        return assertWithMessage ("Is Displayed?").that (isDisplayed ());
+    }
 
-	@Override
-	public BooleanSubject verifyEnabled () {
-		return assertWithMessage ("Is Enabled?").that (isEnabled ());
-	}
+    @Override
+    public BooleanSubject verifyEnabled () {
+        return assertWithMessage ("Is Enabled?").that (isEnabled ());
+    }
 
-	@Override
-	public BooleanSubject verifySelected () {
-		return assertWithMessage ("Is Selected?").that (isSelected ());
-	}
+    @Override
+    public BooleanSubject verifySelected () {
+        return assertWithMessage ("Is Selected?").that (isSelected ());
+    }
 
-	@Override
-	public StringSubject verifyText () {
-		return assertThat (text ());
-	}
+    @Override
+    public StringSubject verifyText () {
+        return assertThat (text ());
+    }
 }

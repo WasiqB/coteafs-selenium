@@ -24,25 +24,25 @@ import java.util.Map;
  * @since Sep 1, 2018 4:28:28 PM
  */
 @SuppressWarnings ("unchecked")
-public abstract class AbstractPageAction <T extends AbstractPageAction <T>> implements IPageAction {
-	private final Map <String, Object> values;
+public abstract class AbstractPageAction<T extends AbstractPageAction<T>> implements IPageAction {
+    private final Map<String, Object> values;
 
-	/**
-	 * @author wasiqb
-	 * @since Sep 1, 2018 8:04:10 PM
-	 */
-	public AbstractPageAction () {
-		this.values = new HashMap <> ();
-	}
+    /**
+     * @author wasiqb
+     * @since Sep 1, 2018 8:04:10 PM
+     */
+    public AbstractPageAction () {
+        this.values = new HashMap<> ();
+    }
 
-	@Override
-	public T addInputValue (final String element, final Object value) {
-		this.values.put (element, value);
-		return (T) this;
-	}
+    @Override
+    public T addInputValue (final String element, final Object value) {
+        this.values.put (element, value);
+        return (T) this;
+    }
 
-	@Override
-	public <E> E value (final String element) {
-		return (E) this.values.get (element);
-	}
+    @Override
+    public <E> E value (final String element) {
+        return (E) this.values.get (element);
+    }
 }

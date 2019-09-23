@@ -17,29 +17,28 @@ package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import org.openqa.selenium.WebDriver;
-
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.google.common.truth.StringSubject;
+
+import org.openqa.selenium.WebDriver;
 
 /**
  * @author Wasiq Bhamla
  * @since 26-Jul-2019
  * @param <D>
  */
-public class AbstractDriverAction <D extends WebDriver> extends AlertAction <D>
-	implements IDriverActions <D> {
-	AbstractDriverAction (final D driver) {
-		super (driver);
-	}
+public class AbstractDriverAction<D extends WebDriver> extends AlertAction<D> implements IDriverActions<D> {
+    AbstractDriverAction (final D driver) {
+        super (driver);
+    }
 
-	@Override
-	public String title () {
-		return get (WebDriver::getTitle);
-	}
+    @Override
+    public String title () {
+        return get (WebDriver::getTitle);
+    }
 
-	@Override
-	public StringSubject verifyTitle () {
-		return assertThat (title ());
-	}
+    @Override
+    public StringSubject verifyTitle () {
+        return assertThat (title ());
+    }
 }

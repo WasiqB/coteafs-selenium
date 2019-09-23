@@ -15,35 +15,35 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages;
 
-import org.openqa.selenium.By;
-
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
+
+import org.openqa.selenium.By;
 
 /**
  * @author wasiqb
  * @since Apr 8, 2019 8:21:28 PM
  */
 public class SuccessAccountPage extends SuccessPage {
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 8:31:20 PM
-	 * @return account id
-	 */
-	public IMouseActions accountId () {
-		return cell (3);
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 8:31:20 PM
+     * @return account id
+     */
+    public IMouseActions accountId () {
+        return cell (3);
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 8:34:58 PM
-	 * @return customer id
-	 */
-	public IMouseActions customerId () {
-		return cell (4);
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 8:34:58 PM
+     * @return customer id
+     */
+    public IMouseActions customerId () {
+        return cell (4);
+    }
 
-	@Override
-	protected IMouseActions successTable () {
-		return onClickable (By.id ("account"));
-	}
+    @Override
+    protected IMouseActions successTable () {
+        return onClickable (By.id ("account"));
+    }
 }

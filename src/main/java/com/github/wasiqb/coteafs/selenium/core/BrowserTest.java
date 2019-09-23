@@ -34,50 +34,47 @@ import org.testng.annotations.Parameters;
  * @since Sep 13, 2018 9:54:10 PM
  */
 public class BrowserTest {
-	private Browser browser;
+    private Browser browser;
 
-	/**
-	 * @author wasiqb
-	 * @since Sep 13, 2018 9:55:41 PM
-	 * @param browserName
-	 *     Browser name
-	 * @param configFile
-	 */
-	@Parameters ({ BROWSER, CONFIG })
-	@BeforeTest (alwaysRun = true)
-	public void setupTest (@Optional final String browserName, @Optional final String configFile) {
-		if (isNotEmpty (configFile)) {
-			setProperty (COTEAFS_CONFIG_KEY, configFile);
-		}
-		this.browser = new Browser ();
-		this.browser.setBrowserUnderTest (browserName);
-		this.browser.start ();
-	}
+    /**
+     * @author wasiqb
+     * @since Sep 13, 2018 9:55:41 PM
+     * @param browserName Browser name
+     * @param configFile
+     */
+    @Parameters ({ BROWSER, CONFIG })
+    @BeforeTest (alwaysRun = true)
+    public void setupTest (@Optional final String browserName, @Optional final String configFile) {
+        if (isNotEmpty (configFile)) {
+            setProperty (COTEAFS_CONFIG_KEY, configFile);
+        }
+        this.browser = new Browser ();
+        this.browser.setBrowserUnderTest (browserName);
+        this.browser.start ();
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Mar 21, 2019 6:46:47 PM
-	 * @param result
-	 *     test result
-	 */
-	@AfterMethod (alwaysRun = true)
-	public void teardownMethod (final ITestResult result) {
-		final boolean screenshotOnError = appSetting ().getPlayback ()
-			.getScreenshot ()
-			.isCaptureOnError ();
-		if (screenshotOnError && result.getStatus () == ITestResult.FAILURE
-			&& !this.browser.isRunning ()) {
-			this.browser.perform ()
-				.attachScreenshot ();
-		}
-	}
+    /**
+     * @author wasiqb
+     * @since Mar 21, 2019 6:46:47 PM
+     * @param result test result
+     */
+    @AfterMethod (alwaysRun = true)
+    public void teardownMethod (final ITestResult result) {
+        final boolean screenshotOnError = appSetting ().getPlayback ()
+            .getScreenshot ()
+            .isCaptureOnError ();
+        if (screenshotOnError && result.getStatus () == ITestResult.FAILURE && !this.browser.isRunning ()) {
+            this.browser.perform ()
+                .attachScreenshot ();
+        }
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Sep 13, 2018 9:57:12 PM
-	 */
-	@AfterTest (alwaysRun = true)
-	public void teardownTest () {
-		this.browser.stop ();
-	}
+    /**
+     * @author wasiqb
+     * @since Sep 13, 2018 9:57:12 PM
+     */
+    @AfterTest (alwaysRun = true)
+    public void teardownTest () {
+        this.browser.stop ();
+    }
 }

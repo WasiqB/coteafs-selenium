@@ -15,14 +15,14 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.element;
 
+import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
+import com.github.wasiqb.coteafs.selenium.core.element.IKeyboardActions;
+import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
-import com.github.wasiqb.coteafs.selenium.core.element.IKeyboardActions;
-import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 
 /**
  * @author Wasiq Bhamla
@@ -31,26 +31,26 @@ import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
  * @param <D>
  * @param <B>
  */
-public abstract class KeyboardAction <E extends WebElement, D extends WebDriver,
-	B extends IDriverActions <D>> extends VerifyElement <E, D, B> implements IKeyboardActions {
-	KeyboardAction (final B browserAction, final By by) {
-		super (browserAction, by);
-	}
+public abstract class KeyboardAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
+    extends VerifyElement<E, D, B> implements IKeyboardActions {
+    KeyboardAction (final B browserAction, final By by) {
+        super (browserAction, by);
+    }
 
-	KeyboardAction (final B browserAction, final By by, final WaitStrategy strategy) {
-		super (browserAction, by, strategy);
-	}
+    KeyboardAction (final B browserAction, final By by, final WaitStrategy strategy) {
+        super (browserAction, by, strategy);
+    }
 
-	KeyboardAction (final B browserAction, final E element) {
-		super (browserAction, element);
-	}
+    KeyboardAction (final B browserAction, final E element) {
+        super (browserAction, element);
+    }
 
-	KeyboardAction (final B browserAction, final E element, final WaitStrategy strategy) {
-		super (browserAction, element, strategy);
-	}
+    KeyboardAction (final B browserAction, final E element, final WaitStrategy strategy) {
+        super (browserAction, element, strategy);
+    }
 
-	@Override
-	public void pressKey (final Keys... keys) {
-		perform (e -> e.sendKeys (keys));
-	}
+    @Override
+    public void pressKey (final Keys... keys) {
+        perform (e -> e.sendKeys (keys));
+    }
 }

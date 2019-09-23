@@ -1,0 +1,12 @@
+log:
+   configurations: true
+   data_provider: true
+   execution: true
+   suites: true
+   tests: true
+recover:
+   enable: true
+   logging: true
+   max_retry: 1
+   on_exceptions:
+      - java.io.FileNotFoundException

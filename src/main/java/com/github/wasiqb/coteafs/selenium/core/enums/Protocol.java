@@ -20,27 +20,27 @@ package com.github.wasiqb.coteafs.selenium.core.enums;
  * @since 01-Aug-2019
  */
 public enum Protocol {
-	/**
-	 * http
-	 */
-	HTTP ("http://"),
-	/**
-	 * https
-	 */
-	HTTPS ("https://");
+    /**
+     * http
+     */
+    HTTP ("http://"),
+    /**
+     * https
+     */
+    HTTPS ("https://");
 
-	private final String prefix;
+    private final String prefix;
 
-	Protocol (final String prefix) {
-		this.prefix = prefix;
-	}
+    Protocol (final String prefix) {
+        this.prefix = prefix;
+    }
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 01-Aug-2019
-	 * @return prefix
-	 */
-	public String getPrefix () {
-		return this.prefix;
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @since 01-Aug-2019
+     * @return prefix
+     */
+    public String getPrefix () {
+        return this.prefix;
+    }
 }

@@ -19,9 +19,6 @@ import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction.PASS;
 import static com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction.USER_ID;
 
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-
 import com.github.wasiqb.coteafs.selenium.core.BrowserTest;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.DeleteAccountPageAction;
@@ -31,94 +28,97 @@ import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.NewAccountPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.NewCustomerPageAction;
 
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 /**
  * @author Wasiq Bhamla
  * @since Aug 15, 2018 8:07:59 PM
  */
 public class SeleniumTest extends BrowserTest {
-	private String	accountId;
-	private String	customerId;
+    private String accountId;
+    private String customerId;
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 19, 2018 4:30:34 PM
-	 */
-	@BeforeClass
-	public void setupMethod () {
-		final MainPage main = new MainPage ();
-		main.onDriver ()
-			.navigateTo (appSetting ().getUrl ());
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @since Aug 19, 2018 4:30:34 PM
+     */
+    @BeforeClass
+    public void setupMethod () {
+        final MainPage main = new MainPage ();
+        main.onDriver ()
+            .navigateTo (appSetting ().getUrl ());
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 10:34:29 PM
-	 */
-	@Test
-	public void testDeleteAccount () {
-		final DeleteAccountPageAction acc = new DeleteAccountPageAction ();
-		acc.addInputValue ("AccountId", this.accountId)
-			.perform ();
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 10:34:29 PM
+     */
+    @Test
+    public void testDeleteAccount () {
+        final DeleteAccountPageAction acc = new DeleteAccountPageAction ();
+        acc.addInputValue ("AccountId", this.accountId)
+            .perform ();
+    }
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 29-Apr-2019
-	 */
-	@Test
-	public void testDeleteCustomer () {
-		final DeleteCustomerPageAction acc = new DeleteCustomerPageAction ();
-		acc.addInputValue ("CustomerId", this.customerId)
-			.perform ();
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @since 29-Apr-2019
+     */
+    @Test
+    public void testDeleteCustomer () {
+        final DeleteCustomerPageAction acc = new DeleteCustomerPageAction ();
+        acc.addInputValue ("CustomerId", this.customerId)
+            .perform ();
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 12:00:15 PM
-	 */
-	@Test
-	public void testEditCustomer () {
-		final EditCustomerPageAction cust = new EditCustomerPageAction ();
-		cust.addInputValue ("CustomerId", this.customerId)
-			.perform ();
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 12:00:15 PM
+     */
+    @Test
+    public void testEditCustomer () {
+        final EditCustomerPageAction cust = new EditCustomerPageAction ();
+        cust.addInputValue ("CustomerId", this.customerId)
+            .perform ();
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 10:06:01 PM
-	 */
-	@Test
-	public void testNewAccount () {
-		final NewAccountPageAction acc = new NewAccountPageAction ();
-		acc.addInputValue ("CustomerId", this.customerId)
-			.perform ();
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 10:06:01 PM
+     */
+    @Test
+    public void testNewAccount () {
+        final NewAccountPageAction acc = new NewAccountPageAction ();
+        acc.addInputValue ("CustomerId", this.customerId)
+            .perform ();
 
-		this.accountId = acc.accountId ();
-	}
+        this.accountId = acc.accountId ();
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 10:52:16 AM
-	 */
-	@Test
-	public void testNewCustomer () {
-		final NewCustomerPageAction cust = new NewCustomerPageAction ();
-		cust.perform ();
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 10:52:16 AM
+     */
+    @Test
+    public void testNewCustomer () {
+        final NewCustomerPageAction cust = new NewCustomerPageAction ();
+        cust.perform ();
 
-		this.customerId = cust.customerId ();
-	}
+        this.customerId = cust.customerId ();
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Aug 31, 2018 9:15:42 PM
-	 */
-	@Test
-	public void testSignIn () {
-		final LoginPageAction login = new LoginPageAction ();
-		login.addInputValue (USER_ID, appSetting ().getParams ()
-			.get ("user"))
-			.addInputValue (PASS, appSetting ().getParams ()
-				.get ("password"))
-			.perform ();
-	}
+    /**
+     * @author wasiqb
+     * @since Aug 31, 2018 9:15:42 PM
+     */
+    @Test
+    public void testSignIn () {
+        final LoginPageAction login = new LoginPageAction ();
+        login.addInputValue (USER_ID, appSetting ().getParams ()
+            .get ("user"))
+            .addInputValue (PASS, appSetting ().getParams ()
+                .get ("password"))
+            .perform ();
+    }
 }

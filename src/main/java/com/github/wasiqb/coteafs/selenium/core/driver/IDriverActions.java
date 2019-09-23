@@ -15,28 +15,28 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.driver;
 
-import org.openqa.selenium.WebDriver;
-
 import com.google.common.truth.StringSubject;
+
+import org.openqa.selenium.WebDriver;
 
 /**
  * @author Wasiq Bhamla
  * @param <D>
  * @since 06-Jun-2019
  */
-public interface IDriverActions <D extends WebDriver>
-	extends IScriptAction, IAlertAction, IScreenAction, IWaitAction <D> {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return title
-	 */
-	String title ();
+public interface IDriverActions<D extends WebDriver>
+    extends IScriptAction, IAlertAction, IScreenAction, IWaitAction<D> {
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
+     * @return title
+     */
+    String title ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 08-Jun-2019
-	 * @return string subject
-	 */
-	StringSubject verifyTitle ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
+     * @return string subject
+     */
+    StringSubject verifyTitle ();
 }

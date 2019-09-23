@@ -15,35 +15,35 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages;
 
-import org.openqa.selenium.By;
-
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
+
+import org.openqa.selenium.By;
 
 /**
  * @author wasiqb
  * @since Apr 7, 2019 10:46:56 PM
  */
 public class SuccessCustomerPage extends SuccessPage {
-	/**
-	 * @author wasiqb
-	 * @since Apr 7, 2019 10:38:33 PM
-	 * @return customer id
-	 */
-	public IMouseActions customerId () {
-		return successTable ().find (By.cssSelector ("tbody > tr:nth-child(4) > td:last-child"));
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 7, 2019 10:38:33 PM
+     * @return customer id
+     */
+    public IMouseActions customerId () {
+        return successTable ().find (By.cssSelector ("tbody > tr:nth-child(4) > td:last-child"));
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 7, 2019 10:47:54 PM
-	 * @return customer name
-	 */
-	public IMouseActions customerName () {
-		return successTable ().find (By.cssSelector ("tbody > tr:nth-child(5) > td:last-child"));
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 7, 2019 10:47:54 PM
+     * @return customer name
+     */
+    public IMouseActions customerName () {
+        return successTable ().find (By.cssSelector ("tbody > tr:nth-child(5) > td:last-child"));
+    }
 
-	@Override
-	protected IMouseActions successTable () {
-		return onClickable (By.id ("customer"));
-	}
+    @Override
+    protected IMouseActions successTable () {
+        return onClickable (By.id ("customer"));
+    }
 }

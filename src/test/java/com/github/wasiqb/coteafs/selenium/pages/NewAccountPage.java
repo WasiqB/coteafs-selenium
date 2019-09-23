@@ -15,37 +15,37 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages;
 
-import org.openqa.selenium.By;
-
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
+
+import org.openqa.selenium.By;
 
 /**
  * @author wasiqb
  * @since Apr 8, 2019 12:03:03 PM
  */
 public class NewAccountPage extends EditCustomerPage {
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 12:05:04 PM
-	 * @return account type
-	 */
-	public ISelectboxActions accountType () {
-		return onDropdown (By.name ("selaccount"));
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 12:05:04 PM
+     * @return account type
+     */
+    public ISelectboxActions accountType () {
+        return onDropdown (By.name ("selaccount"));
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 12:06:07 PM
-	 * @return initial amount
-	 */
-	public ITextboxActions initialDeposit () {
-		return onTextbox (By.name ("inideposit"));
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 12:06:07 PM
+     * @return initial amount
+     */
+    public ITextboxActions initialDeposit () {
+        return onTextbox (By.name ("inideposit"));
+    }
 
-	@Override
-	public IMouseActions submit () {
-		return onClickable (By.name ("button2"));
-	}
+    @Override
+    public IMouseActions submit () {
+        return onClickable (By.name ("button2"));
+    }
 }

@@ -20,20 +20,20 @@ package com.github.wasiqb.coteafs.selenium.constants;
  * @since Aug 9, 2018 8:24:45 PM
  */
 public interface ConfigKeys {
-	/**
-	 * Browser key.
-	 */
-	String	BROWSER						= "test.browser";
-	/**
-	 * Config file key.
-	 */
-	String	CONFIG						= "test.config";
-	/**
-	 * Selenium default config key.
-	 */
-	String	COTEAFS_CONFIG_DEFAULT_FILE	= "/selenium-config.yaml";
-	/**
-	 * Selenium config key.
-	 */
-	String	COTEAFS_CONFIG_KEY			= "coteafs.selenium.config";
+    /**
+     * Browser key.
+     */
+    String BROWSER                     = "test.browser";
+    /**
+     * Config file key.
+     */
+    String CONFIG                      = "test.config";
+    /**
+     * Selenium default config key.
+     */
+    String COTEAFS_CONFIG_DEFAULT_FILE = "/selenium-config.yaml";
+    /**
+     * Selenium config key.
+     */
+    String COTEAFS_CONFIG_KEY          = "coteafs.selenium.config";
 }

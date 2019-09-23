@@ -20,22 +20,22 @@ package com.github.wasiqb.coteafs.selenium.core.driver;
  * @since 03-Jul-2019
  */
 public interface IServiceAction {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 24-Jul-2019
-	 * @return is running
-	 */
-	boolean isRunning ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 24-Jul-2019
+     * @return is running
+     */
+    boolean isRunning ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 */
-	void start ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
+     */
+    void start ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 */
-	void stop ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
+     */
+    void stop ();
 }

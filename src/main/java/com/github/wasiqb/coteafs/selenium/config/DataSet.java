@@ -20,44 +20,42 @@ package com.github.wasiqb.coteafs.selenium.config;
  * @since Sep 10, 2018 5:48:30 PM
  */
 public class DataSet {
-	private String	name;
-	private Object	value;
+    private String name;
+    private Object value;
 
-	/**
-	 * @author wasiqb
-	 * @since Sep 10, 2018 5:48:55 PM
-	 * @return the name
-	 */
-	public String getName () {
-		return this.name;
-	}
+    /**
+     * @author wasiqb
+     * @since Sep 10, 2018 5:48:55 PM
+     * @return the name
+     */
+    public String getName () {
+        return this.name;
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Sep 10, 2018 5:48:55 PM
-	 * @return the value
-	 */
-	public Object getValue () {
-		return this.value;
-	}
+    /**
+     * @author wasiqb
+     * @since Sep 10, 2018 5:48:55 PM
+     * @return the value
+     */
+    public Object getValue () {
+        return this.value;
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Sep 10, 2018 5:48:55 PM
-	 * @param name
-	 *     the name to set
-	 */
-	public void setName (final String name) {
-		this.name = name;
-	}
+    /**
+     * @author wasiqb
+     * @since Sep 10, 2018 5:48:55 PM
+     * @param name the name to set
+     */
+    public void setName (final String name) {
+        this.name = name;
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Sep 10, 2018 5:48:55 PM
-	 * @param value
-	 *     the value to set
-	 */
-	public void setValue (final Object value) {
-		this.value = value;
-	}
+    /**
+     * @author wasiqb
+     * @since Sep 10, 2018 5:48:55 PM
+     * @param value the value to set
+     */
+    public void setValue (final Object value) {
+        this.value = value;
+    }
 }

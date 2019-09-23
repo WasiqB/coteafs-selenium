@@ -21,6 +21,14 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 import java.util.function.Consumer;
 
+import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
+import com.github.wasiqb.coteafs.selenium.config.PlaybackSetting;
+import com.github.wasiqb.coteafs.selenium.config.ScreenResolution;
+import com.github.wasiqb.coteafs.selenium.constants.OS;
+import com.github.wasiqb.coteafs.selenium.core.driver.IDriver;
+import com.github.wasiqb.coteafs.selenium.core.enums.Platform;
+import com.github.wasiqb.coteafs.selenium.core.enums.ScreenState;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
@@ -30,93 +38,81 @@ import org.openqa.selenium.WebDriver.Timeouts;
 import org.openqa.selenium.WebDriver.Window;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
-import com.github.wasiqb.coteafs.selenium.config.PlaybackSetting;
-import com.github.wasiqb.coteafs.selenium.config.ScreenResolution;
-import com.github.wasiqb.coteafs.selenium.constants.OS;
-import com.github.wasiqb.coteafs.selenium.core.driver.IDriver;
-import com.github.wasiqb.coteafs.selenium.core.enums.Platform;
-import com.github.wasiqb.coteafs.selenium.core.enums.ScreenState;
-
 /**
  * @author Wasiq Bhamla
  * @param <D>
  * @since 26-Jul-2019
  */
 @SuppressWarnings ("unchecked")
-public abstract class AbstractDriver <D extends WebDriver> extends PlatformAction
-	implements IDriver <D> {
-	private static final ThreadLocal <Object>	driverThread	= new ThreadLocal <> ();
-	private static final Logger					LOG				= LogManager
-		.getLogger (AbstractDriver.class);
+public abstract class AbstractDriver<D extends WebDriver> extends PlatformAction implements IDriver<D> {
+    private static final ThreadLocal<Object> driverThread = new ThreadLocal<> ();
+    private static final Logger              LOG          = LogManager.getLogger (AbstractDriver.class);
 
-	/**
-	 * @param platform
-	 *     target platform
-	 * @author Wasiq Bhamla
-	 * @since 26-Jul-2019
-	 */
-	protected AbstractDriver (final Platform platform) {
-		super (platform, OS.platform ());
-	}
+    /**
+     * @param platform target platform
+     * @author Wasiq Bhamla
+     * @since 26-Jul-2019
+     */
+    protected AbstractDriver (final Platform platform) {
+        super (platform, OS.platform ());
+    }
 
-	@Override
-	public D getDriver () {
-		return (D) driverThread.get ();
-	}
+    @Override
+    public D getDriver () {
+        return (D) driverThread.get ();
+    }
 
-	@Override
-	public boolean isRunning () {
-		return ((RemoteWebDriver) getDriver ()).getSessionId () != null;
-	}
+    @Override
+    public boolean isRunning () {
+        return ((RemoteWebDriver) getDriver ()).getSessionId () != null;
+    }
 
-	protected void driver (final D driver) {
-		driverThread.set (driver);
-	}
+    protected void driver (final D driver) {
+        driverThread.set (driver);
+    }
 
-	protected void setupDriverOptions () {
-		final PlaybackSetting playback = appSetting ().getPlayback ();
-		final DelaySetting delays = playback.getDelays ();
-		manageTimeouts (t -> t.pageLoadTimeout (delays.getPageLoad (), SECONDS));
-		manageTimeouts (t -> t.setScriptTimeout (delays.getScriptLoad (), SECONDS));
-		manageTimeouts (t -> t.implicitlyWait (delays.getImplicit (), SECONDS));
-		manageOptions (Options::deleteAllCookies);
-		setScreenSize (playback);
-	}
+    protected void setupDriverOptions () {
+        final PlaybackSetting playback = appSetting ().getPlayback ();
+        final DelaySetting delays = playback.getDelays ();
+        manageTimeouts (t -> t.pageLoadTimeout (delays.getPageLoad (), SECONDS));
+        manageTimeouts (t -> t.setScriptTimeout (delays.getScriptLoad (), SECONDS));
+        manageTimeouts (t -> t.implicitlyWait (delays.getImplicit (), SECONDS));
+        manageOptions (Options::deleteAllCookies);
+        setScreenSize (playback);
+    }
 
-	private void manageOptions (final Consumer <Options> options) {
-		options.accept (getDriver ().manage ());
-	}
+    private void manageOptions (final Consumer<Options> options) {
+        options.accept (getDriver ().manage ());
+    }
 
-	private void manageTimeouts (final Consumer <Timeouts> timeouts) {
-		timeouts.accept (getDriver ().manage ()
-			.timeouts ());
-	}
+    private void manageTimeouts (final Consumer<Timeouts> timeouts) {
+        timeouts.accept (getDriver ().manage ()
+            .timeouts ());
+    }
 
-	private void manageWindow (final Consumer <Window> window) {
-		window.accept (getDriver ().manage ()
-			.window ());
-	}
+    private void manageWindow (final Consumer<Window> window) {
+        window.accept (getDriver ().manage ()
+            .window ());
+    }
 
-	private void setScreenSize (final PlaybackSetting playback) {
-		final ScreenState state = playback.getScreenState ();
-		if (getPlatform () == DESKTOP) {
-			LOG.info ("Setting screen size of Browser to {}...", state);
-			switch (state) {
-				case FULL_SCREEN:
-					manageWindow (Window::fullscreen);
-					break;
-				case MAXIMIZED:
-					manageWindow (Window::maximize);
-					break;
-				case NORMAL:
-				default:
-					final ScreenResolution resolution = playback.getScreenResolution ();
-					LOG.info ("Setting screen resolution to [{}]...", resolution);
-					manageWindow (w -> w
-						.setSize (new Dimension (resolution.getWidth (), resolution.getHeight ())));
-					break;
-			}
-		}
-	}
+    private void setScreenSize (final PlaybackSetting playback) {
+        final ScreenState state = playback.getScreenState ();
+        if (getPlatform () == DESKTOP) {
+            LOG.info ("Setting screen size of Browser to {}...", state);
+            switch (state) {
+                case FULL_SCREEN:
+                    manageWindow (Window::fullscreen);
+                    break;
+                case MAXIMIZED:
+                    manageWindow (Window::maximize);
+                    break;
+                case NORMAL:
+                default:
+                    final ScreenResolution resolution = playback.getScreenResolution ();
+                    LOG.info ("Setting screen resolution to [{}]...", resolution);
+                    manageWindow (w -> w.setSize (new Dimension (resolution.getWidth (), resolution.getHeight ())));
+                    break;
+            }
+        }
+    }
 }

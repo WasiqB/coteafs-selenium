@@ -17,43 +17,42 @@ package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import com.github.wasiqb.coteafs.selenium.core.driver.IAlertAction;
 import com.github.wasiqb.coteafs.selenium.core.enums.AlertDecision;
 import com.google.common.truth.StringSubject;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  * @param <D>
  */
-public class AlertAction <D extends WebDriver> extends ScreenAction <D> implements IAlertAction {
-	AlertAction (final D driver) {
-		super (driver);
-	}
+public class AlertAction<D extends WebDriver> extends ScreenAction<D> implements IAlertAction {
+    AlertAction (final D driver) {
+        super (driver);
+    }
 
-	@Override
-	public String alert (final AlertDecision decision) {
-		final Alert alert = driverWait ().until (ExpectedConditions.alertIsPresent ());
-		String message = null;
-		if (alert != null) {
-			message = alert.getText ();
-			if (decision == AlertDecision.ACCEPT) {
-				alert.accept ();
-			}
-			else {
-				alert.dismiss ();
-			}
-		}
-		return message;
-	}
+    @Override
+    public String alert (final AlertDecision decision) {
+        final Alert alert = driverWait ().until (ExpectedConditions.alertIsPresent ());
+        String message = null;
+        if (alert != null) {
+            message = alert.getText ();
+            if (decision == AlertDecision.ACCEPT) {
+                alert.accept ();
+            } else {
+                alert.dismiss ();
+            }
+        }
+        return message;
+    }
 
-	@Override
-	public StringSubject verifyAlertMessage (final AlertDecision decision) {
-		final String actual = alert (decision);
-		return assertThat (actual);
-	}
+    @Override
+    public StringSubject verifyAlertMessage (final AlertDecision decision) {
+        final String actual = alert (decision);
+        return assertThat (actual);
+    }
 }

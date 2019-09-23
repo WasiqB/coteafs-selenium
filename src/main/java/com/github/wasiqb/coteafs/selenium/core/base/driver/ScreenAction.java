@@ -26,6 +26,7 @@ import java.util.Calendar;
 
 import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
 import com.github.wasiqb.coteafs.selenium.core.driver.IScreenAction;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -38,42 +39,41 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * @since 27-Jul-2019
  * @param <D>
  */
-public class ScreenAction <D extends WebDriver> extends ScriptAction <D> implements IScreenAction {
-	private static final Logger LOG = LogManager.getLogger (ScreenAction.class);
+public class ScreenAction<D extends WebDriver> extends ScriptAction<D> implements IScreenAction {
+    private static final Logger LOG = LogManager.getLogger (ScreenAction.class);
 
-	ScreenAction (final D driver) {
-		super (driver);
-	}
+    ScreenAction (final D driver) {
+        super (driver);
+    }
 
-	@Override
-    public byte[] attachScreenshot () {
-		return get (d -> ((RemoteWebDriver) d).getScreenshotAs (OutputType.BYTES));
-	}
+    @Override
+    public byte [] attachScreenshot () {
+        return get (d -> ((RemoteWebDriver) d).getScreenshotAs (OutputType.BYTES));
+    }
 
-	@Override
+    @Override
     public void saveScreenshot () {
-		final ScreenshotSetting setting = appSetting ().getPlayback ()
+        final ScreenshotSetting setting = appSetting ().getPlayback ()
             .getScreenshot ();
-		final String path = setting.getPath ();
-		final String prefix = setting.getPrefix ();
-		final SimpleDateFormat date = new SimpleDateFormat ("yyyyMMdd-HHmmss");
-		final String timeStamp = date.format (Calendar.getInstance ()
+        final String path = setting.getPath ();
+        final String prefix = setting.getPrefix ();
+        final SimpleDateFormat date = new SimpleDateFormat ("yyyyMMdd-HHmmss");
+        final String timeStamp = date.format (Calendar.getInstance ()
             .getTime ());
-		final String fileName = "%s/%s-%s.%s";
-		saveScreenshot (format (fileName, path, prefix, timeStamp, "jpeg"));
-	}
+        final String fileName = "%s/%s-%s.%s";
+        saveScreenshot (format (fileName, path, prefix, timeStamp, "jpeg"));
+    }
 
-	@Override
+    @Override
     public void saveScreenshot (final String path) {
-		final String msg = "Capturing screenshot and saving at [{}]...";
-		LOG.info (msg, path);
-		try {
-			final File srcFiler = ((TakesScreenshot) this.driver).getScreenshotAs (OutputType.FILE);
-			copyFile (srcFiler, new File (path));
-		}
-		catch (final IOException e) {
-			LOG.error ("Error while saving screenshot.", e);
-			LOG.catching (e);
-		}
-	}
+        final String msg = "Capturing screenshot and saving at [{}]...";
+        LOG.info (msg, path);
+        try {
+            final File srcFiler = ((TakesScreenshot) this.driver).getScreenshotAs (OutputType.FILE);
+            copyFile (srcFiler, new File (path));
+        } catch (final IOException e) {
+            LOG.error ("Error while saving screenshot.", e);
+            LOG.catching (e);
+        }
+    }
 }
