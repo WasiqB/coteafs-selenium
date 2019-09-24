@@ -40,7 +40,7 @@
 	</test>
 	<test name="Test Grid">
 		<parameter name="test.browser" value="REMOTE" />
-		<parameter name="test.config" value="/selenium-grid-config.yaml" />
+		<parameter name="test.config" value="./src/test/resources/selenium-grid-config.yaml" />
 		<classes>
 			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
 				<methods>
@@ -51,7 +51,7 @@
 	</test>
 	<test name="Test BrowserStack">
 		<parameter name="test.browser" value="REMOTE" />
-		<parameter name="test.config" value="/selenium-bs-config.yaml" />
+		<parameter name="test.config" value="./src/test/resources/selenium-bs-config.yaml" />
 		<classes>
 			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
 				<methods>
