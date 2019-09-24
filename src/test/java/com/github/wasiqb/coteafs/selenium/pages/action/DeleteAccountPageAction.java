@@ -23,24 +23,24 @@ import com.github.wasiqb.coteafs.selenium.pages.EditAccountPage;
  * @author wasiqb
  * @since Apr 8, 2019 10:26:00 PM
  */
-public class DeleteAccountPageAction extends AbstractPageAction <DeleteAccountPageAction> {
-	@Override
-	public void perform () {
-		final EditAccountPage acc = new EditAccountPage ();
-		acc.navbar ("Delete Account")
-			.click ();
+public class DeleteAccountPageAction extends AbstractPageAction<DeleteAccountPageAction> {
+    @Override
+    public void perform () {
+        final EditAccountPage acc = new EditAccountPage ();
+        acc.navbar ("Delete Account")
+            .click ();
 
-		acc.accountId ()
-			.enterText (value ("AccountId"));
-		acc.submit ()
-			.click ();
+        acc.accountId ()
+            .enterText (value ("AccountId"));
+        acc.submit ()
+            .click ();
 
-		acc.onDriver ()
-			.verifyAlertMessage (AlertDecision.ACCEPT)
-			.isEqualTo ("Do you really want to delete this Account?");
+        acc.onDriver ()
+            .verifyAlertMessage (AlertDecision.ACCEPT)
+            .isEqualTo ("Do you really want to delete this Account?");
 
-		acc.onDriver ()
-			.verifyAlertMessage (AlertDecision.ACCEPT)
-			.isEqualTo ("Account Deleted Sucessfully");
-	}
+        acc.onDriver ()
+            .verifyAlertMessage (AlertDecision.ACCEPT)
+            .isEqualTo ("Account Deleted Sucessfully");
+    }
 }

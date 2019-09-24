@@ -20,24 +20,24 @@ package com.github.wasiqb.coteafs.selenium.core.enums;
  * @since 06-Jun-2019
  */
 public enum Platform {
-	/**
-	 * Desktop.
-	 */
-	DESKTOP,
-	/**
-	 * Mobiles.
-	 */
-	MOBILE,
-	/**
-	 * Tablets.
-	 */
-	TABLET,
-	/**
-	 * Smart TV.
-	 */
-	TV,
-	/**
-	 * Smart watch.
-	 */
-	WATCH
+    /**
+     * Desktop.
+     */
+    DESKTOP,
+    /**
+     * Mobiles.
+     */
+    MOBILE,
+    /**
+     * Tablets.
+     */
+    TABLET,
+    /**
+     * Smart TV.
+     */
+    TV,
+    /**
+     * Smart watch.
+     */
+    WATCH
 }

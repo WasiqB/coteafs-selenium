@@ -26,72 +26,72 @@ import com.github.wasiqb.coteafs.selenium.pages.SuccessCustomerPage;
  * @author wasiqb
  * @since Apr 7, 2019 10:51:02 PM
  */
-public class NewCustomerPageAction extends AbstractPageAction <NewCustomerPageAction> {
-	private String id;
+public class NewCustomerPageAction extends AbstractPageAction<NewCustomerPageAction> {
+    private String id;
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 11:37:44 AM
-	 * @return id
-	 */
-	public String customerId () {
-		return this.id;
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 11:37:44 AM
+     * @return id
+     */
+    public String customerId () {
+        return this.id;
+    }
 
-	@Override
-	public void perform () {
-		final Faker fake = Faker.instance ();
-		final NewCustomerPage cust = new NewCustomerPage ();
-		cust.navbar ("New Customer")
-			.click ();
-		final String name = fake.name ()
-			.firstName ();
-		cust.customerName ()
-			.enterText (name);
-		cust.gender (fake.demographic ()
-			.sex ()
-			.charAt (0));
-		final SimpleDateFormat df = new SimpleDateFormat ("dd-MM-yyyy");
-		final String [] dates = df.format (fake.date ()
-			.birthday (15, 50))
-			.split ("-");
-		for (final String date : dates) {
-			cust.dob ()
-				.enterText (date);
-		}
+    @Override
+    public void perform () {
+        final Faker fake = Faker.instance ();
+        final NewCustomerPage cust = new NewCustomerPage ();
+        cust.navbar ("New Customer")
+            .click ();
+        final String name = fake.name ()
+            .firstName ();
+        cust.customerName ()
+            .enterText (name);
+        cust.gender (fake.demographic ()
+            .sex ()
+            .charAt (0));
+        final SimpleDateFormat df = new SimpleDateFormat ("dd-MM-yyyy");
+        final String [] dates = df.format (fake.date ()
+            .birthday (15, 50))
+            .split ("-");
+        for (final String date : dates) {
+            cust.dob ()
+                .enterText (date);
+        }
 
-		cust.address ()
-			.enterText (fake.address ()
-				.streetAddress ());
-		cust.city ()
-			.enterText (fake.address ()
-				.city ());
-		cust.state ()
-			.enterText (fake.address ()
-				.state ());
-		cust.pin ()
-			.enterText (fake.number ()
-				.digits (6));
-		cust.mobileNumber ()
-			.enterText (fake.number ()
-				.digits (10));
-		cust.email ()
-			.enterText (fake.internet ()
-				.emailAddress ());
-		cust.password ()
-			.enterText (fake.code ()
-				.imei ());
-		cust.submit ()
-			.click ();
+        cust.address ()
+            .enterText (fake.address ()
+                .streetAddress ());
+        cust.city ()
+            .enterText (fake.address ()
+                .city ());
+        cust.state ()
+            .enterText (fake.address ()
+                .state ());
+        cust.pin ()
+            .enterText (fake.number ()
+                .digits (6));
+        cust.mobileNumber ()
+            .enterText (fake.number ()
+                .digits (10));
+        cust.email ()
+            .enterText (fake.internet ()
+                .emailAddress ());
+        cust.password ()
+            .enterText (fake.code ()
+                .imei ());
+        cust.submit ()
+            .click ();
 
-		final SuccessCustomerPage success = new SuccessCustomerPage ();
-		success.message ()
-			.verifyText ()
-			.isEqualTo ("Customer Registered Successfully!!!");
-		success.customerName ()
-			.verifyText ()
-			.isEqualTo (name);
-		this.id = success.customerId ()
-			.text ();
-	}
+        final SuccessCustomerPage success = new SuccessCustomerPage ();
+        success.message ()
+            .verifyText ()
+            .isEqualTo ("Customer Registered Successfully!!!");
+        success.customerName ()
+            .verifyText ()
+            .isEqualTo (name);
+        this.id = success.customerId ()
+            .text ();
+    }
 }

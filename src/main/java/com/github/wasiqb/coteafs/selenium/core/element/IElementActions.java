@@ -20,46 +20,45 @@ package com.github.wasiqb.coteafs.selenium.core.element;
  * @since 07-Jun-2019
  */
 public interface IElementActions extends IWaitStrategy {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @param name
-	 *     attribute name
-	 * @return attribute
-	 */
-	String attribute (String name);
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     * @param name attribute name
+     * @return attribute
+     */
+    String attribute (String name);
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 */
-	void clear ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     */
+    void clear ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @return is displayed
-	 */
-	boolean isDisplayed ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     * @return is displayed
+     */
+    boolean isDisplayed ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @return is enabled
-	 */
-	boolean isEnabled ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     * @return is enabled
+     */
+    boolean isEnabled ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @return is selected
-	 */
-	boolean isSelected ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     * @return is selected
+     */
+    boolean isSelected ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @return text
-	 */
-	String text ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     * @return text
+     */
+    String text ();
 }

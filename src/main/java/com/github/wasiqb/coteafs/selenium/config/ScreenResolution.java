@@ -20,58 +20,56 @@ package com.github.wasiqb.coteafs.selenium.config;
  * @since 28 Apr 2019
  */
 public class ScreenResolution {
-	private int	height;
-	private int	width;
+    private int height;
+    private int width;
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 28 Apr 2019
-	 */
-	public ScreenResolution () {
-		this.width = 1280;
-		this.height = 768;
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @since 28 Apr 2019
+     */
+    public ScreenResolution () {
+        this.width = 1280;
+        this.height = 768;
+    }
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @return height
-	 * @since 28 Apr 2019
-	 */
-	public int getHeight () {
-		return this.height;
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @return height
+     * @since 28 Apr 2019
+     */
+    public int getHeight () {
+        return this.height;
+    }
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @return width
-	 * @since 28 Apr 2019
-	 */
-	public int getWidth () {
-		return this.width;
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @return width
+     * @since 28 Apr 2019
+     */
+    public int getWidth () {
+        return this.width;
+    }
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @param height
-	 *     height
-	 * @since 28 Apr 2019
-	 */
-	public void setHeight (final int height) {
-		this.height = height;
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @param height height
+     * @since 28 Apr 2019
+     */
+    public void setHeight (final int height) {
+        this.height = height;
+    }
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @param width
-	 *     width
-	 * @since 28 Apr 2019
-	 */
-	public void setWidth (final int width) {
-		this.width = width;
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @param width width
+     * @since 28 Apr 2019
+     */
+    public void setWidth (final int width) {
+        this.width = width;
+    }
 
-	@Override
-	public String toString () {
-		return String.format ("ScreenResolution{height=%d, width=%d}", this.height, this.width);
-	}
+    @Override
+    public String toString () {
+        return String.format ("ScreenResolution{height=%d, width=%d}", this.height, this.width);
+    }
 }

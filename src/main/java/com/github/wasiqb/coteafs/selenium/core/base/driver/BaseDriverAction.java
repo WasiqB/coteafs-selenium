@@ -22,6 +22,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 import com.github.wasiqb.coteafs.selenium.core.driver.IWaitAction;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -30,33 +31,32 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @since 27-Jul-2019
  * @param <D>
  */
-public class BaseDriverAction <D extends WebDriver> implements IWaitAction <D> {
-	protected D					driver;
-	private final WebDriverWait	wait;
+public class BaseDriverAction<D extends WebDriver> implements IWaitAction<D> {
+    protected D                 driver;
+    private final WebDriverWait wait;
 
-	BaseDriverAction (final D driver) {
-		this.driver = driver;
-		this.wait = new WebDriverWait (driver, ofSeconds (appSetting ().getPlayback ()
-			.getDelays ()
-			.getExplicit ())
-			.getSeconds ());
-	}
+    BaseDriverAction (final D driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait (driver, ofSeconds (appSetting ().getPlayback ()
+            .getDelays ()
+            .getExplicit ()).getSeconds ());
+    }
 
-	@Override
-	public D driver () {
-		return this.driver;
-	}
+    @Override
+    public D driver () {
+        return this.driver;
+    }
 
-	@Override
-	public WebDriverWait driverWait () {
-		return this.wait;
-	}
+    @Override
+    public WebDriverWait driverWait () {
+        return this.wait;
+    }
 
-	protected <E> E get (final Function <D, E> func) {
-		return func.apply (this.driver);
-	}
+    protected <E> E get (final Function<D, E> func) {
+        return func.apply (this.driver);
+    }
 
-	protected void perform (final Consumer <D> action) {
-		action.accept (this.driver);
-	}
+    protected void perform (final Consumer<D> action) {
+        action.accept (this.driver);
+    }
 }

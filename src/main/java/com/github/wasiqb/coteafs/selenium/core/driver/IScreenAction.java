@@ -20,23 +20,23 @@ package com.github.wasiqb.coteafs.selenium.core.driver;
  * @since 03-Jul-2019
  */
 public interface IScreenAction {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return screenshot
-	 */
-	byte [] attachScreenshot ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
+     * @return screenshot
+     */
+    byte [] attachScreenshot ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 25-Jul-2019
-	 */
-	void saveScreenshot ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 25-Jul-2019
+     */
+    void saveScreenshot ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @param path
-	 * @since 25-Jul-2019
-	 */
-	void saveScreenshot (String path);
+    /**
+     * @author Wasiq Bhamla
+     * @param path
+     * @since 25-Jul-2019
+     */
+    void saveScreenshot (String path);
 }

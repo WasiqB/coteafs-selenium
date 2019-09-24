@@ -20,12 +20,12 @@ package com.github.wasiqb.coteafs.selenium.core.enums;
  * @since 06-Jun-2019
  */
 public enum AlertDecision {
-	/**
-	 * Accept alert.
-	 */
-	ACCEPT,
-	/**
-	 * Dismiss alert.
-	 */
-	DISMISS
+    /**
+     * Accept alert.
+     */
+    ACCEPT,
+    /**
+     * Dismiss alert.
+     */
+    DISMISS
 }

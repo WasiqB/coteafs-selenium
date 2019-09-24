@@ -20,16 +20,16 @@ package com.github.wasiqb.coteafs.selenium.core.enums;
  * @since Apr 8, 2018 2:46:38 PM
  */
 public enum ScreenState {
-	/**
-	 * Full screen.
-	 */
-	FULL_SCREEN,
-	/**
-	 * Maximized.
-	 */
-	MAXIMIZED,
-	/**
-	 * Normal.
-	 */
-	NORMAL
+    /**
+     * Full screen.
+     */
+    FULL_SCREEN,
+    /**
+     * Maximized.
+     */
+    MAXIMIZED,
+    /**
+     * Normal.
+     */
+    NORMAL
 }

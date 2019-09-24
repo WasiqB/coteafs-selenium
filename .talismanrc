@@ -14,3 +14,12 @@ fileignoreconfig:
 - filename: README.md
   checksum: 74c3a77b9495fed2bb3a07ce4987a4e1c3b770424fae8db5c8e67d7676d7c493
   ignore_detectors: []
+- filename: src/main/java/com/github/wasiqb/coteafs/selenium/config/RemoteSetting.java
+  checksum: 2f4a2cf1585bfd180da2683ce0942eecd0de56c9b0fe2bf0cbb0303110c5c3eb
+  ignore_detectors: []
+- filename: src/main/java/com/github/wasiqb/coteafs/selenium/core/Browser.java
+  checksum: 2e8af12fd8145fe506ddf9ea103bf50d8df95021aae044b71596b90e7b1d1aeb
+  ignore_detectors: []
+- filename: src/test/java/com/github/wasiqb/coteafs/selenium/pages/action/LoginPageAction.java
+  checksum: 786578aeddda9290a9a5eb3428ea4390351f87e2d0eafca1058923288a81f871
+  ignore_detectors: []

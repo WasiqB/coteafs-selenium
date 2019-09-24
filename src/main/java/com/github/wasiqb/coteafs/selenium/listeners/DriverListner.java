@@ -28,152 +28,152 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
  * @since Apr 28, 2019
  */
 public class DriverListner implements WebDriverEventListener {
-	private static final Logger LOG = LogManager.getLogger (DriverListner.class);
+    private static final Logger LOG = LogManager.getLogger (DriverListner.class);
 
-	@Override
-	public void afterAlertAccept (final WebDriver driver) {
-		LOG.trace ("Alert dialog accepted...");
-	}
+    @Override
+    public void afterAlertAccept (final WebDriver driver) {
+        LOG.trace ("Alert dialog accepted...");
+    }
 
-	@Override
-	public void afterAlertDismiss (final WebDriver driver) {
-		LOG.trace ("Alert dialog dismissed...");
-	}
+    @Override
+    public void afterAlertDismiss (final WebDriver driver) {
+        LOG.trace ("Alert dialog dismissed...");
+    }
 
-	@Override
-	public void afterChangeValueOf (final WebElement element, final WebDriver driver,
-		final CharSequence [] keysToSend) {
-		if (keysToSend != null) {
-			final String message = "Text {} has been entered...";
-			LOG.trace (message, (Object) keysToSend);
-		}
-	}
+    @Override
+    public void afterChangeValueOf (final WebElement element, final WebDriver driver,
+        final CharSequence [] keysToSend) {
+        if (keysToSend != null) {
+            final String message = "Text {} has been entered...";
+            LOG.trace (message, (Object) keysToSend);
+        }
+    }
 
-	@Override
-	public void afterClickOn (final WebElement element, final WebDriver driver) {
-		LOG.trace ("Clicked on element...");
-	}
+    @Override
+    public void afterClickOn (final WebElement element, final WebDriver driver) {
+        LOG.trace ("Clicked on element...");
+    }
 
-	@Override
-	public void afterFindBy (final By by, final WebElement element, final WebDriver driver) {
-		LOG.trace ("Element found using {}...", by);
-	}
+    @Override
+    public void afterFindBy (final By by, final WebElement element, final WebDriver driver) {
+        LOG.trace ("Element found using {}...", by);
+    }
 
-	@Override
-	public <X> void afterGetScreenshotAs (final OutputType <X> target, final X screenshot) {
-		LOG.trace ("Taken screenshot successfully...");
-	}
+    @Override
+    public <X> void afterGetScreenshotAs (final OutputType<X> target, final X screenshot) {
+        LOG.trace ("Taken screenshot successfully...");
+    }
 
-	@Override
-	public void afterGetText (final WebElement element, final WebDriver driver, final String text) {
-		LOG.trace ("Got text {} from element...", text);
-	}
+    @Override
+    public void afterGetText (final WebElement element, final WebDriver driver, final String text) {
+        LOG.trace ("Got text {} from element...", text);
+    }
 
-	@Override
-	public void afterNavigateBack (final WebDriver driver) {
-		LOG.trace ("Navigated backward...");
-	}
+    @Override
+    public void afterNavigateBack (final WebDriver driver) {
+        LOG.trace ("Navigated backward...");
+    }
 
-	@Override
-	public void afterNavigateForward (final WebDriver driver) {
-		LOG.trace ("Navigated forward...");
-	}
+    @Override
+    public void afterNavigateForward (final WebDriver driver) {
+        LOG.trace ("Navigated forward...");
+    }
 
-	@Override
-	public void afterNavigateRefresh (final WebDriver driver) {
-		LOG.trace ("Page refreshed...");
-	}
+    @Override
+    public void afterNavigateRefresh (final WebDriver driver) {
+        LOG.trace ("Page refreshed...");
+    }
 
-	@Override
-	public void afterNavigateTo (final String url, final WebDriver driver) {
-		LOG.trace ("Navigated to url {}...", url);
-	}
+    @Override
+    public void afterNavigateTo (final String url, final WebDriver driver) {
+        LOG.trace ("Navigated to url {}...", url);
+    }
 
-	@Override
-	public void afterScript (final String script, final WebDriver driver) {
-		LOG.trace ("Script {} executed successfully...", script);
-	}
+    @Override
+    public void afterScript (final String script, final WebDriver driver) {
+        LOG.trace ("Script {} executed successfully...", script);
+    }
 
-	@Override
-	public void afterSwitchToWindow (final String windowName, final WebDriver driver) {
-		LOG.trace ("Window switched to {}...", windowName);
-	}
+    @Override
+    public void afterSwitchToWindow (final String windowName, final WebDriver driver) {
+        LOG.trace ("Window switched to {}...", windowName);
+    }
 
-	@Override
-	public void beforeAlertAccept (final WebDriver driver) {
-		LOG.info ("Accepting Alert pop-up...");
-	}
+    @Override
+    public void beforeAlertAccept (final WebDriver driver) {
+        LOG.info ("Accepting Alert pop-up...");
+    }
 
-	@Override
-	public void beforeAlertDismiss (final WebDriver driver) {
-		LOG.info ("Dismissing Alert pop-up...");
-	}
+    @Override
+    public void beforeAlertDismiss (final WebDriver driver) {
+        LOG.info ("Dismissing Alert pop-up...");
+    }
 
-	@Override
-	public void beforeChangeValueOf (final WebElement element, final WebDriver driver,
-		final CharSequence [] keysToSend) {
-		if (keysToSend != null) {
-			LOG.info ("Writing text {}...", (Object) keysToSend);
-		}
-	}
+    @Override
+    public void beforeChangeValueOf (final WebElement element, final WebDriver driver,
+        final CharSequence [] keysToSend) {
+        if (keysToSend != null) {
+            LOG.info ("Writing text {}...", (Object) keysToSend);
+        }
+    }
 
-	@Override
-	public void beforeClickOn (final WebElement element, final WebDriver driver) {
-		LOG.info ("Clicking on Element...");
-	}
+    @Override
+    public void beforeClickOn (final WebElement element, final WebDriver driver) {
+        LOG.info ("Clicking on Element...");
+    }
 
-	@Override
-	public void beforeFindBy (final By by, final WebElement element, final WebDriver driver) {
-		LOG.trace ("Finding element by {}", by);
-	}
+    @Override
+    public void beforeFindBy (final By by, final WebElement element, final WebDriver driver) {
+        LOG.trace ("Finding element by {}", by);
+    }
 
-	@Override
-	public <X> void beforeGetScreenshotAs (final OutputType <X> target) {
-		LOG.trace ("Taking screenshot...");
-	}
+    @Override
+    public <X> void beforeGetScreenshotAs (final OutputType<X> target) {
+        LOG.trace ("Taking screenshot...");
+    }
 
-	@Override
-	public void beforeGetText (final WebElement element, final WebDriver driver) {
-		LOG.trace ("Getting text from element...");
-	}
+    @Override
+    public void beforeGetText (final WebElement element, final WebDriver driver) {
+        LOG.trace ("Getting text from element...");
+    }
 
-	@Override
-	public void beforeNavigateBack (final WebDriver driver) {
-		LOG.info ("Navigating back...");
-	}
+    @Override
+    public void beforeNavigateBack (final WebDriver driver) {
+        LOG.info ("Navigating back...");
+    }
 
-	@Override
-	public void beforeNavigateForward (final WebDriver driver) {
-		LOG.info ("Navigating forward...");
-	}
+    @Override
+    public void beforeNavigateForward (final WebDriver driver) {
+        LOG.info ("Navigating forward...");
+    }
 
-	@Override
-	public void beforeNavigateRefresh (final WebDriver driver) {
-		LOG.info ("Refreshing the page...");
-	}
+    @Override
+    public void beforeNavigateRefresh (final WebDriver driver) {
+        LOG.info ("Refreshing the page...");
+    }
 
-	@Override
-	public void beforeNavigateTo (final String url, final WebDriver driver) {
-		LOG.info ("Navigating to {}...", url);
-	}
+    @Override
+    public void beforeNavigateTo (final String url, final WebDriver driver) {
+        LOG.info ("Navigating to {}...", url);
+    }
 
-	@Override
-	public void beforeScript (final String script, final WebDriver driver) {
-		final String message = "Executing script {}...";
-		LOG.trace (message, script);
-	}
+    @Override
+    public void beforeScript (final String script, final WebDriver driver) {
+        final String message = "Executing script {}...";
+        LOG.trace (message, script);
+    }
 
-	@Override
-	public void beforeSwitchToWindow (final String windowName, final WebDriver driver) {
-		LOG.info ("Switching to window {}...", windowName);
-	}
+    @Override
+    public void beforeSwitchToWindow (final String windowName, final WebDriver driver) {
+        LOG.info ("Switching to window {}...", windowName);
+    }
 
-	@Override
-	public void onException (final Throwable throwable, final WebDriver driver) {
-		LOG.error ("Error occurred: {}", throwable.getMessage ());
-		for (final StackTraceElement stack : throwable.getStackTrace ()) {
-			LOG.error ("\tat: {}", stack);
-		}
-		LOG.catching (throwable);
-	}
+    @Override
+    public void onException (final Throwable throwable, final WebDriver driver) {
+        LOG.error ("Error occurred: {}", throwable.getMessage ());
+        for (final StackTraceElement stack : throwable.getStackTrace ()) {
+            LOG.error ("\tat: {}", stack);
+        }
+        LOG.catching (throwable);
+    }
 }

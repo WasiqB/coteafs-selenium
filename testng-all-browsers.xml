@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
+	<listeners>
+		<listener class-name="com.github.wasiqb.coteafs.listeners.ConfigListener" />
+		<listener class-name="com.github.wasiqb.coteafs.listeners.SuiteListener" />
+		<listener class-name="com.github.wasiqb.coteafs.listeners.TestListener" />
+		<listener class-name="com.github.wasiqb.coteafs.listeners.ExecutionListener" />
+		<listener class-name="com.github.wasiqb.coteafs.listeners.DataProviderListener" />
+		<listener class-name="com.github.wasiqb.coteafs.listeners.AnnotationTransformer" />
+	</listeners>
 	<test name="Chrome Test" enabled="false">
 		<parameter name="test.browser" value="CHROME" />
 		<classes>

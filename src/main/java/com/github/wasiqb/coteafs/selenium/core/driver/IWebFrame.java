@@ -20,25 +20,23 @@ package com.github.wasiqb.coteafs.selenium.core.driver;
  * @since 06-Jul-2019
  */
 public interface IWebFrame {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jul-2019
-	 */
-	void switchFrame ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jul-2019
+     */
+    void switchFrame ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jul-2019
-	 * @param index
-	 *     frame index
-	 */
-	void switchFrame (int index);
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jul-2019
+     * @param index frame index
+     */
+    void switchFrame (int index);
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jul-2019
-	 * @param nameOrId
-	 *     frame name or id
-	 */
-	void switchFrame (String nameOrId);
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jul-2019
+     * @param nameOrId frame name or id
+     */
+    void switchFrame (String nameOrId);
 }

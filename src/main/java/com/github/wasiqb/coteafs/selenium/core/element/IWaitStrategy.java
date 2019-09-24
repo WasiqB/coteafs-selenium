@@ -20,31 +20,29 @@ package com.github.wasiqb.coteafs.selenium.core.element;
  * @since 07-Jun-2019
  */
 public interface IWaitStrategy {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @param attribute
-	 *     element attribute
-	 * @param value
-	 *     attribute value
-	 */
-	void waitUntilAttributeIs (final String attribute, final String value);
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     * @param attribute element attribute
+     * @param value attribute value
+     */
+    void waitUntilAttributeIs (final String attribute, final String value);
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 */
-	void waitUntilClickable ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     */
+    void waitUntilClickable ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 */
-	void waitUntilInvisible ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     */
+    void waitUntilInvisible ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 */
-	void waitUntilVisible ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     */
+    void waitUntilVisible ();
 }

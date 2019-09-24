@@ -20,6 +20,9 @@
 		<listener class-name="com.github.wasiqb.coteafs.listeners.ConfigListener" />
 		<listener class-name="com.github.wasiqb.coteafs.listeners.SuiteListener" />
 		<listener class-name="com.github.wasiqb.coteafs.listeners.TestListener" />
+		<listener class-name="com.github.wasiqb.coteafs.listeners.ExecutionListener" />
+		<listener class-name="com.github.wasiqb.coteafs.listeners.DataProviderListener" />
+		<listener class-name="com.github.wasiqb.coteafs.listeners.AnnotationTransformer" />
 	</listeners>
 	<test name="Test Local">
 		<classes>
@@ -37,7 +40,7 @@
 	</test>
 	<test name="Test Grid">
 		<parameter name="test.browser" value="REMOTE" />
-		<parameter name="test.config" value="/selenium-grid-config.yaml" />
+		<parameter name="test.config" value="./src/test/resources/selenium-grid-config.yaml" />
 		<classes>
 			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
 				<methods>
@@ -48,7 +51,7 @@
 	</test>
 	<test name="Test BrowserStack">
 		<parameter name="test.browser" value="REMOTE" />
-		<parameter name="test.config" value="/selenium-bs-config.yaml" />
+		<parameter name="test.config" value="./src/test/resources/selenium-bs-config.yaml" />
 		<classes>
 			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
 				<methods>

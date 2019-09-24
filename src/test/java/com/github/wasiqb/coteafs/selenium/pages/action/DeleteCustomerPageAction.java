@@ -23,24 +23,24 @@ import com.github.wasiqb.coteafs.selenium.pages.EditCustomerPage;
  * @author Wasiq Bhamla
  * @since 29-Apr-2019
  */
-public class DeleteCustomerPageAction extends AbstractPageAction <DeleteCustomerPageAction> {
-	@Override
-	public void perform () {
-		final EditCustomerPage edit = new EditCustomerPage ();
-		edit.navbar ("Delete Customer")
-			.click ();
+public class DeleteCustomerPageAction extends AbstractPageAction<DeleteCustomerPageAction> {
+    @Override
+    public void perform () {
+        final EditCustomerPage edit = new EditCustomerPage ();
+        edit.navbar ("Delete Customer")
+            .click ();
 
-		edit.customerId ()
-			.enterText (value ("CustomerId").toString ());
-		edit.submit ()
-			.click ();
+        edit.customerId ()
+            .enterText (value ("CustomerId").toString ());
+        edit.submit ()
+            .click ();
 
-		edit.onDriver ()
-			.verifyAlertMessage (AlertDecision.ACCEPT)
-			.isEqualTo ("Do you really want to delete this Customer?");
+        edit.onDriver ()
+            .verifyAlertMessage (AlertDecision.ACCEPT)
+            .isEqualTo ("Do you really want to delete this Customer?");
 
-		edit.onDriver ()
-			.verifyAlertMessage (AlertDecision.ACCEPT)
-			.isEqualTo ("Customer deleted Successfully");
-	}
+        edit.onDriver ()
+            .verifyAlertMessage (AlertDecision.ACCEPT)
+            .isEqualTo ("Customer deleted Successfully");
+    }
 }

@@ -17,66 +17,66 @@ package com.github.wasiqb.coteafs.selenium.core;
 
 import java.util.Set;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
-
 import com.github.wasiqb.coteafs.selenium.core.base.driver.WebDriverAction;
 import com.github.wasiqb.coteafs.selenium.core.driver.IWebFrame;
 import com.github.wasiqb.coteafs.selenium.core.driver.IWebWindow;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 /**
  * @author Wasiq Bhamla
  * @since Aug 18, 2018 4:41:56 PM
  */
-public class BrowserActions extends WebDriverAction <EventFiringWebDriver>
-	implements IWebFrame, IWebWindow {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 02-Jun-2019
-	 * @param driver
-	 *     driver
-	 */
-	BrowserActions (final EventFiringWebDriver driver) {
-		super (driver);
-	}
+public class BrowserActions extends WebDriverAction<EventFiringWebDriver> implements IWebFrame, IWebWindow {
+    /**
+     * @author Wasiq Bhamla
+     * @since 02-Jun-2019
+     * @param driver driver
+     */
+    BrowserActions (final EventFiringWebDriver driver) {
+        super (driver);
+    }
 
-	@Override
-	public void switchFrame () {
-		switchFrame (0);
-	}
+    @Override
+    public void switchFrame () {
+        switchFrame (0);
+    }
 
-	@Override
-	public void switchFrame (final int index) {
-		perform (d -> d.switchTo ()
-			.frame (index));
-	}
+    @Override
+    public void switchFrame (final int index) {
+        perform (d -> d.switchTo ()
+            .frame (index));
+    }
 
-	@Override
-	public void switchFrame (final String nameOrId) {
-		perform (d -> d.switchTo ()
-			.frame (nameOrId));
-	}
+    @Override
+    public void switchFrame (final String nameOrId) {
+        perform (d -> d.switchTo ()
+            .frame (nameOrId));
+    }
 
-	@Override
-	public void switchWindow () {
-		perform (d -> d.switchTo ()
-			.defaultContent ());
-	}
+    @Override
+    public void switchWindow () {
+        perform (d -> d.switchTo ()
+            .defaultContent ());
+    }
 
-	@Override
-	public void switchWindow (final String title) {
-		perform (d -> {
-			final String currentHandle = d.getWindowHandle ();
-			final Set <String> wins = d.getWindowHandles ();
-			for (final String win : wins) {
-				if (currentHandle.equals (win)) {
-					continue;
-				}
-				final WebDriver w = d.switchTo ()
-					.window (win);
-				if (w.getTitle ()
-					.contains (title)) return;
-			}
-		});
-	}
+    @Override
+    public void switchWindow (final String title) {
+        perform (d -> {
+            final String currentHandle = d.getWindowHandle ();
+            final Set<String> wins = d.getWindowHandles ();
+            for (final String win : wins) {
+                if (currentHandle.equals (win)) {
+                    continue;
+                }
+                final WebDriver w = d.switchTo ()
+                    .window (win);
+                if (w.getTitle ()
+                    .contains (title)) {
+                    return;
+                }
+            }
+        });
+    }
 }

@@ -15,11 +15,11 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
+import com.github.wasiqb.coteafs.selenium.core.driver.IScriptAction;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-
-import com.github.wasiqb.coteafs.selenium.core.driver.IScriptAction;
 
 /**
  * @author Wasiq Bhamla
@@ -27,18 +27,18 @@ import com.github.wasiqb.coteafs.selenium.core.driver.IScriptAction;
  * @param <D>
  */
 @SuppressWarnings ("unchecked")
-public class ScriptAction <D extends WebDriver> extends BaseDriverAction <D>
-	implements IScriptAction {
-	ScriptAction (final D driver) {
-		super (driver);
-	}
+public class ScriptAction<D extends WebDriver> extends BaseDriverAction<D> implements IScriptAction {
+    ScriptAction (final D driver) {
+        super (driver);
+    }
 
-	@Override
-	public <T> T execute (final String script, final Object... args) {
-		return (T) get (d -> {
-			if (d instanceof EventFiringWebDriver)
-				return ((EventFiringWebDriver) d).executeScript (script, args);
-			return ((RemoteWebDriver) d).executeScript (script, args);
-		});
-	}
+    @Override
+    public <T> T execute (final String script, final Object... args) {
+        return (T) get (d -> {
+            if (d instanceof EventFiringWebDriver) {
+                return ((EventFiringWebDriver) d).executeScript (script, args);
+            }
+            return ((RemoteWebDriver) d).executeScript (script, args);
+        });
+    }
 }

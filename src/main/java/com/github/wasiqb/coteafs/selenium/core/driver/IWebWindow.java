@@ -20,17 +20,16 @@ package com.github.wasiqb.coteafs.selenium.core.driver;
  * @since 16-Jun-2019
  */
 public interface IWebWindow {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 16-Jun-2019
-	 */
-	void switchWindow ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 16-Jun-2019
+     */
+    void switchWindow ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 16-Jun-2019
-	 * @param title
-	 *     window title
-	 */
-	void switchWindow (String title);
+    /**
+     * @author Wasiq Bhamla
+     * @since 16-Jun-2019
+     * @param title window title
+     */
+    void switchWindow (String title);
 }
