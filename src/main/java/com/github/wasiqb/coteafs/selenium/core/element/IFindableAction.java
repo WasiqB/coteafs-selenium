@@ -28,35 +28,43 @@ import org.openqa.selenium.By;
 public interface IFindableAction extends IKeyboardActions {
     /**
      * @author Wasiq Bhamla
+     * @param <E>
      * @since 27-Jul-2019
      * @param byLocator locator
+     * @param name
      * @return actions
      */
-    <E extends IMouseActions> E find (final By byLocator);
+    <E extends IMouseActions> E find (final By byLocator, final String name);
 
     /**
      * @author Wasiq Bhamla
+     * @param <E>
      * @since 27-Jul-2019
      * @param byLocator locator
+     * @param name
      * @param strategy wait strategy
      * @return list of actions
      */
-    <E extends IMouseActions> E find (final By byLocator, WaitStrategy strategy);
+    <E extends IMouseActions> E find (final By byLocator, final String name, WaitStrategy strategy);
 
     /**
      * @author Wasiq Bhamla
+     * @param <E>
      * @since 27-Jul-2019
      * @param byLocator locator
+     * @param name
      * @return list of actions
      */
-    <E extends IMouseActions> List<E> finds (final By byLocator);
+    <E extends IMouseActions> List<E> finds (final By byLocator, final String name);
 
     /**
      * @author Wasiq Bhamla
+     * @param <E>
      * @since 27-Jul-2019
      * @param byLocator locator
+     * @param name
      * @param strategy wait strategy
      * @return list of actions
      */
-    <E extends IMouseActions> List<E> finds (final By byLocator, WaitStrategy strategy);
+    <E extends IMouseActions> List<E> finds (final By byLocator, final String name, WaitStrategy strategy);
 }

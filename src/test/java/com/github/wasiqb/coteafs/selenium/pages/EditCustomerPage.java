@@ -31,7 +31,7 @@ public class EditCustomerPage extends MainPage {
      * @return customer id
      */
     public ITextboxActions customerId () {
-        return onTextbox (By.name ("cusid"));
+        return onTextbox (By.name ("cusid"), "Customer ID");
     }
 
     /**
@@ -40,6 +40,6 @@ public class EditCustomerPage extends MainPage {
      * @return submit
      */
     public IMouseActions submit () {
-        return onClickable (By.name ("AccSubmit"));
+        return onClickable (By.name ("AccSubmit"), "Submit");
     }
 }

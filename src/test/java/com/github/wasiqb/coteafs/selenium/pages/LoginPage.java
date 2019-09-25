@@ -32,7 +32,7 @@ public class LoginPage extends BrowserPage {
      * @return password
      */
     public ITextboxActions password () {
-        return form ().find (By.name ("password"));
+        return form ().find (By.name ("password"), "Password");
     }
 
     /**
@@ -41,7 +41,7 @@ public class LoginPage extends BrowserPage {
      * @return signIn button
      */
     public IMouseActions signIn () {
-        return form ().find (By.name ("btnLogin"));
+        return form ().find (By.name ("btnLogin"), "Login");
     }
 
     /**
@@ -50,10 +50,10 @@ public class LoginPage extends BrowserPage {
      * @return user id
      */
     public ITextboxActions userId () {
-        return form ().find (By.name ("uid"));
+        return form ().find (By.name ("uid"), "User ID");
     }
 
     private IMouseActions form () {
-        return onClickable (By.name ("frmLogin"));
+        return onClickable (By.name ("frmLogin"), "Form");
     }
 }

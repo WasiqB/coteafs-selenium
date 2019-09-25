@@ -15,6 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.element;
 
+import static com.github.wasiqb.coteafs.selenium.listeners.DriverListner.setAlias;
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 import static java.text.MessageFormat.format;
@@ -70,39 +71,41 @@ public class BaseElementAction<E extends WebElement, D extends WebDriver, B exte
     private By                  by;
     private final D             driver;
     private E                   element;
+    private final String        name;
     private WaitStrategy        strategy;
     private String              style;
     private boolean             useBy;
     private final WebDriverWait wait;
 
-    BaseElementAction (final B browserAction, final By by) {
-        this (browserAction);
+    BaseElementAction (final B browserAction, final By by, final String name) {
+        this (browserAction, name);
         this.by = by;
         this.useBy = true;
     }
 
-    BaseElementAction (final B browserAction, final By by, final WaitStrategy strategy) {
-        this (browserAction, by);
+    BaseElementAction (final B browserAction, final By by, final String name, final WaitStrategy strategy) {
+        this (browserAction, by, name);
         if (strategy != null) {
             this.strategy = strategy;
         }
     }
 
-    BaseElementAction (final B browserAction, final E element) {
-        this (browserAction);
+    BaseElementAction (final B browserAction, final E element, final String name) {
+        this (browserAction, name);
         this.element = element;
         this.useBy = false;
     }
 
-    BaseElementAction (final B browserAction, final E element, final WaitStrategy strategy) {
-        this (browserAction, element);
+    BaseElementAction (final B browserAction, final E element, final String name, final WaitStrategy strategy) {
+        this (browserAction, element, name);
         if (strategy != null) {
             this.strategy = strategy;
         }
     }
 
-    private BaseElementAction (final B browserAction) {
+    private BaseElementAction (final B browserAction, final String name) {
         this.browserAction = browserAction;
+        this.name = name;
         this.driver = browserAction.driver ();
         this.actions = new Actions (this.driver);
         this.wait = browserAction.driverWait ();
@@ -161,7 +164,7 @@ public class BaseElementAction<E extends WebElement, D extends WebDriver, B exte
 
     protected void waitForStrategy (final By locator, final WaitStrategy newStrategy) {
         final BaseElementAction<E, D,
-            B> elementAction = new BaseElementAction<> (this.browserAction, locator, newStrategy);
+            B> elementAction = new BaseElementAction<> (this.browserAction, locator, this.name, newStrategy);
         elementAction.waitForStrategy ();
     }
 
@@ -178,6 +181,7 @@ public class BaseElementAction<E extends WebElement, D extends WebDriver, B exte
         highlight (color);
         pause (this.delays.getHighlight ());
         unhighlight ();
+        setAlias (this.name);
     }
 
     private void unhighlight () {

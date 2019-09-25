@@ -42,23 +42,23 @@ public class BrowserPage implements IPage<EventFiringWebDriver, BrowserActions, 
     }
 
     @Override
-    public IMouseActions onClickable (final By locator) {
-        return new WebElementAction (onDriver (), locator);
+    public IMouseActions onClickable (final By locator, final String name) {
+        return new WebElementAction (onDriver (), locator, name);
     }
 
     @Override
-    public IMouseActions onClickable (final By locator, final WaitStrategy strategy) {
-        return new WebElementAction (onDriver (), locator, strategy);
+    public IMouseActions onClickable (final By locator, final String name, final WaitStrategy strategy) {
+        return new WebElementAction (onDriver (), locator, name, strategy);
     }
 
     @Override
-    public IMouseActions onClickable (final WebElement element) {
-        return new WebElementAction (onDriver (), element);
+    public IMouseActions onClickable (final WebElement element, final String name) {
+        return new WebElementAction (onDriver (), element, name);
     }
 
     @Override
-    public IMouseActions onClickable (final WebElement element, final WaitStrategy strategy) {
-        return new WebElementAction (onDriver (), element, strategy);
+    public IMouseActions onClickable (final WebElement element, final String name, final WaitStrategy strategy) {
+        return new WebElementAction (onDriver (), element, name, strategy);
     }
 
     @Override
@@ -67,42 +67,42 @@ public class BrowserPage implements IPage<EventFiringWebDriver, BrowserActions, 
     }
 
     @Override
-    public ISelectboxActions onDropdown (final By locator) {
-        return new WebElementAction (onDriver (), locator);
+    public ISelectboxActions onDropdown (final By locator, final String name) {
+        return new WebElementAction (onDriver (), locator, name);
     }
 
     @Override
-    public ISelectboxActions onDropdown (final By locator, final WaitStrategy strategy) {
-        return new WebElementAction (onDriver (), locator, strategy);
+    public ISelectboxActions onDropdown (final By locator, final String name, final WaitStrategy strategy) {
+        return new WebElementAction (onDriver (), locator, name, strategy);
     }
 
     @Override
-    public ISelectboxActions onDropdown (final WebElement element) {
-        return new WebElementAction (onDriver (), element);
+    public ISelectboxActions onDropdown (final WebElement element, final String name) {
+        return new WebElementAction (onDriver (), element, name);
     }
 
     @Override
-    public ISelectboxActions onDropdown (final WebElement element, final WaitStrategy strategy) {
-        return new WebElementAction (onDriver (), element, strategy);
+    public ISelectboxActions onDropdown (final WebElement element, final String name, final WaitStrategy strategy) {
+        return new WebElementAction (onDriver (), element, name, strategy);
     }
 
     @Override
-    public ITextboxActions onTextbox (final By locator) {
-        return new WebElementAction (onDriver (), locator);
+    public ITextboxActions onTextbox (final By locator, final String name) {
+        return new WebElementAction (onDriver (), locator, name);
     }
 
     @Override
-    public ITextboxActions onTextbox (final By locator, final WaitStrategy strategy) {
-        return new WebElementAction (onDriver (), locator, strategy);
+    public ITextboxActions onTextbox (final By locator, final String name, final WaitStrategy strategy) {
+        return new WebElementAction (onDriver (), locator, name, strategy);
     }
 
     @Override
-    public ITextboxActions onTextbox (final WebElement element) {
-        return new WebElementAction (onDriver (), element);
+    public ITextboxActions onTextbox (final WebElement element, final String name) {
+        return new WebElementAction (onDriver (), element, name);
     }
 
     @Override
-    public ITextboxActions onTextbox (final WebElement element, final WaitStrategy strategy) {
-        return new WebElementAction (onDriver (), element, strategy);
+    public ITextboxActions onTextbox (final WebElement element, final String name, final WaitStrategy strategy) {
+        return new WebElementAction (onDriver (), element, name, strategy);
     }
 }

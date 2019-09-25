@@ -27,19 +27,20 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  * @since 27-Jul-2019
  */
 class WebElementAction extends AbstractElementAction<WebElement, EventFiringWebDriver, BrowserActions> {
-    WebElementAction (final BrowserActions browserAction, final By by) {
-        super (browserAction, by);
+    WebElementAction (final BrowserActions browserAction, final By by, final String name) {
+        super (browserAction, by, name);
     }
 
-    WebElementAction (final BrowserActions browserAction, final By by, final WaitStrategy strategy) {
-        super (browserAction, by, strategy);
+    WebElementAction (final BrowserActions browserAction, final By by, final String name, final WaitStrategy strategy) {
+        super (browserAction, by, name, strategy);
     }
 
-    WebElementAction (final BrowserActions browserAction, final WebElement element) {
-        super (browserAction, element);
+    WebElementAction (final BrowserActions browserAction, final WebElement element, final String name) {
+        super (browserAction, element, name);
     }
 
-    WebElementAction (final BrowserActions browserAction, final WebElement element, final WaitStrategy strategy) {
-        super (browserAction, element, strategy);
+    WebElementAction (final BrowserActions browserAction, final WebElement element, final String name,
+        final WaitStrategy strategy) {
+        super (browserAction, element, name, strategy);
     }
 }

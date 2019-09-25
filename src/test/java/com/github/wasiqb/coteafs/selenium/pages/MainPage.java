@@ -30,7 +30,7 @@ public class MainPage extends BrowserPage {
      * @since Apr 7, 2019 5:39:39 PM
      */
     public IMouseActions managerIdBanner () {
-        return onClickable (By.cssSelector ("tr.heading3 > td"));
+        return onClickable (By.cssSelector ("tr.heading3 > td"), "Manager ID Banner");
     }
 
     /**
@@ -39,7 +39,7 @@ public class MainPage extends BrowserPage {
      * @since Apr 7, 2019 5:42:12 PM
      */
     public IMouseActions navbar (final String name) {
-        return navbar ().finds (By.cssSelector ("li > a"))
+        return navbar ().finds (By.cssSelector ("li > a"), name)
             .stream ()
             .filter (m -> m.text ()
                 .trim ()
@@ -49,6 +49,6 @@ public class MainPage extends BrowserPage {
     }
 
     private IMouseActions navbar () {
-        return onClickable (By.className ("menusubnav"));
+        return onClickable (By.className ("menusubnav"), "Navbar");
     }
 }

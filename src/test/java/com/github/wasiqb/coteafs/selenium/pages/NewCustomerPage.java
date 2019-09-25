@@ -33,7 +33,7 @@ public class NewCustomerPage extends MainPage {
      * @return address
      */
     public ITextboxActions address () {
-        return onTextbox (By.name ("addr"));
+        return onTextbox (By.name ("addr"), "Address");
     }
 
     /**
@@ -42,7 +42,7 @@ public class NewCustomerPage extends MainPage {
      * @return city
      */
     public ITextboxActions city () {
-        return onTextbox (By.name ("city"));
+        return onTextbox (By.name ("city"), "City");
     }
 
     /**
@@ -51,7 +51,7 @@ public class NewCustomerPage extends MainPage {
      * @return name
      */
     public ITextboxActions customerName () {
-        return onTextbox (By.name ("name"));
+        return onTextbox (By.name ("name"), "Customer Name");
     }
 
     /**
@@ -60,7 +60,7 @@ public class NewCustomerPage extends MainPage {
      * @return dob
      */
     public ITextboxActions dob () {
-        return onTextbox (By.name ("dob"));
+        return onTextbox (By.name ("dob"), "DOB");
     }
 
     /**
@@ -69,7 +69,7 @@ public class NewCustomerPage extends MainPage {
      * @return email
      */
     public ITextboxActions email () {
-        return onTextbox (By.name ("emailid"));
+        return onTextbox (By.name ("emailid"), "Email");
     }
 
     /**
@@ -82,7 +82,7 @@ public class NewCustomerPage extends MainPage {
         if (gender != 'm' && gender != 'f') {
             return gender ('m');
         }
-        return onClickable (By.cssSelector (format ("input[name='rad1'][value='%s']", gender)));
+        return onClickable (By.cssSelector (format ("input[name='rad1'][value='%s']", gender)), "Gender");
     }
 
     /**
@@ -91,7 +91,7 @@ public class NewCustomerPage extends MainPage {
      * @return header
      */
     public IMouseActions header () {
-        return onClickable (By.className ("heading3"));
+        return onClickable (By.className ("heading3"), "Header");
     }
 
     /**
@@ -100,7 +100,7 @@ public class NewCustomerPage extends MainPage {
      * @return mobile no
      */
     public ITextboxActions mobileNumber () {
-        return onTextbox (By.name ("telephoneno"));
+        return onTextbox (By.name ("telephoneno"), "Mobile Number");
     }
 
     /**
@@ -109,7 +109,7 @@ public class NewCustomerPage extends MainPage {
      * @return password
      */
     public ITextboxActions password () {
-        return onTextbox (By.name ("password"));
+        return onTextbox (By.name ("password"), "Password");
     }
 
     /**
@@ -118,7 +118,7 @@ public class NewCustomerPage extends MainPage {
      * @return pin
      */
     public ITextboxActions pin () {
-        return onTextbox (By.name ("pinno"));
+        return onTextbox (By.name ("pinno"), "Pin No");
     }
 
     /**
@@ -127,7 +127,7 @@ public class NewCustomerPage extends MainPage {
      * @return state
      */
     public ITextboxActions state () {
-        return onTextbox (By.name ("state"));
+        return onTextbox (By.name ("state"), "State");
     }
 
     /**
@@ -136,6 +136,6 @@ public class NewCustomerPage extends MainPage {
      * @return submit
      */
     public IMouseActions submit () {
-        return onClickable (By.name ("sub"));
+        return onClickable (By.name ("sub"), "Submit");
     }
 }

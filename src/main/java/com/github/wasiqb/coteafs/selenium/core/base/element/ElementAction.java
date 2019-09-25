@@ -32,20 +32,20 @@ import org.openqa.selenium.WebElement;
  */
 public class ElementAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
     extends BaseElementAction<E, D, B> implements IElementActions {
-    protected ElementAction (final B browserAction, final By by) {
-        super (browserAction, by);
+    protected ElementAction (final B browserAction, final By by, final String name) {
+        super (browserAction, by, name);
     }
 
-    protected ElementAction (final B browserAction, final By by, final WaitStrategy strategy) {
-        super (browserAction, by, strategy);
+    protected ElementAction (final B browserAction, final By by, final String name, final WaitStrategy strategy) {
+        super (browserAction, by, name, strategy);
     }
 
-    protected ElementAction (final B browserAction, final E element) {
-        super (browserAction, element);
+    protected ElementAction (final B browserAction, final E element, final String name) {
+        super (browserAction, element, name);
     }
 
-    protected ElementAction (final B browserAction, final E element, final WaitStrategy strategy) {
-        super (browserAction, element, strategy);
+    protected ElementAction (final B browserAction, final E element, final String name, final WaitStrategy strategy) {
+        super (browserAction, element, name, strategy);
     }
 
     @Override
