@@ -70,6 +70,6 @@ public class ScreenResolution {
 
     @Override
     public String toString () {
-        return String.format ("ScreenResolution{height=%d, width=%d}", this.height, this.width);
+        return String.format ("%dx%d", this.width, this.height);
     }
 }

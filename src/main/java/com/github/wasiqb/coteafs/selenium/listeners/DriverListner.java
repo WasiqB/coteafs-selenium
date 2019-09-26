@@ -51,12 +51,12 @@ public class DriverListner implements WebDriverEventListener {
 
     @Override
     public void afterAlertAccept (final WebDriver driver) {
-        LOG.trace ("Alert dialog accepted...");
+        LOG.trace ("Alert dialog accepted with message [{}]...", name);
     }
 
     @Override
     public void afterAlertDismiss (final WebDriver driver) {
-        LOG.trace ("Alert dialog dismissed...");
+        LOG.trace ("Alert dialog dismissed [{}]...", name);
     }
 
     @Override
