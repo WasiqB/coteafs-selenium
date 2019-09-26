@@ -33,20 +33,20 @@ import org.openqa.selenium.WebElement;
  */
 public abstract class KeyboardAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
     extends VerifyElement<E, D, B> implements IKeyboardActions {
-    KeyboardAction (final B browserAction, final By by) {
-        super (browserAction, by);
+    KeyboardAction (final B browserAction, final By by, final String name) {
+        super (browserAction, by, name);
     }
 
-    KeyboardAction (final B browserAction, final By by, final WaitStrategy strategy) {
-        super (browserAction, by, strategy);
+    KeyboardAction (final B browserAction, final By by, final String name, final WaitStrategy strategy) {
+        super (browserAction, by, name, strategy);
     }
 
-    KeyboardAction (final B browserAction, final E element) {
-        super (browserAction, element);
+    KeyboardAction (final B browserAction, final E element, final String name) {
+        super (browserAction, element, name);
     }
 
-    KeyboardAction (final B browserAction, final E element, final WaitStrategy strategy) {
-        super (browserAction, element, strategy);
+    KeyboardAction (final B browserAction, final E element, final String name, final WaitStrategy strategy) {
+        super (browserAction, element, name, strategy);
     }
 
     @Override

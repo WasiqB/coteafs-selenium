@@ -42,20 +42,22 @@ import org.openqa.selenium.support.ui.Select;
 @SuppressWarnings ("unchecked")
 public class AbstractElementAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
     extends FindableAction<E, D, B> implements ITextboxActions, ISelectboxActions {
-    protected AbstractElementAction (final B browserAction, final By by) {
-        super (browserAction, by);
+    protected AbstractElementAction (final B browserAction, final By by, final String name) {
+        super (browserAction, by, name);
     }
 
-    protected AbstractElementAction (final B browserAction, final By by, final WaitStrategy strategy) {
-        super (browserAction, by, strategy);
+    protected AbstractElementAction (final B browserAction, final By by, final String name,
+        final WaitStrategy strategy) {
+        super (browserAction, by, name, strategy);
     }
 
-    protected AbstractElementAction (final B browserAction, final E element) {
-        super (browserAction, element);
+    protected AbstractElementAction (final B browserAction, final E element, final String name) {
+        super (browserAction, element, name);
     }
 
-    protected AbstractElementAction (final B browserAction, final E element, final WaitStrategy strategy) {
-        super (browserAction, element, strategy);
+    protected AbstractElementAction (final B browserAction, final E element, final String name,
+        final WaitStrategy strategy) {
+        super (browserAction, element, name, strategy);
     }
 
     @Override
@@ -111,16 +113,17 @@ public class AbstractElementAction<E extends WebElement, D extends WebDriver, B 
     }
 
     @Override
-    public <T extends IMouseActions> T find (final By byLocator, final WaitStrategy strategy) {
+    public <T extends IMouseActions> T find (final By byLocator, final String name, final WaitStrategy strategy) {
         waitForStrategy (byLocator, strategy);
-        return get (e -> (T) new AbstractElementAction<> (this.browserAction, e.findElement (byLocator)));
+        return get (e -> (T) new AbstractElementAction<> (this.browserAction, e.findElement (byLocator), name));
     }
 
     @Override
-    public <T extends IMouseActions> List<T> finds (final By byLocator, final WaitStrategy strategy) {
+    public <T extends IMouseActions> List<T> finds (final By byLocator, final String name,
+        final WaitStrategy strategy) {
         waitForStrategy (byLocator, strategy);
         return get (e -> e.findElements (byLocator)).stream ()
-            .map (e -> (T) new AbstractElementAction<> (this.browserAction, e))
+            .map (e -> (T) new AbstractElementAction<> (this.browserAction, e, name))
             .collect (Collectors.toList ());
     }
 
@@ -146,7 +149,7 @@ public class AbstractElementAction<E extends WebElement, D extends WebDriver, B 
             final Select select = new Select (e);
             return select.getOptions ()
                 .stream ()
-                .map (o -> (T) new AbstractElementAction<> (this.browserAction, o))
+                .map (o -> (T) new AbstractElementAction<> (this.browserAction, o, o.getText ()))
                 .collect (Collectors.toList ());
         });
     }
@@ -181,7 +184,7 @@ public class AbstractElementAction<E extends WebElement, D extends WebDriver, B 
             final Select select = new Select (e);
             return select.getAllSelectedOptions ()
                 .stream ()
-                .map (o -> (T) new AbstractElementAction<> (this.browserAction, o))
+                .map (o -> (T) new AbstractElementAction<> (this.browserAction, o, o.getText ()))
                 .collect (Collectors.toList ());
         });
     }

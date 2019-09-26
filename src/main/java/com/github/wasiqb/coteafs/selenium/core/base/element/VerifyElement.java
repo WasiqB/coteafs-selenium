@@ -37,20 +37,20 @@ import org.openqa.selenium.WebElement;
  */
 public class VerifyElement<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
     extends ElementAction<E, D, B> implements IVerifyElement {
-    VerifyElement (final B browserAction, final By by) {
-        super (browserAction, by);
+    VerifyElement (final B browserAction, final By by, final String name) {
+        super (browserAction, by, name);
     }
 
-    VerifyElement (final B browserAction, final By by, final WaitStrategy strategy) {
-        super (browserAction, by, strategy);
+    VerifyElement (final B browserAction, final By by, final String name, final WaitStrategy strategy) {
+        super (browserAction, by, name, strategy);
     }
 
-    VerifyElement (final B browserAction, final E element) {
-        super (browserAction, element);
+    VerifyElement (final B browserAction, final E element, final String name) {
+        super (browserAction, element, name);
     }
 
-    VerifyElement (final B browserAction, final E element, final WaitStrategy strategy) {
-        super (browserAction, element, strategy);
+    VerifyElement (final B browserAction, final E element, final String name, final WaitStrategy strategy) {
+        super (browserAction, element, name, strategy);
     }
 
     @Override

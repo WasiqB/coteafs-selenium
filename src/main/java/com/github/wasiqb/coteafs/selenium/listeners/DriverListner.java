@@ -29,34 +29,53 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
  */
 public class DriverListner implements WebDriverEventListener {
     private static final Logger LOG = LogManager.getLogger (DriverListner.class);
+    private static String       name;
+
+    /**
+     * @author Wasiq Bhamla
+     * @since 25-Sep-2019
+     * @return the nAME
+     */
+    public static String getAlias () {
+        return name;
+    }
+
+    /**
+     * @author Wasiq Bhamla
+     * @since 25-Sep-2019
+     * @param alias the Element alias to set
+     */
+    public static void setAlias (final String alias) {
+        name = alias;
+    }
 
     @Override
     public void afterAlertAccept (final WebDriver driver) {
-        LOG.trace ("Alert dialog accepted...");
+        LOG.trace ("Alert dialog accepted with message [{}]...", name);
     }
 
     @Override
     public void afterAlertDismiss (final WebDriver driver) {
-        LOG.trace ("Alert dialog dismissed...");
+        LOG.trace ("Alert dialog dismissed [{}]...", name);
     }
 
     @Override
     public void afterChangeValueOf (final WebElement element, final WebDriver driver,
         final CharSequence [] keysToSend) {
         if (keysToSend != null) {
-            final String message = "Text {} has been entered...";
-            LOG.trace (message, (Object) keysToSend);
+            final String message = "Text {} has been entered in element [{}]...";
+            LOG.trace (message, keysToSend, name);
         }
     }
 
     @Override
     public void afterClickOn (final WebElement element, final WebDriver driver) {
-        LOG.trace ("Clicked on element...");
+        LOG.trace ("Clicked on element [{}]...", name);
     }
 
     @Override
     public void afterFindBy (final By by, final WebElement element, final WebDriver driver) {
-        LOG.trace ("Element found using {}...", by);
+        LOG.trace ("Element [{}] found using {}...", name, by);
     }
 
     @Override
@@ -66,7 +85,7 @@ public class DriverListner implements WebDriverEventListener {
 
     @Override
     public void afterGetText (final WebElement element, final WebDriver driver, final String text) {
-        LOG.trace ("Got text {} from element...", text);
+        LOG.trace ("Got text {} from element [{}]...", text, name);
     }
 
     @Override
@@ -113,18 +132,18 @@ public class DriverListner implements WebDriverEventListener {
     public void beforeChangeValueOf (final WebElement element, final WebDriver driver,
         final CharSequence [] keysToSend) {
         if (keysToSend != null) {
-            LOG.info ("Writing text {}...", (Object) keysToSend);
+            LOG.info ("Writing text {} in element [{}]...", keysToSend, name);
         }
     }
 
     @Override
     public void beforeClickOn (final WebElement element, final WebDriver driver) {
-        LOG.info ("Clicking on Element...");
+        LOG.info ("Clicking on element [{}]...", name);
     }
 
     @Override
     public void beforeFindBy (final By by, final WebElement element, final WebDriver driver) {
-        LOG.trace ("Finding element by {}", by);
+        LOG.trace ("Finding element [{}] using {}", name, by);
     }
 
     @Override
@@ -134,7 +153,7 @@ public class DriverListner implements WebDriverEventListener {
 
     @Override
     public void beforeGetText (final WebElement element, final WebDriver driver) {
-        LOG.trace ("Getting text from element...");
+        LOG.trace ("Getting text from element [{}]...", name);
     }
 
     @Override

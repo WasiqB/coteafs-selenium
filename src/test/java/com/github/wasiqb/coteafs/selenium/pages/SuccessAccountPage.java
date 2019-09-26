@@ -44,6 +44,6 @@ public class SuccessAccountPage extends SuccessPage {
 
     @Override
     protected IMouseActions successTable () {
-        return onClickable (By.id ("account"));
+        return onClickable (By.id ("account"), "Success Table");
     }
 }
