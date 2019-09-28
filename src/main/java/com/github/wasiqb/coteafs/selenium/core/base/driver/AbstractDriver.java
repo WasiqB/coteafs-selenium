@@ -43,10 +43,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * @param <D>
  * @since 26-Jul-2019
  */
-@SuppressWarnings ("unchecked")
 public abstract class AbstractDriver<D extends WebDriver> extends PlatformAction implements IDriver<D> {
-    private static final ThreadLocal<Object> driverThread = new ThreadLocal<> ();
-    private static final Logger              LOG          = LogManager.getLogger (AbstractDriver.class);
+    private static final Logger LOG = LogManager.getLogger (AbstractDriver.class);
 
     /**
      * @param platform target platform
@@ -58,17 +56,8 @@ public abstract class AbstractDriver<D extends WebDriver> extends PlatformAction
     }
 
     @Override
-    public D getDriver () {
-        return (D) driverThread.get ();
-    }
-
-    @Override
     public boolean isRunning () {
         return ((RemoteWebDriver) getDriver ()).getSessionId () != null;
-    }
-
-    protected void driver (final D driver) {
-        driverThread.set (driver);
     }
 
     protected void setupDriverOptions () {

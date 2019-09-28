@@ -120,12 +120,12 @@ public class DriverListner implements WebDriverEventListener {
 
     @Override
     public void beforeAlertAccept (final WebDriver driver) {
-        LOG.info ("Accepting Alert pop-up...");
+        LOG.info ("Accepting Alert pop-up with message [{}]...", name);
     }
 
     @Override
     public void beforeAlertDismiss (final WebDriver driver) {
-        LOG.info ("Dismissing Alert pop-up...");
+        LOG.info ("Dismissing Alert pop-up with message [{}]...", name);
     }
 
     @Override
