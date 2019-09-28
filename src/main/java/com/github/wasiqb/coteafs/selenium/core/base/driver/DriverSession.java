@@ -15,8 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
-import static java.util.Collections.EMPTY_MAP;
-
+import java.util.HashMap;
 import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
@@ -37,7 +36,7 @@ public class DriverSession<D extends WebDriver> {
      */
     public DriverSession (final D driver) {
         this.driver = driver;
-        this.context = EMPTY_MAP;
+        this.context = new HashMap<> ();
     }
 
     /**
