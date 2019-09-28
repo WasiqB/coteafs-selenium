@@ -18,6 +18,8 @@ package com.github.wasiqb.coteafs.selenium.core;
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.fail;
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getSession;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.setSession;
 import static com.github.wasiqb.coteafs.selenium.core.enums.Platform.DESKTOP;
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.edgedriver;
@@ -259,6 +261,11 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
     }
 
     @Override
+    public EventFiringWebDriver getDriver () {
+        return getSession ().getDriver ();
+    }
+
+    @Override
     public BrowserActions perform () {
         return new BrowserActions (getDriver ());
     }
@@ -283,14 +290,13 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         }
         final EventFiringWebDriver wd = new EventFiringWebDriver (driver);
         wd.register (this.listener);
-        driver (wd);
+        setSession (new BrowserSession (wd));
         setupDriverOptions ();
     }
 
     @Override
     public void stop () {
         LOG.info ("Stopping the browser...");
-        getDriver ().quit ();
-        driver (null);
+        getSession ().close ();
     }
 }
