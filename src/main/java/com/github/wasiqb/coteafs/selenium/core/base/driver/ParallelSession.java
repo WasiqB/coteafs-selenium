@@ -41,4 +41,8 @@ public class ParallelSession {
     public static void setSession (final BrowserSession session) {
         SESSION.set (session);
     }
+
+    private ParallelSession () {
+        // Utility class.
+    }
 }
