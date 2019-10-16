@@ -15,11 +15,13 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
+import com.github.wasiqb.coteafs.config.util.BasePojo;
+
 /**
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 2:48:55 PM
  */
-public class DelaySetting {
+public class DelaySetting extends BasePojo {
     private long afterClick;
     private long afterKeyPress;
     private long afterMouseMove;
@@ -40,7 +42,7 @@ public class DelaySetting {
         this.pageLoad = 60;
         this.scriptLoad = 60;
         this.implicit = 1;
-        this.explicit = 10;
+        this.explicit = 30;
         this.highlight = 200;
     }
 

@@ -35,6 +35,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
+import com.github.wasiqb.coteafs.logger.Loggy;
 import com.github.wasiqb.coteafs.selenium.config.DriverSetting;
 import com.github.wasiqb.coteafs.selenium.config.RemoteSetting;
 import com.github.wasiqb.coteafs.selenium.constants.OS;
@@ -48,8 +49,6 @@ import com.github.wasiqb.coteafs.selenium.listeners.DriverListner;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -77,10 +76,10 @@ import org.testng.Assert;
  */
 @SuppressWarnings ("unchecked")
 public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWebDriver {
-    private static final Logger LOG = LogManager.getLogger (Browser.class);
+    private static final Loggy LOG = Loggy.init ();
 
     private static WebDriver createRemoteSession (final RemoteSetting remoteSetting, final MutableCapabilities caps) {
-        LOG.info ("Creating remote session...");
+        LOG.i ("Creating remote session...");
         final StringBuilder urlBuilder = new StringBuilder (remoteSetting.getProtocol ()
             .getPrefix ());
         final String url = remoteSetting.getUrl ();
@@ -105,13 +104,13 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
             final URL remoteUrl = new URL (urlBuilder.toString ());
             return new RemoteWebDriver (remoteUrl, caps);
         } catch (final MalformedURLException e) {
-            LOG.error ("Error occurred while creating remote session: ", e);
+            LOG.e ("Error occurred while creating remote session: ", e);
         }
         return null;
     }
 
     private static WebDriver setupChromeDriver () throws MalformedURLException {
-        LOG.info ("Setting up Chrome driver...");
+        LOG.i ("Setting up Chrome driver...");
         setupDriver (chromedriver ());
         final ChromeOptions chromeOptions = new ChromeOptions ();
         chromeOptions.addArguments ("--dns-prefetch-disable");
@@ -150,8 +149,8 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
                     return setupRemote ();
             }
         } catch (final MalformedURLException e) {
-            LOG.error ("URL is malformed.", e);
-            LOG.catching (e);
+            LOG.e ("URL is malformed.", e);
+            LOG.c (e);
         }
         return null;
     }
@@ -179,14 +178,14 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
     }
 
     private static WebDriver setupEdgeDriver () throws MalformedURLException {
-        LOG.info ("Setting up Edge driver...");
+        LOG.i ("Setting up Edge driver...");
         setupDriver (edgedriver ());
         final EdgeOptions options = new EdgeOptions ();
         return new EdgeDriver (options);
     }
 
     private static WebDriver setupFirefoxDriver () throws MalformedURLException {
-        LOG.info ("Setting up Firefox driver...");
+        LOG.i ("Setting up Firefox driver...");
         setupDriver (firefoxdriver ());
         final DesiredCapabilities capabilities = new DesiredCapabilities ();
         final FirefoxOptions options = new FirefoxOptions (capabilities);
@@ -195,7 +194,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
     }
 
     private static WebDriver setupIeDriver () throws MalformedURLException {
-        LOG.info ("Setting up Internet Explorer driver...");
+        LOG.i ("Setting up Internet Explorer driver...");
         setupDriver (iedriver ());
         final InternetExplorerOptions ieOptions = new InternetExplorerOptions ();
         ieOptions.destructivelyEnsureCleanSession ();
@@ -206,13 +205,13 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
             Assert.fail ("IE is not supported.");
         }
         if (appSetting ().isHeadlessMode ()) {
-            LOG.warn ("IE does not support headless mode. Hence, ignoring the same...");
+            LOG.w ("IE does not support headless mode. Hence, ignoring the same...");
         }
         return new InternetExplorerDriver (ieService, ieOptions);
     }
 
     private static WebDriver setupRemote () {
-        LOG.info ("Setting up Remote driver...");
+        LOG.i ("Setting up Remote driver...");
         final RemoteSetting remoteSetting = appSetting ().getRemote ();
         final RemoteSource source = remoteSetting.getSource ();
         final DesiredCapabilities caps = new DesiredCapabilities ();
@@ -232,12 +231,12 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
     }
 
     private static WebDriver setupSafariDriver () {
-        LOG.info ("Setting up Safari driver...");
+        LOG.i ("Setting up Safari driver...");
         if (!OS.isMac ()) {
             Assert.fail ("Safari is not supported.");
         }
         if (appSetting ().isHeadlessMode ()) {
-            LOG.warn ("Safari does not support Headless mode. Hence, ignoring the same...");
+            LOG.w ("Safari does not support Headless mode. Hence, ignoring the same...");
         }
         final SafariOptions options = new SafariOptions ();
         return new SafariDriver (options);
@@ -277,7 +276,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
 
     @Override
     public void start () {
-        LOG.info ("Starting the browser...");
+        LOG.i ("Starting the browser...");
         String target = this.browserName;
         if (target == null) {
             target = getProperty (BROWSER, appSetting ().getBrowser ()
@@ -296,7 +295,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
 
     @Override
     public void stop () {
-        LOG.info ("Stopping the browser...");
+        LOG.i ("Stopping the browser...");
         getSession ().close ();
     }
 }

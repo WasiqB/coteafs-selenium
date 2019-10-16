@@ -15,15 +15,28 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
+import com.github.wasiqb.coteafs.config.util.BasePojo;
+
 /**
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 3:00:06 PM
  */
-public class ScreenshotSetting {
+public class ScreenshotSetting extends BasePojo {
     private boolean captureOnError;
     private String  extension;
     private String  path;
     private String  prefix;
+
+    /**
+     * @author Wasiq Bhamla
+     * @since 16-Oct-2019
+     */
+    public ScreenshotSetting () {
+        this.captureOnError = false;
+        this.extension = "jpeg";
+        this.path = "/screenshots";
+        this.prefix = "SCR";
+    }
 
     /**
      * @author Wasiq Bhamla

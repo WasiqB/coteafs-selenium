@@ -15,11 +15,13 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
+import com.github.wasiqb.coteafs.config.util.BasePojo;
+
 /**
  * @author Wasiq Bhamla
  * @since 28 Apr 2019
  */
-public class ScreenResolution {
+public class ScreenResolution extends BasePojo {
     private int height;
     private int width;
 
@@ -28,8 +30,8 @@ public class ScreenResolution {
      * @since 28 Apr 2019
      */
     public ScreenResolution () {
-        this.width = 1280;
-        this.height = 768;
+        this.width = 1366;
+        this.height = 1024;
     }
 
     /**
