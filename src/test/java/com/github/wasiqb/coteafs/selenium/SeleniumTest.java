@@ -92,7 +92,6 @@ public class SeleniumTest extends BrowserTest {
         final NewAccountPageAction acc = new NewAccountPageAction ();
         acc.addInputValue ("CustomerId", this.customerId)
             .perform ();
-
         this.accountId = acc.accountId ();
     }
 
@@ -102,10 +101,9 @@ public class SeleniumTest extends BrowserTest {
      */
     @Test
     public void testNewCustomer () {
-        final NewCustomerPageAction cust = new NewCustomerPageAction ();
-        cust.perform ();
-
-        this.customerId = cust.customerId ();
+        final NewCustomerPageAction customerPageAction = new NewCustomerPageAction ();
+        customerPageAction.perform ();
+        this.customerId = customerPageAction.customerId ();
     }
 
     /**

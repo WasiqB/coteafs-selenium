@@ -15,6 +15,8 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
+import static java.util.Arrays.stream;
+
 import java.text.SimpleDateFormat;
 
 import com.github.javafaker.Faker;
@@ -55,10 +57,7 @@ public class NewCustomerPageAction extends AbstractPageAction<NewCustomerPageAct
         final String [] dates = df.format (fake.date ()
             .birthday (15, 50))
             .split ("-");
-        for (final String date : dates) {
-            cust.dob ()
-                .enterText (date);
-        }
+        stream (dates).forEach (cust.dob ()::enterText);
 
         cust.address ()
             .enterText (fake.address ()
@@ -84,7 +83,7 @@ public class NewCustomerPageAction extends AbstractPageAction<NewCustomerPageAct
         cust.submit ()
             .click ();
 
-        final SuccessCustomerPage success = new SuccessCustomerPage ();
+        final SuccessCustomerPage success = cust.nextPage (SuccessCustomerPage.class);
         success.message ()
             .verifyText ()
             .isEqualTo ("Customer Registered Successfully!!!");

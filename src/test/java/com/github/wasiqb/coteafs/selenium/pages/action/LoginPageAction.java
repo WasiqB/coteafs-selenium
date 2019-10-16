@@ -45,8 +45,8 @@ public class LoginPageAction extends AbstractPageAction<LoginPageAction> {
         login.signIn ()
             .click ();
 
-        final MainPage main = new MainPage ();
-        main.managerIdBanner ()
+        login.nextPage (MainPage.class)
+            .managerIdBanner ()
             .verifyText ()
             .endsWith (format ("Manger Id : {0}", value (USER_ID).toString ()));
     }

@@ -54,7 +54,8 @@ public class NewAccountPageAction extends AbstractPageAction<NewAccountPageActio
         acc.submit ()
             .click ();
 
-        final SuccessAccountPage success = new SuccessAccountPage ();
+        final SuccessAccountPage success = acc.nextPage (SuccessAccountPage.class);
+
         success.message ()
             .verifyText ()
             .isEqualTo ("Account Generated Successfully!!!");
