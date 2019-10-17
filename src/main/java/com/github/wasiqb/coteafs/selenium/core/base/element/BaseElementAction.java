@@ -29,14 +29,13 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import com.github.wasiqb.coteafs.logger.Loggy;
 import com.github.wasiqb.coteafs.selenium.config.ConfigUtil;
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IWaitStrategy;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -53,13 +52,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 @SuppressWarnings ("unchecked")
 public class BaseElementAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
     implements IWaitStrategy {
-    private static final Logger LOG = LogManager.getLogger (BaseElementAction.class);
+    private static final Loggy LOG = Loggy.init ();
 
     static void pause (final long delay) {
         try {
             sleep (delay);
         } catch (final InterruptedException e) {
-            LOG.error ("Error while pausing: {}", e.getMessage ());
+            LOG.e ("Error while pausing: {}", e.getMessage ());
             currentThread ().interrupt ();
         }
     }

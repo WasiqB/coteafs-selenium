@@ -15,13 +15,14 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
+import com.github.wasiqb.coteafs.config.util.BasePojo;
 import com.github.wasiqb.coteafs.selenium.core.enums.ScreenState;
 
 /**
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 2:45:29 PM
  */
-public class PlaybackSetting {
+public class PlaybackSetting extends BasePojo {
     private DelaySetting      delays;
     private boolean           highlight;
     private ScreenResolution  screenResolution;
@@ -34,6 +35,10 @@ public class PlaybackSetting {
      */
     public PlaybackSetting () {
         this.screenResolution = new ScreenResolution ();
+        this.delays = new DelaySetting ();
+        this.screenshot = new ScreenshotSetting ();
+        this.screenState = ScreenState.NORMAL;
+        this.highlight = true;
     }
 
     /**

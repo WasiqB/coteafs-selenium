@@ -37,7 +37,7 @@ public class EditCustomerPageAction extends AbstractPageAction<EditCustomerPageA
         edit.submit ()
             .click ();
 
-        final NewCustomerPage cust = new NewCustomerPage ();
+        final NewCustomerPage cust = edit.nextPage (NewCustomerPage.class);
         final Faker fake = Faker.instance ();
         cust.address ()
             .clear ();

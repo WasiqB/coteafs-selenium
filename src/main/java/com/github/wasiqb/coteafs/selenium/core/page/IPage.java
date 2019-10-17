@@ -35,6 +35,15 @@ import org.openqa.selenium.WebElement;
 public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E extends WebElement> {
     /**
      * @author Wasiq Bhamla
+     * @since 14-Oct-2019
+     * @param <T>
+     * @param pageCls
+     * @return next page instance
+     */
+    <T extends IPage<D, B, E>> T nextPage (Class<T> pageCls);
+
+    /**
+     * @author Wasiq Bhamla
      * @param <T>
      * @since 08-Jun-2019
      * @param locator locator

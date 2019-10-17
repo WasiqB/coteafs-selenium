@@ -15,10 +15,9 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
-import static org.apache.commons.text.StringSubstitutor.replaceSystemProperties;
-
 import java.util.Map;
 
+import com.github.wasiqb.coteafs.config.util.BasePojo;
 import com.github.wasiqb.coteafs.selenium.core.enums.Protocol;
 import com.github.wasiqb.coteafs.selenium.core.enums.RemoteSource;
 
@@ -26,11 +25,7 @@ import com.github.wasiqb.coteafs.selenium.core.enums.RemoteSource;
  * @author Wasiq Bhamla
  * @since 01-Aug-2019
  */
-public class RemoteSetting {
-    private static String getSystemPropertyOrConfig (final String value) {
-        return value.startsWith ("${") ? replaceSystemProperties (value) : value;
-    }
-
+public class RemoteSetting extends BasePojo {
     private Map<String, Object> capabilities;
     private Map<String, Object> cloudCapabilities;
     private String              password;
@@ -72,7 +67,7 @@ public class RemoteSetting {
      * @return password
      */
     public String getPassword () {
-        return getSystemPropertyOrConfig (this.password);
+        return this.password;
     }
 
     /**
@@ -117,7 +112,7 @@ public class RemoteSetting {
      * @return user id
      */
     public String getUserId () {
-        return getSystemPropertyOrConfig (this.userId);
+        return this.userId;
     }
 
     /**

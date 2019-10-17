@@ -24,11 +24,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.github.wasiqb.coteafs.logger.Loggy;
 import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
 import com.github.wasiqb.coteafs.selenium.core.driver.IScreenAction;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -40,7 +39,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * @param <D>
  */
 public class ScreenAction<D extends WebDriver> extends ScriptAction<D> implements IScreenAction {
-    private static final Logger LOG = LogManager.getLogger (ScreenAction.class);
+    private static final Loggy LOG = Loggy.init ();
 
     ScreenAction (final D driver) {
         super (driver);
@@ -67,13 +66,13 @@ public class ScreenAction<D extends WebDriver> extends ScriptAction<D> implement
     @Override
     public void saveScreenshot (final String path) {
         final String msg = "Capturing screenshot and saving at [{}]...";
-        LOG.info (msg, path);
+        LOG.i (msg, path);
         try {
             final File srcFiler = ((TakesScreenshot) this.driver).getScreenshotAs (OutputType.FILE);
             copyFile (srcFiler, new File (path));
         } catch (final IOException e) {
-            LOG.error ("Error while saving screenshot.", e);
-            LOG.catching (e);
+            LOG.e ("Error while saving screenshot.", e);
+            LOG.c (e);
         }
     }
 }

@@ -21,6 +21,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 import java.util.function.Consumer;
 
+import com.github.wasiqb.coteafs.logger.Loggy;
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
 import com.github.wasiqb.coteafs.selenium.config.PlaybackSetting;
 import com.github.wasiqb.coteafs.selenium.config.ScreenResolution;
@@ -29,8 +30,6 @@ import com.github.wasiqb.coteafs.selenium.core.driver.IDriver;
 import com.github.wasiqb.coteafs.selenium.core.enums.Platform;
 import com.github.wasiqb.coteafs.selenium.core.enums.ScreenState;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.Options;
@@ -44,7 +43,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * @since 26-Jul-2019
  */
 public abstract class AbstractDriver<D extends WebDriver> extends PlatformAction implements IDriver<D> {
-    private static final Logger LOG = LogManager.getLogger (AbstractDriver.class);
+    private static final Loggy LOG = Loggy.init ();
 
     /**
      * @param platform target platform
@@ -87,7 +86,7 @@ public abstract class AbstractDriver<D extends WebDriver> extends PlatformAction
     private void setScreenSize (final PlaybackSetting playback) {
         final ScreenState state = playback.getScreenState ();
         if (getPlatform () == DESKTOP) {
-            LOG.info ("Setting screen size of Browser to {}...", state);
+            LOG.i ("Setting screen size of Browser to {}...", state);
             switch (state) {
                 case FULL_SCREEN:
                     manageWindow (Window::fullscreen);
@@ -98,7 +97,7 @@ public abstract class AbstractDriver<D extends WebDriver> extends PlatformAction
                 case NORMAL:
                 default:
                     final ScreenResolution resolution = playback.getScreenResolution ();
-                    LOG.info ("Setting screen resolution to [{}]...", resolution);
+                    LOG.i ("Setting screen resolution to [{}]...", resolution);
                     manageWindow (w -> w.setSize (new Dimension (resolution.getWidth (), resolution.getHeight ())));
                     break;
             }
