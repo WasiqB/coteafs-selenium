@@ -105,9 +105,9 @@ public class AbstractElementAction<E extends WebElement, D extends WebDriver, B 
     public void enterText (final String text) {
         perform (e -> {
             if (isNoneEmpty (text)) {
-                pause (this.delays.getBeforeTyping ());
+                pause (this.delays.getBeforeKeyPress ());
                 e.sendKeys (text);
-                pause (this.delays.getAfterTyping ());
+                pause (this.delays.getAfterKeyPress ());
             }
         });
     }

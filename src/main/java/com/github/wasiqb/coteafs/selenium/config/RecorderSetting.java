@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2020, Wasiq Bhamla.
+ * Copyright (c) 2019, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,6 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
-import static java.lang.String.format;
-
 import com.github.wasiqb.coteafs.config.util.BasePojo;
 
 import lombok.Getter;
@@ -24,25 +22,22 @@ import lombok.Setter;
 
 /**
  * @author Wasiq Bhamla
- * @since 28 Apr 2019
+ * @since 27-Oct-2019
  */
 @Getter
 @Setter
-public class ScreenResolution extends BasePojo {
-    private int height;
-    private int width;
+public class RecorderSetting extends BasePojo {
+    private boolean enable;
+    private String  path;
+    private String  prefix;
 
     /**
      * @author Wasiq Bhamla
-     * @since 28 Apr 2019
+     * @since 27-Oct-2019
      */
-    public ScreenResolution () {
-        this.width = 1366;
-        this.height = 1024;
-    }
-
-    @Override
-    public String toString () {
-        return format ("%dx%d", this.width, this.height);
+    public RecorderSetting () {
+        this.enable = false;
+        this.path = "./video";
+        this.prefix = "VID";
     }
 }

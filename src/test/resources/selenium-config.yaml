@@ -33,3 +33,7 @@ playback:
     prefix: SCR
     extension: jpeg
     capture_on_error: false
+  recording:
+    enable: false
+    path: ./video
+    prefix: VID

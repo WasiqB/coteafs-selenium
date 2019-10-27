@@ -291,11 +291,13 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         wd.register (this.listener);
         setSession (new BrowserSession (wd));
         setupDriverOptions ();
+        perform ().startRecording ();
     }
 
     @Override
     public void stop () {
         LOG.i ("Stopping the browser...");
+        perform ().stopRecording ();
         getSession ().close ();
     }
 }

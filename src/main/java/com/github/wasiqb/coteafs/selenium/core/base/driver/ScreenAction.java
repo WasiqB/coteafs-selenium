@@ -15,6 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
+import static com.github.wasiqb.coteafs.error.util.ErrorUtil.handleError;
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static java.lang.String.format;
 import static org.apache.commons.io.FileUtils.copyFile;
@@ -72,7 +73,35 @@ public class ScreenAction<D extends WebDriver> extends ScriptAction<D> implement
             copyFile (srcFiler, new File (path));
         } catch (final IOException e) {
             LOG.e ("Error while saving screenshot.", e);
-            LOG.c (e);
+            handleError ("com.github.wasiqb", e).forEach (LOG::e);
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see @see
+     * com.github.wasiqb.coteafs.selenium.core.driver.IScreenAction#startRecording()
+     */
+    @Override
+    public void startRecording () {
+        try {
+            CustomScreenRecorder.startRecording ();
+        } catch (final Exception e) {
+            handleError ("com.github.wasiqb", e).forEach (LOG::e);
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see @see
+     * com.github.wasiqb.coteafs.selenium.core.driver.IScreenAction#stopRecording()
+     */
+    @Override
+    public void stopRecording () {
+        try {
+            CustomScreenRecorder.stopRecording ();
+        } catch (final Exception e) {
+            handleError ("com.github.wasiqb", e).forEach (LOG::e);
         }
     }
 }

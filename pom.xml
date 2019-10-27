@@ -35,6 +35,8 @@
 		<webdrivermanager-version>3.7.1</webdrivermanager-version>
 		<faker.version>1.0.1</faker.version>
 		<commons.text.version>1.8</commons.text.version>
+		<recorder.version>0.7.7.0</recorder.version>
+		<lombok.version>1.18.10</lombok.version>
 	</properties>
 
 	<dependencies>
@@ -114,6 +116,17 @@
 			<groupId>com.github.javafaker</groupId>
 			<artifactId>javafaker</artifactId>
 			<version>${faker.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.stephenc.monte</groupId>
+			<artifactId>monte-screen-recorder</artifactId>
+			<version>${recorder.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
