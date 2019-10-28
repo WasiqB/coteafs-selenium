@@ -17,6 +17,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
 	<listeners>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
 		<listener class-name="com.github.wasiqb.coteafs.listeners.ConfigListener" />
 		<listener class-name="com.github.wasiqb.coteafs.listeners.SuiteListener" />
 		<listener class-name="com.github.wasiqb.coteafs.listeners.TestListener" />

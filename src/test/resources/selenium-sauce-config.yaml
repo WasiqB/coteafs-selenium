@@ -41,3 +41,4 @@ playback:
     prefix: SCR
     extension: jpeg
     capture_on_error: false
+    capture_all: true

@@ -52,6 +52,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.github.wasiqb.coteafs</groupId>
+			<artifactId>report</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.wasiqb.coteafs</groupId>
 			<artifactId>error</artifactId>
 			<version>${coteafs.error.version}</version>
 		</dependency>

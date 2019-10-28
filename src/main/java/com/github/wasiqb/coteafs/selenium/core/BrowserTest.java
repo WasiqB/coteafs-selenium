@@ -22,6 +22,12 @@ import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.COTEAFS_CO
 import static java.lang.System.setProperty;
 import static org.apache.logging.log4j.util.Strings.isNotEmpty;
 
+import java.io.File;
+
+import com.github.wasiqb.coteafs.report.LogLevel;
+import com.github.wasiqb.coteafs.report.ReportPortalLoggy;
+import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
+
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -60,12 +66,20 @@ public class BrowserTest {
      */
     @AfterMethod (alwaysRun = true)
     public void teardownMethod (final ITestResult result) {
-        final boolean screenshotOnError = appSetting ().getPlayback ()
-            .getScreenshot ()
-            .isCaptureOnError ();
-        if (screenshotOnError && result.getStatus () == ITestResult.FAILURE && !this.browser.isRunning ()) {
-            this.browser.perform ()
-                .attachScreenshot ();
+        final ScreenshotSetting screenshotSetting = appSetting ().getPlayback ()
+            .getScreenshot ();
+        final boolean screenshotOnError = screenshotSetting.isCaptureOnError ();
+        final boolean captureAll = screenshotSetting.isCaptureAll ();
+        if (captureAll
+            || screenshotOnError && result.getStatus () == ITestResult.FAILURE && !this.browser.isRunning ()) {
+            final File screenshot = this.browser.perform ()
+                .saveScreenshot ();
+            final Throwable cause = result.getThrowable ();
+            if (cause != null) {
+                ReportPortalLoggy.log (LogLevel.ERROR, screenshot, "Test Failed");
+            } else {
+                ReportPortalLoggy.log (LogLevel.INFO, screenshot, "Screenshot captured.");
+            }
         }
     }
 

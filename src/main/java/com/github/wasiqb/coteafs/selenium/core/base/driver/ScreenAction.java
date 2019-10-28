@@ -63,7 +63,7 @@ public class ScreenAction<D extends WebDriver> extends ScriptAction<D> implement
     }
 
     @Override
-    public void saveScreenshot () {
+    public File saveScreenshot () {
         final ScreenshotSetting setting = appSetting ().getPlayback ()
             .getScreenshot ();
         final String path = setting.getPath ();
@@ -72,20 +72,23 @@ public class ScreenAction<D extends WebDriver> extends ScriptAction<D> implement
         final String timeStamp = date.format (Calendar.getInstance ()
             .getTime ());
         final String fileName = "%s/%s-%s.%s";
-        saveScreenshot (format (fileName, path, prefix, timeStamp, "jpeg"));
+        return saveScreenshot (format (fileName, path, prefix, timeStamp, "jpeg"));
     }
 
     @Override
-    public void saveScreenshot (final String path) {
+    public File saveScreenshot (final String path) {
         final String msg = "Capturing screenshot and saving at [{}]...";
         LOG.i (msg, path);
         try {
-            final File srcFiler = ((TakesScreenshot) this.driver).getScreenshotAs (OutputType.FILE);
-            copyFile (srcFiler, new File (path));
+            final File source = ((TakesScreenshot) this.driver).getScreenshotAs (OutputType.FILE);
+            final File destination = new File (path);
+            copyFile (source, destination);
+            return destination;
         } catch (final IOException e) {
             LOG.e ("Error while saving screenshot.", e);
             handleError ("com.github.wasiqb", e).forEach (LOG::e);
         }
+        return null;
     }
 
     /*

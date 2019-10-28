@@ -27,6 +27,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ScreenshotSetting extends BasePojo {
+    private boolean captureAll;
     private boolean captureOnError;
     private String  extension;
     private String  path;
@@ -39,7 +40,8 @@ public class ScreenshotSetting extends BasePojo {
     public ScreenshotSetting () {
         this.captureOnError = false;
         this.extension = "jpeg";
-        this.path = "/screenshots";
+        this.path = "./screenshots";
         this.prefix = "SCR";
+        this.captureAll = false;
     }
 }

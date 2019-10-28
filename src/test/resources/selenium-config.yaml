@@ -29,10 +29,11 @@ playback:
     script_load: 60
     highlight: 500
   screenshot:
-    path: ~/screenshots
+    path: ./screenshots
     prefix: SCR
     extension: jpeg
     capture_on_error: false
+    capture_all: true
   recording:
     enable: false
     path: ./video
