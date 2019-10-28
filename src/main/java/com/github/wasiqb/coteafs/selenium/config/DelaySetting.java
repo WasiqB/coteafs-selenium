@@ -28,8 +28,10 @@ import lombok.Setter;
 @Setter
 public class DelaySetting extends BasePojo {
     private long afterClick;
+    private long afterFrameSwitch;
     private long afterKeyPress;
     private long afterMouseMove;
+    private long afterWindowSwitch;
     private long beforeClick;
     private long beforeKeyPress;
     private long beforeMouseMove;
@@ -49,5 +51,7 @@ public class DelaySetting extends BasePojo {
         this.implicit = 1;
         this.explicit = 30;
         this.highlight = 200;
+        this.afterFrameSwitch = 500;
+        this.afterWindowSwitch = 500;
     }
 }
