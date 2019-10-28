@@ -17,6 +17,8 @@ package com.github.wasiqb.coteafs.selenium.core;
 
 import java.util.Set;
 
+import com.github.wasiqb.coteafs.selenium.config.ConfigUtil;
+import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
 import com.github.wasiqb.coteafs.selenium.core.base.driver.WebDriverAction;
 import com.github.wasiqb.coteafs.selenium.core.driver.IWebFrame;
 import com.github.wasiqb.coteafs.selenium.core.driver.IWebWindow;
@@ -29,6 +31,8 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  * @since Aug 18, 2018 4:41:56 PM
  */
 public class BrowserActions extends WebDriverAction<EventFiringWebDriver> implements IWebFrame, IWebWindow {
+    private final DelaySetting delaySetting;
+
     /**
      * @author Wasiq Bhamla
      * @since 02-Jun-2019
@@ -36,6 +40,9 @@ public class BrowserActions extends WebDriverAction<EventFiringWebDriver> implem
      */
     BrowserActions (final EventFiringWebDriver driver) {
         super (driver);
+        this.delaySetting = ConfigUtil.appSetting ()
+            .getPlayback ()
+            .getDelays ();
     }
 
     @Override
@@ -45,20 +52,29 @@ public class BrowserActions extends WebDriverAction<EventFiringWebDriver> implem
 
     @Override
     public void switchFrame (final int index) {
-        perform (d -> d.switchTo ()
-            .frame (index));
+        perform (d -> {
+            d.switchTo ()
+                .frame (index);
+            pause (this.delaySetting.getAfterFrameSwitch ());
+        });
     }
 
     @Override
     public void switchFrame (final String nameOrId) {
-        perform (d -> d.switchTo ()
-            .frame (nameOrId));
+        perform (d -> {
+            d.switchTo ()
+                .frame (nameOrId);
+            pause (this.delaySetting.getAfterFrameSwitch ());
+        });
     }
 
     @Override
     public void switchWindow () {
-        perform (d -> d.switchTo ()
-            .defaultContent ());
+        perform (d -> {
+            d.switchTo ()
+                .defaultContent ();
+            pause (this.delaySetting.getAfterWindowSwitch ());
+        });
     }
 
     @Override
@@ -77,6 +93,7 @@ public class BrowserActions extends WebDriverAction<EventFiringWebDriver> implem
                     return;
                 }
             }
+            pause (this.delaySetting.getAfterWindowSwitch ());
         });
     }
 }
