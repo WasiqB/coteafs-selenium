@@ -39,4 +39,16 @@ public interface IScreenAction {
      * @since 25-Jul-2019
      */
     void saveScreenshot (String path);
+
+    /**
+     * @author Wasiq Bhamla
+     * @since 27-Oct-2019
+     */
+    void startRecording ();
+
+    /**
+     * @author Wasiq Bhamla
+     * @since 27-Oct-2019
+     */
+    void stopRecording ();
 }
