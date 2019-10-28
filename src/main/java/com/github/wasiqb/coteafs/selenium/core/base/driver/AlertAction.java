@@ -42,12 +42,12 @@ public class AlertAction<D extends WebDriver> extends ScreenAction<D> implements
         String message = null;
         if (alert != null) {
             message = alert.getText ();
+            setAlias (message);
             if (decision == AlertDecision.ACCEPT) {
                 alert.accept ();
             } else {
                 alert.dismiss ();
             }
-            setAlias (message);
         }
         return message;
     }
