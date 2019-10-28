@@ -36,15 +36,6 @@ public class DriverListner implements WebDriverEventListener {
     /**
      * @author Wasiq Bhamla
      * @since 25-Sep-2019
-     * @return the nAME
-     */
-    public static String getAlias () {
-        return name;
-    }
-
-    /**
-     * @author Wasiq Bhamla
-     * @since 25-Sep-2019
      * @param alias the Element alias to set
      */
     public static void setAlias (final String alias) {

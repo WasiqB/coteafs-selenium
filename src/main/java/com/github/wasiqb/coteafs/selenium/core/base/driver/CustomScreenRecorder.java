@@ -39,6 +39,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.github.wasiqb.coteafs.logger.Loggy;
 import com.github.wasiqb.coteafs.selenium.config.ConfigUtil;
 import com.github.wasiqb.coteafs.selenium.config.RecorderSetting;
 
@@ -52,6 +53,7 @@ import org.monte.screenrecorder.ScreenRecorder;
  * @since 27-Oct-2019
  */
 class CustomScreenRecorder extends ScreenRecorder {
+    private static final Loggy           LOG              = Loggy.init ();
     private static final RecorderSetting RECORDER_SETTING = ConfigUtil.appSetting ()
         .getPlayback ()
         .getRecording ();
@@ -59,6 +61,7 @@ class CustomScreenRecorder extends ScreenRecorder {
 
     static void startRecording () throws Exception {
         if (checkIfEnabled ()) {
+            LOG.i ("Started Video screen recording...");
             final File file = new File (RECORDER_SETTING.getPath ());
 
             final Dimension screenSize = Toolkit.getDefaultToolkit ()
@@ -81,12 +84,17 @@ class CustomScreenRecorder extends ScreenRecorder {
                 null, file);
 
             screenRecorder.start ();
+        } else {
+            LOG.w ("Video screen recording is Disabled, cannot start...");
         }
     }
 
     static void stopRecording () throws Exception {
         if (checkIfEnabled ()) {
+            LOG.i ("Stopping Video screen recording...");
             screenRecorder.stop ();
+        } else {
+            LOG.w ("Video screen recording is Disabled, cannot stop...");
         }
     }
 

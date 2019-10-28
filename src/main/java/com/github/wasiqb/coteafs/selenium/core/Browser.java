@@ -242,6 +242,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         return new SafariDriver (options);
     }
 
+    private AvailableBrowser    browser;
     private String              browserName;
     private final DriverListner listener;
 
@@ -282,8 +283,8 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
             target = getProperty (BROWSER, appSetting ().getBrowser ()
                 .name ());
         }
-        final AvailableBrowser browser = AvailableBrowser.valueOf (target.toUpperCase ());
-        final WebDriver driver = setupDriver (browser);
+        this.browser = AvailableBrowser.valueOf (target.toUpperCase ());
+        final WebDriver driver = setupDriver (this.browser);
         if (isNull (driver)) {
             fail (DriverNotSetupError.class, "Driver was not setup properly.");
         }
@@ -291,13 +292,21 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         wd.register (this.listener);
         setSession (new BrowserSession (wd));
         setupDriverOptions ();
-        perform ().startRecording ();
+        if (this.browser != AvailableBrowser.REMOTE) {
+            perform ().startRecording ();
+        } else {
+            LOG.w ("Video recording is disabled for Remote execution...");
+        }
     }
 
     @Override
     public void stop () {
         LOG.i ("Stopping the browser...");
-        perform ().stopRecording ();
+        if (this.browser != AvailableBrowser.REMOTE) {
+            perform ().stopRecording ();
+        } else {
+            LOG.w ("Video recording is disabled for Remote execution...");
+        }
         getSession ().close ();
     }
 }
