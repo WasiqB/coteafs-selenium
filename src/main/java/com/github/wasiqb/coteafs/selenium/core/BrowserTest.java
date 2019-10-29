@@ -24,9 +24,9 @@ import static org.apache.logging.log4j.util.Strings.isNotEmpty;
 
 import java.io.File;
 
-import com.github.wasiqb.coteafs.report.LogLevel;
-import com.github.wasiqb.coteafs.report.ReportPortalLoggy;
 import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
+import com.github.wasiqb.coteafs.selenium.utils.LogLevel;
+import com.github.wasiqb.coteafs.selenium.utils.ReportPortalLoggy;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
