@@ -7,7 +7,7 @@ remote:
   protocol: HTTPS
   url: ondemand.saucelabs.com
   source: SAUCELABS
-#  port: 80
+  #  port: 80
   capabilities:
     browserName: chrome
     browserVersion: 75.0
@@ -21,9 +21,9 @@ params:
 playback:
   screen_state: NORMAL
   highlight: true
-#  screen_resolution:
-#    width: 1280
-#    height: 768
+  #  screen_resolution:
+  #    width: 1280
+  #    height: 768
   delays:
     implicit: 60
     explicit: 60
@@ -37,7 +37,7 @@ playback:
     script_load: 60
     highlight: 500
   screenshot:
-    path: ~/screenshots
+    path: ./screenshots
     prefix: SCR
     extension: jpeg
     capture_on_error: false
