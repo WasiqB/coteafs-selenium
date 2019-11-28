@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +29,7 @@ public class BrowserSession extends DriverSession<EventFiringWebDriver> {
      * @param driver
      * @since 28-Sep-2019
      */
-    public BrowserSession (final EventFiringWebDriver driver) {
+    BrowserSession (final EventFiringWebDriver driver) {
         super (driver);
     }
 }

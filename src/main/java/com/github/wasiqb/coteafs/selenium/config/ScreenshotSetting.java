@@ -33,11 +33,7 @@ public class ScreenshotSetting extends BasePojo {
     private String  path;
     private String  prefix;
 
-    /**
-     * @author Wasiq Bhamla
-     * @since 16-Oct-2019
-     */
-    public ScreenshotSetting () {
+    ScreenshotSetting () {
         this.captureOnError = false;
         this.extension = "jpeg";
         this.path = "./screenshots";

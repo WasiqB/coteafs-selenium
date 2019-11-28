@@ -37,10 +37,10 @@
 	</repositories>
 
 	<properties>
-		<coteafs.config.version>2.1.3</coteafs.config.version>
-		<coteafs.error.version>1.10.0</coteafs.error.version>
-		<coteafs.logger.version>2.1.2</coteafs.logger.version>
-		<coteafs.listener.version>2.1.0</coteafs.listener.version>
+		<coteafs.config.version>2.1.4</coteafs.config.version>
+		<coteafs.error.version>1.11.0</coteafs.error.version>
+		<coteafs.logger.version>2.2.0</coteafs.logger.version>
+		<coteafs.listener.version>2.2.0</coteafs.listener.version>
 		<selenium-version>3.141.59</selenium-version>
 		<commons.io.version>2.6</commons.io.version>
 		<webdrivermanager-version>3.7.1</webdrivermanager-version>
@@ -57,25 +57,21 @@
 			<groupId>com.github.wasiqb.coteafs</groupId>
 			<artifactId>configs</artifactId>
 			<version>${coteafs.config.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.github.wasiqb.coteafs</groupId>
 			<artifactId>listeners</artifactId>
 			<version>${coteafs.listener.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.github.wasiqb.coteafs</groupId>
 			<artifactId>error</artifactId>
 			<version>${coteafs.error.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.github.wasiqb.coteafs</groupId>
 			<artifactId>logger</artifactId>
 			<version>${coteafs.logger.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

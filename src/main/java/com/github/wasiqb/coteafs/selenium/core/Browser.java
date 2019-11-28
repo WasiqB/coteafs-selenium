@@ -46,9 +46,7 @@ import com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser;
 import com.github.wasiqb.coteafs.selenium.core.enums.RemoteSource;
 import com.github.wasiqb.coteafs.selenium.error.DriverNotSetupError;
 import com.github.wasiqb.coteafs.selenium.listeners.DriverListner;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -242,9 +240,9 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         return new SafariDriver (options);
     }
 
-    private AvailableBrowser    availableBrowser;
-    private String              browserName;
-    private final DriverListner listener;
+    private       AvailableBrowser availableBrowser;
+    private       String           browserName;
+    private final DriverListner    listener;
 
     /**
      * @author Wasiq Bhamla
@@ -307,6 +305,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         } else {
             LOG.w ("Video recording is disabled for Remote execution...");
         }
+        getDriver ().unregister (this.listener);
         getSession ().close ();
     }
 }

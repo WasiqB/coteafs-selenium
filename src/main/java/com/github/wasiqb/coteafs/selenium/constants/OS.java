@@ -15,6 +15,9 @@
  */
 package com.github.wasiqb.coteafs.selenium.constants;
 
+import static com.github.wasiqb.coteafs.selenium.core.enums.PlatformOs.LINUX;
+import static com.github.wasiqb.coteafs.selenium.core.enums.PlatformOs.MAC;
+import static com.github.wasiqb.coteafs.selenium.core.enums.PlatformOs.WINDOWS;
 import static java.lang.System.getProperty;
 
 import com.github.wasiqb.coteafs.selenium.core.enums.PlatformOs;
@@ -27,46 +30,46 @@ public class OS {
     private static final String NAME = getProperty ("os.name").toLowerCase ();
 
     /**
+     * @return is Mac
      * @author Wasiq Bhamla
      * @since Aug 10, 2018 2:38:12 PM
-     * @return is Mac
      */
     public static boolean isMac () {
         return NAME.contains ("mac");
     }
 
     /**
+     * @return is unix
      * @author Wasiq Bhamla
      * @since Aug 10, 2018 2:38:47 PM
-     * @return is unix
      */
     public static boolean isUnix () {
         return NAME.contains ("nix") || NAME.contains ("nux") || NAME.contains ("aix");
     }
 
     /**
+     * @return is win
      * @author Wasiq Bhamla
      * @since Aug 10, 2018 2:38:57 PM
-     * @return is win
      */
     public static boolean isWindows () {
         return NAME.contains ("win");
     }
 
     /**
+     * @return platform
      * @author Wasiq Bhamla
      * @since Aug 10, 2018 2:50:40 PM
-     * @return platform
      */
     public static PlatformOs platform () {
         if (isWindows ()) {
-            return PlatformOs.WINDOWS;
+            return WINDOWS;
         }
         if (isMac ()) {
-            return PlatformOs.MAC;
+            return MAC;
         }
         if (isUnix ()) {
-            return PlatformOs.LINUX;
+            return LINUX;
         }
         return null;
     }
