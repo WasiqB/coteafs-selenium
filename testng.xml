@@ -16,49 +16,48 @@
   -->
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-	<listeners>
-        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
-		<listener class-name="com.github.wasiqb.coteafs.listeners.ConfigListener" />
-		<listener class-name="com.github.wasiqb.coteafs.listeners.SuiteListener" />
-		<listener class-name="com.github.wasiqb.coteafs.listeners.TestListener" />
-		<listener class-name="com.github.wasiqb.coteafs.listeners.ExecutionListener" />
-		<listener class-name="com.github.wasiqb.coteafs.listeners.DataProviderListener" />
-		<listener class-name="com.github.wasiqb.coteafs.listeners.AnnotationTransformer" />
-	</listeners>
-	<test name="Test Local">
-		<classes>
-			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
-				<methods>
-					<include name="testSignIn" />
-					<include name="testNewCustomer" />
-					<include name="testEditCustomer" />
-					<include name="testNewAccount" />
-					<include name="testDeleteAccount" />
-					<include name="testDeleteCustomer" />
-				</methods>
-			</class>
-		</classes>
-	</test>
-	<test name="Test Grid">
-		<parameter name="test.browser" value="REMOTE" />
-		<parameter name="test.config" value="./src/test/resources/selenium-grid-config.yaml" />
-		<classes>
-			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
-				<methods>
-					<include name="testSignIn" />
-				</methods>
-			</class>
-		</classes>
-	</test>
-	<test name="Test BrowserStack">
-		<parameter name="test.browser" value="REMOTE" />
-		<parameter name="test.config" value="./src/test/resources/selenium-bs-config.yaml" />
-		<classes>
-			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
-				<methods>
-					<include name="testSignIn" />
-				</methods>
-			</class>
-		</classes>
-	</test>
+    <listeners>
+        <listener class-name="com.github.wasiqb.coteafs.listeners.ConfigListener"/>
+        <listener class-name="com.github.wasiqb.coteafs.listeners.SuiteListener"/>
+        <listener class-name="com.github.wasiqb.coteafs.listeners.TestListener"/>
+        <listener class-name="com.github.wasiqb.coteafs.listeners.ExecutionListener"/>
+        <listener class-name="com.github.wasiqb.coteafs.listeners.DataProviderListener"/>
+        <listener class-name="com.github.wasiqb.coteafs.listeners.AnnotationTransformer"/>
+    </listeners>
+    <test name="Test Local">
+        <classes>
+            <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+                <methods>
+                    <include name="testSignIn"/>
+                    <include name="testNewCustomer"/>
+                    <include name="testEditCustomer"/>
+                    <include name="testNewAccount"/>
+                    <include name="testDeleteAccount"/>
+                    <include name="testDeleteCustomer"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Test Grid">
+        <parameter name="test.browser" value="REMOTE"/>
+        <parameter name="test.config" value="./src/test/resources/selenium-grid-config.yaml"/>
+        <classes>
+            <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+                <methods>
+                    <include name="testSignIn"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Test BrowserStack">
+        <parameter name="test.browser" value="REMOTE"/>
+        <parameter name="test.config" value="./src/test/resources/selenium-bs-config.yaml"/>
+        <classes>
+            <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+                <methods>
+                    <include name="testSignIn"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>
