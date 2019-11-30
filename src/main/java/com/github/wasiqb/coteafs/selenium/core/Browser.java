@@ -18,6 +18,7 @@ package com.github.wasiqb.coteafs.selenium.core;
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.fail;
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.close;
 import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getSession;
 import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.setSession;
 import static com.github.wasiqb.coteafs.selenium.core.enums.Platform.DESKTOP;
@@ -46,9 +47,7 @@ import com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser;
 import com.github.wasiqb.coteafs.selenium.core.enums.RemoteSource;
 import com.github.wasiqb.coteafs.selenium.error.DriverNotSetupError;
 import com.github.wasiqb.coteafs.selenium.listeners.DriverListner;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -242,9 +241,9 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         return new SafariDriver (options);
     }
 
-    private AvailableBrowser    browser;
-    private String              browserName;
-    private final DriverListner listener;
+    private       AvailableBrowser availableBrowser;
+    private       String           browserName;
+    private final DriverListner    listener;
 
     /**
      * @author Wasiq Bhamla
@@ -283,8 +282,8 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
             target = getProperty (BROWSER, appSetting ().getBrowser ()
                 .name ());
         }
-        this.browser = AvailableBrowser.valueOf (target.toUpperCase ());
-        final WebDriver driver = setupDriver (this.browser);
+        this.availableBrowser = AvailableBrowser.valueOf (target.toUpperCase ());
+        final WebDriver driver = setupDriver (this.availableBrowser);
         if (isNull (driver)) {
             fail (DriverNotSetupError.class, "Driver was not setup properly.");
         }
@@ -292,7 +291,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         wd.register (this.listener);
         setSession (new BrowserSession (wd));
         setupDriverOptions ();
-        if (this.browser != AvailableBrowser.REMOTE) {
+        if (this.availableBrowser != AvailableBrowser.REMOTE) {
             perform ().startRecording ();
         } else {
             LOG.w ("Video recording is disabled for Remote execution...");
@@ -302,11 +301,13 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
     @Override
     public void stop () {
         LOG.i ("Stopping the browser...");
-        if (this.browser != AvailableBrowser.REMOTE) {
+        if (this.availableBrowser != AvailableBrowser.REMOTE) {
             perform ().stopRecording ();
         } else {
             LOG.w ("Video recording is disabled for Remote execution...");
         }
+        getDriver ().unregister (this.listener);
         getSession ().close ();
+        close ();
     }
 }

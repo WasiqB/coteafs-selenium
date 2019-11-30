@@ -31,6 +31,7 @@ import com.github.wasiqb.coteafs.selenium.core.enums.Platform;
 import com.github.wasiqb.coteafs.selenium.core.enums.ScreenState;
 
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.Options;
 import org.openqa.selenium.WebDriver.Timeouts;
@@ -66,7 +67,7 @@ public abstract class AbstractDriver<D extends WebDriver> extends PlatformAction
         manageTimeouts (t -> t.setScriptTimeout (delays.getScriptLoad (), SECONDS));
         manageTimeouts (t -> t.implicitlyWait (delays.getImplicit (), SECONDS));
         manageOptions (Options::deleteAllCookies);
-        setScreenSize (playback);
+        setScreen (playback);
     }
 
     private void manageOptions (final Consumer<Options> options) {
@@ -83,7 +84,7 @@ public abstract class AbstractDriver<D extends WebDriver> extends PlatformAction
             .window ());
     }
 
-    private void setScreenSize (final PlaybackSetting playback) {
+    private void setScreen (final PlaybackSetting playback) {
         final ScreenState state = playback.getScreenState ();
         if (getPlatform () == DESKTOP) {
             LOG.i ("Setting screen size of Browser to {}...", state);
@@ -99,6 +100,7 @@ public abstract class AbstractDriver<D extends WebDriver> extends PlatformAction
                     final ScreenResolution resolution = playback.getScreenResolution ();
                     LOG.i ("Setting screen resolution to [{}]...", resolution);
                     manageWindow (w -> w.setSize (new Dimension (resolution.getWidth (), resolution.getHeight ())));
+                    manageWindow (w -> w.setPosition (new Point (0, 0)));
                     break;
             }
         }

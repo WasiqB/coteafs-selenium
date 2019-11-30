@@ -17,6 +17,8 @@ package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.handleError;
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.FILTER_PKG;
+import static com.google.common.truth.Truth.assertThat;
 import static java.lang.String.format;
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
@@ -29,19 +31,20 @@ import java.util.Calendar;
 
 import com.github.wasiqb.coteafs.logger.Loggy;
 import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
+import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.driver.IScreenAction;
-
+import com.google.common.truth.StringSubject;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 /**
+ * @param <D>
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
- * @param <D>
  */
-public class ScreenAction<D extends WebDriver> extends ScriptAction<D> implements IScreenAction {
+public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> implements IScreenAction, IDriverActions<D> {
     private static final Loggy LOG = Loggy.init ();
 
     protected static void pause (final long delay) {
@@ -58,12 +61,12 @@ public class ScreenAction<D extends WebDriver> extends ScriptAction<D> implement
     }
 
     @Override
-    public byte [] attachScreenshot () {
+    public byte[] attachScreenshot () {
         return get (d -> ((RemoteWebDriver) d).getScreenshotAs (OutputType.BYTES));
     }
 
     @Override
-    public void saveScreenshot () {
+    public File saveScreenshot () {
         final ScreenshotSetting setting = appSetting ().getPlayback ()
             .getScreenshot ();
         final String path = setting.getPath ();
@@ -72,20 +75,23 @@ public class ScreenAction<D extends WebDriver> extends ScriptAction<D> implement
         final String timeStamp = date.format (Calendar.getInstance ()
             .getTime ());
         final String fileName = "%s/%s-%s.%s";
-        saveScreenshot (format (fileName, path, prefix, timeStamp, "jpeg"));
+        return saveScreenshot (format (fileName, path, prefix, timeStamp, "jpeg"));
     }
 
     @Override
-    public void saveScreenshot (final String path) {
+    public File saveScreenshot (final String path) {
         final String msg = "Capturing screenshot and saving at [{}]...";
         LOG.i (msg, path);
         try {
-            final File srcFiler = ((TakesScreenshot) this.driver).getScreenshotAs (OutputType.FILE);
-            copyFile (srcFiler, new File (path));
+            final File source = ((TakesScreenshot) this.driver).getScreenshotAs (OutputType.FILE);
+            final File destination = new File (path);
+            copyFile (source, destination);
+            return destination;
         } catch (final IOException e) {
             LOG.e ("Error while saving screenshot.", e);
-            handleError ("com.github.wasiqb", e).forEach (LOG::e);
+            handleError (FILTER_PKG, e).forEach (LOG::e);
         }
+        return null;
     }
 
     /*
@@ -98,7 +104,7 @@ public class ScreenAction<D extends WebDriver> extends ScriptAction<D> implement
         try {
             CustomScreenRecorder.startRecording ();
         } catch (final Exception e) {
-            handleError ("com.github.wasiqb", e).forEach (LOG::e);
+            handleError (FILTER_PKG, e).forEach (LOG::e);
         }
     }
 
@@ -112,7 +118,17 @@ public class ScreenAction<D extends WebDriver> extends ScriptAction<D> implement
         try {
             CustomScreenRecorder.stopRecording ();
         } catch (final Exception e) {
-            handleError ("com.github.wasiqb", e).forEach (LOG::e);
+            handleError (FILTER_PKG, e).forEach (LOG::e);
         }
+    }
+
+    @Override
+    public String title () {
+        return get (WebDriver::getTitle);
+    }
+
+    @Override
+    public StringSubject verifyTitle () {
+        return assertThat (title ());
     }
 }

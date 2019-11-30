@@ -41,11 +41,7 @@ public class DelaySetting extends BasePojo {
     private long pageLoad;
     private long scriptLoad;
 
-    /**
-     * @author Wasiq Bhamla
-     * @since Aug 15, 2018 3:14:37 PM
-     */
-    public DelaySetting () {
+    DelaySetting () {
         this.pageLoad = 60;
         this.scriptLoad = 60;
         this.implicit = 1;

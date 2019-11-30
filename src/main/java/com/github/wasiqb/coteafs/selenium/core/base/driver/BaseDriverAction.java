@@ -21,18 +21,20 @@ import static java.time.Duration.ofSeconds;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import com.github.wasiqb.coteafs.selenium.core.driver.IScriptAction;
 import com.github.wasiqb.coteafs.selenium.core.driver.IWaitAction;
-
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
+ * @param <D>
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
- * @param <D>
  */
-public class BaseDriverAction<D extends WebDriver> implements IWaitAction<D> {
-    protected D                 driver;
+public class BaseDriverAction<D extends WebDriver> implements IWaitAction<D>, IScriptAction {
+    protected     D             driver;
     private final WebDriverWait wait;
 
     BaseDriverAction (final D driver) {
@@ -50,6 +52,17 @@ public class BaseDriverAction<D extends WebDriver> implements IWaitAction<D> {
     @Override
     public WebDriverWait driverWait () {
         return this.wait;
+    }
+
+    @SuppressWarnings ("unchecked")
+    @Override
+    public <T> T execute (final String script, final Object... args) {
+        return (T) get (d -> {
+            if (d instanceof EventFiringWebDriver) {
+                return ((EventFiringWebDriver) d).executeScript (script, args);
+            }
+            return ((RemoteWebDriver) d).executeScript (script, args);
+        });
     }
 
     protected <E> E get (final Function<D, E> func) {

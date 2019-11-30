@@ -35,11 +35,7 @@ public class PlaybackSetting extends BasePojo {
     private ScreenshotSetting screenshot;
     private ScreenState       screenState;
 
-    /**
-     * @author Wasiq Bhamla
-     * @since Apr 28, 2019
-     */
-    public PlaybackSetting () {
+    PlaybackSetting () {
         this.screenResolution = new ScreenResolution ();
         this.delays = new DelaySetting ();
         this.screenshot = new ScreenshotSetting ();

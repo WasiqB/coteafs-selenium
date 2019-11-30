@@ -13,46 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.wasiqb.coteafs.selenium.core.driver;
-
-import java.io.File;
+package com.github.wasiqb.coteafs.selenium.utils;
 
 /**
  * @author Wasiq Bhamla
- * @since 03-Jul-2019
+ * @since 26-Oct-2019
  */
-public interface IScreenAction {
+public enum LogLevel {
     /**
-     * @author Wasiq Bhamla
-     * @since 06-Jun-2019
-     * @return screenshot
+     * Debug.
      */
-    byte [] attachScreenshot ();
-
+    DEBUG,
     /**
-     * @author Wasiq Bhamla
-     * @return file
-     * @since 25-Jul-2019
+     * Error.
      */
-    File saveScreenshot ();
-
+    ERROR,
     /**
-     * @author Wasiq Bhamla
-     * @param path
-     * @return file
-     * @since 25-Jul-2019
+     * Fatal.
      */
-    File saveScreenshot (String path);
-
+    FATAL,
     /**
-     * @author Wasiq Bhamla
-     * @since 27-Oct-2019
+     * Info.
      */
-    void startRecording ();
-
+    INFO,
     /**
-     * @author Wasiq Bhamla
-     * @since 27-Oct-2019
+     * Trace.
      */
-    void stopRecording ();
+    TRACE,
+    /**
+     * Unknown.
+     */
+    UNKNOWN,
+    /**
+     * Warn.
+     */
+    WARN;
 }
