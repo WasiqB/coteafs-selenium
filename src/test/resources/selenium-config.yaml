@@ -9,7 +9,7 @@ headless_mode: true
 #  exe_url: https://driver/download/url
 params:
   user: mngr26593
-  password: abc@123
+  password: ishal!12
 playback:
   screen_state: NORMAL
   highlight: true

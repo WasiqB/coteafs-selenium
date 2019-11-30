@@ -23,3 +23,6 @@ fileignoreconfig:
 - filename: src/test/java/com/github/wasiqb/coteafs/selenium/pages/action/LoginPageAction.java
   checksum: 786578aeddda9290a9a5eb3428ea4390351f87e2d0eafca1058923288a81f871
   ignore_detectors: []
+- filename: src/test/resources/selenium-config.yaml
+  checksum: b3293363ab6b20b55ada0c25797bd1827e3904d2c7e4ef4d94bd8b293feda1ca
+  ignore_detectors: []
