@@ -16,15 +16,14 @@
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
 import com.github.wasiqb.coteafs.selenium.core.driver.IWebDriverActions;
-
 import org.openqa.selenium.WebDriver;
 
 /**
- * @author Wasiq Bhamla
  * @param <D>
+ * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public class WebDriverAction<D extends WebDriver> extends AbstractDriverAction<D> implements IWebDriverActions<D> {
+public class WebDriverAction<D extends WebDriver> extends AlertAction<D> implements IWebDriverActions<D> {
     protected WebDriverAction (final D driver) {
         super (driver);
     }

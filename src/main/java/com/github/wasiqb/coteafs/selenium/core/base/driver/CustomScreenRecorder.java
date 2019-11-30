@@ -15,6 +15,9 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
+import static com.github.wasiqb.coteafs.error.util.ErrorUtil.handleError;
+import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.IGNORE_PKG;
 import static java.text.MessageFormat.format;
 import static org.monte.media.FormatKeys.EncodingKey;
 import static org.monte.media.FormatKeys.FrameRateKey;
@@ -40,9 +43,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.github.wasiqb.coteafs.logger.Loggy;
-import com.github.wasiqb.coteafs.selenium.config.ConfigUtil;
 import com.github.wasiqb.coteafs.selenium.config.RecorderSetting;
-
+import com.github.wasiqb.coteafs.selenium.error.VideoRecordingError;
 import org.monte.media.Format;
 import org.monte.media.FormatKeys.MediaType;
 import org.monte.media.math.Rational;
@@ -54,12 +56,11 @@ import org.monte.screenrecorder.ScreenRecorder;
  */
 class CustomScreenRecorder extends ScreenRecorder {
     private static final Loggy           LOG              = Loggy.init ();
-    private static final RecorderSetting RECORDER_SETTING = ConfigUtil.appSetting ()
-        .getPlayback ()
+    private static final RecorderSetting RECORDER_SETTING = appSetting ().getPlayback ()
         .getRecording ();
-    private static ScreenRecorder        screenRecorder;
+    private static       ScreenRecorder  screenRecorder;
 
-    static void startRecording () throws Exception {
+    static void startRecording () {
         if (checkIfEnabled ()) {
             LOG.i ("Started Video screen recording...");
             final File file = new File (RECORDER_SETTING.getPath ());
@@ -75,24 +76,33 @@ class CustomScreenRecorder extends ScreenRecorder {
                 .getDefaultScreenDevice ()
                 .getDefaultConfiguration ();
 
-            screenRecorder = new CustomScreenRecorder (gc, captureSize,
-                new Format (MediaTypeKey, MediaType.FILE, MimeTypeKey, MIME_AVI),
-                new Format (MediaTypeKey, MediaType.VIDEO, EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
-                    CompressorNameKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, DepthKey, 24, FrameRateKey,
-                    Rational.valueOf (15), QualityKey, 1.0f, KeyFrameIntervalKey, 15 * 60),
-                new Format (MediaTypeKey, MediaType.VIDEO, EncodingKey, "black", FrameRateKey, Rational.valueOf (30)),
-                null, file);
-
-            screenRecorder.start ();
+            try {
+                screenRecorder = new CustomScreenRecorder (gc, captureSize,
+                    new Format (MediaTypeKey, MediaType.FILE, MimeTypeKey, MIME_AVI),
+                    new Format (MediaTypeKey, MediaType.VIDEO, EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
+                        CompressorNameKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, DepthKey, 24, FrameRateKey,
+                        Rational.valueOf (15), QualityKey, 1.0f, KeyFrameIntervalKey, 15 * 60),
+                    new Format (MediaTypeKey, MediaType.VIDEO, EncodingKey, "black", FrameRateKey,
+                        Rational.valueOf (30)), null, file);
+                screenRecorder.start ();
+            } catch (final IOException | AWTException e) {
+                handleError (IGNORE_PKG, e).forEach (LOG::e);
+                throw new VideoRecordingError ("Error while starting video recording.", e);
+            }
         } else {
             LOG.w ("Video screen recording is Disabled, cannot start...");
         }
     }
 
-    static void stopRecording () throws Exception {
+    static void stopRecording () {
         if (checkIfEnabled ()) {
             LOG.i ("Stopping Video screen recording...");
-            screenRecorder.stop ();
+            try {
+                screenRecorder.stop ();
+            } catch (final IOException e) {
+                handleError (IGNORE_PKG, e).forEach (LOG::e);
+                throw new VideoRecordingError ("Error while stopping video recording.", e);
+            }
         } else {
             LOG.w ("Video screen recording is Disabled, cannot stop...");
         }

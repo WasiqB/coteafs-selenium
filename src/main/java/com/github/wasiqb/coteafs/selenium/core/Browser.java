@@ -18,6 +18,7 @@ package com.github.wasiqb.coteafs.selenium.core;
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.fail;
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.close;
 import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getSession;
 import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.setSession;
 import static com.github.wasiqb.coteafs.selenium.core.enums.Platform.DESKTOP;
@@ -307,5 +308,6 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         }
         getDriver ().unregister (this.listener);
         getSession ().close ();
+        close ();
     }
 }

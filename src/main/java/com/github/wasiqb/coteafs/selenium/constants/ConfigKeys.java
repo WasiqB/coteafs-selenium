@@ -36,4 +36,8 @@ public interface ConfigKeys {
      * Selenium config key.
      */
     String COTEAFS_CONFIG_KEY          = "coteafs.selenium.config";
+    /**
+     * Ignore package.
+     */
+    String IGNORE_PKG                  = "com.github.wasiqb";
 }

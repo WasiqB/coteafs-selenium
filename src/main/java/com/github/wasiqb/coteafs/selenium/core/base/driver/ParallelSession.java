@@ -26,17 +26,25 @@ public class ParallelSession {
 
     /**
      * @author Wasiq Bhamla
-     * @since 28-Sep-2019
+     * @since 28-Nov-2019
+     */
+    public static void close () {
+        SESSION.remove ();
+    }
+
+    /**
      * @return session
+     * @author Wasiq Bhamla
+     * @since 28-Sep-2019
      */
     public static BrowserSession getSession () {
         return SESSION.get ();
     }
 
     /**
+     * @param session
      * @author Wasiq Bhamla
      * @since 28-Sep-2019
-     * @param session
      */
     public static void setSession (final BrowserSession session) {
         SESSION.set (session);

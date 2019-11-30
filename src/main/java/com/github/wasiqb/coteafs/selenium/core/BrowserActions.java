@@ -15,14 +15,14 @@
  */
 package com.github.wasiqb.coteafs.selenium.core;
 
+import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+
 import java.util.Set;
 
-import com.github.wasiqb.coteafs.selenium.config.ConfigUtil;
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
 import com.github.wasiqb.coteafs.selenium.core.base.driver.WebDriverAction;
 import com.github.wasiqb.coteafs.selenium.core.driver.IWebFrame;
 import com.github.wasiqb.coteafs.selenium.core.driver.IWebWindow;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
@@ -34,14 +34,13 @@ public class BrowserActions extends WebDriverAction<EventFiringWebDriver> implem
     private final DelaySetting delaySetting;
 
     /**
+     * @param driver driver
      * @author Wasiq Bhamla
      * @since 02-Jun-2019
-     * @param driver driver
      */
     BrowserActions (final EventFiringWebDriver driver) {
         super (driver);
-        this.delaySetting = ConfigUtil.appSetting ()
-            .getPlayback ()
+        this.delaySetting = appSetting ().getPlayback ()
             .getDelays ();
     }
 

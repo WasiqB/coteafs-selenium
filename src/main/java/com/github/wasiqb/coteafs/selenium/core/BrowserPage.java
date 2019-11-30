@@ -16,6 +16,7 @@
 package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.handleError;
+import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.IGNORE_PKG;
 
 import com.github.wasiqb.coteafs.logger.Loggy;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
@@ -23,7 +24,6 @@ import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 import com.github.wasiqb.coteafs.selenium.core.page.IPage;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -34,8 +34,8 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  */
 @SuppressWarnings ("unchecked")
 public class BrowserPage implements IPage<EventFiringWebDriver, BrowserActions, WebElement> {
-    private static final Loggy LOG = Loggy.init ();
-    private final Browser      browser;
+    private static final Loggy   LOG = Loggy.init ();
+    private final        Browser browser;
 
     /**
      * @author Wasiq Bhamla
@@ -50,8 +50,8 @@ public class BrowserPage implements IPage<EventFiringWebDriver, BrowserActions, 
         T page = null;
         try {
             page = pageCls.newInstance ();
-        } catch (InstantiationException | IllegalAccessException e) {
-            handleError ("com.github.wasiqb", e).forEach (LOG::e);
+        } catch (final InstantiationException | IllegalAccessException e) {
+            handleError (IGNORE_PKG, e).forEach (LOG::e);
         }
         return page;
     }
