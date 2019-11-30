@@ -11,13 +11,13 @@ remote:
     platform: LINUX
 params:
   user: mngr26593
-  password: abc@123
+  password: ishal!12
 playback:
   screen_state: NORMAL
   highlight: true
-#  screen_resolution:
-#    width: 1280
-#    height: 768
+  #  screen_resolution:
+  #    width: 1280
+  #    height: 768
   delays:
     implicit: 60
     explicit: 60

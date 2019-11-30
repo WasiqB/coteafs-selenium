@@ -17,7 +17,7 @@ remote:
     name: Sauce-[Java] Sample Test
 params:
   user: mngr26593
-  password: abc@123
+  password: ishal!12
 playback:
   screen_state: NORMAL
   highlight: true
