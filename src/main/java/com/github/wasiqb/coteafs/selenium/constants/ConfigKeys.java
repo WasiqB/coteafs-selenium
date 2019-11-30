@@ -39,5 +39,5 @@ public interface ConfigKeys {
     /**
      * Ignore package.
      */
-    String IGNORE_PKG                  = "com.github.wasiqb";
+    String FILTER_PKG                  = "com.github.wasiqb";
 }

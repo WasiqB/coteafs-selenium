@@ -16,7 +16,7 @@
 package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.handleError;
-import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.IGNORE_PKG;
+import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.FILTER_PKG;
 
 import com.github.wasiqb.coteafs.logger.Loggy;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
@@ -51,7 +51,7 @@ public class BrowserPage implements IPage<EventFiringWebDriver, BrowserActions, 
         try {
             page = pageCls.newInstance ();
         } catch (final InstantiationException | IllegalAccessException e) {
-            handleError (IGNORE_PKG, e).forEach (LOG::e);
+            handleError (FILTER_PKG, e).forEach (LOG::e);
         }
         return page;
     }

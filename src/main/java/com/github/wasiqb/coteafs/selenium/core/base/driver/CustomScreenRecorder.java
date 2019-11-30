@@ -17,7 +17,7 @@ package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.handleError;
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
-import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.IGNORE_PKG;
+import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.FILTER_PKG;
 import static java.text.MessageFormat.format;
 import static org.monte.media.FormatKeys.EncodingKey;
 import static org.monte.media.FormatKeys.FrameRateKey;
@@ -86,7 +86,7 @@ class CustomScreenRecorder extends ScreenRecorder {
                         Rational.valueOf (30)), null, file);
                 screenRecorder.start ();
             } catch (final IOException | AWTException e) {
-                handleError (IGNORE_PKG, e).forEach (LOG::e);
+                handleError (FILTER_PKG, e).forEach (LOG::e);
                 throw new VideoRecordingError ("Error while starting video recording.", e);
             }
         } else {
@@ -100,7 +100,7 @@ class CustomScreenRecorder extends ScreenRecorder {
             try {
                 screenRecorder.stop ();
             } catch (final IOException e) {
-                handleError (IGNORE_PKG, e).forEach (LOG::e);
+                handleError (FILTER_PKG, e).forEach (LOG::e);
                 throw new VideoRecordingError ("Error while stopping video recording.", e);
             }
         } else {

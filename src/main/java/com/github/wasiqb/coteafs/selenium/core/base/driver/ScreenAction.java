@@ -17,7 +17,7 @@ package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.handleError;
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
-import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.IGNORE_PKG;
+import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.FILTER_PKG;
 import static com.google.common.truth.Truth.assertThat;
 import static java.lang.String.format;
 import static java.lang.Thread.currentThread;
@@ -89,7 +89,7 @@ public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> imple
             return destination;
         } catch (final IOException e) {
             LOG.e ("Error while saving screenshot.", e);
-            handleError (IGNORE_PKG, e).forEach (LOG::e);
+            handleError (FILTER_PKG, e).forEach (LOG::e);
         }
         return null;
     }
@@ -104,7 +104,7 @@ public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> imple
         try {
             CustomScreenRecorder.startRecording ();
         } catch (final Exception e) {
-            handleError (IGNORE_PKG, e).forEach (LOG::e);
+            handleError (FILTER_PKG, e).forEach (LOG::e);
         }
     }
 
@@ -118,7 +118,7 @@ public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> imple
         try {
             CustomScreenRecorder.stopRecording ();
         } catch (final Exception e) {
-            handleError (IGNORE_PKG, e).forEach (LOG::e);
+            handleError (FILTER_PKG, e).forEach (LOG::e);
         }
     }
 

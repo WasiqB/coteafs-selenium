@@ -27,7 +27,6 @@ import java.io.File;
 
 import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
 import com.github.wasiqb.coteafs.selenium.utils.LogLevel;
-
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -43,10 +42,10 @@ public class BrowserTest {
     private Browser browser;
 
     /**
-     * @author wasiqb
-     * @since Sep 13, 2018 9:55:41 PM
      * @param browserName Browser name
      * @param configFile
+     * @author wasiqb
+     * @since Sep 13, 2018 9:55:41 PM
      */
     @Parameters ({ BROWSER, CONFIG })
     @BeforeTest (alwaysRun = true)
@@ -60,9 +59,9 @@ public class BrowserTest {
     }
 
     /**
+     * @param result test result
      * @author wasiqb
      * @since Mar 21, 2019 6:46:47 PM
-     * @param result test result
      */
     @AfterMethod (alwaysRun = true)
     public void teardownMethod (final ITestResult result) {
@@ -70,8 +69,7 @@ public class BrowserTest {
             .getScreenshot ();
         final boolean screenshotOnError = screenshotSetting.isCaptureOnError ();
         final boolean captureAll = screenshotSetting.isCaptureAll ();
-        if (captureAll
-            || screenshotOnError && result.getStatus () == ITestResult.FAILURE && !this.browser.isRunning ()) {
+        if (captureAll || screenshotOnError && result.getStatus () == ITestResult.FAILURE && this.browser.isRunning ()) {
             final File screenshot = this.browser.perform ()
                 .saveScreenshot ();
             final Throwable cause = result.getThrowable ();
