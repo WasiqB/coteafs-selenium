@@ -13,33 +13,22 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.github.wasiqb.coteafs.selenium.core.base.driver;
+package com.github.wasiqb.coteafs.selenium.error;
 
-import static com.google.common.truth.Truth.assertThat;
-
-import org.openqa.selenium.WebDriver;
-
-import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
-import com.google.common.truth.StringSubject;
+import com.github.wasiqb.coteafs.error.CoteafsError;
 
 /**
  * @author Wasiq Bhamla
- * @since 26-Jul-2019
- * @param <D>
+ * @since 28-Nov-2019
  */
-public class AbstractDriverAction <D extends WebDriver> extends AlertAction <D>
-	implements IDriverActions <D> {
-	AbstractDriverAction (final D driver) {
-		super (driver);
-	}
+public class VideoRecordingError extends CoteafsError {
+    private static final long serialVersionUID = 6184267334962964373L;
 
-	@Override
-	public String title () {
-		return get (WebDriver::getTitle);
-	}
-
-	@Override
-	public StringSubject verifyTitle () {
-		return assertThat (title ());
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @since 28-Nov-2019
+     */
+    public VideoRecordingError (final String message, final Throwable cause) {
+        super (message, cause);
+    }
 }

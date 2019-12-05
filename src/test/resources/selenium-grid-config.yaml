@@ -7,17 +7,17 @@ remote:
   source: GRID
   capabilities:
     browserName: chrome
-    version: 75.0
-    platform: Windows 10
+    version: 77.0.3865.75
+    platform: LINUX
 params:
   user: mngr26593
-  password: abc@123
+  password: ishal!12
 playback:
   screen_state: NORMAL
   highlight: true
-#  screen_resolution:
-#    width: 1280
-#    height: 768
+  #  screen_resolution:
+  #    width: 1280
+  #    height: 768
   delays:
     implicit: 60
     explicit: 60
@@ -31,7 +31,8 @@ playback:
     script_load: 60
     highlight: 500
   screenshot:
-    path: ~/screenshots
+    path: ./screenshots
     prefix: SCR
     extension: jpeg
     capture_on_error: false
+    capture_all: true

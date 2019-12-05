@@ -24,29 +24,27 @@ import com.github.wasiqb.coteafs.selenium.core.enums.PlatformOs;
  * @since 26-Jul-2019
  */
 public class PlatformAction implements IPlatformAction {
-	private final Platform		platform;
-	private final PlatformOs	platformOs;
+    private final Platform   platform;
+    private final PlatformOs platformOs;
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 26-Jul-2019
-	 * @param platform
-	 *     platform
-	 * @param platformOs
-	 *     platformOs
-	 */
-	PlatformAction (final Platform platform, final PlatformOs platformOs) {
-		this.platform = platform;
-		this.platformOs = platformOs;
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @since 26-Jul-2019
+     * @param platform platform
+     * @param platformOs platformOs
+     */
+    PlatformAction (final Platform platform, final PlatformOs platformOs) {
+        this.platform = platform;
+        this.platformOs = platformOs;
+    }
 
-	@Override
-	public Platform getPlatform () {
-		return this.platform;
-	}
+    @Override
+    public Platform getPlatform () {
+        return this.platform;
+    }
 
-	@Override
-	public PlatformOs getPlatformOs () {
-		return this.platformOs;
-	}
+    @Override
+    public PlatformOs getPlatformOs () {
+        return this.platformOs;
+    }
 }

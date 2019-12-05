@@ -25,14 +25,14 @@ import com.github.wasiqb.coteafs.error.enums.Severity;
  * @since 03-Aug-2019
  */
 public class DriverNotSetupError extends CoteafsError {
-	private static final long serialVersionUID = -8652506910306288004L;
+    private static final long serialVersionUID = -8652506910306288004L;
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 03-Aug-2019
-	 * @param message
-	 */
-	public DriverNotSetupError (final String message) {
-		super (message, Reason.R1, Category.C1, Severity.HIGH);
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @since 03-Aug-2019
+     * @param message
+     */
+    public DriverNotSetupError (final String message) {
+        super (message, Reason.R1, Category.C1, Severity.HIGH);
+    }
 }

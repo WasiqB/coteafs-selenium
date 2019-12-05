@@ -20,15 +20,15 @@ package com.github.wasiqb.coteafs.selenium.core.element;
  * @since 07-Jun-2019
  */
 public interface IMouseActions extends IFindableAction {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 */
-	void click ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     */
+    void click ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 */
-	void hover ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     */
+    void hover ();
 }

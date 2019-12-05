@@ -20,39 +20,37 @@ import org.openqa.selenium.WebDriver;
 /**
  * @author Wasiq Bhamla
  * @since 06-Jun-2019
- * @param <D>
- *     Driver
+ * @param <D> Driver
  */
-public interface IWebDriverActions <D extends WebDriver> extends IDriverActions <D> {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 */
-	void back ();
+public interface IWebDriverActions<D extends WebDriver> extends IDriverActions<D> {
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
+     */
+    void back ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 */
-	void deleteCookies ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
+     */
+    void deleteCookies ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 */
-	void forward ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
+     */
+    void forward ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @param url
-	 *     URL
-	 */
-	void navigateTo (String url);
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
+     * @param url URL
+     */
+    void navigateTo (String url);
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 */
-	void refresh ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
+     */
+    void refresh ();
 }

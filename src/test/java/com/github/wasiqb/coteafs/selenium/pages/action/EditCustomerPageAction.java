@@ -25,59 +25,59 @@ import com.github.wasiqb.coteafs.selenium.pages.SuccessCustomerPage;
  * @author wasiqb
  * @since Apr 8, 2019 11:49:16 AM
  */
-public class EditCustomerPageAction extends AbstractPageAction <EditCustomerPageAction> {
-	@Override
-	public void perform () {
-		final EditCustomerPage edit = new EditCustomerPage ();
-		edit.navbar ("Edit Customer")
-			.click ();
+public class EditCustomerPageAction extends AbstractPageAction<EditCustomerPageAction> {
+    @Override
+    public void perform () {
+        final EditCustomerPage edit = new EditCustomerPage ();
+        edit.navbar ("Edit Customer")
+            .click ();
 
-		edit.customerId ()
-			.enterText (value ("CustomerId"));
-		edit.submit ()
-			.click ();
+        edit.customerId ()
+            .enterText (value ("CustomerId"));
+        edit.submit ()
+            .click ();
 
-		final NewCustomerPage cust = new NewCustomerPage ();
-		final Faker fake = Faker.instance ();
-		cust.address ()
-			.clear ();
-		cust.address ()
-			.enterText (fake.address ()
-				.streetAddress ());
-		cust.city ()
-			.clear ();
-		cust.city ()
-			.enterText (fake.address ()
-				.city ());
-		cust.state ()
-			.clear ();
-		cust.state ()
-			.enterText (fake.address ()
-				.state ());
-		cust.pin ()
-			.clear ();
-		cust.pin ()
-			.enterText (fake.number ()
-				.digits (6));
-		cust.mobileNumber ()
-			.clear ();
-		cust.mobileNumber ()
-			.enterText (fake.number ()
-				.digits (10));
-		cust.email ()
-			.clear ();
-		cust.email ()
-			.enterText (fake.internet ()
-				.emailAddress ());
-		cust.submit ()
-			.click ();
+        final NewCustomerPage cust = edit.nextPage (NewCustomerPage.class);
+        final Faker fake = Faker.instance ();
+        cust.address ()
+            .clear ();
+        cust.address ()
+            .enterText (fake.address ()
+                .streetAddress ());
+        cust.city ()
+            .clear ();
+        cust.city ()
+            .enterText (fake.address ()
+                .city ());
+        cust.state ()
+            .clear ();
+        cust.state ()
+            .enterText (fake.address ()
+                .state ());
+        cust.pin ()
+            .clear ();
+        cust.pin ()
+            .enterText (fake.number ()
+                .digits (6));
+        cust.mobileNumber ()
+            .clear ();
+        cust.mobileNumber ()
+            .enterText (fake.number ()
+                .digits (10));
+        cust.email ()
+            .clear ();
+        cust.email ()
+            .enterText (fake.internet ()
+                .emailAddress ());
+        cust.submit ()
+            .click ();
 
-		final SuccessCustomerPage success = new SuccessCustomerPage ();
-		success.message ()
-			.verifyText ()
-			.isEqualTo ("Customer details updated Successfully!!!");
-		success.customerId ()
-			.verifyText ()
-			.isEqualTo (value ("CustomerId"));
-	}
+        final SuccessCustomerPage success = new SuccessCustomerPage ();
+        success.message ()
+            .verifyText ()
+            .isEqualTo ("Customer details updated Successfully!!!");
+        success.customerId ()
+            .verifyText ()
+            .isEqualTo (value ("CustomerId"));
+    }
 }

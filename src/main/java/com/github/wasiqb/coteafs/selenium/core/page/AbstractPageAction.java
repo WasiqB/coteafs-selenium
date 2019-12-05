@@ -15,34 +15,23 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.page;
 
-import java.util.HashMap;
-import java.util.Map;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getSession;
 
 /**
  * @author wasiqb
  * @param <T>
  * @since Sep 1, 2018 4:28:28 PM
  */
-@SuppressWarnings ("unchecked")
-public abstract class AbstractPageAction <T extends AbstractPageAction <T>> implements IPageAction {
-	private final Map <String, Object> values;
+public abstract class AbstractPageAction<T extends AbstractPageAction<T>> implements IPageAction {
+    @SuppressWarnings ("unchecked")
+    @Override
+    public T addInputValue (final String element, final Object value) {
+        getSession ().setContext (element, value);
+        return (T) this;
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Sep 1, 2018 8:04:10 PM
-	 */
-	public AbstractPageAction () {
-		this.values = new HashMap <> ();
-	}
-
-	@Override
-	public T addInputValue (final String element, final Object value) {
-		this.values.put (element, value);
-		return (T) this;
-	}
-
-	@Override
-	public <E> E value (final String element) {
-		return (E) this.values.get (element);
-	}
+    @Override
+    public <E> E value (final String element) {
+        return getSession ().getContext (element);
+    }
 }

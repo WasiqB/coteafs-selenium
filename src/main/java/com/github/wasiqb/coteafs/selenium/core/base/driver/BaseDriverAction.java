@@ -21,42 +21,55 @@ import static java.time.Duration.ofSeconds;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import com.github.wasiqb.coteafs.selenium.core.driver.IScriptAction;
+import com.github.wasiqb.coteafs.selenium.core.driver.IWaitAction;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.github.wasiqb.coteafs.selenium.core.driver.IWaitAction;
-
 /**
+ * @param <D>
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
- * @param <D>
  */
-public class BaseDriverAction <D extends WebDriver> implements IWaitAction <D> {
-	protected D					driver;
-	private final WebDriverWait	wait;
+public class BaseDriverAction<D extends WebDriver> implements IWaitAction<D>, IScriptAction {
+    protected     D             driver;
+    private final WebDriverWait wait;
 
-	BaseDriverAction (final D driver) {
-		this.driver = driver;
-		this.wait = new WebDriverWait (driver, ofSeconds (appSetting ().getPlayback ()
-			.getDelays ()
-			.getExplicit ()));
-	}
+    BaseDriverAction (final D driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait (driver, ofSeconds (appSetting ().getPlayback ()
+            .getDelays ()
+            .getExplicit ()).getSeconds ());
+    }
 
-	@Override
-	public D driver () {
-		return this.driver;
-	}
+    @Override
+    public D driver () {
+        return this.driver;
+    }
 
-	@Override
-	public WebDriverWait driverWait () {
-		return this.wait;
-	}
+    @Override
+    public WebDriverWait driverWait () {
+        return this.wait;
+    }
 
-	protected <E> E get (final Function <D, E> func) {
-		return func.apply (this.driver);
-	}
+    @SuppressWarnings ("unchecked")
+    @Override
+    public <T> T execute (final String script, final Object... args) {
+        return (T) get (d -> {
+            if (d instanceof EventFiringWebDriver) {
+                return ((EventFiringWebDriver) d).executeScript (script, args);
+            }
+            return ((RemoteWebDriver) d).executeScript (script, args);
+        });
+    }
 
-	protected void perform (final Consumer <D> action) {
-		action.accept (this.driver);
-	}
+    protected <E> E get (final Function<D, E> func) {
+        return func.apply (this.driver);
+    }
+
+    protected void perform (final Consumer<D> action) {
+        action.accept (this.driver);
+    }
 }

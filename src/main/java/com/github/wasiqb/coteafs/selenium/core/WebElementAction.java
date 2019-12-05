@@ -15,34 +15,32 @@
  */
 package com.github.wasiqb.coteafs.selenium.core;
 
+import com.github.wasiqb.coteafs.selenium.core.base.element.AbstractElementAction;
+import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-
-import com.github.wasiqb.coteafs.selenium.core.base.element.AbstractElementAction;
-import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 
 /**
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public class WebElementAction
-	extends AbstractElementAction <WebElement, EventFiringWebDriver, BrowserActions> {
-	WebElementAction (final BrowserActions browserAction, final By by) {
-		super (browserAction, by);
-	}
+class WebElementAction extends AbstractElementAction<WebElement, EventFiringWebDriver, BrowserActions> {
+    WebElementAction (final BrowserActions browserAction, final By by, final String name) {
+        super (browserAction, by, name);
+    }
 
-	WebElementAction (final BrowserActions browserAction, final By by,
-		final WaitStrategy strategy) {
-		super (browserAction, by, strategy);
-	}
+    WebElementAction (final BrowserActions browserAction, final By by, final String name, final WaitStrategy strategy) {
+        super (browserAction, by, name, strategy);
+    }
 
-	WebElementAction (final BrowserActions browserAction, final WebElement element) {
-		super (browserAction, element);
-	}
+    WebElementAction (final BrowserActions browserAction, final WebElement element, final String name) {
+        super (browserAction, element, name);
+    }
 
-	WebElementAction (final BrowserActions browserAction, final WebElement element,
-		final WaitStrategy strategy) {
-		super (browserAction, element, strategy);
-	}
+    WebElementAction (final BrowserActions browserAction, final WebElement element, final String name,
+        final WaitStrategy strategy) {
+        super (browserAction, element, name, strategy);
+    }
 }

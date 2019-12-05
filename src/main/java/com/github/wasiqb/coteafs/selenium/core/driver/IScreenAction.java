@@ -15,28 +15,44 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.driver;
 
+import java.io.File;
+
 /**
  * @author Wasiq Bhamla
  * @since 03-Jul-2019
  */
 public interface IScreenAction {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @return screenshot
-	 */
-	byte [] attachScreenshot ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
+     * @return screenshot
+     */
+    byte [] attachScreenshot ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 25-Jul-2019
-	 */
-	void saveScreenshot ();
+    /**
+     * @author Wasiq Bhamla
+     * @return file
+     * @since 25-Jul-2019
+     */
+    File saveScreenshot ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @param path
-	 * @since 25-Jul-2019
-	 */
-	void saveScreenshot (String path);
+    /**
+     * @author Wasiq Bhamla
+     * @param path
+     * @return file
+     * @since 25-Jul-2019
+     */
+    File saveScreenshot (String path);
+
+    /**
+     * @author Wasiq Bhamla
+     * @since 27-Oct-2019
+     */
+    void startRecording ();
+
+    /**
+     * @author Wasiq Bhamla
+     * @since 27-Oct-2019
+     */
+    void stopRecording ();
 }

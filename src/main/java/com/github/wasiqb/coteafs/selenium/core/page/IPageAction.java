@@ -20,33 +20,28 @@ package com.github.wasiqb.coteafs.selenium.core.page;
  * @since 08-Jun-2019
  */
 public interface IPageAction {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 08-Jun-2019
-	 * @param <T>
-	 *     page action
-	 * @param element
-	 *     element alias
-	 * @param value
-	 *     element input value
-	 * @return page action
-	 */
-	<T extends IPageAction> T addInputValue (final String element, final Object value);
+    /**
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
+     * @param <T> page action
+     * @param element element alias
+     * @param value element input value
+     * @return page action
+     */
+    <T extends IPageAction> T addInputValue (final String element, final Object value);
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 08-Jun-2019
-	 */
-	void perform ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
+     */
+    void perform ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 08-Jun-2019
-	 * @param <T>
-	 *     input value
-	 * @param element
-	 *     element alias
-	 * @return input value
-	 */
-	<T> T value (final String element);
+    /**
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
+     * @param <T> input value
+     * @param element element alias
+     * @return input value
+     */
+    <T> T value (final String element);
 }
