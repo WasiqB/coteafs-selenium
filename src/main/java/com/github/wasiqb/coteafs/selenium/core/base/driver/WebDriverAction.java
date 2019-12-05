@@ -15,48 +15,46 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
+import com.github.wasiqb.coteafs.selenium.core.driver.IWebDriverActions;
 import org.openqa.selenium.WebDriver;
 
-import com.github.wasiqb.coteafs.selenium.core.driver.IWebDriverActions;
-
 /**
- * @author Wasiq Bhamla
  * @param <D>
+ * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public class WebDriverAction <D extends WebDriver> extends AbstractDriverAction <D>
-	implements IWebDriverActions <D> {
-	protected WebDriverAction (final D driver) {
-		super (driver);
-	}
+public class WebDriverAction<D extends WebDriver> extends AlertAction<D> implements IWebDriverActions<D> {
+    protected WebDriverAction (final D driver) {
+        super (driver);
+    }
 
-	@Override
-	public void back () {
-		perform (d -> d.navigate ()
-			.back ());
-	}
+    @Override
+    public void back () {
+        perform (d -> d.navigate ()
+            .back ());
+    }
 
-	@Override
-	public void deleteCookies () {
-		perform (d -> d.manage ()
-			.deleteAllCookies ());
-	}
+    @Override
+    public void deleteCookies () {
+        perform (d -> d.manage ()
+            .deleteAllCookies ());
+    }
 
-	@Override
-	public void forward () {
-		perform (d -> d.navigate ()
-			.forward ());
-	}
+    @Override
+    public void forward () {
+        perform (d -> d.navigate ()
+            .forward ());
+    }
 
-	@Override
-	public void navigateTo (final String url) {
-		perform (d -> d.navigate ()
-			.to (url));
-	}
+    @Override
+    public void navigateTo (final String url) {
+        perform (d -> d.navigate ()
+            .to (url));
+    }
 
-	@Override
-	public void refresh () {
-		perform (d -> d.navigate ()
-			.refresh ());
-	}
+    @Override
+    public void refresh () {
+        perform (d -> d.navigate ()
+            .refresh ());
+    }
 }

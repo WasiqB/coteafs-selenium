@@ -20,28 +20,28 @@ package com.github.wasiqb.coteafs.selenium.core.enums;
  * @since Apr 8, 2018 2:42:01 PM
  */
 public enum AvailableBrowser {
-	/**
-	 * Chrome.
-	 */
-	CHROME,
-	/**
-	 * Edge.
-	 */
-	EDGE,
-	/**
-	 * Firefox.
-	 */
-	FIREFOX,
-	/**
-	 * IE.
-	 */
-	IE,
-	/**
-	 * Safari.
-	 */
-	SAFARI,
-	/**
-	 * Remote Grid or Cloud instance.
-	 */
-	REMOTE
+    /**
+     * Chrome.
+     */
+    CHROME,
+    /**
+     * Edge.
+     */
+    EDGE,
+    /**
+     * Firefox.
+     */
+    FIREFOX,
+    /**
+     * IE.
+     */
+    IE,
+    /**
+     * Remote Grid or Cloud instance.
+     */
+    REMOTE,
+    /**
+     * Safari.
+     */
+    SAFARI
 }

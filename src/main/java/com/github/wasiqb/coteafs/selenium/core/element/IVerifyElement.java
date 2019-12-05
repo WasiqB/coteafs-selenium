@@ -23,40 +23,39 @@ import com.google.common.truth.StringSubject;
  * @since 07-Jun-2019
  */
 public interface IVerifyElement extends IElementActions {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @param attribute
-	 *     element attribute
-	 * @return subject
-	 */
-	StringSubject verifyAttribute (final String attribute);
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     * @param attribute element attribute
+     * @return subject
+     */
+    StringSubject verifyAttribute (final String attribute);
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @return subject
-	 */
-	BooleanSubject verifyDisplayed ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     * @return subject
+     */
+    BooleanSubject verifyDisplayed ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @return subject
-	 */
-	BooleanSubject verifyEnabled ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     * @return subject
+     */
+    BooleanSubject verifyEnabled ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @return subject
-	 */
-	BooleanSubject verifySelected ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     * @return subject
+     */
+    BooleanSubject verifySelected ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 07-Jun-2019
-	 * @return subject
-	 */
-	StringSubject verifyText ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
+     * @return subject
+     */
+    StringSubject verifyText ();
 }

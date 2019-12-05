@@ -20,16 +20,16 @@ package com.github.wasiqb.coteafs.selenium.core.enums;
  * @since 01-Aug-2019
  */
 public enum RemoteSource {
-	/**
-	 * BrowserStack.
-	 */
-	BROWSERSTACK,
-	/**
-	 * Grid.
-	 */
-	GRID,
-	/**
-	 * SauceLabs.
-	 */
-	SAUCELABS
+    /**
+     * BrowserStack.
+     */
+    BROWSERSTACK,
+    /**
+     * Grid.
+     */
+    GRID,
+    /**
+     * SauceLabs.
+     */
+    SAUCELABS
 }

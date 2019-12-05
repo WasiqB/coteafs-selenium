@@ -11,3 +11,5 @@
 /.idea/
 *.iml
 .DS_Store
+/video/
+/screenshots/

@@ -25,29 +25,29 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
  * @author wasiqb
  * @since Sep 1, 2018 8:09:35 PM
  */
-public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
-	/**
-	 * Password key.
-	 */
-	public static final String	PASS	= "password";
-	/**
-	 * User Id key.
-	 */
-	public static final String	USER_ID	= "userId";
+public class LoginPageAction extends AbstractPageAction<LoginPageAction> {
+    /**
+     * Password key.
+     */
+    public static final String PASS    = "password";
+    /**
+     * User Id key.
+     */
+    public static final String USER_ID = "userId";
 
-	@Override
-	public void perform () {
-		final LoginPage login = new LoginPage ();
-		login.userId ()
-			.enterText (value (USER_ID));
-		login.password ()
-			.enterText (value (PASS));
-		login.signIn ()
-			.click ();
+    @Override
+    public void perform () {
+        final LoginPage login = new LoginPage ();
+        login.userId ()
+            .enterText (value (USER_ID));
+        login.password ()
+            .enterText (value (PASS));
+        login.signIn ()
+            .click ();
 
-		final MainPage main = new MainPage ();
-		main.managerIdBanner ()
-			.verifyText ()
-			.endsWith (format ("Manger Id : {0}", value (USER_ID).toString ()));
-	}
+        login.nextPage (MainPage.class)
+            .managerIdBanner ()
+            .verifyText ()
+            .endsWith (format ("Manger Id : {0}", value (USER_ID).toString ()));
+    }
 }

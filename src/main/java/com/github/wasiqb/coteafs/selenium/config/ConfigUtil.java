@@ -24,18 +24,18 @@ import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.COTEAFS_CO
  * @since Aug 9, 2018 8:23:23 PM
  */
 public final class ConfigUtil {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since Aug 9, 2018 8:39:04 PM
-	 * @return setting
-	 */
-	public static ApplicationSetting appSetting () {
-		return settings ().withKey (COTEAFS_CONFIG_KEY)
-			.withDefault (COTEAFS_CONFIG_DEFAULT_FILE)
-			.load (ApplicationSetting.class);
-	}
+    /**
+     * @author Wasiq Bhamla
+     * @since Aug 9, 2018 8:39:04 PM
+     * @return setting
+     */
+    public static ApplicationSetting appSetting () {
+        return settings ().withKey (COTEAFS_CONFIG_KEY)
+            .withDefault (COTEAFS_CONFIG_DEFAULT_FILE)
+            .load (ApplicationSetting.class);
+    }
 
-	private ConfigUtil () {
-		// Remove default constructor since class is static util class.
-	}
+    private ConfigUtil () {
+        // Remove default constructor since class is static util class.
+    }
 }

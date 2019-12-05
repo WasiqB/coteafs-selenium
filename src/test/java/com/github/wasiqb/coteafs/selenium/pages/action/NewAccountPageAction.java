@@ -24,44 +24,45 @@ import com.github.wasiqb.coteafs.selenium.pages.SuccessAccountPage;
  * @author wasiqb
  * @since Apr 8, 2019 8:05:24 PM
  */
-public class NewAccountPageAction extends AbstractPageAction <NewAccountPageAction> {
-	private String accountId;
+public class NewAccountPageAction extends AbstractPageAction<NewAccountPageAction> {
+    private String accountId;
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 10:00:42 PM
-	 * @return account id
-	 */
-	public String accountId () {
-		return this.accountId;
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 10:00:42 PM
+     * @return account id
+     */
+    public String accountId () {
+        return this.accountId;
+    }
 
-	@Override
-	public void perform () {
-		final Faker fake = Faker.instance ();
-		final NewAccountPage acc = new NewAccountPage ();
-		acc.navbar ("New Account")
-			.click ();
+    @Override
+    public void perform () {
+        final Faker fake = Faker.instance ();
+        final NewAccountPage acc = new NewAccountPage ();
+        acc.navbar ("New Account")
+            .click ();
 
-		acc.customerId ()
-			.enterText (value ("CustomerId"));
-		acc.accountType ()
-			.selectByText (fake.bool ()
-				.bool () ? "Current" : "Savings");
-		acc.initialDeposit ()
-			.enterText (fake.number ()
-				.numberBetween (500, 100000) + "");
-		acc.submit ()
-			.click ();
+        acc.customerId ()
+            .enterText (value ("CustomerId"));
+        acc.accountType ()
+            .selectByText (fake.bool ()
+                .bool () ? "Current" : "Savings");
+        acc.initialDeposit ()
+            .enterText (fake.number ()
+                .numberBetween (500, 100000) + "");
+        acc.submit ()
+            .click ();
 
-		final SuccessAccountPage success = new SuccessAccountPage ();
-		success.message ()
-			.verifyText ()
-			.isEqualTo ("Account Generated Successfully!!!");
-		success.customerId ()
-			.verifyText ()
-			.isEqualTo (value ("CustomerId"));
-		this.accountId = success.accountId ()
-			.text ();
-	}
+        final SuccessAccountPage success = acc.nextPage (SuccessAccountPage.class);
+
+        success.message ()
+            .verifyText ()
+            .isEqualTo ("Account Generated Successfully!!!");
+        success.customerId ()
+            .verifyText ()
+            .isEqualTo (value ("CustomerId"));
+        this.accountId = success.accountId ()
+            .text ();
+    }
 }

@@ -20,16 +20,13 @@ package com.github.wasiqb.coteafs.selenium.core.driver;
  * @since 03-Jul-2019
  */
 public interface IScriptAction {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 06-Jun-2019
-	 * @param <T>
-	 *     output type
-	 * @param script
-	 *     script
-	 * @param args
-	 *     args
-	 * @return result
-	 */
-	<T> T execute (final String script, final Object... args);
+    /**
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
+     * @param <T> output type
+     * @param script script
+     * @param args args
+     * @return result
+     */
+    <T> T execute (final String script, final Object... args);
 }

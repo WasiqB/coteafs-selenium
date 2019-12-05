@@ -15,31 +15,31 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages;
 
-import org.openqa.selenium.By;
-
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
+
+import org.openqa.selenium.By;
 
 /**
  * @author wasiqb
  * @since Apr 8, 2019 10:17:16 PM
  */
 public class EditAccountPage extends MainPage {
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 10:20:19 PM
-	 * @return account id
-	 */
-	public ITextboxActions accountId () {
-		return onTextbox (By.name ("accountno"));
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 10:20:19 PM
+     * @return account id
+     */
+    public ITextboxActions accountId () {
+        return onTextbox (By.name ("accountno"), "Account ID");
+    }
 
-	/**
-	 * @author wasiqb
-	 * @since Apr 8, 2019 10:21:29 PM
-	 * @return submit
-	 */
-	public IMouseActions submit () {
-		return onClickable (By.name ("AccSubmit"));
-	}
+    /**
+     * @author wasiqb
+     * @since Apr 8, 2019 10:21:29 PM
+     * @return submit
+     */
+    public IMouseActions submit () {
+        return onClickable (By.name ("AccSubmit"), "Submit");
+    }
 }

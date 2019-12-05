@@ -23,18 +23,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @param <D>
  * @since 27-Jul-2019
  */
-public interface IWaitAction <D extends WebDriver> {
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 27-Jul-2019
-	 * @return driver
-	 */
-	D driver ();
+public interface IWaitAction<D extends WebDriver> {
+    /**
+     * @author Wasiq Bhamla
+     * @since 27-Jul-2019
+     * @return driver
+     */
+    D driver ();
 
-	/**
-	 * @author Wasiq Bhamla
-	 * @since 27-Jul-2019
-	 * @return wait
-	 */
-	WebDriverWait driverWait ();
+    /**
+     * @author Wasiq Bhamla
+     * @since 27-Jul-2019
+     * @return wait
+     */
+    WebDriverWait driverWait ();
 }

@@ -15,41 +15,40 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages;
 
-import org.openqa.selenium.By;
-
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
+
+import org.openqa.selenium.By;
 
 /**
  * @author wasiqb
  * @since Aug 31, 2018 8:14:38 PM
  */
 public class MainPage extends BrowserPage {
-	/**
-	 * @return manager welcome banner
-	 * @since Apr 7, 2019 5:39:39 PM
-	 */
-	public IMouseActions managerIdBanner () {
-		return onClickable (By.cssSelector ("tr.heading3 > td"));
-	}
+    /**
+     * @return manager welcome banner
+     * @since Apr 7, 2019 5:39:39 PM
+     */
+    public IMouseActions managerIdBanner () {
+        return onClickable (By.cssSelector ("tr.heading3 > td"), "Manager ID Banner");
+    }
 
-	/**
-	 * @param name
-	 *     name
-	 * @return menu name
-	 * @since Apr 7, 2019 5:42:12 PM
-	 */
-	public IMouseActions navbar (final String name) {
-		return navbar ().finds (By.cssSelector ("li > a"))
-			.stream ()
-			.filter (m -> m.text ()
-				.trim ()
-				.equals (name))
-			.findFirst ()
-			.get ();
-	}
+    /**
+     * @param name name
+     * @return menu name
+     * @since Apr 7, 2019 5:42:12 PM
+     */
+    public IMouseActions navbar (final String name) {
+        return navbar ().finds (By.cssSelector ("li > a"), name)
+            .stream ()
+            .filter (m -> m.text ()
+                .trim ()
+                .equals (name))
+            .findFirst ()
+            .get ();
+    }
 
-	private IMouseActions navbar () {
-		return onClickable (By.className ("menusubnav"));
-	}
+    private IMouseActions navbar () {
+        return onClickable (By.className ("menusubnav"), "Navbar");
+    }
 }

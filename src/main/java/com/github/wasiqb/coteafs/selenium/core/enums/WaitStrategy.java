@@ -20,20 +20,20 @@ package com.github.wasiqb.coteafs.selenium.core.enums;
  * @since 09-Jun-2019
  */
 public enum WaitStrategy {
-	/**
-	 * Wait until clickable.
-	 */
-	CLICKABLE,
-	/**
-	 * Wait until invisible.
-	 */
-	INVISIBLE,
-	/**
-	 * None.
-	 */
-	NONE,
-	/**
-	 * Wait until visible.
-	 */
-	VISIBLE
+    /**
+     * Wait until clickable.
+     */
+    CLICKABLE,
+    /**
+     * Wait until invisible.
+     */
+    INVISIBLE,
+    /**
+     * None.
+     */
+    NONE,
+    /**
+     * Wait until visible.
+     */
+    VISIBLE
 }
