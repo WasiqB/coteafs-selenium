@@ -30,7 +30,7 @@ This is a Selenium WebDriver wrapper Framework which enables robust, maintainabl
 
 Some of the key features which this framework offers are as follows:
 
-:point_right: Latest Selenium WebDriver 4.0 (Alpha 2).
+:point_right: Latest stable Selenium WebDriver 3.141.59.
 
 :point_right: Minimal learning curve.
 
@@ -40,9 +40,11 @@ Some of the key features which this framework offers are as follows:
 
 :point_right: On-demand highlighting of Elements.
 
+:point_right: On-demand video recording.
+
 :point_right: On-demand delay of test execution by allowing predefined delays.
 
-:point_right: On-demand headless mode.
+:point_right: On-demand headless mode execution.
 
 :point_right: Inline verification of elements.
 
@@ -62,14 +64,14 @@ You can use the following dependency into your `pom.xml` to use this library.
 <dependency>
   <groupId>com.github.wasiqb.coteafs</groupId>
   <artifactId>selenium</artifactId>
-  <version>3.0.0</version>
+  <version>3.1.0</version>
 </dependency>
 ```
 
 Or you can add the following into your `build.gradle` file.
 
  ```gradle
- compile "com.github.wasiqb.coteafs:selenium:3.0.0"
+ compile "com.github.wasiqb.coteafs:selenium:3.1.0"
  ```
 
 ## :smile: How it is easy to write Tests with this Framework?
@@ -121,9 +123,15 @@ playback:   # Playback settings.
   screen_resolution:    # Screen resolution settings.
     width: 1280     # Screen width.
     height: 768     # Screen height.
+  recording:
+    enable: true    # true, to enable recording, else false.
+    path: ./video   # Video recording path.
+    prefix: VID     # Video file prefix.
   delays:       # On demand delay settings.
     implicit: 60          # Implicit waits in seconds.
     explicit: 60          # Explicit waits in seconds.
+    after_frame_switch: 500   # Delay after iFrame switch in milliseconds.
+    after_window_switch: 500  # Delay after Window switch in milliseconds.
     before_key_press: 0   # delay before key press in milliseconds.
     after_key_press: 0    # delay after key press in milliseconds.
     before_mouse_move: 0  # delay before mouse move in milliseconds.
@@ -138,6 +146,7 @@ playback:   # Playback settings.
     prefix: SCR             # screenshot file prefix.
     extension: jpeg         # screenshot file extension.
     capture_on_error: false # screenshot on error.
+    capture_all: true       # always capture screenshot on each event, when true.
 ```
 
 > **Note:** If you find any config not working, feel free to raise an [issue][].
@@ -165,19 +174,19 @@ import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 
 public class LoginPage extends BrowserPage {
   public ITextboxActions password () {
-    return form ().find (By.name ("password"));
+    return form ().find (By.name ("password"), "Password");
   }
 
   public IMouseActions signIn () {
-    return form ().find (By.name ("btnLogin"));
+    return form ().find (By.name ("btnLogin"), "Login");
   }
 
   public ITextboxActions userId () {
-    return form ().find (By.name ("uid"));
+    return form ().find (By.name ("uid"), "User ID");
   }
 
   private IMouseActions form () {
-    return onClickable (By.name ("frmLogin"));
+    return onClickable (By.name ("frmLogin"), "Form");
   }
 }
 ```
@@ -205,7 +214,7 @@ import com.github.wasiqb.coteafs.selenium.pages.LoginPage;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 
 public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
-  public static final String PASS = "password";
+  public static final String PASS    = "password";
   public static final String USER_ID = "userId";
 
   @Override
@@ -218,8 +227,8 @@ public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
     login.signIn ()
       .click ();
 
-    final MainPage main = new MainPage ();
-    main.managerIdBanner ()
+    login.nextPage (MainPage.class)
+      .managerIdBanner ()
       .verifyText ()
       .endsWith (format ("Manger Id : {0}", value (USER_ID).toString ()));
   }
@@ -266,7 +275,7 @@ public class SeleniumTest extends BrowserTest {
     login.addInputValue (USER_ID, appSetting ().getParams ()
       .get ("user"))
       .addInputValue (PASS, appSetting ().getParams ()
-        .get ("password"))
+      .get ("password"))
       .perform ();
   }
 }

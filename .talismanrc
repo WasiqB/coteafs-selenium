@@ -35,3 +35,6 @@ fileignoreconfig:
 - filename: src/test/resources/selenium-grid-config.yaml
   checksum: a705a7d6de2350861d9d37ae424bd97a89ec358c4ca7d7e108e1ab93d2dd0a5b
   ignore_detectors: []
+- filename: README.md
+  checksum: 16f2f4ac5d186f1fc59f4a23f0860b324e9839b2e7d4f108ea8c4fee36a1c517
+  ignore_detectors: []
