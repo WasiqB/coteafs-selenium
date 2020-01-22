@@ -238,7 +238,7 @@ public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
 </details>
 
 <details>
-  <summary><strong>4. :ballot_box_with_check: Write Test class</strong></summary>
+  <summary><strong>4. :white_check_mark: Write Test class</strong></summary>
   <br/>
 
 Test which are written using this framework are slightly different than usual. In the tests, Page actions is used instead of page objects. This can be demonstrated as shown below:
@@ -279,6 +279,105 @@ public class SeleniumTest extends BrowserTest {
       .perform ();
   }
 }
+```
+
+</details>
+
+<details>
+  <summary><strong>5. :microscope: Create TestNG XML file</strong></summary>
+  <br/>
+
+### Basic syncronous run
+
+Following is a simple `testng.xml` file for running the tests on Chrome browser **locally, on grid and on BrowserStack** in sync.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <listeners>
+    <listener class-name="com.github.wasiqb.coteafs.listeners.ConfigListener"/>
+    <listener class-name="com.github.wasiqb.coteafs.listeners.SuiteListener"/>
+    <listener class-name="com.github.wasiqb.coteafs.listeners.TestListener"/>
+    <listener class-name="com.github.wasiqb.coteafs.listeners.ExecutionListener"/>
+    <listener class-name="com.github.wasiqb.coteafs.listeners.DataProviderListener"/>
+    <listener class-name="com.github.wasiqb.coteafs.listeners.AnnotationTransformer"/>
+  </listeners>
+  <test name="Test Local">
+    <classes>
+      <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+        <methods>
+          <include name="testSignIn"/>
+          <include name="testNewCustomer"/>
+          <include name="testEditCustomer"/>
+          <include name="testNewAccount"/>
+          <include name="testDeleteAccount"/>
+          <include name="testDeleteCustomer"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+  <test name="Test Grid">
+    <parameter name="test.browser" value="REMOTE"/>
+    <parameter name="test.config" value="./src/test/resources/selenium-grid-config.yaml"/>
+    <classes>
+      <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+        <methods>
+          <include name="testSignIn"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+  <test name="Test BrowserStack">
+    <parameter name="test.browser" value="REMOTE"/>
+    <parameter name="test.config" value="./src/test/resources/selenium-bs-config.yaml"/>
+    <classes>
+      <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
+        <methods>
+          <include name="testSignIn"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+</suite>
+```
+
+> **Note:** Notice the parameter used in last 2 tests,
+- `test.browser`: You can override the browser set in config file, it accepts same value as described in confid section.
+- `test.config`: You can set different config for current test.
+
+### Parallel Run
+
+In case you want to run tests for different browsers parallely, you just need to modify the following line in `testng.xml`.
+
+```xml
+. . .
+<suite name="Suite" parallel="tests" thread-count="10">
+. . .
+```
+
+This attributes will tell testng to run all the test blocks in 10 parallel threads.
+
+</details>
+
+<details>
+  <summary><strong>6. :cyclone: Running TestNG XML file</strong></summary>
+  <br/>
+
+### Running on local browsers or on Selenium Grid
+
+Run the tests using following command,
+
+```bash
+$ mvn clean install -Dsuite-xml=testng.xml
+```
+
+### Running on BrowserStack or any other cloud solution
+
+Run the tests using following command,
+
+```bash
+$ mvn clean install -Dsuite-xml=testng.xml -DCLOUD_USER=<cloud_user> -DCLOUD_KEY=<cloud_key>
 ```
 
 </details>
