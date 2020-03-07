@@ -21,43 +21,42 @@ import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IFindableAction;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
- * @author Wasiq Bhamla
- * @since 27-Jul-2019
  * @param <E>
  * @param <D>
  * @param <B>
+ * @author Wasiq Bhamla
+ * @since 27-Jul-2019
  */
 public abstract class FindableAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
     extends KeyboardAction<E, D, B> implements IFindableAction {
-    protected FindableAction (final B browserAction, final By by, final String name) {
-        super (browserAction, by, name);
+    protected FindableAction(final B browserAction, final By by, final String name) {
+        super(browserAction, by, name);
     }
 
-    protected FindableAction (final B browserAction, final By by, final String name, final WaitStrategy strategy) {
-        super (browserAction, by, name, strategy);
+    protected FindableAction(final B browserAction, final By by, final String name, final WaitStrategy strategy) {
+        super(browserAction, by, name, strategy);
     }
 
-    protected FindableAction (final B browserAction, final E element, final String name) {
-        super (browserAction, element, name);
+    protected FindableAction(final B browserAction, final E element, final String name) {
+        super(browserAction, element, name);
     }
 
-    protected FindableAction (final B browserAction, final E element, final String name, final WaitStrategy strategy) {
-        super (browserAction, element, name, strategy);
-    }
-
-    @Override
-    public <T extends IMouseActions> T find (final By byLocator, final String name) {
-        return find (byLocator, name, WaitStrategy.NONE);
+    protected FindableAction(final B browserAction, final E element, final String name, final WaitStrategy strategy) {
+        super(browserAction, element, name, strategy);
     }
 
     @Override
-    public <T extends IMouseActions> List<T> finds (final By byLocator, final String name) {
-        return finds (byLocator, name, WaitStrategy.NONE);
+    public <T extends IMouseActions> T find(final By byLocator, final String name) {
+        return find(byLocator, name, WaitStrategy.NONE);
+    }
+
+    @Override
+    public <T extends IMouseActions> List<T> finds(final By byLocator, final String name) {
+        return finds(byLocator, name, WaitStrategy.NONE);
     }
 }

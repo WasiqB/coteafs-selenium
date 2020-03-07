@@ -16,7 +16,6 @@
 package com.github.wasiqb.coteafs.selenium.config;
 
 import com.github.wasiqb.coteafs.config.util.BasePojo;
-
 import lombok.Getter;
 import lombok.Setter;
 

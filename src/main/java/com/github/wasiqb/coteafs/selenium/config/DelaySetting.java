@@ -16,7 +16,6 @@
 package com.github.wasiqb.coteafs.selenium.config;
 
 import com.github.wasiqb.coteafs.config.util.BasePojo;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,7 +40,7 @@ public class DelaySetting extends BasePojo {
     private long pageLoad;
     private long scriptLoad;
 
-    DelaySetting () {
+    DelaySetting() {
         this.pageLoad = 60;
         this.scriptLoad = 60;
         this.implicit = 1;

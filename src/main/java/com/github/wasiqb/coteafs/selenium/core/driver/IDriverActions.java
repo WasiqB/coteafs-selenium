@@ -29,12 +29,12 @@ public interface IDriverActions<D extends WebDriver> extends IScriptAction, IScr
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
      */
-    String title ();
+    String title();
 
     /**
      * @return string subject
      * @author Wasiq Bhamla
      * @since 08-Jun-2019
      */
-    StringSubject verifyTitle ();
+    StringSubject verifyTitle();
 }

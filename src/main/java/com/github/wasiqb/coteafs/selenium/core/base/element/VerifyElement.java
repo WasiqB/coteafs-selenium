@@ -23,58 +23,57 @@ import com.github.wasiqb.coteafs.selenium.core.element.IVerifyElement;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 import com.google.common.truth.BooleanSubject;
 import com.google.common.truth.StringSubject;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
- * @author Wasiq Bhamla
- * @since 27-Jul-2019
  * @param <E>
  * @param <D>
  * @param <B>
+ * @author Wasiq Bhamla
+ * @since 27-Jul-2019
  */
 public class VerifyElement<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
     extends ElementAction<E, D, B> implements IVerifyElement {
-    VerifyElement (final B browserAction, final By by, final String name) {
-        super (browserAction, by, name);
+    VerifyElement(final B browserAction, final By by, final String name) {
+        super(browserAction, by, name);
     }
 
-    VerifyElement (final B browserAction, final By by, final String name, final WaitStrategy strategy) {
-        super (browserAction, by, name, strategy);
+    VerifyElement(final B browserAction, final By by, final String name, final WaitStrategy strategy) {
+        super(browserAction, by, name, strategy);
     }
 
-    VerifyElement (final B browserAction, final E element, final String name) {
-        super (browserAction, element, name);
+    VerifyElement(final B browserAction, final E element, final String name) {
+        super(browserAction, element, name);
     }
 
-    VerifyElement (final B browserAction, final E element, final String name, final WaitStrategy strategy) {
-        super (browserAction, element, name, strategy);
-    }
-
-    @Override
-    public StringSubject verifyAttribute (final String attribute) {
-        return assertThat (attribute (attribute));
+    VerifyElement(final B browserAction, final E element, final String name, final WaitStrategy strategy) {
+        super(browserAction, element, name, strategy);
     }
 
     @Override
-    public BooleanSubject verifyDisplayed () {
-        return assertWithMessage ("Is Displayed?").that (isDisplayed ());
+    public StringSubject verifyAttribute(final String attribute) {
+        return assertThat(attribute(attribute));
     }
 
     @Override
-    public BooleanSubject verifyEnabled () {
-        return assertWithMessage ("Is Enabled?").that (isEnabled ());
+    public BooleanSubject verifyDisplayed() {
+        return assertWithMessage("Is Displayed?").that(isDisplayed());
     }
 
     @Override
-    public BooleanSubject verifySelected () {
-        return assertWithMessage ("Is Selected?").that (isSelected ());
+    public BooleanSubject verifyEnabled() {
+        return assertWithMessage("Is Enabled?").that(isEnabled());
     }
 
     @Override
-    public StringSubject verifyText () {
-        return assertThat (text ());
+    public BooleanSubject verifySelected() {
+        return assertWithMessage("Is Selected?").that(isSelected());
+    }
+
+    @Override
+    public StringSubject verifyText() {
+        return assertThat(text());
     }
 }

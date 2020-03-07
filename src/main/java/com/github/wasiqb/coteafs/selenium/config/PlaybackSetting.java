@@ -17,7 +17,6 @@ package com.github.wasiqb.coteafs.selenium.config;
 
 import com.github.wasiqb.coteafs.config.util.BasePojo;
 import com.github.wasiqb.coteafs.selenium.core.enums.ScreenState;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,15 +31,15 @@ public class PlaybackSetting extends BasePojo {
     private boolean           highlight;
     private RecorderSetting   recording;
     private ScreenResolution  screenResolution;
-    private ScreenshotSetting screenshot;
     private ScreenState       screenState;
+    private ScreenshotSetting screenshot;
 
-    PlaybackSetting () {
-        this.screenResolution = new ScreenResolution ();
-        this.delays = new DelaySetting ();
-        this.screenshot = new ScreenshotSetting ();
+    PlaybackSetting() {
+        this.screenResolution = new ScreenResolution();
+        this.delays = new DelaySetting();
+        this.screenshot = new ScreenshotSetting();
         this.screenState = ScreenState.NORMAL;
         this.highlight = true;
-        this.recording = new RecorderSetting ();
+        this.recording = new RecorderSetting();
     }
 }

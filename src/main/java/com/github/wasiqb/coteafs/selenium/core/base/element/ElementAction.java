@@ -18,63 +18,62 @@ package com.github.wasiqb.coteafs.selenium.core.base.element;
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IElementActions;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
- * @author Wasiq Bhamla
- * @since 27-Jul-2019
  * @param <E>
  * @param <D>
  * @param <B>
+ * @author Wasiq Bhamla
+ * @since 27-Jul-2019
  */
 public class ElementAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
     extends BaseElementAction<E, D, B> implements IElementActions {
-    protected ElementAction (final B browserAction, final By by, final String name) {
-        super (browserAction, by, name);
+    protected ElementAction(final B browserAction, final By by, final String name) {
+        super(browserAction, by, name);
     }
 
-    protected ElementAction (final B browserAction, final By by, final String name, final WaitStrategy strategy) {
-        super (browserAction, by, name, strategy);
+    protected ElementAction(final B browserAction, final By by, final String name, final WaitStrategy strategy) {
+        super(browserAction, by, name, strategy);
     }
 
-    protected ElementAction (final B browserAction, final E element, final String name) {
-        super (browserAction, element, name);
+    protected ElementAction(final B browserAction, final E element, final String name) {
+        super(browserAction, element, name);
     }
 
-    protected ElementAction (final B browserAction, final E element, final String name, final WaitStrategy strategy) {
-        super (browserAction, element, name, strategy);
-    }
-
-    @Override
-    public String attribute (final String name) {
-        return get (e -> e.getAttribute (name));
+    protected ElementAction(final B browserAction, final E element, final String name, final WaitStrategy strategy) {
+        super(browserAction, element, name, strategy);
     }
 
     @Override
-    public void clear () {
-        perform (WebElement::clear);
+    public String attribute(final String name) {
+        return get(e -> e.getAttribute(name));
     }
 
     @Override
-    public boolean isDisplayed () {
-        return get (WebElement::isDisplayed);
+    public void clear() {
+        perform(WebElement::clear);
     }
 
     @Override
-    public boolean isEnabled () {
-        return get (WebElement::isEnabled);
+    public boolean isDisplayed() {
+        return get(WebElement::isDisplayed);
     }
 
     @Override
-    public boolean isSelected () {
-        return get (WebElement::isSelected);
+    public boolean isEnabled() {
+        return get(WebElement::isEnabled);
     }
 
     @Override
-    public String text () {
-        return get (WebElement::getText);
+    public boolean isSelected() {
+        return get(WebElement::isSelected);
+    }
+
+    @Override
+    public String text() {
+        return get(WebElement::getText);
     }
 }
