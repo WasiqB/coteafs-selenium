@@ -33,7 +33,7 @@ public class PlatformAction implements IPlatformAction {
      * @param platform platform
      * @param platformOs platformOs
      */
-    PlatformAction (final Platform platform, final PlatformOs platformOs) {
+    public PlatformAction (final Platform platform, final PlatformOs platformOs) {
         this.platform = platform;
         this.platformOs = platformOs;
     }
