@@ -4,14 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>selenium</artifactId>
 	<version>3.1.0</version>
-	<name>coteafs-selenium</name>
 	<description>Selenium WebDriver wrapper framework for clean and maintainable tests.</description>
 	<url>https://github.com/WasiqB/coteafs-selenium</url>
 
 	<parent>
 		<groupId>com.github.wasiqb.coteafs</groupId>
 		<artifactId>parent</artifactId>
-		<version>3.0.0</version>
+		<version>3.1.1</version>
 	</parent>
 
 	<scm>
@@ -37,18 +36,18 @@
 	</repositories>
 
 	<properties>
-		<coteafs.config.version>2.1.4</coteafs.config.version>
-		<coteafs.error.version>1.11.0</coteafs.error.version>
-		<coteafs.logger.version>2.2.0</coteafs.logger.version>
-		<coteafs.listener.version>2.2.0</coteafs.listener.version>
+		<coteafs.config.version>2.2.0</coteafs.config.version>
+		<coteafs.error.version>1.12.1</coteafs.error.version>
+		<coteafs.logger.version>2.3.0</coteafs.logger.version>
+		<coteafs.listener.version>2.3.0</coteafs.listener.version>
 		<selenium-version>3.141.59</selenium-version>
 		<commons.io.version>2.6</commons.io.version>
-		<webdrivermanager-version>3.7.1</webdrivermanager-version>
-		<faker.version>1.0.1</faker.version>
+		<webdrivermanager-version>3.8.1</webdrivermanager-version>
+		<faker.version>1.0.2</faker.version>
 		<commons.text.version>1.8</commons.text.version>
 		<recorder.version>0.7.7.0</recorder.version>
-		<lombok.version>1.18.10</lombok.version>
-		<report.agent.version>4.2.1</report.agent.version>
+		<lombok.version>1.18.12</lombok.version>
+		<report.agent.version>4.2.3</report.agent.version>
 		<report.log.version>4.0.1</report.log.version>
 	</properties>
 
