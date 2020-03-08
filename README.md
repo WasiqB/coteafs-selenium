@@ -24,7 +24,7 @@
 
 ## :question: What is this Framework about?
 
-This is a Selenium WebDriver wrapper Framework which enables robust, maintainable and easy to write test scripts. _**It supports latest Selenium WebDriver 4.0 (Alpha)**_ and is ready for main Selenium upgrade.
+This is a Selenium WebDriver wrapper Framework which enables robust, maintainable and easy to write test scripts. _**It supports latest stable Selenium WebDriver 3.141.59**_.
 
 ## :bulb: What features does this framework offer?
 
@@ -36,15 +36,15 @@ Some of the key features which this framework offers are as follows:
 
 :point_right: Supports Chrome, Safari, Firefox, IE and Edge
 
-:point_right: Supports execution on BrowserStack and Selenium Grid.
+:point_right: Supports execution on BrowserStack, SauceLabs and Selenium Grid.
 
 :point_right: On-demand highlighting of Elements.
 
-:point_right: On-demand video recording.
+:point_right: On-demand video recording and screenshots.
 
 :point_right: On-demand delay of test execution by allowing predefined delays.
 
-:point_right: On-demand headless mode execution.
+:point_right: On-demand headless mode execution for Chrome and Firefox.
 
 :point_right: Inline verification of elements.
 
@@ -54,8 +54,6 @@ Some of the key features which this framework offers are as follows:
 
 :point_right: Parallel execution of tests on different browsers.
 
-:point_right: Extensible framework which allows extending the framework as required.
-
 ## :pushpin: Usage?
 
 You can use the following dependency into your `pom.xml` to use this library.
@@ -64,14 +62,14 @@ You can use the following dependency into your `pom.xml` to use this library.
 <dependency>
   <groupId>com.github.wasiqb.coteafs</groupId>
   <artifactId>selenium</artifactId>
-  <version>3.1.0</version>
+  <version>3.2.0</version>
 </dependency>
 ```
 
 Or you can add the following into your `build.gradle` file.
 
  ```gradle
- compile "com.github.wasiqb.coteafs:selenium:3.1.0"
+ compile "com.github.wasiqb.coteafs:selenium:3.2.0"
  ```
 
 ## :smile: How it is easy to write Tests with this Framework?
