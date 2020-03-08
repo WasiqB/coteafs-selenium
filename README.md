@@ -7,7 +7,6 @@
 <h1 align="center">Selenium WebDriver wrapper Framework in Java, which supports Automation of most of the web browsers.</h1>
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)][home]
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FWasiqB%2Fcoteafs-selenium.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FWasiqB%2Fcoteafs-selenium?ref=badge_shield)
 [![Gitter](https://badges.gitter.im/WasiqB/coteafs-selenium.svg)](https://gitter.im/WasiqB/coteafs-selenium?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![CircleCI](https://circleci.com/gh/WasiqB/coteafs-selenium.svg?style=svg)][circleci]
 [![Test Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.github.wasiqb.coteafs%3Aselenium&metric=coverage)][coverage]
@@ -444,8 +443,6 @@ For allowing us to run our unit tests on different cloud platforms.
     <img src="http://www.apache.org/img/asf_logo.png" width=300 />
   </a>
 </p>
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FWasiqB%2Fcoteafs-selenium.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FWasiqB%2Fcoteafs-selenium?ref=badge_large)
 
 [gitter]: https://gitter.im/WasiqB/coteafs-selenium
 [home]: https://github.com/wasiqb/coteafs-selenium
