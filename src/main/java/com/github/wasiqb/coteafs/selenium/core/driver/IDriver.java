@@ -16,34 +16,33 @@
 package com.github.wasiqb.coteafs.selenium.core.driver;
 
 import com.github.wasiqb.coteafs.selenium.core.enums.ApplicationType;
-
 import org.openqa.selenium.WebDriver;
 
 /**
- * @author Wasiq Bhamla
  * @param <D>
+ * @author Wasiq Bhamla
  * @since 06-Jun-2019
  */
 public interface IDriver<D extends WebDriver> extends IServiceAction, IPlatformAction {
     /**
-     * @author Wasiq Bhamla
-     * @since 06-Jun-2019
      * @return application type.
-     */
-    ApplicationType getApplicationType ();
-
-    /**
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
+     */
+    ApplicationType getApplicationType();
+
+    /**
      * @return driver
-     */
-    D getDriver ();
-
-    /**
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
+     */
+    D getDriver();
+
+    /**
      * @param <T> driver action
      * @return actions
+     * @author Wasiq Bhamla
+     * @since 06-Jun-2019
      */
-    <T extends IDriverActions<D>> T perform ();
+    <T extends IDriverActions<D>> T perform();
 }

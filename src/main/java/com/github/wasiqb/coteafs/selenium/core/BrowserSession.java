@@ -16,7 +16,6 @@
 package com.github.wasiqb.coteafs.selenium.core;
 
 import com.github.wasiqb.coteafs.selenium.core.base.driver.DriverSession;
-
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 /**
@@ -25,11 +24,11 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  */
 public class BrowserSession extends DriverSession<EventFiringWebDriver> {
     /**
-     * @author Wasiq Bhamla
      * @param driver
+     * @author Wasiq Bhamla
      * @since 28-Sep-2019
      */
-    BrowserSession (final EventFiringWebDriver driver) {
-        super (driver);
+    BrowserSession(final EventFiringWebDriver driver) {
+        super(driver);
     }
 }

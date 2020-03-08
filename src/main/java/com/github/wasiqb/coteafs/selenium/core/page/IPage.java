@@ -20,158 +20,157 @@ import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
- * @author Wasiq Bhamla
  * @param <D>
  * @param <B>
  * @param <E>
+ * @author Wasiq Bhamla
  * @since 08-Jun-2019
  */
 public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E extends WebElement> {
     /**
-     * @author Wasiq Bhamla
-     * @since 14-Oct-2019
      * @param <T>
      * @param pageCls
      * @return next page instance
+     * @author Wasiq Bhamla
+     * @since 14-Oct-2019
      */
-    <T extends IPage<D, B, E>> T nextPage (Class<T> pageCls);
+    <T extends IPage<D, B, E>> T nextPage(Class<T> pageCls);
 
     /**
-     * @author Wasiq Bhamla
      * @param <T>
-     * @since 08-Jun-2019
      * @param locator locator
      * @param name
      * @return element action
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
      */
-    <T extends IMouseActions> T onClickable (By locator, final String name);
+    <T extends IMouseActions> T onClickable(By locator, final String name);
 
     /**
-     * @author Wasiq Bhamla
      * @param <T>
-     * @since 12-Jul-2019
      * @param locator locator
      * @param name
      * @param strategy strategy
      * @return element action
+     * @author Wasiq Bhamla
+     * @since 12-Jul-2019
      */
-    <T extends IMouseActions> T onClickable (By locator, final String name, WaitStrategy strategy);
+    <T extends IMouseActions> T onClickable(By locator, final String name, WaitStrategy strategy);
 
     /**
-     * @author Wasiq Bhamla
      * @param <T>
-     * @since 08-Jun-2019
      * @param element element
      * @param name
      * @return element action
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
      */
-    <T extends IMouseActions> T onClickable (E element, final String name);
+    <T extends IMouseActions> T onClickable(E element, final String name);
 
     /**
-     * @author Wasiq Bhamla
      * @param <T>
-     * @since 12-Jul-2019
      * @param element element
      * @param name
      * @param strategy wait strategy
      * @return element action
+     * @author Wasiq Bhamla
+     * @since 12-Jul-2019
      */
-    <T extends IMouseActions> T onClickable (E element, final String name, WaitStrategy strategy);
+    <T extends IMouseActions> T onClickable(E element, final String name, WaitStrategy strategy);
 
     /**
-     * @author Wasiq Bhamla
-     * @since 08-Jun-2019
      * @return driver action
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
      */
-    B onDriver ();
+    B onDriver();
 
     /**
-     * @author Wasiq Bhamla
      * @param <T>
-     * @since 08-Jun-2019
      * @param locator locator
      * @param name
      * @return element action
-     */
-    <T extends ISelectboxActions> T onDropdown (By locator, final String name);
-
-    /**
      * @author Wasiq Bhamla
-     * @param <T>
-     * @since 12-Jul-2019
-     * @param locator locator
-     * @param name
-     * @param strategy strategy
-     * @return element action
-     */
-    <T extends ISelectboxActions> T onDropdown (By locator, final String name, WaitStrategy strategy);
-
-    /**
-     * @author Wasiq Bhamla
-     * @param <T>
      * @since 08-Jun-2019
-     * @param element element
-     * @param name
-     * @return element action
      */
-    <T extends ISelectboxActions> T onDropdown (E element, final String name);
+    <T extends ISelectboxActions> T onDropdown(By locator, final String name);
 
     /**
-     * @author Wasiq Bhamla
      * @param <T>
-     * @since 12-Jul-2019
-     * @param element element
-     * @param name
-     * @param strategy strategy
-     * @return element action
-     */
-    <T extends ISelectboxActions> T onDropdown (E element, final String name, WaitStrategy strategy);
-
-    /**
-     * @author Wasiq Bhamla
-     * @param <T>
-     * @since 08-Jun-2019
-     * @param locator locator
-     * @param name
-     * @return element action
-     */
-    <T extends ITextboxActions> T onTextbox (By locator, final String name);
-
-    /**
-     * @author Wasiq Bhamla
-     * @param <T>
-     * @since 12-Jul-2019
      * @param locator locator
      * @param name
      * @param strategy strategy
      * @return element action
+     * @author Wasiq Bhamla
+     * @since 12-Jul-2019
      */
-    <T extends ITextboxActions> T onTextbox (By locator, final String name, WaitStrategy strategy);
+    <T extends ISelectboxActions> T onDropdown(By locator, final String name, WaitStrategy strategy);
 
     /**
-     * @author Wasiq Bhamla
      * @param <T>
-     * @since 08-Jun-2019
      * @param element element
      * @param name
      * @return element action
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
      */
-    <T extends ITextboxActions> T onTextbox (E element, final String name);
+    <T extends ISelectboxActions> T onDropdown(E element, final String name);
 
     /**
-     * @author Wasiq Bhamla
      * @param <T>
-     * @since 12-Jul-2019
      * @param element element
      * @param name
      * @param strategy strategy
      * @return element action
+     * @author Wasiq Bhamla
+     * @since 12-Jul-2019
      */
-    <T extends ITextboxActions> T onTextbox (E element, final String name, WaitStrategy strategy);
+    <T extends ISelectboxActions> T onDropdown(E element, final String name, WaitStrategy strategy);
+
+    /**
+     * @param <T>
+     * @param locator locator
+     * @param name
+     * @return element action
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
+     */
+    <T extends ITextboxActions> T onTextbox(By locator, final String name);
+
+    /**
+     * @param <T>
+     * @param locator locator
+     * @param name
+     * @param strategy strategy
+     * @return element action
+     * @author Wasiq Bhamla
+     * @since 12-Jul-2019
+     */
+    <T extends ITextboxActions> T onTextbox(By locator, final String name, WaitStrategy strategy);
+
+    /**
+     * @param <T>
+     * @param element element
+     * @param name
+     * @return element action
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
+     */
+    <T extends ITextboxActions> T onTextbox(E element, final String name);
+
+    /**
+     * @param <T>
+     * @param element element
+     * @param name
+     * @param strategy strategy
+     * @return element action
+     * @author Wasiq Bhamla
+     * @since 12-Jul-2019
+     */
+    <T extends ITextboxActions> T onTextbox(E element, final String name, WaitStrategy strategy);
 }

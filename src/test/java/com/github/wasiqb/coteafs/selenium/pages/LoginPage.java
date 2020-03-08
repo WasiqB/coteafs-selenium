@@ -18,7 +18,6 @@ package com.github.wasiqb.coteafs.selenium.pages;
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
-
 import org.openqa.selenium.By;
 
 /**
@@ -27,33 +26,33 @@ import org.openqa.selenium.By;
  */
 public class LoginPage extends BrowserPage {
     /**
+     * @return password
      * @author wasiqb
      * @since Aug 31, 2018 9:40:05 PM
-     * @return password
      */
-    public ITextboxActions password () {
-        return form ().find (By.name ("password"), "Password");
+    public ITextboxActions password() {
+        return form().find(By.name("password"), "Password");
     }
 
     /**
+     * @return signIn button
      * @author wasiqb
      * @since Aug 31, 2018 9:40:56 PM
-     * @return signIn button
      */
-    public IMouseActions signIn () {
-        return form ().find (By.name ("btnLogin"), "Login");
+    public IMouseActions signIn() {
+        return form().find(By.name("btnLogin"), "Login");
     }
 
     /**
+     * @return user id
      * @author wasiqb
      * @since Aug 31, 2018 9:34:38 PM
-     * @return user id
      */
-    public ITextboxActions userId () {
-        return form ().find (By.name ("uid"), "User ID");
+    public ITextboxActions userId() {
+        return form().find(By.name("uid"), "User ID");
     }
 
-    private IMouseActions form () {
-        return onClickable (By.name ("frmLogin"), "Form");
+    private IMouseActions form() {
+        return onClickable(By.name("frmLogin"), "Form");
     }
 }

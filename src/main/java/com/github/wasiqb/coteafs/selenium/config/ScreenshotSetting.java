@@ -16,7 +16,6 @@
 package com.github.wasiqb.coteafs.selenium.config;
 
 import com.github.wasiqb.coteafs.config.util.BasePojo;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,7 +32,7 @@ public class ScreenshotSetting extends BasePojo {
     private String  path;
     private String  prefix;
 
-    ScreenshotSetting () {
+    ScreenshotSetting() {
         this.captureOnError = false;
         this.extension = "jpeg";
         this.path = "./screenshots";
