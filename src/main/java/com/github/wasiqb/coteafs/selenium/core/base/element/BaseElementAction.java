@@ -35,7 +35,6 @@ import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IWaitStrategy;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,186 +42,186 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * @author Wasiq Bhamla
- * @since 27-Jul-2019
  * @param <E>
  * @param <D>
  * @param <B>
+ * @author Wasiq Bhamla
+ * @since 27-Jul-2019
  */
-@SuppressWarnings ("unchecked")
+@SuppressWarnings("unchecked")
 public class BaseElementAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
     implements IWaitStrategy {
-    private static final Loggy LOG = Loggy.init ();
+    private static final Loggy LOG = Loggy.init();
 
-    static void pause (final long delay) {
+    static void pause(final long delay) {
         try {
-            sleep (delay);
+            sleep(delay);
         } catch (final InterruptedException e) {
-            LOG.e ("Error while pausing: {}", e.getMessage ());
-            currentThread ().interrupt ();
+            LOG.e("Error while pausing: {}", e.getMessage());
+            currentThread().interrupt();
         }
     }
 
-    final Actions               actions;
-    final B                     browserAction;
-    final DelaySetting          delays;
-    private boolean             alreadyHighlighted;
-    private By                  by;
+    final         Actions       actions;
+    final         B             browserAction;
+    final         DelaySetting  delays;
+    private       boolean       alreadyHighlighted;
+    private       By            by;
     private final D             driver;
-    private E                   element;
+    private       E             element;
     private final String        name;
-    private WaitStrategy        strategy;
-    private String              style;
-    private boolean             useBy;
+    private       WaitStrategy  strategy;
+    private       String        style;
+    private       boolean       useBy;
     private final WebDriverWait wait;
 
-    BaseElementAction (final B browserAction, final By by, final String name) {
-        this (browserAction, name);
+    BaseElementAction(final B browserAction, final By by, final String name) {
+        this(browserAction, name);
         this.by = by;
         this.useBy = true;
     }
 
-    BaseElementAction (final B browserAction, final By by, final String name, final WaitStrategy strategy) {
-        this (browserAction, by, name);
+    BaseElementAction(final B browserAction, final By by, final String name, final WaitStrategy strategy) {
+        this(browserAction, by, name);
         if (strategy != null) {
             this.strategy = strategy;
         }
     }
 
-    BaseElementAction (final B browserAction, final E element, final String name) {
-        this (browserAction, name);
+    BaseElementAction(final B browserAction, final E element, final String name) {
+        this(browserAction, name);
         this.element = element;
         this.useBy = false;
     }
 
-    BaseElementAction (final B browserAction, final E element, final String name, final WaitStrategy strategy) {
-        this (browserAction, element, name);
+    BaseElementAction(final B browserAction, final E element, final String name, final WaitStrategy strategy) {
+        this(browserAction, element, name);
         if (strategy != null) {
             this.strategy = strategy;
         }
     }
 
-    private BaseElementAction (final B browserAction, final String name) {
+    private BaseElementAction(final B browserAction, final String name) {
         this.browserAction = browserAction;
         this.name = name;
-        this.driver = browserAction.driver ();
-        this.actions = new Actions (this.driver);
-        this.wait = browserAction.driverWait ();
+        this.driver = browserAction.driver();
+        this.actions = new Actions(this.driver);
+        this.wait = browserAction.driverWait();
         this.alreadyHighlighted = false;
-        this.delays = ConfigUtil.appSetting ()
-            .getPlayback ()
-            .getDelays ();
+        this.delays = ConfigUtil.appSetting()
+            .getPlayback()
+            .getDelays();
         this.strategy = WaitStrategy.NONE;
     }
 
     @Override
-    public void waitUntilAttributeIs (final String attribute, final String value) {
+    public void waitUntilAttributeIs(final String attribute, final String value) {
         if (this.useBy) {
-            waitUntilLocatorAttributeIs (attribute, value);
+            waitUntilLocatorAttributeIs(attribute, value);
         } else {
-            this.wait.until (attributeToBe (this.element, attribute, value));
+            this.wait.until(attributeToBe(this.element, attribute, value));
         }
     }
 
     @Override
-    public void waitUntilClickable () {
+    public void waitUntilClickable() {
         if (this.useBy) {
-            waitUntilLocatorClickable ();
+            waitUntilLocatorClickable();
         } else {
-            this.wait.until (elementToBeClickable (this.element));
+            this.wait.until(elementToBeClickable(this.element));
         }
     }
 
     @Override
-    public void waitUntilInvisible () {
+    public void waitUntilInvisible() {
         if (this.useBy) {
-            waitUntilLocatorInvisible ();
+            waitUntilLocatorInvisible();
         } else {
-            this.wait.until (invisibilityOf (this.element));
+            this.wait.until(invisibilityOf(this.element));
         }
     }
 
     @Override
-    public void waitUntilVisible () {
+    public void waitUntilVisible() {
         if (this.useBy) {
-            waitUntilLocatorVisible ();
+            waitUntilLocatorVisible();
         } else {
-            this.wait.until (visibilityOf (this.element));
+            this.wait.until(visibilityOf(this.element));
         }
     }
 
-    protected <T> T get (final Function<E, T> func) {
-        prepareForAction ("green");
-        return func.apply (this.element);
+    protected <T> T get(final Function<E, T> func) {
+        prepareForAction("green");
+        return func.apply(this.element);
     }
 
-    protected void perform (final Consumer<E> action) {
-        prepareForAction ("red");
-        action.accept (this.element);
+    protected void perform(final Consumer<E> action) {
+        prepareForAction("red");
+        action.accept(this.element);
     }
 
-    protected void waitForStrategy (final By locator, final WaitStrategy newStrategy) {
-        final BaseElementAction<E, D,
-            B> elementAction = new BaseElementAction<> (this.browserAction, locator, this.name, newStrategy);
-        elementAction.waitForStrategy ();
+    protected void waitForStrategy(final By locator, final WaitStrategy newStrategy) {
+        final BaseElementAction<E, D, B> elementAction = new BaseElementAction<>(this.browserAction, locator, this.name,
+            newStrategy);
+        elementAction.waitForStrategy();
     }
 
-    private void highlight (final String color) {
+    private void highlight(final String color) {
         if (!this.alreadyHighlighted) {
-            this.style = this.element.getAttribute ("style");
-            this.browserAction.execute ("arguments[0].setAttribute('style', arguments[1] + arguments[2]);",
-                this.element, this.style, format ("color: {0}; border: 3px solid {0};", color));
+            this.style = this.element.getAttribute("style");
+            this.browserAction.execute("arguments[0].setAttribute('style', arguments[1] + arguments[2]);", this.element,
+                this.style, format("color: {0}; border: 3px solid {0};", color));
         }
     }
 
-    private void prepareForAction (final String color) {
-        waitForStrategy ();
-        highlight (color);
-        pause (this.delays.getHighlight ());
-        unhighlight ();
-        setAlias (this.name);
+    private void prepareForAction(final String color) {
+        waitForStrategy();
+        highlight(color);
+        pause(this.delays.getHighlight());
+        unhighlight();
+        setAlias(this.name);
     }
 
-    private void unhighlight () {
+    private void unhighlight() {
         if (!this.alreadyHighlighted) {
-            this.browserAction.execute ("arguments[0].setAttribute('style', arguments[1]);", this.element, this.style);
+            this.browserAction.execute("arguments[0].setAttribute('style', arguments[1]);", this.element, this.style);
             this.alreadyHighlighted = true;
         }
     }
 
-    private void waitForStrategy () {
+    private void waitForStrategy() {
         switch (this.strategy) {
             case CLICKABLE:
-                waitUntilClickable ();
+                waitUntilClickable();
                 break;
             case VISIBLE:
-                waitUntilVisible ();
+                waitUntilVisible();
                 break;
             case INVISIBLE:
-                waitUntilInvisible ();
+                waitUntilInvisible();
                 break;
             case NONE:
             default:
                 if (this.useBy) {
-                    this.element = (E) this.driver.findElement (this.by);
+                    this.element = (E) this.driver.findElement(this.by);
                 }
                 break;
         }
     }
 
-    private void waitUntilLocatorAttributeIs (final String attribute, final String value) {
-        this.wait.until (attributeToBe (this.by, attribute, value));
+    private void waitUntilLocatorAttributeIs(final String attribute, final String value) {
+        this.wait.until(attributeToBe(this.by, attribute, value));
     }
 
-    private void waitUntilLocatorClickable () {
-        this.element = (E) this.wait.until (elementToBeClickable (this.by));
+    private void waitUntilLocatorClickable() {
+        this.element = (E) this.wait.until(elementToBeClickable(this.by));
     }
 
-    private void waitUntilLocatorInvisible () {
-        this.wait.until (invisibilityOfElementLocated (this.by));
+    private void waitUntilLocatorInvisible() {
+        this.wait.until(invisibilityOfElementLocated(this.by));
     }
 
-    private void waitUntilLocatorVisible () {
-        this.element = (E) this.wait.until (visibilityOfElementLocated (this.by));
+    private void waitUntilLocatorVisible() {
+        this.element = (E) this.wait.until(visibilityOfElementLocated(this.by));
     }
 }

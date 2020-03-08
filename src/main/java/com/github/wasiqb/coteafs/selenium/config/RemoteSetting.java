@@ -20,7 +20,6 @@ import java.util.Map;
 import com.github.wasiqb.coteafs.config.util.BasePojo;
 import com.github.wasiqb.coteafs.selenium.core.enums.Protocol;
 import com.github.wasiqb.coteafs.selenium.core.enums.RemoteSource;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,7 +43,7 @@ public class RemoteSetting extends BasePojo {
      * @author Wasiq Bhamla
      * @since 01-Aug-2019
      */
-    public RemoteSetting () {
-        setProtocol (Protocol.HTTP);
+    public RemoteSetting() {
+        setProtocol(Protocol.HTTP);
     }
 }

@@ -18,7 +18,6 @@ package com.github.wasiqb.coteafs.selenium.core.element;
 import java.util.List;
 
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
-
 import org.openqa.selenium.By;
 
 /**
@@ -27,44 +26,44 @@ import org.openqa.selenium.By;
  */
 public interface IFindableAction extends IKeyboardActions {
     /**
-     * @author Wasiq Bhamla
      * @param <E>
-     * @since 27-Jul-2019
      * @param byLocator locator
      * @param name
      * @return actions
+     * @author Wasiq Bhamla
+     * @since 27-Jul-2019
      */
-    <E extends IMouseActions> E find (final By byLocator, final String name);
+    <E extends IMouseActions> E find(final By byLocator, final String name);
 
     /**
-     * @author Wasiq Bhamla
      * @param <E>
-     * @since 27-Jul-2019
      * @param byLocator locator
      * @param name
      * @param strategy wait strategy
      * @return list of actions
+     * @author Wasiq Bhamla
+     * @since 27-Jul-2019
      */
-    <E extends IMouseActions> E find (final By byLocator, final String name, WaitStrategy strategy);
+    <E extends IMouseActions> E find(final By byLocator, final String name, WaitStrategy strategy);
 
     /**
-     * @author Wasiq Bhamla
      * @param <E>
-     * @since 27-Jul-2019
      * @param byLocator locator
      * @param name
      * @return list of actions
+     * @author Wasiq Bhamla
+     * @since 27-Jul-2019
      */
-    <E extends IMouseActions> List<E> finds (final By byLocator, final String name);
+    <E extends IMouseActions> List<E> finds(final By byLocator, final String name);
 
     /**
-     * @author Wasiq Bhamla
      * @param <E>
-     * @since 27-Jul-2019
      * @param byLocator locator
      * @param name
      * @param strategy wait strategy
      * @return list of actions
+     * @author Wasiq Bhamla
+     * @since 27-Jul-2019
      */
-    <E extends IMouseActions> List<E> finds (final By byLocator, final String name, WaitStrategy strategy);
+    <E extends IMouseActions> List<E> finds(final By byLocator, final String name, WaitStrategy strategy);
 }

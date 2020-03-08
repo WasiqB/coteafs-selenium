@@ -27,7 +27,6 @@ import com.github.wasiqb.coteafs.selenium.pages.action.EditCustomerPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.NewAccountPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.NewCustomerPageAction;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -44,10 +43,10 @@ public class SeleniumTest extends BrowserTest {
      * @since Aug 19, 2018 4:30:34 PM
      */
     @BeforeClass
-    public void setupMethod () {
-        final MainPage main = new MainPage ();
-        main.onDriver ()
-            .navigateTo (appSetting ().getUrl ());
+    public void setupMethod() {
+        final MainPage main = new MainPage();
+        main.onDriver()
+            .navigateTo(appSetting().getUrl());
     }
 
     /**
@@ -55,10 +54,10 @@ public class SeleniumTest extends BrowserTest {
      * @since Apr 8, 2019 10:34:29 PM
      */
     @Test
-    public void testDeleteAccount () {
-        final DeleteAccountPageAction acc = new DeleteAccountPageAction ();
-        acc.addInputValue ("AccountId", this.accountId)
-            .perform ();
+    public void testDeleteAccount() {
+        final DeleteAccountPageAction acc = new DeleteAccountPageAction();
+        acc.addInputValue("AccountId", this.accountId)
+            .perform();
     }
 
     /**
@@ -66,10 +65,10 @@ public class SeleniumTest extends BrowserTest {
      * @since 29-Apr-2019
      */
     @Test
-    public void testDeleteCustomer () {
-        final DeleteCustomerPageAction acc = new DeleteCustomerPageAction ();
-        acc.addInputValue ("CustomerId", this.customerId)
-            .perform ();
+    public void testDeleteCustomer() {
+        final DeleteCustomerPageAction acc = new DeleteCustomerPageAction();
+        acc.addInputValue("CustomerId", this.customerId)
+            .perform();
     }
 
     /**
@@ -77,10 +76,10 @@ public class SeleniumTest extends BrowserTest {
      * @since Apr 8, 2019 12:00:15 PM
      */
     @Test
-    public void testEditCustomer () {
-        final EditCustomerPageAction cust = new EditCustomerPageAction ();
-        cust.addInputValue ("CustomerId", this.customerId)
-            .perform ();
+    public void testEditCustomer() {
+        final EditCustomerPageAction cust = new EditCustomerPageAction();
+        cust.addInputValue("CustomerId", this.customerId)
+            .perform();
     }
 
     /**
@@ -88,11 +87,11 @@ public class SeleniumTest extends BrowserTest {
      * @since Apr 8, 2019 10:06:01 PM
      */
     @Test
-    public void testNewAccount () {
-        final NewAccountPageAction acc = new NewAccountPageAction ();
-        acc.addInputValue ("CustomerId", this.customerId)
-            .perform ();
-        this.accountId = acc.accountId ();
+    public void testNewAccount() {
+        final NewAccountPageAction acc = new NewAccountPageAction();
+        acc.addInputValue("CustomerId", this.customerId)
+            .perform();
+        this.accountId = acc.accountId();
     }
 
     /**
@@ -100,10 +99,10 @@ public class SeleniumTest extends BrowserTest {
      * @since Apr 8, 2019 10:52:16 AM
      */
     @Test
-    public void testNewCustomer () {
-        final NewCustomerPageAction customerPageAction = new NewCustomerPageAction ();
-        customerPageAction.perform ();
-        this.customerId = customerPageAction.customerId ();
+    public void testNewCustomer() {
+        final NewCustomerPageAction customerPageAction = new NewCustomerPageAction();
+        customerPageAction.perform();
+        this.customerId = customerPageAction.customerId();
     }
 
     /**
@@ -111,12 +110,12 @@ public class SeleniumTest extends BrowserTest {
      * @since Aug 31, 2018 9:15:42 PM
      */
     @Test
-    public void testSignIn () {
-        final LoginPageAction login = new LoginPageAction ();
-        login.addInputValue (USER_ID, appSetting ().getParams ()
-            .get ("user"))
-            .addInputValue (PASS, appSetting ().getParams ()
-                .get ("password"))
-            .perform ();
+    public void testSignIn() {
+        final LoginPageAction login = new LoginPageAction();
+        login.addInputValue(USER_ID, appSetting().getParams()
+            .get("user"))
+            .addInputValue(PASS, appSetting().getParams()
+                .get("password"))
+            .perform();
     }
 }

@@ -24,37 +24,37 @@ import org.openqa.selenium.WebDriver;
  * @since 27-Jul-2019
  */
 public class WebDriverAction<D extends WebDriver> extends AlertAction<D> implements IWebDriverActions<D> {
-    protected WebDriverAction (final D driver) {
-        super (driver);
+    protected WebDriverAction(final D driver) {
+        super(driver);
     }
 
     @Override
-    public void back () {
-        perform (d -> d.navigate ()
-            .back ());
+    public void back() {
+        perform(d -> d.navigate()
+            .back());
     }
 
     @Override
-    public void deleteCookies () {
-        perform (d -> d.manage ()
-            .deleteAllCookies ());
+    public void deleteCookies() {
+        perform(d -> d.manage()
+            .deleteAllCookies());
     }
 
     @Override
-    public void forward () {
-        perform (d -> d.navigate ()
-            .forward ());
+    public void forward() {
+        perform(d -> d.navigate()
+            .forward());
     }
 
     @Override
-    public void navigateTo (final String url) {
-        perform (d -> d.navigate ()
-            .to (url));
+    public void navigateTo(final String url) {
+        perform(d -> d.navigate()
+            .to(url));
     }
 
     @Override
-    public void refresh () {
-        perform (d -> d.navigate ()
-            .refresh ());
+    public void refresh() {
+        perform(d -> d.navigate()
+            .refresh());
     }
 }

@@ -16,7 +16,6 @@
 package com.github.wasiqb.coteafs.selenium.pages;
 
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
-
 import org.openqa.selenium.By;
 
 /**
@@ -25,25 +24,25 @@ import org.openqa.selenium.By;
  */
 public class SuccessCustomerPage extends SuccessPage {
     /**
+     * @return customer id
      * @author wasiqb
      * @since Apr 7, 2019 10:38:33 PM
-     * @return customer id
      */
-    public IMouseActions customerId () {
-        return successTable ().find (By.cssSelector ("tbody > tr:nth-child(4) > td:last-child"), "Customer ID");
+    public IMouseActions customerId() {
+        return successTable().find(By.cssSelector("tbody > tr:nth-child(4) > td:last-child"), "Customer ID");
     }
 
     /**
+     * @return customer name
      * @author wasiqb
      * @since Apr 7, 2019 10:47:54 PM
-     * @return customer name
      */
-    public IMouseActions customerName () {
-        return successTable ().find (By.cssSelector ("tbody > tr:nth-child(5) > td:last-child"), "Customer Name");
+    public IMouseActions customerName() {
+        return successTable().find(By.cssSelector("tbody > tr:nth-child(5) > td:last-child"), "Customer Name");
     }
 
     @Override
-    protected IMouseActions successTable () {
-        return onClickable (By.id ("customer"), "Customer Table");
+    protected IMouseActions successTable() {
+        return onClickable(By.id("customer"), "Customer Table");
     }
 }

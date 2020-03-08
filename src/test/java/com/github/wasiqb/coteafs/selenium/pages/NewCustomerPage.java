@@ -19,7 +19,6 @@ import static java.lang.String.format;
 
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
-
 import org.openqa.selenium.By;
 
 /**
@@ -28,114 +27,114 @@ import org.openqa.selenium.By;
  */
 public class NewCustomerPage extends MainPage {
     /**
+     * @return address
      * @author wasiqb
      * @since Apr 7, 2019 5:59:04 PM
-     * @return address
      */
-    public ITextboxActions address () {
-        return onTextbox (By.name ("addr"), "Address");
+    public ITextboxActions address() {
+        return onTextbox(By.name("addr"), "Address");
     }
 
     /**
+     * @return city
      * @author wasiqb
      * @since Apr 7, 2019 6:00:33 PM
-     * @return city
      */
-    public ITextboxActions city () {
-        return onTextbox (By.name ("city"), "City");
+    public ITextboxActions city() {
+        return onTextbox(By.name("city"), "City");
     }
 
     /**
+     * @return name
      * @author wasiqb
      * @since Apr 7, 2019 5:50:30 PM
-     * @return name
      */
-    public ITextboxActions customerName () {
-        return onTextbox (By.name ("name"), "Customer Name");
+    public ITextboxActions customerName() {
+        return onTextbox(By.name("name"), "Customer Name");
     }
 
     /**
+     * @return dob
      * @author wasiqb
      * @since Apr 7, 2019 5:58:17 PM
-     * @return dob
      */
-    public ITextboxActions dob () {
-        return onTextbox (By.name ("dob"), "DOB");
+    public ITextboxActions dob() {
+        return onTextbox(By.name("dob"), "DOB");
     }
 
     /**
+     * @return email
      * @author wasiqb
      * @since Apr 7, 2019 10:23:52 PM
-     * @return email
      */
-    public ITextboxActions email () {
-        return onTextbox (By.name ("emailid"), "Email");
+    public ITextboxActions email() {
+        return onTextbox(By.name("emailid"), "Email");
     }
 
     /**
-     * @author wasiqb
-     * @since Apr 7, 2019 5:52:55 PM
      * @param gender Gender
      * @return gender
+     * @author wasiqb
+     * @since Apr 7, 2019 5:52:55 PM
      */
-    public IMouseActions gender (final char gender) {
+    public IMouseActions gender(final char gender) {
         if (gender != 'm' && gender != 'f') {
-            return gender ('m');
+            return gender('m');
         }
-        return onClickable (By.cssSelector (format ("input[name='rad1'][value='%s']", gender)), "Gender");
+        return onClickable(By.cssSelector(format("input[name='rad1'][value='%s']", gender)), "Gender");
     }
 
     /**
+     * @return header
      * @author wasiqb
      * @since Apr 7, 2019 5:50:00 PM
-     * @return header
      */
-    public IMouseActions header () {
-        return onClickable (By.className ("heading3"), "Header");
+    public IMouseActions header() {
+        return onClickable(By.className("heading3"), "Header");
     }
 
     /**
+     * @return mobile no
      * @author wasiqb
      * @since Apr 7, 2019 10:23:08 PM
-     * @return mobile no
      */
-    public ITextboxActions mobileNumber () {
-        return onTextbox (By.name ("telephoneno"), "Mobile Number");
+    public ITextboxActions mobileNumber() {
+        return onTextbox(By.name("telephoneno"), "Mobile Number");
     }
 
     /**
+     * @return password
      * @author wasiqb
      * @since Apr 7, 2019 10:26:57 PM
-     * @return password
      */
-    public ITextboxActions password () {
-        return onTextbox (By.name ("password"), "Password");
+    public ITextboxActions password() {
+        return onTextbox(By.name("password"), "Password");
     }
 
     /**
+     * @return pin
      * @author wasiqb
      * @since Apr 7, 2019 6:04:02 PM
-     * @return pin
      */
-    public ITextboxActions pin () {
-        return onTextbox (By.name ("pinno"), "Pin No");
+    public ITextboxActions pin() {
+        return onTextbox(By.name("pinno"), "Pin No");
     }
 
     /**
+     * @return state
      * @author wasiqb
      * @since Apr 7, 2019 6:02:57 PM
-     * @return state
      */
-    public ITextboxActions state () {
-        return onTextbox (By.name ("state"), "State");
+    public ITextboxActions state() {
+        return onTextbox(By.name("state"), "State");
     }
 
     /**
+     * @return submit
      * @author wasiqb
      * @since Apr 7, 2019 10:27:48 PM
-     * @return submit
      */
-    public IMouseActions submit () {
-        return onClickable (By.name ("sub"), "Submit");
+    public IMouseActions submit() {
+        return onClickable(By.name("sub"), "Submit");
     }
 }
