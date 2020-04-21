@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>selenium</artifactId>
-	<version>3.2.0</version>
+	<version>3.2.1</version>
 	<description>Selenium WebDriver wrapper framework for clean and maintainable tests.</description>
 	<url>https://github.com/WasiqB/coteafs-selenium</url>
 
@@ -112,7 +112,6 @@
 					<artifactId>guava</artifactId>
 				</exclusion>
 			</exclusions>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -123,7 +122,6 @@
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>${webdrivermanager-version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -141,7 +139,6 @@
 			<groupId>com.github.stephenc.monte</groupId>
 			<artifactId>monte-screen-recorder</artifactId>
 			<version>${recorder.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.epam.reportportal</groupId>
