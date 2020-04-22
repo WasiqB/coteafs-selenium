@@ -73,241 +73,241 @@ import org.testng.Assert;
  * @author Wasiq Bhamla
  * @since Aug 15, 2018 2:11:13 PM
  */
-@SuppressWarnings ("unchecked")
+@SuppressWarnings("unchecked")
 public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWebDriver {
-    private static final Loggy LOG = Loggy.init ();
-
-    private static WebDriver createRemoteSession (final RemoteSetting remoteSetting, final MutableCapabilities caps) {
-        LOG.i ("Creating remote session...");
-        final StringBuilder urlBuilder = new StringBuilder (remoteSetting.getProtocol ()
-            .getPrefix ());
-        final String url = remoteSetting.getUrl ();
-        if (remoteSetting.getSource () != RemoteSource.GRID) {
-            final String user = remoteSetting.getUserId ();
-            final String pass = remoteSetting.getPassword ();
-            if (isNotEmpty (user)) {
-                urlBuilder.append (user)
-                    .append (":")
-                    .append (requireNonNull (pass, "Cloud Password cannot be empty."))
-                    .append ("@");
-            }
-        }
-        urlBuilder.append (url);
-        final int port = remoteSetting.getPort ();
-        if (port > 0) {
-            urlBuilder.append (":")
-                .append (port);
-        }
-        urlBuilder.append ("/wd/hub");
-        try {
-            final URL remoteUrl = new URL (urlBuilder.toString ());
-            return new RemoteWebDriver (remoteUrl, caps);
-        } catch (final MalformedURLException e) {
-            LOG.e ("Error occurred while creating remote session: ", e);
-        }
-        return null;
-    }
-
-    private static WebDriver setupChromeDriver () throws MalformedURLException {
-        LOG.i ("Setting up Chrome driver...");
-        setupDriver (chromedriver ());
-        final ChromeOptions chromeOptions = new ChromeOptions ();
-        chromeOptions.addArguments ("--dns-prefetch-disable");
-        if (appSetting ().isHeadlessMode ()) {
-            chromeOptions.addArguments ("--headless");
-        }
-        chromeOptions.setCapability (CapabilityType.ACCEPT_SSL_CERTS, true);
-        final ChromeDriverService chromeService = ChromeDriverService.createDefaultService ();
-        return new ChromeDriver (chromeService, chromeOptions);
-    }
-
-    private static void setupCloud (final RemoteSetting remoteSetting, final DesiredCapabilities caps,
-        final String source) {
-        final Map<String, Object> capabilities = remoteSetting.getCapabilities ();
-        capabilities.forEach (caps::setCapability);
-        if (isNotEmpty (source)) {
-            caps.setCapability (format ("{0}:options", source), remoteSetting.getCloudCapabilities ());
-        }
-    }
-
-    private static WebDriver setupDriver (final AvailableBrowser browser) {
-        try {
-            switch (browser) {
-                case CHROME:
-                    return setupChromeDriver ();
-                case FIREFOX:
-                    return setupFirefoxDriver ();
-                case IE:
-                    return setupIeDriver ();
-                case EDGE:
-                    return setupEdgeDriver ();
-                case SAFARI:
-                    return setupSafariDriver ();
-                case REMOTE:
-                default:
-                    return setupRemote ();
-            }
-        } catch (final MalformedURLException e) {
-            LOG.e ("URL is malformed.", e);
-            LOG.c (e);
-        }
-        return null;
-    }
-
-    private static void setupDriver (final WebDriverManager manager) throws MalformedURLException {
-        final DriverSetting driver = appSetting ().getDriver ();
-        if (!isNull (driver)) {
-            if (isNotEmpty (driver.getVersion ())) {
-                manager.version (driver.getVersion ());
-            }
-            if (isNotEmpty (driver.getExeUrl ())) {
-                manager.driverRepositoryUrl (new URL (driver.getExeUrl ()));
-            }
-            if (driver.isForceCache ()) {
-                manager.forceCache ();
-            }
-            if (driver.isForceDownload ()) {
-                manager.forceDownload ();
-            }
-            if (isNotEmpty (driver.getPath ())) {
-                manager.targetPath (driver.getPath ());
-            }
-        }
-        manager.setup ();
-    }
-
-    private static WebDriver setupEdgeDriver () throws MalformedURLException {
-        LOG.i ("Setting up Edge driver...");
-        setupDriver (edgedriver ());
-        final EdgeOptions options = new EdgeOptions ();
-        return new EdgeDriver (options);
-    }
-
-    private static WebDriver setupFirefoxDriver () throws MalformedURLException {
-        LOG.i ("Setting up Firefox driver...");
-        setupDriver (firefoxdriver ());
-        final DesiredCapabilities capabilities = new DesiredCapabilities ();
-        final FirefoxOptions options = new FirefoxOptions (capabilities);
-        final GeckoDriverService firefoxService = GeckoDriverService.createDefaultService ();
-        return new FirefoxDriver (firefoxService, options);
-    }
-
-    private static WebDriver setupIeDriver () throws MalformedURLException {
-        LOG.i ("Setting up Internet Explorer driver...");
-        setupDriver (iedriver ());
-        final InternetExplorerOptions ieOptions = new InternetExplorerOptions ();
-        ieOptions.destructivelyEnsureCleanSession ();
-        ieOptions.setCapability ("requireWindowFocus", true);
-        ieOptions.setCapability (CapabilityType.ACCEPT_SSL_CERTS, true);
-        final InternetExplorerDriverService ieService = InternetExplorerDriverService.createDefaultService ();
-        if (!OS.isWindows ()) {
-            Assert.fail ("IE is not supported.");
-        }
-        if (appSetting ().isHeadlessMode ()) {
-            LOG.w ("IE does not support headless mode. Hence, ignoring the same...");
-        }
-        return new InternetExplorerDriver (ieService, ieOptions);
-    }
-
-    private static WebDriver setupRemote () {
-        LOG.i ("Setting up Remote driver...");
-        final RemoteSetting remoteSetting = appSetting ().getRemote ();
-        final RemoteSource source = remoteSetting.getSource ();
-        final DesiredCapabilities caps = new DesiredCapabilities ();
-        switch (source) {
-            case SAUCELABS:
-                setupCloud (remoteSetting, caps, "sauce");
-                break;
-            case BROWSERSTACK:
-                setupCloud (remoteSetting, caps, "bstack");
-                break;
-            case GRID:
-            default:
-                setupCloud (remoteSetting, caps, null);
-                break;
-        }
-        return createRemoteSession (remoteSetting, caps);
-    }
-
-    private static WebDriver setupSafariDriver () {
-        LOG.i ("Setting up Safari driver...");
-        if (!OS.isMac ()) {
-            Assert.fail ("Safari is not supported.");
-        }
-        if (appSetting ().isHeadlessMode ()) {
-            LOG.w ("Safari does not support Headless mode. Hence, ignoring the same...");
-        }
-        final SafariOptions options = new SafariOptions ();
-        return new SafariDriver (options);
-    }
-
-    private       AvailableBrowser availableBrowser;
-    private       String           browserName;
-    private final DriverListner    listener;
+    private static final Loggy LOG = Loggy.init();
+    private final DriverListner listener;
+    private AvailableBrowser availableBrowser;
+    private String browserName;
 
     /**
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
      */
-    public Browser () {
-        super (DESKTOP);
-        this.listener = new DriverListner ();
+    public Browser() {
+        super(DESKTOP);
+        this.listener = new DriverListner();
+    }
+
+    private static WebDriver createRemoteSession(final RemoteSetting remoteSetting, final MutableCapabilities caps) {
+        LOG.i("Creating remote session...");
+        final StringBuilder urlBuilder = new StringBuilder(remoteSetting.getProtocol()
+                .getPrefix());
+        final String url = remoteSetting.getUrl();
+        if (remoteSetting.getSource() != RemoteSource.GRID) {
+            final String user = remoteSetting.getUserId();
+            final String pass = remoteSetting.getPassword();
+            if (isNotEmpty(user)) {
+                urlBuilder.append(user)
+                        .append(":")
+                        .append(requireNonNull(pass, "Cloud Password cannot be empty."))
+                        .append("@");
+            }
+        }
+        urlBuilder.append(url);
+        final int port = remoteSetting.getPort();
+        if (port > 0) {
+            urlBuilder.append(":")
+                    .append(port);
+        }
+        urlBuilder.append("/wd/hub");
+        try {
+            final URL remoteUrl = new URL(urlBuilder.toString());
+            return new RemoteWebDriver(remoteUrl, caps);
+        } catch (final MalformedURLException e) {
+            LOG.e("Error occurred while creating remote session: ", e);
+        }
+        return null;
+    }
+
+    private static WebDriver setupChromeDriver() throws MalformedURLException {
+        LOG.i("Setting up Chrome driver...");
+        System.setProperty("webdriver.chrome.silentOutput", "true");
+        setupDriver(chromedriver());
+        final ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--dns-prefetch-disable");
+        if (appSetting().isHeadlessMode()) {
+            chromeOptions.addArguments("--headless");
+        }
+        chromeOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+        final ChromeDriverService chromeService = ChromeDriverService.createDefaultService();
+        return new ChromeDriver(chromeService, chromeOptions);
+    }
+
+    private static void setupCloud(final RemoteSetting remoteSetting, final DesiredCapabilities caps,
+                                   final String source) {
+        final Map<String, Object> capabilities = remoteSetting.getCapabilities();
+        capabilities.forEach(caps::setCapability);
+        if (isNotEmpty(source)) {
+            caps.setCapability(format("{0}:options", source), remoteSetting.getCloudCapabilities());
+        }
+    }
+
+    private static WebDriver setupDriver(final AvailableBrowser browser) {
+        try {
+            switch (browser) {
+                case CHROME:
+                    return setupChromeDriver();
+                case FIREFOX:
+                    return setupFirefoxDriver();
+                case IE:
+                    return setupIeDriver();
+                case EDGE:
+                    return setupEdgeDriver();
+                case SAFARI:
+                    return setupSafariDriver();
+                case REMOTE:
+                default:
+                    return setupRemote();
+            }
+        } catch (final MalformedURLException e) {
+            LOG.e("URL is malformed.", e);
+            LOG.c(e);
+        }
+        return null;
+    }
+
+    private static void setupDriver(final WebDriverManager manager) throws MalformedURLException {
+        final DriverSetting driver = appSetting().getDriver();
+        if (!isNull(driver)) {
+            if (isNotEmpty(driver.getVersion())) {
+                manager.version(driver.getVersion());
+            }
+            if (isNotEmpty(driver.getExeUrl())) {
+                manager.driverRepositoryUrl(new URL(driver.getExeUrl()));
+            }
+            if (driver.isForceCache()) {
+                manager.forceCache();
+            }
+            if (driver.isForceDownload()) {
+                manager.forceDownload();
+            }
+            if (isNotEmpty(driver.getPath())) {
+                manager.targetPath(driver.getPath());
+            }
+        }
+        manager.setup();
+    }
+
+    private static WebDriver setupEdgeDriver() throws MalformedURLException {
+        LOG.i("Setting up Edge driver...");
+        setupDriver(edgedriver());
+        final EdgeOptions options = new EdgeOptions();
+        return new EdgeDriver(options);
+    }
+
+    private static WebDriver setupFirefoxDriver() throws MalformedURLException {
+        LOG.i("Setting up Firefox driver...");
+        setupDriver(firefoxdriver());
+        final DesiredCapabilities capabilities = new DesiredCapabilities();
+        final FirefoxOptions options = new FirefoxOptions(capabilities);
+        final GeckoDriverService firefoxService = GeckoDriverService.createDefaultService();
+        return new FirefoxDriver(firefoxService, options);
+    }
+
+    private static WebDriver setupIeDriver() throws MalformedURLException {
+        LOG.i("Setting up Internet Explorer driver...");
+        setupDriver(iedriver());
+        final InternetExplorerOptions ieOptions = new InternetExplorerOptions();
+        ieOptions.destructivelyEnsureCleanSession();
+        ieOptions.setCapability("requireWindowFocus", true);
+        ieOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+        final InternetExplorerDriverService ieService = InternetExplorerDriverService.createDefaultService();
+        if (!OS.isWindows()) {
+            Assert.fail("IE is not supported.");
+        }
+        if (appSetting().isHeadlessMode()) {
+            LOG.w("IE does not support headless mode. Hence, ignoring the same...");
+        }
+        return new InternetExplorerDriver(ieService, ieOptions);
+    }
+
+    private static WebDriver setupRemote() {
+        LOG.i("Setting up Remote driver...");
+        final RemoteSetting remoteSetting = appSetting().getRemote();
+        final RemoteSource source = remoteSetting.getSource();
+        final DesiredCapabilities caps = new DesiredCapabilities();
+        switch (source) {
+            case SAUCELABS:
+                setupCloud(remoteSetting, caps, "sauce");
+                break;
+            case BROWSERSTACK:
+                setupCloud(remoteSetting, caps, "bstack");
+                break;
+            case GRID:
+            default:
+                setupCloud(remoteSetting, caps, null);
+                break;
+        }
+        return createRemoteSession(remoteSetting, caps);
+    }
+
+    private static WebDriver setupSafariDriver() {
+        LOG.i("Setting up Safari driver...");
+        if (!OS.isMac()) {
+            Assert.fail("Safari is not supported.");
+        }
+        if (appSetting().isHeadlessMode()) {
+            LOG.w("Safari does not support Headless mode. Hence, ignoring the same...");
+        }
+        final SafariOptions options = new SafariOptions();
+        return new SafariDriver(options);
     }
 
     @Override
-    public ApplicationType getApplicationType () {
+    public ApplicationType getApplicationType() {
         return ApplicationType.WEB;
     }
 
     @Override
-    public EventFiringWebDriver getDriver () {
-        return getSession ().getDriver ();
+    public EventFiringWebDriver getDriver() {
+        return getSession().getDriver();
     }
 
     @Override
-    public BrowserActions perform () {
-        return new BrowserActions (getDriver ());
+    public BrowserActions perform() {
+        return new BrowserActions(getDriver());
     }
 
     @Override
-    public void setBrowserUnderTest (final String browser) {
+    public void setBrowserUnderTest(final String browser) {
         this.browserName = browser;
     }
 
     @Override
-    public void start () {
-        LOG.i ("Starting the browser...");
+    public void start() {
+        LOG.i("Starting the browser...");
         String target = this.browserName;
         if (target == null) {
-            target = getProperty (BROWSER, appSetting ().getBrowser ()
-                .name ());
+            target = getProperty(BROWSER, appSetting().getBrowser()
+                    .name());
         }
-        this.availableBrowser = AvailableBrowser.valueOf (target.toUpperCase ());
-        final WebDriver driver = setupDriver (this.availableBrowser);
-        if (isNull (driver)) {
-            fail (DriverNotSetupError.class, "Driver was not setup properly.");
+        this.availableBrowser = AvailableBrowser.valueOf(target.toUpperCase());
+        final WebDriver driver = setupDriver(this.availableBrowser);
+        if (isNull(driver)) {
+            fail(DriverNotSetupError.class, "Driver was not setup properly.");
         }
-        final EventFiringWebDriver wd = new EventFiringWebDriver (driver);
-        wd.register (this.listener);
-        setSession (new BrowserSession (wd));
-        setupDriverOptions ();
+        final EventFiringWebDriver wd = new EventFiringWebDriver(driver);
+        wd.register(this.listener);
+        setSession(new BrowserSession(wd));
+        setupDriverOptions();
         if (this.availableBrowser != AvailableBrowser.REMOTE) {
-            perform ().startRecording ();
+            perform().startRecording();
         } else {
-            LOG.w ("Video recording is disabled for Remote execution...");
+            LOG.w("Video recording is disabled for Remote execution...");
         }
     }
 
     @Override
-    public void stop () {
-        LOG.i ("Stopping the browser...");
+    public void stop() {
+        LOG.i("Stopping the browser...");
         if (this.availableBrowser != AvailableBrowser.REMOTE) {
-            perform ().stopRecording ();
+            perform().stopRecording();
         } else {
-            LOG.w ("Video recording is disabled for Remote execution...");
+            LOG.w("Video recording is disabled for Remote execution...");
         }
-        getDriver ().unregister (this.listener);
-        getSession ().close ();
-        close ();
+        getDriver().unregister(this.listener);
+        getSession().close();
+        close();
     }
 }

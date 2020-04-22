@@ -38,3 +38,7 @@ fileignoreconfig:
 - filename: README.md
   checksum: 16f2f4ac5d186f1fc59f4a23f0860b324e9839b2e7d4f108ea8c4fee36a1c517
   ignore_detectors: []
+- filename: src/main/java/com/github/wasiqb/coteafs/selenium/core/Browser.java
+  checksum: 2afea81c17e7feb76c2dc2d9bd1e4065de26f27512185936cbe846e3a3249260
+  ignore_detectors: []
+scopeconfig: []
