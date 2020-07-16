@@ -81,7 +81,6 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
     private String browserName;
 
     /**
-     * @author Wasiq Bhamla
      * @since 06-Jun-2019
      */
     public Browser() {
@@ -171,19 +170,16 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         final DriverSetting driver = appSetting().getDriver();
         if (!isNull(driver)) {
             if (isNotEmpty(driver.getVersion())) {
-                manager.version(driver.getVersion());
+                manager.browserVersion(driver.getVersion());
             }
             if (isNotEmpty(driver.getExeUrl())) {
                 manager.driverRepositoryUrl(new URL(driver.getExeUrl()));
-            }
-            if (driver.isForceCache()) {
-                manager.forceCache();
             }
             if (driver.isForceDownload()) {
                 manager.forceDownload();
             }
             if (isNotEmpty(driver.getPath())) {
-                manager.targetPath(driver.getPath());
+                manager.browserPath(driver.getPath());
             }
         }
         manager.setup();

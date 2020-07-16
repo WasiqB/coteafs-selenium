@@ -62,7 +62,7 @@ You can use the following dependency into your `pom.xml` to use this library.
 <dependency>
   <groupId>com.github.wasiqb.coteafs</groupId>
   <artifactId>selenium</artifactId>
-  <version>3.2.0</version>
+  <version>3.3.0</version>
 </dependency>
 ```
 
