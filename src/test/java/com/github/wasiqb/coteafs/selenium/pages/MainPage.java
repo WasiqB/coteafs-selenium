@@ -25,29 +25,22 @@ import org.openqa.selenium.By;
  */
 public class MainPage extends BrowserPage {
     /**
-     * @return manager welcome banner
-     * @since Apr 7, 2019 5:39:39 PM
-     */
-    public IMouseActions managerIdBanner() {
-        return onClickable(By.cssSelector("tr.heading3 > td"), "Manager ID Banner");
-    }
-
-    /**
-     * @param name name
+     * @param name
+     *     name
      * @return menu name
      * @since Apr 7, 2019 5:42:12 PM
      */
-    public IMouseActions navbar(final String name) {
-        return navbar().finds(By.cssSelector("li > a"), name)
-            .stream()
-            .filter(m -> m.text()
-                .trim()
-                .equals(name))
-            .findFirst()
-            .get();
+    public IMouseActions links (final String name) {
+        return navigationLinks ().finds (By.cssSelector ("li > a"), name)
+            .stream ()
+            .filter (m -> m.text ()
+                .trim ()
+                .equals (name))
+            .findFirst ()
+            .get ();
     }
 
-    private IMouseActions navbar() {
-        return onClickable(By.className("menusubnav"), "Navbar");
+    private IMouseActions navigationLinks () {
+        return onClickable (By.cssSelector ("div#content ul"), "Links");
     }
 }

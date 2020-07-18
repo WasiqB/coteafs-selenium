@@ -18,20 +18,20 @@ package com.github.wasiqb.coteafs.selenium.core.page;
 import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getSession;
 
 /**
- * @author wasiqb
  * @param <T>
+ * @author wasiqb
  * @since Sep 1, 2018 4:28:28 PM
  */
 public abstract class AbstractPageAction<T extends AbstractPageAction<T>> implements IPageAction {
     @SuppressWarnings ("unchecked")
     @Override
-    public T addInputValue (final String element, final Object value) {
-        getSession ().setContext (element, value);
+    public T addInputValue (final ElementKey elementKey, final Object value) {
+        getSession ().setContext (elementKey.getKey (), value);
         return (T) this;
     }
 
     @Override
-    public <E> E value (final String element) {
-        return getSession ().getContext (element);
+    public <E> E value (final ElementKey elementKey) {
+        return getSession ().getContext (elementKey.getKey ());
     }
 }

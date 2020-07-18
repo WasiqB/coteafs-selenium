@@ -1,5 +1,5 @@
 browser: CHROME
-url: http://demo.guru99.com/V4/
+url: https://the-internet.herokuapp.com
 headless_mode: true
 remote:
   url: localhost
@@ -10,8 +10,8 @@ remote:
     version: 77.0.3865.75
     platform: LINUX
 params:
-  user: mngr26593
-  password: ishal!12
+  user: tomsmith
+  password: SuperSecretPassword!
 playback:
   screen_state: NORMAL
   highlight: true
