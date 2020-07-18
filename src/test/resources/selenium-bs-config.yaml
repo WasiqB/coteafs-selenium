@@ -1,5 +1,5 @@
 browser: CHROME
-url: http://demo.guru99.com/V4/
+url: https://the-internet.herokuapp.com
 remote:
   user_id: ${CLOUD_USER}
   password: ${CLOUD_KEY}
@@ -8,14 +8,14 @@ remote:
   source: BROWSERSTACK
   capabilities:
     browser: Chrome
-    browser_version: 75.0
+    browser_version: 83.0
     os: Windows
     os_version: 10
     resolution: 1024x768
     name: Bstack-[Java] Sample Test
 params:
-  user: mngr26593
-  password: ishal!12
+  user: tomsmith
+  password: SuperSecretPassword!
 playback:
   screen_state: NORMAL
   highlight: true

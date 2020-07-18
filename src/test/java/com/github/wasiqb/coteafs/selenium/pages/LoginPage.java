@@ -18,6 +18,7 @@ package com.github.wasiqb.coteafs.selenium.pages;
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
+import com.github.wasiqb.coteafs.selenium.core.page.ElementKey;
 import org.openqa.selenium.By;
 
 /**
@@ -26,33 +27,56 @@ import org.openqa.selenium.By;
  */
 public class LoginPage extends BrowserPage {
     /**
+     * @author Wasiq Bhamla
+     */
+    public enum LoginPageKeys implements ElementKey {
+        USER_ID ("userId"),
+        PASS ("password");
+
+        String key;
+
+        LoginPageKeys (final String key) {
+            this.key = key;
+        }
+
+        @Override
+        public String getKey () {
+            return this.key;
+        }
+    }
+
+    /**
+     * @return success message
+     */
+    public IMouseActions loginMessage () {
+        return onClickable (By.id ("flash"), "Login message");
+    }
+
+    /**
      * @return password
-     * @author wasiqb
      * @since Aug 31, 2018 9:40:05 PM
      */
-    public ITextboxActions password() {
-        return form().find(By.name("password"), "Password");
+    public ITextboxActions password () {
+        return form ().find (By.id ("password"), "Password");
     }
 
     /**
      * @return signIn button
-     * @author wasiqb
      * @since Aug 31, 2018 9:40:56 PM
      */
-    public IMouseActions signIn() {
-        return form().find(By.name("btnLogin"), "Login");
+    public IMouseActions signIn () {
+        return form ().find (By.tagName ("button"), "Login");
     }
 
     /**
      * @return user id
-     * @author wasiqb
      * @since Aug 31, 2018 9:34:38 PM
      */
-    public ITextboxActions userId() {
-        return form().find(By.name("uid"), "User ID");
+    public ITextboxActions userId () {
+        return form ().find (By.id ("username"), "User ID");
     }
 
-    private IMouseActions form() {
-        return onClickable(By.name("frmLogin"), "Form");
+    private IMouseActions form () {
+        return onClickable (By.id ("login"), "Login Form");
     }
 }

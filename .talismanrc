@@ -41,4 +41,13 @@ fileignoreconfig:
 - filename: src/main/java/com/github/wasiqb/coteafs/selenium/core/Browser.java
   checksum: 2afea81c17e7feb76c2dc2d9bd1e4065de26f27512185936cbe846e3a3249260
   ignore_detectors: []
+- filename: src/test/resources/selenium-config.yaml
+  checksum: 4e3eb625cf75dfb21de30c5c79431cc74ba0bb6925275e1babb7a81314ac5397
+  ignore_detectors: []
+- filename: src/test/resources/selenium-grid-config.yaml
+  checksum: ccd1e387b4893ec07c009d3172161eb85a3535b6c83ac127333aa2335cdf3481
+  ignore_detectors: []
+- filename: src/test/resources/selenium-bs-config.yaml
+  checksum: 9fa53c195e45f4fea7946cf85f4fa39ef293fbddcb4469ff785c54e4bb8366ed
+  ignore_detectors: []
 scopeconfig: []

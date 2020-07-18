@@ -1,5 +1,5 @@
 browser: CHROME
-url: http://demo.guru99.com/V4/
+url: https://the-internet.herokuapp.com
 headless_mode: true
 #driver:
 #  force_cache: true
@@ -8,8 +8,8 @@ headless_mode: true
 #  version: 2.14
 #  exe_url: https://driver/download/url
 params:
-  user: mngr26593
-  password: ishal!12
+  user: tomsmith
+  password: SuperSecretPassword!
 playback:
   screen_state: NORMAL
   highlight: true
@@ -27,7 +27,7 @@ playback:
     after_click: 0
     page_load: 60
     script_load: 60
-    highlight: 500
+    highlight: 100
   screenshot:
     path: ./screenshots
     prefix: SCR

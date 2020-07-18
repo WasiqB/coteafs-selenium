@@ -28,12 +28,7 @@
         <classes>
             <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
                 <methods>
-                    <include name="testSignIn"/>
-                    <include name="testNewCustomer"/>
-                    <include name="testEditCustomer"/>
-                    <include name="testNewAccount"/>
-                    <include name="testDeleteAccount"/>
-                    <include name="testDeleteCustomer"/>
+                    <include name="testLogin"/>
                 </methods>
             </class>
         </classes>
@@ -44,7 +39,7 @@
         <classes>
             <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
                 <methods>
-                    <include name="testSignIn"/>
+                    <include name="testLogin"/>
                 </methods>
             </class>
         </classes>
@@ -55,7 +50,7 @@
         <classes>
             <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
                 <methods>
-                    <include name="testSignIn"/>
+                    <include name="testLogin"/>
                 </methods>
             </class>
         </classes>
