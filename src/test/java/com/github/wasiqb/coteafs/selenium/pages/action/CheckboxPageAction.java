@@ -1,7 +1,5 @@
 package com.github.wasiqb.coteafs.selenium.pages.action;
 
-import static org.testng.Assert.assertTrue;
-
 import org.testng.Assert;
 
 import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
@@ -21,20 +19,25 @@ public class CheckboxPageAction extends AbstractPageAction <CheckboxPageAction> 
 		if (value (CheckboxPageKeys.CHECK).equals ("check")) {
 			checkbox.checkBoxOne ()
 				.click ();
-			assertTrue (checkbox.checkBoxOne ()
-				.isSelected ());
-			assertTrue (checkbox.checkBoxTwo ()
-				.isSelected ());
+
+			checkbox.checkBoxOne ()
+				.verifySelected ()
+				.isTrue ();
+			checkbox.checkBoxTwo ()
+				.verifySelected ()
+				.isTrue ();
 
 		}
 		else if (value (CheckboxPageKeys.CHECK).equals ("uncheck")) {
 			checkbox.checkBoxTwo ()
 				.click ();
 
-			assertTrue (!checkbox.checkBoxOne ()
-				.isSelected ());
-			assertTrue (!checkbox.checkBoxTwo ()
-				.isSelected ());
+			checkbox.checkBoxOne ()
+				.verifySelected ()
+				.isFalse ();
+			checkbox.checkBoxTwo ()
+				.verifySelected ()
+				.isFalse ();
 
 		}
 		else {

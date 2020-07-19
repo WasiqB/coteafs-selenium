@@ -14,8 +14,15 @@ public class DropdownPageAction extends AbstractPageAction <DropdownPageAction> 
 	public void perform () {
 		final DropdownPage dropdown = new DropdownPage ();
 
+		final String dropdownOption = value (DropdownPage.DropdownKeys.OPTION);
 		dropdown.dropdownField ()
-			.selectByText (value (DropdownPage.DropdownKeys.OPTION));
+			.selectByText (dropdownOption);
+
+		dropdown.dropdownField ()
+			.selectedOptions ()
+			.get (0)
+			.verifyText ()
+			.isEqualTo (dropdownOption);
 	}
 
 }
