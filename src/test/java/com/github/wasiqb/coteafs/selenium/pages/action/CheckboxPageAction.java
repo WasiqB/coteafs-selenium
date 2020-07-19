@@ -38,7 +38,7 @@ public class CheckboxPageAction extends AbstractPageAction <CheckboxPageAction> 
 
 		}
 		else {
-			Assert.fail ("Test failed as test data is not supplied!");
+			Assert.fail ("Test failed as invalid  test data is not supplied!");
 		}
 
 	}

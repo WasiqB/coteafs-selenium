@@ -30,6 +30,7 @@
                 <methods>
                     <include name="testLogin"/>
                     <include name="testCheckboxes"/>
+                    <include name="testDropdownBox"/>
                 </methods>
             </class>
         </classes>
@@ -42,11 +43,12 @@
                 <methods>
                     <include name="testLogin"/>
                     <include name="testCheckboxes"/>
+                    <include name="testDropdownBox"/>
                 </methods>
             </class>
         </classes>
     </test>
-    <test name="Test BrowserStack" enabled = "true">
+    <test name="Test BrowserStack" enabled = true">
         <parameter name="test.browser" value="REMOTE"/>
         <parameter name="test.config" value="./src/test/resources/selenium-bs-config.yaml"/>
         <classes>
@@ -54,6 +56,7 @@
                 <methods>
                     <include name="testLogin"/>
                     <include name="testCheckboxes"/>
+                    <include name="testDropdownBox"/>
                 </methods>
             </class>
         </classes>

@@ -17,6 +17,7 @@ package com.github.wasiqb.coteafs.selenium;
 
 import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.pages.CheckboxPage.CheckboxPageKeys.CHECK;
+import static com.github.wasiqb.coteafs.selenium.pages.DropdownPage.DropdownKeys.OPTION;
 import static com.github.wasiqb.coteafs.selenium.pages.LoginPage.LoginPageKeys.PASS;
 import static com.github.wasiqb.coteafs.selenium.pages.LoginPage.LoginPageKeys.USER_ID;
 
@@ -32,6 +33,7 @@ import org.testng.annotations.Test;
 import com.github.wasiqb.coteafs.selenium.core.BrowserTest;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.CheckboxPageAction;
+import com.github.wasiqb.coteafs.selenium.pages.action.DropdownPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
 
 /**
@@ -76,6 +78,7 @@ public class SeleniumTest extends BrowserTest {
 		final List <Object []> testData = new ArrayList <> ();
 		testData.add (new Object [] { "check" });
 		testData.add (new Object [] { "uncheck" });
+		testData.add (new Object [] { "faisal" });
 		return testData.iterator ();
 	}
 
@@ -92,6 +95,34 @@ public class SeleniumTest extends BrowserTest {
 			.click ();
 		final CheckboxPageAction checkbox = new CheckboxPageAction ();
 		checkbox.addInputValue (CHECK, value)
+			.perform ();
+	}
+
+	/**
+	 * @author Faisal Khatri
+	 * @since Jul 19, 2020
+	 * @return dropdown data
+	 */
+	@DataProvider
+	public Iterator <Object []> testDataForDropdownBox () {
+		final List <Object []> testData = new ArrayList <> ();
+		testData.add (new Object [] { "Option 1" });
+		testData.add (new Object [] { "Option 2" });
+		return testData.iterator ();
+	}
+
+	/**
+	 * @author Faisal Khatri
+	 * @since Jul 19, 2020
+	 * @param testValue
+	 */
+	@Test (dataProvider = "testDataForDropdownBox")
+	public void testDropdownBox (final String testValue) {
+		setupMethod ();
+		this.main.links ("Dropdown")
+			.click ();
+		final DropdownPageAction dropdownAction = new DropdownPageAction ();
+		dropdownAction.addInputValue (OPTION, testValue)
 			.perform ();
 	}
 
