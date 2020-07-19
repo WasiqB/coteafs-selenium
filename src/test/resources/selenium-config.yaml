@@ -1,6 +1,6 @@
 browser: CHROME
 url: https://the-internet.herokuapp.com
-headless_mode: true
+headless_mode: false
 #driver:
 #  force_cache: true
 #  force_download: true
