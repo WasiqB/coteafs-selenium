@@ -19,10 +19,10 @@ package com.github.wasiqb.coteafs.selenium.core.page;
  * @author Wasiq Bhamla
  */
 public interface ElementKey {
-	/**
-	 * Gets the element key.
-	 *
-	 * @return Element Key
-	 */
-	String getKey ();
+    /**
+     * Gets the element key.
+     *
+     * @return Element Key
+     */
+    String getKey ();
 }

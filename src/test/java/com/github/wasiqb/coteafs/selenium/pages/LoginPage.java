@@ -15,75 +15,74 @@
  */
 package com.github.wasiqb.coteafs.selenium.pages;
 
-import org.openqa.selenium.By;
-
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
 import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 import com.github.wasiqb.coteafs.selenium.core.page.ElementKey;
+import org.openqa.selenium.By;
 
 /**
  * @author wasiqb
  * @since Aug 31, 2018 9:33:22 PM
  */
 public class LoginPage extends BrowserPage {
-	/**
-	 * @author Wasiq Bhamla
-	 */
-	public enum LoginPageKeys implements ElementKey {
-		/**
-		 * User Id
-		 */
-		USER_ID ("userId"),
-		/**
-		 * Password
-		 */
-		PASS ("password");
+    /**
+     * @author Wasiq Bhamla
+     */
+    public enum LoginPageKeys implements ElementKey {
+        /**
+         * User Id
+         */
+        USER_ID ("userId"),
+        /**
+         * Password
+         */
+        PASS ("password");
 
-		String key;
+        String key;
 
-		LoginPageKeys (final String key) {
-			this.key = key;
-		}
+        LoginPageKeys (final String key) {
+            this.key = key;
+        }
 
-		@Override
-		public String getKey () {
-			return this.key;
-		}
-	}
+        @Override
+        public String getKey () {
+            return this.key;
+        }
+    }
 
-	/**
-	 * @return success message
-	 */
-	public IMouseActions loginMessage () {
-		return onClickable (By.id ("flash"), "Login message");
-	}
+    /**
+     * @return success message
+     */
+    public IMouseActions loginMessage () {
+        return onClickable (By.id ("flash"), "Login message");
+    }
 
-	/**
-	 * @return password
-	 * @since Aug 31, 2018 9:40:05 PM
-	 */
-	public ITextboxActions password () {
-		return form ().find (By.id ("password"), "Password");
-	}
+    /**
+     * @return password
+     * @since Aug 31, 2018 9:40:05 PM
+     */
+    public ITextboxActions password () {
+        return form ().find (By.id ("password"), "Password");
+    }
 
-	/**
-	 * @return signIn button
-	 * @since Aug 31, 2018 9:40:56 PM
-	 */
-	public IMouseActions signIn () {
-		return form ().find (By.tagName ("button"), "Login");
-	}
+    /**
+     * @return signIn button
+     * @since Aug 31, 2018 9:40:56 PM
+     */
+    public IMouseActions signIn () {
+        return form ().find (By.tagName ("button"), "Login");
+    }
 
-	/**
-	 * @return user id
-	 * @since Aug 31, 2018 9:34:38 PM
-	 */
-	public ITextboxActions userId () {
-		return form ().find (By.id ("username"), "User ID");
-	}
+    /**
+     * @return user id
+     * @since Aug 31, 2018 9:34:38 PM
+     */
+    public ITextboxActions userId () {
+        return form ().find (By.id ("username"), "User ID");
+    }
 
-	private IMouseActions form () {
-		return onClickable (By.id ("login"), "Login Form");
-	}
+    private IMouseActions form () {
+        return onClickable (By.id ("login"), "Login Form");
+    }
 }

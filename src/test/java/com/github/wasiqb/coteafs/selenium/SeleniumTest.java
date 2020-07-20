@@ -26,104 +26,101 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
 import com.github.wasiqb.coteafs.selenium.core.BrowserTest;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.CheckboxPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.DropdownPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  * @author Wasiq Bhamla
  * @since Aug 15, 2018 8:07:59 PM
  */
 public class SeleniumTest extends BrowserTest {
-	private MainPage main;
+    private MainPage main;
 
-	/**
-	 * @since Aug 19, 2018 4:30:34 PM
-	 */
-	@BeforeClass
-	public void setupMethod () {
-		this.main = new MainPage ();
-		this.main.onDriver ()
-			.navigateTo (appSetting ().getUrl ());
-	}
+    /**
+     * @since Aug 19, 2018 4:30:34 PM
+     */
+    @BeforeClass
+    public void setupMethod () {
+        this.main = new MainPage ();
+        this.main.onDriver ()
+            .navigateTo (appSetting ().getUrl ());
+    }
 
-	/**
-	 * @since Apr 8, 2019 10:34:29 PM
-	 */
-	@Test
-	public void testLogin () {
-		this.main.links ("Form Authentication")
-			.click ();
-		final Map <String, String> loginParams = appSetting ().getParams ();
-		final LoginPageAction login = new LoginPageAction ();
-		login.addInputValue (USER_ID, loginParams.get ("user"))
-			.addInputValue (PASS, loginParams.get ("password"))
-			.perform ();
+    /**
+     * @since Apr 8, 2019 10:34:29 PM
+     */
+    @Test
+    public void testLogin () {
+        this.main.links ("Form Authentication")
+            .click ();
+        final Map<String, String> loginParams = appSetting ().getParams ();
+        final LoginPageAction login = new LoginPageAction ();
+        login.addInputValue (USER_ID, loginParams.get ("user"))
+            .addInputValue (PASS, loginParams.get ("password"))
+            .perform ();
 
-	}
+    }
 
-	/**
-	 * @author Faisal Khatri
-	 * @since Jul 19, 2020
-	 * @return test data for checkbox
-	 */
-	@DataProvider
-	public Iterator <Object []> testDataForCheckbox () {
-		final List <Object []> testData = new ArrayList <> ();
-		testData.add (new Object [] { "check" });
-		testData.add (new Object [] { "uncheck" });
-		testData.add (new Object [] { "faisal" });
-		return testData.iterator ();
-	}
+    /**
+     * @author Faisal Khatri
+     * @since Jul 19, 2020
+     * @return test data for checkbox
+     */
+    @DataProvider
+    public Iterator<Object []> testDataForCheckbox () {
+        final List<Object []> testData = new ArrayList<> ();
+        testData.add (new Object [] { "check" });
+        testData.add (new Object [] { "uncheck" });
+        return testData.iterator ();
+    }
 
-	/**
-	 * @author Faisal Khatri
-	 * @since Jul 19, 2020
-	 * @param value
-	 *
-	 */
-	@Test (dataProvider = "testDataForCheckbox")
-	public void testCheckboxes (final String value) {
-		setupMethod ();
-		this.main.links ("Checkboxes")
-			.click ();
-		final CheckboxPageAction checkbox = new CheckboxPageAction ();
-		checkbox.addInputValue (CHECK, value)
-			.perform ();
-	}
+    /**
+     * @author Faisal Khatri
+     * @since Jul 19, 2020
+     * @param value
+     */
+    @Test (dataProvider = "testDataForCheckbox")
+    public void testCheckboxes (final String value) {
+        setupMethod ();
+        this.main.links ("Checkboxes")
+            .click ();
+        final CheckboxPageAction checkbox = new CheckboxPageAction ();
+        checkbox.addInputValue (CHECK, value)
+            .perform ();
+    }
 
-	/**
-	 * @author Faisal Khatri
-	 * @since Jul 19, 2020
-	 * @return dropdown data
-	 */
-	@DataProvider
-	public Iterator <Object []> testDataForDropdownBox () {
-		final List <Object []> testData = new ArrayList <> ();
-		testData.add (new Object [] { "Option 1" });
-		testData.add (new Object [] { "Option 2" });
-		return testData.iterator ();
-	}
+    /**
+     * @author Faisal Khatri
+     * @since Jul 19, 2020
+     * @return dropdown data
+     */
+    @DataProvider
+    public Iterator<Object []> testDataForDropdownBox () {
+        final List<Object []> testData = new ArrayList<> ();
+        testData.add (new Object [] { "Option 1" });
+        testData.add (new Object [] { "Option 2" });
+        return testData.iterator ();
+    }
 
-	/**
-	 * @author Faisal Khatri
-	 * @since Jul 19, 2020
-	 * @param testValue
-	 */
-	@Test (dataProvider = "testDataForDropdownBox")
-	public void testDropdownBox (final String testValue) {
-		setupMethod ();
-		this.main.links ("Dropdown")
-			.click ();
-		final DropdownPageAction dropdownAction = new DropdownPageAction ();
-		dropdownAction.addInputValue (OPTION, testValue)
-			.perform ();
-	}
+    /**
+     * @author Faisal Khatri
+     * @since Jul 19, 2020
+     * @param testValue
+     */
+    @Test (dataProvider = "testDataForDropdownBox")
+    public void testDropdownBox (final String testValue) {
+        setupMethod ();
+        this.main.links ("Dropdown")
+            .click ();
+        final DropdownPageAction dropdownAction = new DropdownPageAction ();
+        dropdownAction.addInputValue (OPTION, testValue)
+            .perform ();
+    }
 
 }

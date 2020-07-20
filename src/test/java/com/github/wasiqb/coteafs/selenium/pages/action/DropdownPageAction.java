@@ -6,23 +6,22 @@ import com.github.wasiqb.coteafs.selenium.pages.DropdownPage;
 /**
  * @author Faisal Khatri
  * @since Jul 19, 2020
- *
  */
-public class DropdownPageAction extends AbstractPageAction <DropdownPageAction> {
+public class DropdownPageAction extends AbstractPageAction<DropdownPageAction> {
 
-	@Override
-	public void perform () {
-		final DropdownPage dropdown = new DropdownPage ();
+    @Override
+    public void perform () {
+        final DropdownPage dropdown = new DropdownPage ();
 
-		final String dropdownOption = value (DropdownPage.DropdownKeys.OPTION);
-		dropdown.dropdownField ()
-			.selectByText (dropdownOption);
+        final String dropdownOption = value (DropdownPage.DropdownKeys.OPTION);
+        dropdown.dropdownField ()
+            .selectByText (dropdownOption);
 
-		dropdown.dropdownField ()
-			.selectedOptions ()
-			.get (0)
-			.verifyText ()
-			.isEqualTo (dropdownOption);
-	}
+        dropdown.dropdownField ()
+            .selectedOptions ()
+            .get (0)
+            .verifyText ()
+            .isEqualTo (dropdownOption);
+    }
 
 }
