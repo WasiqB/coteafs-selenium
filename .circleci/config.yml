@@ -3,7 +3,7 @@ default: &default
   docker:
     - image: circleci/openjdk:11-jdk-stretch
     - image: selenium/standalone-chrome:latest
-version: 2
+version: 2.1
 jobs:
   code_checkout:
     <<: *default
