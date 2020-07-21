@@ -24,9 +24,9 @@ import org.openqa.selenium.By;
  * @since Aug 31, 2018 8:14:38 PM
  */
 public class MainPage extends BrowserPage {
+
     /**
-     * @param name
-     *     name
+     * @param name name
      * @return menu name
      * @since Apr 7, 2019 5:42:12 PM
      */

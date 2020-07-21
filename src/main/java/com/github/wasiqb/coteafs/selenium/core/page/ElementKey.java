@@ -24,5 +24,5 @@ public interface ElementKey {
      *
      * @return Element Key
      */
-    String getKey();
+    String getKey ();
 }

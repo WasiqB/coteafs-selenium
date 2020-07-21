@@ -30,7 +30,13 @@ public class LoginPage extends BrowserPage {
      * @author Wasiq Bhamla
      */
     public enum LoginPageKeys implements ElementKey {
+        /**
+         * User Id
+         */
         USER_ID ("userId"),
+        /**
+         * Password
+         */
         PASS ("password");
 
         String key;

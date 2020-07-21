@@ -34,8 +34,8 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  */
 @SuppressWarnings ("unchecked")
 public class BrowserPage implements IPage<EventFiringWebDriver, BrowserActions, WebElement> {
-    private static final Loggy   LOG = Loggy.init ();
-    private final        Browser browser;
+    private static final Loggy LOG = Loggy.init ();
+    private final Browser      browser;
 
     /**
      * @author Wasiq Bhamla
