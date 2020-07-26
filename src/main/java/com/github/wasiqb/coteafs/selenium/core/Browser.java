@@ -77,7 +77,7 @@ import org.testng.Assert;
  * @since Aug 15, 2018 2:11:13 PM
  */
 @SuppressWarnings ("unchecked")
-public class Browser extends AbstractDriver <EventFiringWebDriver> implements IWebDriver {
+public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWebDriver {
     private static final Loggy LOG = Loggy.init ();
 
     private static WebDriver createRemoteSession (final RemoteSetting remoteSetting, final MutableCapabilities caps) {
@@ -127,7 +127,7 @@ public class Browser extends AbstractDriver <EventFiringWebDriver> implements IW
 
     private static void setupCloud (final RemoteSetting remoteSetting, final DesiredCapabilities caps,
         final String source) {
-        final Map <String, Object> capabilities = remoteSetting.getCapabilities ();
+        final Map<String, Object> capabilities = remoteSetting.getCapabilities ();
         capabilities.forEach (caps::setCapability);
         if (isNotEmpty (source)) {
             caps.setCapability (format ("{0}:options", source), remoteSetting.getCloudCapabilities ());

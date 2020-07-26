@@ -34,7 +34,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public class BaseDriverAction <D extends WebDriver> implements IWaitAction <D>, IScriptAction {
+public class BaseDriverAction<D extends WebDriver> implements IWaitAction<D>, IScriptAction {
     protected     D             driver;
     private final WebDriverWait wait;
 
@@ -66,11 +66,11 @@ public class BaseDriverAction <D extends WebDriver> implements IWaitAction <D>, 
         });
     }
 
-    protected <E> E get (final Function <D, E> func) {
+    protected <E> E get (final Function<D, E> func) {
         return func.apply (this.driver);
     }
 
-    protected void perform (final Consumer <D> action) {
+    protected void perform (final Consumer<D> action) {
         action.accept (this.driver);
     }
 }

@@ -66,7 +66,7 @@ public interface ISelectboxActions extends IMouseActions {
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
      */
-    <T extends IMouseActions> List <T> options ();
+    <T extends IMouseActions> List<T> options ();
 
     /**
      * @param index item indoex
@@ -98,5 +98,5 @@ public interface ISelectboxActions extends IMouseActions {
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
      */
-    <T extends IMouseActions> List <T> selectedOptions ();
+    <T extends IMouseActions> List<T> selectedOptions ();
 }

@@ -71,7 +71,7 @@ public class DriverListner implements WebDriverEventListener {
     }
 
     @Override
-    public <X> void afterGetScreenshotAs (final OutputType <X> target, final X screenshot) {
+    public <X> void afterGetScreenshotAs (final OutputType<X> target, final X screenshot) {
         LOG.t ("Taken screenshot successfully...");
     }
 
@@ -139,7 +139,7 @@ public class DriverListner implements WebDriverEventListener {
     }
 
     @Override
-    public <X> void beforeGetScreenshotAs (final OutputType <X> target) {
+    public <X> void beforeGetScreenshotAs (final OutputType<X> target) {
         LOG.t ("Taking screenshot...");
     }
 

@@ -35,8 +35,8 @@ import org.openqa.selenium.WebElement;
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public class VerifyElement <E extends WebElement, D extends WebDriver, B extends IDriverActions <D>>
-    extends ElementAction <E, D, B> implements IVerifyElement {
+public class VerifyElement<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
+    extends ElementAction<E, D, B> implements IVerifyElement {
     VerifyElement (final B browserAction, final By by, final String name) {
         super (browserAction, by, name);
     }

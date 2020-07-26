@@ -31,7 +31,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public class AlertAction <D extends WebDriver> extends ScreenAction <D> implements IAlertAction {
+public class AlertAction<D extends WebDriver> extends ScreenAction<D> implements IAlertAction {
     AlertAction (final D driver) {
         super (driver);
     }

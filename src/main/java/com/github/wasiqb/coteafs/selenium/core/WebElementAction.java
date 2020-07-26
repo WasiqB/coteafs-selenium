@@ -25,7 +25,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-class WebElementAction extends AbstractElementAction <WebElement, EventFiringWebDriver, BrowserActions> {
+class WebElementAction extends AbstractElementAction<WebElement, EventFiringWebDriver, BrowserActions> {
     WebElementAction (final BrowserActions browserAction, final By by, final String name) {
         super (browserAction, by, name);
     }

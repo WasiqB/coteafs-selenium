@@ -43,7 +43,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * @author Wasiq Bhamla
  * @since 26-Jul-2019
  */
-public abstract class AbstractDriver <D extends WebDriver> extends PlatformAction implements IDriver <D> {
+public abstract class AbstractDriver<D extends WebDriver> extends PlatformAction implements IDriver<D> {
     private static final Loggy LOG = Loggy.init ();
 
     /**
@@ -71,16 +71,16 @@ public abstract class AbstractDriver <D extends WebDriver> extends PlatformActio
         setScreen (playback);
     }
 
-    private void manageOptions (final Consumer <Options> options) {
+    private void manageOptions (final Consumer<Options> options) {
         options.accept (getDriver ().manage ());
     }
 
-    private void manageTimeouts (final Consumer <Timeouts> timeouts) {
+    private void manageTimeouts (final Consumer<Timeouts> timeouts) {
         timeouts.accept (getDriver ().manage ()
             .timeouts ());
     }
 
-    private void manageWindow (final Consumer <Window> window) {
+    private void manageWindow (final Consumer<Window> window) {
         window.accept (getDriver ().manage ()
             .window ());
     }

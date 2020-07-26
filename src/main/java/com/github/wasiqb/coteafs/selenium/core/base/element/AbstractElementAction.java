@@ -40,8 +40,8 @@ import org.openqa.selenium.support.ui.Select;
  * @since 27-Jul-2019
  */
 @SuppressWarnings ("unchecked")
-public class AbstractElementAction <E extends WebElement, D extends WebDriver, B extends IDriverActions <D>>
-    extends FindableAction <E, D, B> implements ITextboxActions, ISelectboxActions {
+public class AbstractElementAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
+    extends FindableAction<E, D, B> implements ITextboxActions, ISelectboxActions {
     protected AbstractElementAction (final B browserAction, final By by, final String name) {
         super (browserAction, by, name);
     }
@@ -115,15 +115,15 @@ public class AbstractElementAction <E extends WebElement, D extends WebDriver, B
     @Override
     public <T extends IMouseActions> T find (final By byLocator, final String name, final WaitStrategy strategy) {
         waitForStrategy (byLocator, strategy);
-        return get (e -> (T) new AbstractElementAction <> (this.browserAction, e.findElement (byLocator), name));
+        return get (e -> (T) new AbstractElementAction<> (this.browserAction, e.findElement (byLocator), name));
     }
 
     @Override
-    public <T extends IMouseActions> List <T> finds (final By byLocator, final String name,
+    public <T extends IMouseActions> List<T> finds (final By byLocator, final String name,
         final WaitStrategy strategy) {
         waitForStrategy (byLocator, strategy);
         return get (e -> e.findElements (byLocator)).stream ()
-            .map (e -> (T) new AbstractElementAction <> (this.browserAction, e, name))
+            .map (e -> (T) new AbstractElementAction<> (this.browserAction, e, name))
             .collect (Collectors.toList ());
     }
 
@@ -144,12 +144,12 @@ public class AbstractElementAction <E extends WebElement, D extends WebDriver, B
     }
 
     @Override
-    public <T extends IMouseActions> List <T> options () {
+    public <T extends IMouseActions> List<T> options () {
         return get (e -> {
             final Select select = new Select (e);
             return select.getOptions ()
                 .stream ()
-                .map (o -> (T) new AbstractElementAction <> (this.browserAction, o, o.getText ()))
+                .map (o -> (T) new AbstractElementAction<> (this.browserAction, o, o.getText ()))
                 .collect (Collectors.toList ());
         });
     }
@@ -179,12 +179,12 @@ public class AbstractElementAction <E extends WebElement, D extends WebDriver, B
     }
 
     @Override
-    public <T extends IMouseActions> List <T> selectedOptions () {
+    public <T extends IMouseActions> List<T> selectedOptions () {
         return get (e -> {
             final Select select = new Select (e);
             return select.getAllSelectedOptions ()
                 .stream ()
-                .map (o -> (T) new AbstractElementAction <> (this.browserAction, o, o.getText ()))
+                .map (o -> (T) new AbstractElementAction<> (this.browserAction, o, o.getText ()))
                 .collect (Collectors.toList ());
         });
     }

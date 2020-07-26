@@ -26,9 +26,9 @@ import org.openqa.selenium.WebDriver;
  * @author Wasiq Bhamla
  * @since 27-Sep-2019
  */
-public class DriverSession <D extends WebDriver> {
-    private final Map <String, Object> context;
-    private       D                    driver;
+public class DriverSession<D extends WebDriver> {
+    private final Map<String, Object> context;
+    private       D                   driver;
 
     /**
      * @param driver
@@ -38,7 +38,7 @@ public class DriverSession <D extends WebDriver> {
      */
     public DriverSession (final D driver) {
         this.driver = driver;
-        this.context = new HashMap <> ();
+        this.context = new HashMap<> ();
     }
 
     /**

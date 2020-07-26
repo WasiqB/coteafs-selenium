@@ -50,7 +50,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @since 27-Jul-2019
  */
 @SuppressWarnings ("unchecked")
-public class BaseElementAction <E extends WebElement, D extends WebDriver, B extends IDriverActions <D>>
+public class BaseElementAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
     implements IWaitStrategy {
     private static final Loggy LOG = Loggy.init ();
 
@@ -151,18 +151,18 @@ public class BaseElementAction <E extends WebElement, D extends WebDriver, B ext
         }
     }
 
-    protected <T> T get (final Function <E, T> func) {
+    protected <T> T get (final Function<E, T> func) {
         prepareForAction ("green");
         return func.apply (this.element);
     }
 
-    protected void perform (final Consumer <E> action) {
+    protected void perform (final Consumer<E> action) {
         prepareForAction ("red");
         action.accept (this.element);
     }
 
     protected void waitForStrategy (final By locator, final WaitStrategy newStrategy) {
-        final BaseElementAction <E, D, B> elementAction = new BaseElementAction <> (this.browserAction, locator,
+        final BaseElementAction<E, D, B> elementAction = new BaseElementAction<> (this.browserAction, locator,
             this.name, newStrategy);
         elementAction.waitForStrategy ();
     }

@@ -45,8 +45,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public class ScreenAction <D extends WebDriver> extends BaseDriverAction <D>
-    implements IScreenAction, IDriverActions <D> {
+public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> implements IScreenAction, IDriverActions<D> {
     private static final Loggy LOG = Loggy.init ();
 
     protected static void pause (final long delay) {

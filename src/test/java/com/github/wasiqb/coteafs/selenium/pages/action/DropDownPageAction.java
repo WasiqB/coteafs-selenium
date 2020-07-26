@@ -7,7 +7,7 @@ import com.github.wasiqb.coteafs.selenium.pages.DropDownPage;
  * @author Faisal Khatri
  * @since Jul 19, 2020
  */
-public class DropDownPageAction extends AbstractPageAction <DropDownPageAction> {
+public class DropDownPageAction extends AbstractPageAction<DropDownPageAction> {
     @Override
     public void perform () {
         final DropDownPage dropDown = new DropDownPage ();

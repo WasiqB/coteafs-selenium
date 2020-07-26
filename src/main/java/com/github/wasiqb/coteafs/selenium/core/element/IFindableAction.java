@@ -60,7 +60,7 @@ public interface IFindableAction extends IKeyboardActions {
      * @author Wasiq Bhamla
      * @since 27-Jul-2019
      */
-    <E extends IMouseActions> List <E> finds (final By byLocator, final String name);
+    <E extends IMouseActions> List<E> finds (final By byLocator, final String name);
 
     /**
      * @param <E>
@@ -73,5 +73,5 @@ public interface IFindableAction extends IKeyboardActions {
      * @author Wasiq Bhamla
      * @since 27-Jul-2019
      */
-    <E extends IMouseActions> List <E> finds (final By byLocator, final String name, WaitStrategy strategy);
+    <E extends IMouseActions> List<E> finds (final By byLocator, final String name, WaitStrategy strategy);
 }

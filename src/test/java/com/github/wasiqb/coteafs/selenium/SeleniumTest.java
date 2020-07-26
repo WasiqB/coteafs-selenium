@@ -69,8 +69,8 @@ public class SeleniumTest extends BrowserTest {
      * @since Jul 19, 2020
      */
     @DataProvider
-    public Iterator <Object[]> testDataForCheckbox () {
-        final List <Object[]> testData = new ArrayList <> ();
+    public Iterator<Object[]> testDataForCheckbox () {
+        final List<Object[]> testData = new ArrayList<> ();
         testData.add (new Object[] { "check" });
         testData.add (new Object[] { "uncheck" });
         return testData.iterator ();
@@ -82,8 +82,8 @@ public class SeleniumTest extends BrowserTest {
      * @since Jul 19, 2020
      */
     @DataProvider
-    public Iterator <Object[]> testDataForDropDownBox () {
-        final List <Object[]> testData = new ArrayList <> ();
+    public Iterator<Object[]> testDataForDropDownBox () {
+        final List<Object[]> testData = new ArrayList<> ();
         testData.add (new Object[] { "Option 1" });
         testData.add (new Object[] { "Option 2" });
         return testData.iterator ();
@@ -111,7 +111,7 @@ public class SeleniumTest extends BrowserTest {
     public void testLogin () {
         this.main.links ("Form Authentication")
             .click ();
-        final Map <String, String> loginParams = appSetting ().getParams ();
+        final Map<String, String> loginParams = appSetting ().getParams ();
         final LoginPageAction login = new LoginPageAction ();
         login.addInputValue (USER_ID, loginParams.get ("user"))
             .addInputValue (PASS, loginParams.get ("password"))

@@ -32,7 +32,7 @@ import org.openqa.selenium.WebElement;
  * @author Wasiq Bhamla
  * @since 08-Jun-2019
  */
-public interface IPage <D extends WebDriver, B extends IDriverActions <D>, E extends WebElement> {
+public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E extends WebElement> {
     /**
      * @param <T>
      * @param pageCls
@@ -42,7 +42,7 @@ public interface IPage <D extends WebDriver, B extends IDriverActions <D>, E ext
      * @author Wasiq Bhamla
      * @since 14-Oct-2019
      */
-    <T extends IPage <D, B, E>> T nextPage (Class <T> pageCls);
+    <T extends IPage<D, B, E>> T nextPage (Class<T> pageCls);
 
     /**
      * @param <T>

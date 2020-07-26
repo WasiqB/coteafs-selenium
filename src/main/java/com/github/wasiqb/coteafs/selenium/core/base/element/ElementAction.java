@@ -30,8 +30,8 @@ import org.openqa.selenium.WebElement;
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public class ElementAction <E extends WebElement, D extends WebDriver, B extends IDriverActions <D>>
-    extends BaseElementAction <E, D, B> implements IElementActions {
+public class ElementAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
+    extends BaseElementAction<E, D, B> implements IElementActions {
     protected ElementAction (final B browserAction, final By by, final String name) {
         super (browserAction, by, name);
     }

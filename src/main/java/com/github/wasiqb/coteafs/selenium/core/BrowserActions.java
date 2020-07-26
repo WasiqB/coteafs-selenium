@@ -30,7 +30,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  * @author Wasiq Bhamla
  * @since Aug 18, 2018 4:41:56 PM
  */
-public class BrowserActions extends WebDriverAction <EventFiringWebDriver> implements IWebFrame, IWebWindow {
+public class BrowserActions extends WebDriverAction<EventFiringWebDriver> implements IWebFrame, IWebWindow {
     private final DelaySetting delaySetting;
 
     /**
@@ -81,7 +81,7 @@ public class BrowserActions extends WebDriverAction <EventFiringWebDriver> imple
     public void switchWindow (final String title) {
         perform (d -> {
             final String currentHandle = d.getWindowHandle ();
-            final Set <String> wins = d.getWindowHandles ();
+            final Set<String> wins = d.getWindowHandles ();
             for (final String win : wins) {
                 if (currentHandle.equals (win)) {
                     continue;

@@ -33,8 +33,8 @@ import org.openqa.selenium.WebElement;
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public abstract class FindableAction <E extends WebElement, D extends WebDriver, B extends IDriverActions <D>>
-    extends KeyboardAction <E, D, B> implements IFindableAction {
+public abstract class FindableAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
+    extends KeyboardAction<E, D, B> implements IFindableAction {
     protected FindableAction (final B browserAction, final By by, final String name) {
         super (browserAction, by, name);
     }
@@ -57,7 +57,7 @@ public abstract class FindableAction <E extends WebElement, D extends WebDriver,
     }
 
     @Override
-    public <T extends IMouseActions> List <T> finds (final By byLocator, final String name) {
+    public <T extends IMouseActions> List<T> finds (final By byLocator, final String name) {
         return finds (byLocator, name, WaitStrategy.NONE);
     }
 }

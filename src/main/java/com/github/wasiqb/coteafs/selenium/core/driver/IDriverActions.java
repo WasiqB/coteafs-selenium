@@ -24,7 +24,7 @@ import org.openqa.selenium.WebDriver;
  * @author Wasiq Bhamla
  * @since 06-Jun-2019
  */
-public interface IDriverActions <D extends WebDriver> extends IScriptAction, IScreenAction, IWaitAction <D> {
+public interface IDriverActions<D extends WebDriver> extends IScriptAction, IScreenAction, IWaitAction<D> {
     /**
      * @return title
      *
