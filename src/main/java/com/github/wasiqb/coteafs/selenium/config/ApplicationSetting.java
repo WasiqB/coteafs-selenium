@@ -43,11 +43,11 @@ public class ApplicationSetting extends BasePojo {
      * @author wasiqb
      * @since Apr 7, 2019 5:12:10 PM
      */
-    public ApplicationSetting() {
-        this.params = new HashMap<>();
+    public ApplicationSetting () {
+        this.params = new HashMap<> ();
         this.browser = AvailableBrowser.CHROME;
-        this.driver = new DriverSetting();
-        this.playback = new PlaybackSetting();
+        this.driver = new DriverSetting ();
+        this.playback = new PlaybackSetting ();
         this.headlessMode = false;
     }
 }

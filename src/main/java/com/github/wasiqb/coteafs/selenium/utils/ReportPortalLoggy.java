@@ -12,12 +12,13 @@ import java.util.Date;
  */
 public final class ReportPortalLoggy {
     /**
-     * @author Wasiq Bhamla
-     * @since 26-Oct-2019
      * @param level
      * @param file
      * @param message
      * @param args
+     *
+     * @author Wasiq Bhamla
+     * @since 26-Oct-2019
      */
     public static void log (final LogLevel level, final File file, final String message, final Object... args) {
         emitLog (format (message, args), level.name ()
@@ -25,11 +26,12 @@ public final class ReportPortalLoggy {
     }
 
     /**
-     * @author Wasiq Bhamla
-     * @since 26-Oct-2019
      * @param level
      * @param message
      * @param args
+     *
+     * @author Wasiq Bhamla
+     * @since 26-Oct-2019
      */
     public static void log (final LogLevel level, final String message, final Object... args) {
         emitLog (format (message, args), level.name ()

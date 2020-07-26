@@ -35,9 +35,9 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  * @since Aug 19, 2018 4:15:31 PM
  */
 @SuppressWarnings ("unchecked")
-public class BrowserPage implements IPage<EventFiringWebDriver, BrowserActions, WebElement> {
-    private static final Loggy LOG = Loggy.init ();
-    private final Browser      browser;
+public class BrowserPage implements IPage <EventFiringWebDriver, BrowserActions, WebElement> {
+    private static final Loggy   LOG = Loggy.init ();
+    private final        Browser browser;
 
     /**
      * @author Wasiq Bhamla
@@ -48,13 +48,12 @@ public class BrowserPage implements IPage<EventFiringWebDriver, BrowserActions, 
     }
 
     @Override
-    public <T extends IPage<EventFiringWebDriver, BrowserActions, WebElement>> T nextPage (final Class<T> pageCls) {
+    public <T extends IPage <EventFiringWebDriver, BrowserActions, WebElement>> T nextPage (final Class <T> pageCls) {
         T page = null;
         try {
             page = pageCls.getConstructor ()
                 .newInstance ();
-        } catch (final InstantiationException | IllegalAccessException | IllegalArgumentException
-            | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+        } catch (final InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
             handleError (FILTER_PKG, e).forEach (LOG::e);
         }
         return page;

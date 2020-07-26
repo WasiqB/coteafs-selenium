@@ -22,13 +22,14 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  * @author Wasiq Bhamla
  * @since 28-Sep-2019
  */
-public class BrowserSession extends DriverSession<EventFiringWebDriver> {
+public class BrowserSession extends DriverSession <EventFiringWebDriver> {
     /**
      * @param driver
+     *
      * @author Wasiq Bhamla
      * @since 28-Sep-2019
      */
-    BrowserSession(final EventFiringWebDriver driver) {
-        super(driver);
+    BrowserSession (final EventFiringWebDriver driver) {
+        super (driver);
     }
 }

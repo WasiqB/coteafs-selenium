@@ -27,16 +27,18 @@ public interface IWebFrame {
     void switchFrame ();
 
     /**
+     * @param index frame index
+     *
      * @author Wasiq Bhamla
      * @since 06-Jul-2019
-     * @param index frame index
      */
     void switchFrame (int index);
 
     /**
+     * @param nameOrId frame name or id
+     *
      * @author Wasiq Bhamla
      * @since 06-Jul-2019
-     * @param nameOrId frame name or id
      */
     void switchFrame (String nameOrId);
 }

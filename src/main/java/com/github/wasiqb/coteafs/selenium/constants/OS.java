@@ -31,7 +31,7 @@ public class OS {
 
     /**
      * @return is Mac
-     * @author Wasiq Bhamla
+     *
      * @since Aug 10, 2018 2:38:12 PM
      */
     public static boolean isMac () {
@@ -40,7 +40,7 @@ public class OS {
 
     /**
      * @return is unix
-     * @author Wasiq Bhamla
+     *
      * @since Aug 10, 2018 2:38:47 PM
      */
     public static boolean isUnix () {
@@ -49,7 +49,7 @@ public class OS {
 
     /**
      * @return is win
-     * @author Wasiq Bhamla
+     *
      * @since Aug 10, 2018 2:38:57 PM
      */
     public static boolean isWindows () {
@@ -58,7 +58,7 @@ public class OS {
 
     /**
      * @return platform
-     * @author Wasiq Bhamla
+     *
      * @since Aug 10, 2018 2:50:40 PM
      */
     public static PlatformOs platform () {

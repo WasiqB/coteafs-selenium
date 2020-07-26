@@ -19,10 +19,11 @@ import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSessio
 
 /**
  * @param <T>
+ *
  * @author wasiqb
  * @since Sep 1, 2018 4:28:28 PM
  */
-public abstract class AbstractPageAction<T extends AbstractPageAction<T>> implements IPageAction {
+public abstract class AbstractPageAction <T extends AbstractPageAction <T>> implements IPageAction {
     @SuppressWarnings ("unchecked")
     @Override
     public T addInputValue (final ElementKey elementKey, final Object value) {

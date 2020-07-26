@@ -35,155 +35,157 @@ import org.openqa.selenium.support.ui.Select;
  * @param <E>
  * @param <D>
  * @param <B>
+ *
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-@SuppressWarnings("unchecked")
-public class AbstractElementAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
-    extends FindableAction<E, D, B> implements ITextboxActions, ISelectboxActions {
-    protected AbstractElementAction(final B browserAction, final By by, final String name) {
-        super(browserAction, by, name);
+@SuppressWarnings ("unchecked")
+public class AbstractElementAction <E extends WebElement, D extends WebDriver, B extends IDriverActions <D>>
+    extends FindableAction <E, D, B> implements ITextboxActions, ISelectboxActions {
+    protected AbstractElementAction (final B browserAction, final By by, final String name) {
+        super (browserAction, by, name);
     }
 
-    protected AbstractElementAction(final B browserAction, final By by, final String name,
+    protected AbstractElementAction (final B browserAction, final By by, final String name,
         final WaitStrategy strategy) {
-        super(browserAction, by, name, strategy);
+        super (browserAction, by, name, strategy);
     }
 
-    protected AbstractElementAction(final B browserAction, final E element, final String name) {
-        super(browserAction, element, name);
+    protected AbstractElementAction (final B browserAction, final E element, final String name) {
+        super (browserAction, element, name);
     }
 
-    protected AbstractElementAction(final B browserAction, final E element, final String name,
+    protected AbstractElementAction (final B browserAction, final E element, final String name,
         final WaitStrategy strategy) {
-        super(browserAction, element, name, strategy);
+        super (browserAction, element, name, strategy);
     }
 
     @Override
-    public void click() {
-        perform(e -> {
-            pause(this.delays.getBeforeClick());
-            e.click();
-            pause(this.delays.getAfterClick());
+    public void click () {
+        perform (e -> {
+            pause (this.delays.getBeforeClick ());
+            e.click ();
+            pause (this.delays.getAfterClick ());
         });
     }
 
     @Override
-    public void deselectAll() {
-        perform(e -> {
-            final Select select = new Select(e);
-            select.deselectAll();
+    public void deselectAll () {
+        perform (e -> {
+            final Select select = new Select (e);
+            select.deselectAll ();
         });
     }
 
     @Override
-    public void deselectByIndex(final int index) {
-        perform(e -> {
-            final Select select = new Select(e);
-            select.deselectByIndex(index);
+    public void deselectByIndex (final int index) {
+        perform (e -> {
+            final Select select = new Select (e);
+            select.deselectByIndex (index);
         });
     }
 
     @Override
-    public void deselectByText(final String value) {
-        perform(e -> {
-            final Select select = new Select(e);
-            select.deselectByVisibleText(value);
+    public void deselectByText (final String value) {
+        perform (e -> {
+            final Select select = new Select (e);
+            select.deselectByVisibleText (value);
         });
     }
 
     @Override
-    public void deselectByValue(final String value) {
-        perform(e -> {
-            final Select select = new Select(e);
-            select.deselectByValue(value);
+    public void deselectByValue (final String value) {
+        perform (e -> {
+            final Select select = new Select (e);
+            select.deselectByValue (value);
         });
     }
 
     @Override
-    public void enterText(final String text) {
-        perform(e -> {
-            if (isNoneEmpty(text)) {
-                pause(this.delays.getBeforeKeyPress());
-                e.sendKeys(text);
-                pause(this.delays.getAfterKeyPress());
+    public void enterText (final String text) {
+        perform (e -> {
+            if (isNoneEmpty (text)) {
+                pause (this.delays.getBeforeKeyPress ());
+                e.sendKeys (text);
+                pause (this.delays.getAfterKeyPress ());
             }
         });
     }
 
     @Override
-    public <T extends IMouseActions> T find(final By byLocator, final String name, final WaitStrategy strategy) {
-        waitForStrategy(byLocator, strategy);
-        return get(e -> (T) new AbstractElementAction<>(this.browserAction, e.findElement(byLocator), name));
+    public <T extends IMouseActions> T find (final By byLocator, final String name, final WaitStrategy strategy) {
+        waitForStrategy (byLocator, strategy);
+        return get (e -> (T) new AbstractElementAction <> (this.browserAction, e.findElement (byLocator), name));
     }
 
     @Override
-    public <T extends IMouseActions> List<T> finds(final By byLocator, final String name, final WaitStrategy strategy) {
-        waitForStrategy(byLocator, strategy);
-        return get(e -> e.findElements(byLocator)).stream()
-            .map(e -> (T) new AbstractElementAction<>(this.browserAction, e, name))
-            .collect(Collectors.toList());
+    public <T extends IMouseActions> List <T> finds (final By byLocator, final String name,
+        final WaitStrategy strategy) {
+        waitForStrategy (byLocator, strategy);
+        return get (e -> e.findElements (byLocator)).stream ()
+            .map (e -> (T) new AbstractElementAction <> (this.browserAction, e, name))
+            .collect (Collectors.toList ());
     }
 
     @Override
-    public void hover() {
-        perform(e -> this.actions.pause(ofMillis(this.delays.getBeforeMouseMove()))
-            .moveToElement(e)
-            .pause(ofMillis(this.delays.getAfterMouseMove()))
-            .perform());
+    public void hover () {
+        perform (e -> this.actions.pause (ofMillis (this.delays.getBeforeMouseMove ()))
+            .moveToElement (e)
+            .pause (ofMillis (this.delays.getAfterMouseMove ()))
+            .perform ());
     }
 
     @Override
-    public boolean isMultiSelect() {
-        return get(e -> {
-            final Select select = new Select(e);
-            return select.isMultiple();
+    public boolean isMultiSelect () {
+        return get (e -> {
+            final Select select = new Select (e);
+            return select.isMultiple ();
         });
     }
 
     @Override
-    public <T extends IMouseActions> List<T> options() {
-        return get(e -> {
-            final Select select = new Select(e);
-            return select.getOptions()
-                .stream()
-                .map(o -> (T) new AbstractElementAction<>(this.browserAction, o, o.getText()))
-                .collect(Collectors.toList());
+    public <T extends IMouseActions> List <T> options () {
+        return get (e -> {
+            final Select select = new Select (e);
+            return select.getOptions ()
+                .stream ()
+                .map (o -> (T) new AbstractElementAction <> (this.browserAction, o, o.getText ()))
+                .collect (Collectors.toList ());
         });
     }
 
     @Override
-    public void selectByIndex(final int index) {
-        perform(e -> {
-            final Select select = new Select(e);
-            select.selectByIndex(index);
+    public void selectByIndex (final int index) {
+        perform (e -> {
+            final Select select = new Select (e);
+            select.selectByIndex (index);
         });
     }
 
     @Override
-    public void selectByText(final String value) {
-        perform(e -> {
-            final Select select = new Select(e);
-            select.selectByVisibleText(value);
+    public void selectByText (final String value) {
+        perform (e -> {
+            final Select select = new Select (e);
+            select.selectByVisibleText (value);
         });
     }
 
     @Override
-    public void selectByValue(final String value) {
-        perform(e -> {
-            final Select select = new Select(e);
-            select.selectByValue(value);
+    public void selectByValue (final String value) {
+        perform (e -> {
+            final Select select = new Select (e);
+            select.selectByValue (value);
         });
     }
 
     @Override
-    public <T extends IMouseActions> List<T> selectedOptions() {
-        return get(e -> {
-            final Select select = new Select(e);
-            return select.getAllSelectedOptions()
-                .stream()
-                .map(o -> (T) new AbstractElementAction<>(this.browserAction, o, o.getText()))
-                .collect(Collectors.toList());
+    public <T extends IMouseActions> List <T> selectedOptions () {
+        return get (e -> {
+            final Select select = new Select (e);
+            return select.getAllSelectedOptions ()
+                .stream ()
+                .map (o -> (T) new AbstractElementAction <> (this.browserAction, o, o.getText ()))
+                .collect (Collectors.toList ());
         });
     }
 }

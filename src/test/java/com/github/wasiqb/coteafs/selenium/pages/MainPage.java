@@ -21,14 +21,13 @@ import org.openqa.selenium.By;
 
 /**
  * @author wasiqb
- * @since Aug 31, 2018 8:14:38 PM
  */
 public class MainPage extends BrowserPage {
 
     /**
-     * @param name name
+     * @param name link name
+     *
      * @return menu name
-     * @since Apr 7, 2019 5:42:12 PM
      */
     public IMouseActions links (final String name) {
         return navigationLinks ().finds (By.cssSelector ("li > a"), name)

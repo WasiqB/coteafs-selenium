@@ -9,23 +9,20 @@ import org.openqa.selenium.By;
  * @author Faisal Khatri
  * @since Jul 19, 2020
  */
-public class DropdownPage extends BrowserPage {
-
+public class DropDownPage extends BrowserPage {
     /**
      * @author Faisal Khatri
      * @since Jul 19, 2020
      */
-    public enum DropdownKeys implements ElementKey {
-
+    public enum DropDownKeys implements ElementKey {
         /**
-         * @author Faisal Khatri
          * @since Jul 19, 2020
          */
         OPTION ("Option");
 
         String key;
 
-        private DropdownKeys (final String key) {
+        DropDownKeys (final String key) {
             this.key = key;
         }
 
@@ -33,17 +30,14 @@ public class DropdownPage extends BrowserPage {
         public String getKey () {
             return this.key;
         }
-
     }
 
     /**
-     * @author Faisal Khatri
-     * @since Jul 19, 2020
      * @return dropdown field
+     *
+     * @since Jul 19, 2020
      */
-    public ISelectboxActions dropdownField () {
-        return onDropdown (By.id ("dropdown"), "Dropdown List");
-
+    public ISelectboxActions dropDownField () {
+        return onDropdown (By.id ("dropdown"), "DropDown List");
     }
-
 }

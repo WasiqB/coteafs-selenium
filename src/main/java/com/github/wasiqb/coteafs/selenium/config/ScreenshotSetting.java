@@ -32,7 +32,7 @@ public class ScreenshotSetting extends BasePojo {
     private String  path;
     private String  prefix;
 
-    ScreenshotSetting() {
+    ScreenshotSetting () {
         this.captureOnError = false;
         this.extension = "jpeg";
         this.path = "./screenshots";

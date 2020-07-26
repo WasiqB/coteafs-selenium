@@ -24,18 +24,22 @@ import com.google.common.truth.StringSubject;
  */
 public interface IAlertAction {
     /**
+     * @param decision alert decision
+     *
+     * @return message
+     *
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
-     * @param decision alert decision
-     * @return message
      */
     String alert (AlertDecision decision);
 
     /**
+     * @param decision alert decision
+     *
+     * @return string subject
+     *
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
-     * @param decision alert decision
-     * @return string subject
      */
     StringSubject verifyAlertMessage (AlertDecision decision);
 }

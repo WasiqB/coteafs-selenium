@@ -22,7 +22,7 @@ import com.github.wasiqb.coteafs.selenium.core.BrowserSession;
  * @since 27-Sep-2019
  */
 public class ParallelSession {
-    private static final ThreadLocal<BrowserSession> SESSION = new ThreadLocal<> ();
+    private static final ThreadLocal <BrowserSession> SESSION = new ThreadLocal <> ();
 
     /**
      * @author Wasiq Bhamla
@@ -34,6 +34,7 @@ public class ParallelSession {
 
     /**
      * @return session
+     *
      * @author Wasiq Bhamla
      * @since 28-Sep-2019
      */
@@ -43,6 +44,7 @@ public class ParallelSession {
 
     /**
      * @param session
+     *
      * @author Wasiq Bhamla
      * @since 28-Sep-2019
      */

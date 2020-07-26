@@ -29,65 +29,74 @@ public interface ISelectboxActions extends IMouseActions {
     void deselectAll ();
 
     /**
+     * @param index item indoex
+     *
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
-     * @param index item indoex
      */
     void deselectByIndex (int index);
 
     /**
+     * @param value item value
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @param value item value
      */
     void deselectByText (String value);
 
     /**
+     * @param value item value
+     *
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
-     * @param value item value
      */
     void deselectByValue (String value);
 
     /**
+     * @return is multi select
+     *
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
-     * @return is multi select
      */
     boolean isMultiSelect ();
 
     /**
+     * @return all options
+     *
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
-     * @return all options
      */
-    <T extends IMouseActions> List<T> options ();
+    <T extends IMouseActions> List <T> options ();
 
     /**
+     * @param index item indoex
+     *
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
-     * @param index item indoex
      */
     void selectByIndex (int index);
 
     /**
+     * @param value item value
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @param value item value
      */
     void selectByText (String value);
 
     /**
+     * @param value item value
+     *
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
-     * @param value item value
      */
     void selectByValue (String value);
 
     /**
+     * @return all selected options
+     *
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
-     * @return all selected options
      */
-    <T extends IMouseActions> List<T> selectedOptions ();
+    <T extends IMouseActions> List <T> selectedOptions ();
 }

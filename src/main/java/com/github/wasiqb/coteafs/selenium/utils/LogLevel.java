@@ -47,5 +47,5 @@ public enum LogLevel {
     /**
      * Warn.
      */
-    WARN;
+    WARN
 }

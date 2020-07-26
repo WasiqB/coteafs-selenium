@@ -20,21 +20,24 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * @param <D>
+ *
  * @author Wasiq Bhamla
  * @since 06-Jun-2019
  */
-public interface IDriverActions<D extends WebDriver> extends IScriptAction, IScreenAction, IWaitAction<D> {
+public interface IDriverActions <D extends WebDriver> extends IScriptAction, IScreenAction, IWaitAction <D> {
     /**
      * @return title
+     *
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
      */
-    String title();
+    String title ();
 
     /**
      * @return string subject
+     *
      * @author Wasiq Bhamla
      * @since 08-Jun-2019
      */
-    StringSubject verifyTitle();
+    StringSubject verifyTitle ();
 }

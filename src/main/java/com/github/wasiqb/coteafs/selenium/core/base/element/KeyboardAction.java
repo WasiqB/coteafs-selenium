@@ -27,29 +27,30 @@ import org.openqa.selenium.WebElement;
  * @param <E>
  * @param <D>
  * @param <B>
+ *
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public abstract class KeyboardAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
-    extends VerifyElement<E, D, B> implements IKeyboardActions {
-    KeyboardAction(final B browserAction, final By by, final String name) {
-        super(browserAction, by, name);
+public abstract class KeyboardAction <E extends WebElement, D extends WebDriver, B extends IDriverActions <D>>
+    extends VerifyElement <E, D, B> implements IKeyboardActions {
+    KeyboardAction (final B browserAction, final By by, final String name) {
+        super (browserAction, by, name);
     }
 
-    KeyboardAction(final B browserAction, final By by, final String name, final WaitStrategy strategy) {
-        super(browserAction, by, name, strategy);
+    KeyboardAction (final B browserAction, final By by, final String name, final WaitStrategy strategy) {
+        super (browserAction, by, name, strategy);
     }
 
-    KeyboardAction(final B browserAction, final E element, final String name) {
-        super(browserAction, element, name);
+    KeyboardAction (final B browserAction, final E element, final String name) {
+        super (browserAction, element, name);
     }
 
-    KeyboardAction(final B browserAction, final E element, final String name, final WaitStrategy strategy) {
-        super(browserAction, element, name, strategy);
+    KeyboardAction (final B browserAction, final E element, final String name, final WaitStrategy strategy) {
+        super (browserAction, element, name, strategy);
     }
 
     @Override
-    public void pressKey(final Keys... keys) {
-        perform(e -> e.sendKeys(keys));
+    public void pressKey (final Keys... keys) {
+        perform (e -> e.sendKeys (keys));
     }
 }

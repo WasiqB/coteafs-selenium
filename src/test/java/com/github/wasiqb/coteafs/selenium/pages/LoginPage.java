@@ -60,6 +60,7 @@ public class LoginPage extends BrowserPage {
 
     /**
      * @return password
+     *
      * @since Aug 31, 2018 9:40:05 PM
      */
     public ITextboxActions password () {
@@ -68,6 +69,7 @@ public class LoginPage extends BrowserPage {
 
     /**
      * @return signIn button
+     *
      * @since Aug 31, 2018 9:40:56 PM
      */
     public IMouseActions signIn () {
@@ -76,6 +78,7 @@ public class LoginPage extends BrowserPage {
 
     /**
      * @return user id
+     *
      * @since Aug 31, 2018 9:34:38 PM
      */
     public ITextboxActions userId () {

@@ -27,9 +27,10 @@ public interface IWebWindow {
     void switchWindow ();
 
     /**
+     * @param title window title
+     *
      * @author Wasiq Bhamla
      * @since 16-Jun-2019
-     * @param title window title
      */
     void switchWindow (String title);
 }

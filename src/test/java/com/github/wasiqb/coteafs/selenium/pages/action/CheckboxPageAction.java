@@ -8,8 +8,7 @@ import com.github.wasiqb.coteafs.selenium.pages.CheckboxPage.CheckboxPageKeys;
  * @author Faisal Khatri
  * @since Jul 19, 2020
  */
-public class CheckboxPageAction extends AbstractPageAction<CheckboxPageAction> {
-
+public class CheckboxPageAction extends AbstractPageAction <CheckboxPageAction> {
     @Override
     public void perform () {
         final CheckboxPage checkbox = new CheckboxPage ();
@@ -31,7 +30,6 @@ public class CheckboxPageAction extends AbstractPageAction<CheckboxPageAction> {
             default:
                 checkbox.checkBoxTwo ()
                     .click ();
-
                 checkbox.checkBoxOne ()
                     .verifySelected ()
                     .isFalse ();

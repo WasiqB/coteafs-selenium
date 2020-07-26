@@ -21,10 +21,12 @@ package com.github.wasiqb.coteafs.selenium.core.element;
  */
 public interface IElementActions extends IWaitStrategy {
     /**
+     * @param name attribute name
+     *
+     * @return attribute
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @param name attribute name
-     * @return attribute
      */
     String attribute (String name);
 
@@ -35,30 +37,34 @@ public interface IElementActions extends IWaitStrategy {
     void clear ();
 
     /**
+     * @return is displayed
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @return is displayed
      */
     boolean isDisplayed ();
 
     /**
+     * @return is enabled
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @return is enabled
      */
     boolean isEnabled ();
 
     /**
+     * @return is selected
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @return is selected
      */
     boolean isSelected ();
 
     /**
+     * @return text
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @return text
      */
     String text ();
 }

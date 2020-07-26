@@ -23,7 +23,7 @@ import com.github.wasiqb.coteafs.selenium.pages.SuccessLoginPage;
 /**
  * @author Wasiq Bhamla
  */
-public class LoginPageAction extends AbstractPageAction<LoginPageAction> {
+public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
     @Override
     public void perform () {
         LoginPage login = new LoginPage ();

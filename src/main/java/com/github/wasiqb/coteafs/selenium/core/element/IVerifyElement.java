@@ -24,38 +24,44 @@ import com.google.common.truth.StringSubject;
  */
 public interface IVerifyElement extends IElementActions {
     /**
+     * @param attribute element attribute
+     *
+     * @return subject
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @param attribute element attribute
-     * @return subject
      */
     StringSubject verifyAttribute (final String attribute);
 
     /**
+     * @return subject
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @return subject
      */
     BooleanSubject verifyDisplayed ();
 
     /**
+     * @return subject
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @return subject
      */
     BooleanSubject verifyEnabled ();
 
     /**
+     * @return subject
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @return subject
      */
     BooleanSubject verifySelected ();
 
     /**
+     * @return subject
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @return subject
      */
     StringSubject verifyText ();
 }

@@ -21,22 +21,24 @@ import java.util.Map;
 import org.openqa.selenium.WebDriver;
 
 /**
- * @author Wasiq Bhamla
  * @param <D>
+ *
+ * @author Wasiq Bhamla
  * @since 27-Sep-2019
  */
-public class DriverSession<D extends WebDriver> {
-    private final Map<String, Object> context;
-    private D                         driver;
+public class DriverSession <D extends WebDriver> {
+    private final Map <String, Object> context;
+    private       D                    driver;
 
     /**
-     * @author Wasiq Bhamla
      * @param driver
+     *
+     * @author Wasiq Bhamla
      * @since 28-Sep-2019
      */
     public DriverSession (final D driver) {
         this.driver = driver;
-        this.context = new HashMap<> ();
+        this.context = new HashMap <> ();
     }
 
     /**
@@ -58,11 +60,13 @@ public class DriverSession<D extends WebDriver> {
     }
 
     /**
-     * @author Wasiq Bhamla
-     * @since 28-Sep-2019
      * @param <T>
      * @param key
+     *
      * @return context
+     *
+     * @author Wasiq Bhamla
+     * @since 28-Sep-2019
      */
     @SuppressWarnings ("unchecked")
     public <T> T getContext (final String key) {
@@ -70,29 +74,32 @@ public class DriverSession<D extends WebDriver> {
     }
 
     /**
+     * @return the driver
+     *
      * @author Wasiq Bhamla
      * @since 27-Sep-2019
-     * @return the driver
      */
     public D getDriver () {
         return this.driver;
     }
 
     /**
-     * @author Wasiq Bhamla
-     * @since 28-Sep-2019
      * @param <T>
      * @param key
      * @param value
+     *
+     * @author Wasiq Bhamla
+     * @since 28-Sep-2019
      */
     public <T> void setContext (final String key, final T value) {
         this.context.put (key, value);
     }
 
     /**
+     * @param driver the driver to set
+     *
      * @author Wasiq Bhamla
      * @since 28-Sep-2019
-     * @param driver the driver to set
      */
     public void setDriver (final D driver) {
         this.driver = driver;

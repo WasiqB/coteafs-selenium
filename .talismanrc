@@ -1,53 +1,20 @@
 fileignoreconfig:
-- filename: src/test/resources/selenium-bs-config.yaml
-  checksum: 58ee5c2cdde4697ed33c1d05119254e328473628878663a46288a4fd9735a1e8
-  ignore_detectors: []
-- filename: src/test/resources/selenium-sauce-config.yaml
-  checksum: cd9a44b0cbd255c5d74db10c5ceaea1a862359cf2b1bd9a69ac033794299c410
-  ignore_detectors: []
-- filename: src/test/resources/selenium-grid-config.yaml
-  checksum: d535c8e2797160c953f3be54b986dbc66a3fd98897a154b4bb035b70d675289c
-  ignore_detectors: []
 - filename: src/main/java/com/github/wasiqb/coteafs/selenium/core/Browser.java
-  checksum: 829abdf49b09ebd7d9d5803a425f7e8b2b99a2e03265a1e9d1f6b5cdaf0b6376
+  checksum: bc90e95db8edaffc8141a074b2d3dcb004212dba78a78b217049d1dd2f623361
   ignore_detectors: []
-- filename: README.md
-  checksum: 74c3a77b9495fed2bb3a07ce4987a4e1c3b770424fae8db5c8e67d7676d7c493
+- filename: src/test/resources/config/browserstack/selenium-edge-config.yaml
+  checksum: 35cbeea755233e4cf82208e9ba29e69a4ece6ab75d8355fb4f10a2614de3d6ca
   ignore_detectors: []
-- filename: src/main/java/com/github/wasiqb/coteafs/selenium/config/RemoteSetting.java
-  checksum: 2f4a2cf1585bfd180da2683ce0942eecd0de56c9b0fe2bf0cbb0303110c5c3eb
+- filename: src/test/resources/config/browserstack/selenium-firefox-config.yaml
+  checksum: 507ca67607778d8fa3aade126ce0ea33597fd4fe9027188b3b17a8d5356c4d9b
   ignore_detectors: []
-- filename: src/main/java/com/github/wasiqb/coteafs/selenium/core/Browser.java
-  checksum: 2e8af12fd8145fe506ddf9ea103bf50d8df95021aae044b71596b90e7b1d1aeb
+- filename: src/test/resources/config/browserstack/selenium-ie-config.yaml
+  checksum: 158b893b98f85d7a0e65bf2bc8fd136431f968e53a6d730a92c42fb7b04f3e18
   ignore_detectors: []
-- filename: src/test/java/com/github/wasiqb/coteafs/selenium/pages/action/LoginPageAction.java
-  checksum: 786578aeddda9290a9a5eb3428ea4390351f87e2d0eafca1058923288a81f871
+- filename: src/test/resources/config/selenium-config.yaml
+  checksum: 5c8a8bc3f03d0077c4d9320478fbc5dcd65c519989797e0702c9b2b9611e3158
   ignore_detectors: []
-- filename: src/test/resources/selenium-config.yaml
-  checksum: b3293363ab6b20b55ada0c25797bd1827e3904d2c7e4ef4d94bd8b293feda1ca
-  ignore_detectors: []
-- filename: src/test/resources/selenium-sauce-config.yaml
-  checksum: 6c141b0be18f5a439ddea042eb94f156af996ca1760e843a3526218ca4d9503a
-  ignore_detectors: []
-- filename: src/test/resources/selenium-bs-config.yaml
-  checksum: 2890d40eb5587fd295e6c8f83ceaffe8214ea41ff3b64596785b684e0f9f953f
-  ignore_detectors: []
-- filename: src/test/resources/selenium-grid-config.yaml
-  checksum: a705a7d6de2350861d9d37ae424bd97a89ec358c4ca7d7e108e1ab93d2dd0a5b
-  ignore_detectors: []
-- filename: README.md
-  checksum: 16f2f4ac5d186f1fc59f4a23f0860b324e9839b2e7d4f108ea8c4fee36a1c517
-  ignore_detectors: []
-- filename: src/main/java/com/github/wasiqb/coteafs/selenium/core/Browser.java
-  checksum: 2afea81c17e7feb76c2dc2d9bd1e4065de26f27512185936cbe846e3a3249260
-  ignore_detectors: []
-- filename: src/test/resources/selenium-config.yaml
-  checksum: 4e3eb625cf75dfb21de30c5c79431cc74ba0bb6925275e1babb7a81314ac5397
-  ignore_detectors: []
-- filename: src/test/resources/selenium-grid-config.yaml
-  checksum: ccd1e387b4893ec07c009d3172161eb85a3535b6c83ac127333aa2335cdf3481
-  ignore_detectors: []
-- filename: src/test/resources/selenium-bs-config.yaml
-  checksum: 9fa53c195e45f4fea7946cf85f4fa39ef293fbddcb4469ff785c54e4bb8366ed
+- filename: src/test/resources/config/browserstack/selenium-safari-config.yaml
+  checksum: 65a9a6788cd14526f7fe71ff2f06ae123bbe82b7246bcc4d2bf162912f3f48ce
   ignore_detectors: []
 scopeconfig: []

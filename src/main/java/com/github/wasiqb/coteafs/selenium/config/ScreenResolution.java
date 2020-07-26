@@ -32,16 +32,15 @@ public class ScreenResolution extends BasePojo {
     private int width;
 
     /**
-     * @author Wasiq Bhamla
      * @since 28 Apr 2019
      */
-    public ScreenResolution() {
+    public ScreenResolution () {
         this.width = 1366;
         this.height = 1024;
     }
 
     @Override
-    public String toString() {
-        return format("%dx%d", this.width, this.height);
+    public String toString () {
+        return format ("%dx%d", this.width, this.height);
     }
 }

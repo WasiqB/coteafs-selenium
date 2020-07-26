@@ -23,9 +23,10 @@ import org.openqa.selenium.Keys;
  */
 public interface IKeyboardActions extends IVerifyElement {
     /**
+     * @param keys Keys
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @param keys Keys
      */
     void pressKey (Keys... keys);
 }

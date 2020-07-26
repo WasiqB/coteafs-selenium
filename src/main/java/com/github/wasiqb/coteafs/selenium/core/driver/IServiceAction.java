@@ -21,9 +21,10 @@ package com.github.wasiqb.coteafs.selenium.core.driver;
  */
 public interface IServiceAction {
     /**
+     * @return is running
+     *
      * @author Wasiq Bhamla
      * @since 24-Jul-2019
-     * @return is running
      */
     boolean isRunning ();
 

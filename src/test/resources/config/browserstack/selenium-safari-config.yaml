@@ -7,12 +7,12 @@ remote:
   url: hub-cloud.browserstack.com
   source: BROWSERSTACK
   capabilities:
-    browser: Chrome
-    browser_version: 83.0
-    os: Windows
-    os_version: 10
+    browser: Safari
+    browser_version: 13.1
+    os: OS X
+    os_version: Catalina
     resolution: 1024x768
-    name: Bstack-[Java] Sample Test
+    name: Bstack-[Java] Sample Safari Test
 params:
   user: tomsmith
   password: SuperSecretPassword!

@@ -20,29 +20,34 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * @param <D>
+ *
  * @author Wasiq Bhamla
  * @since 06-Jun-2019
  */
-public interface IDriver<D extends WebDriver> extends IServiceAction, IPlatformAction {
+public interface IDriver <D extends WebDriver> extends IServiceAction, IPlatformAction {
     /**
      * @return application type.
+     *
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
      */
-    ApplicationType getApplicationType();
+    ApplicationType getApplicationType ();
 
     /**
      * @return driver
+     *
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
      */
-    D getDriver();
+    D getDriver ();
 
     /**
      * @param <T> driver action
+     *
      * @return actions
+     *
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
      */
-    <T extends IDriverActions<D>> T perform();
+    <T extends IDriverActions <D>> T perform ();
 }

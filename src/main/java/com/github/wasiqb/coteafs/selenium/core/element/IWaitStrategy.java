@@ -21,10 +21,11 @@ package com.github.wasiqb.coteafs.selenium.core.element;
  */
 public interface IWaitStrategy {
     /**
-     * @author Wasiq Bhamla
-     * @since 07-Jun-2019
      * @param attribute element attribute
      * @param value attribute value
+     *
+     * @author Wasiq Bhamla
+     * @since 07-Jun-2019
      */
     void waitUntilAttributeIs (final String attribute, final String value);
 

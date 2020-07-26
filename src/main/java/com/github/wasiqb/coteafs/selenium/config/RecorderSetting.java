@@ -30,7 +30,7 @@ public class RecorderSetting extends BasePojo {
     private String  path;
     private String  prefix;
 
-    RecorderSetting() {
+    RecorderSetting () {
         this.enable = false;
         this.path = "./video";
         this.prefix = "VID";

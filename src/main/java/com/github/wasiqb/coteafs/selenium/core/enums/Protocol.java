@@ -36,9 +36,10 @@ public enum Protocol {
     }
 
     /**
+     * @return prefix
+     *
      * @author Wasiq Bhamla
      * @since 01-Aug-2019
-     * @return prefix
      */
     public String getPrefix () {
         return this.prefix;

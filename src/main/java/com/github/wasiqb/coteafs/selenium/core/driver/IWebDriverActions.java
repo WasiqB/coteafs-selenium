@@ -18,11 +18,12 @@ package com.github.wasiqb.coteafs.selenium.core.driver;
 import org.openqa.selenium.WebDriver;
 
 /**
+ * @param <D> Driver
+ *
  * @author Wasiq Bhamla
  * @since 06-Jun-2019
- * @param <D> Driver
  */
-public interface IWebDriverActions<D extends WebDriver> extends IDriverActions<D> {
+public interface IWebDriverActions <D extends WebDriver> extends IDriverActions <D> {
     /**
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
@@ -42,9 +43,10 @@ public interface IWebDriverActions<D extends WebDriver> extends IDriverActions<D
     void forward ();
 
     /**
+     * @param url URL
+     *
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
-     * @param url URL
      */
     void navigateTo (String url);
 

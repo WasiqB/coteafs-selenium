@@ -28,149 +28,177 @@ import org.openqa.selenium.WebElement;
  * @param <D>
  * @param <B>
  * @param <E>
+ *
  * @author Wasiq Bhamla
  * @since 08-Jun-2019
  */
-public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E extends WebElement> {
+public interface IPage <D extends WebDriver, B extends IDriverActions <D>, E extends WebElement> {
     /**
      * @param <T>
      * @param pageCls
+     *
      * @return next page instance
+     *
      * @author Wasiq Bhamla
      * @since 14-Oct-2019
      */
-    <T extends IPage<D, B, E>> T nextPage(Class<T> pageCls);
+    <T extends IPage <D, B, E>> T nextPage (Class <T> pageCls);
 
     /**
      * @param <T>
      * @param locator locator
      * @param name
+     *
      * @return element action
+     *
      * @author Wasiq Bhamla
      * @since 08-Jun-2019
      */
-    <T extends IMouseActions> T onClickable(By locator, final String name);
+    <T extends IMouseActions> T onClickable (By locator, final String name);
 
     /**
      * @param <T>
      * @param locator locator
      * @param name
      * @param strategy strategy
+     *
      * @return element action
+     *
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
      */
-    <T extends IMouseActions> T onClickable(By locator, final String name, WaitStrategy strategy);
+    <T extends IMouseActions> T onClickable (By locator, final String name, WaitStrategy strategy);
 
     /**
      * @param <T>
      * @param element element
      * @param name
+     *
      * @return element action
+     *
      * @author Wasiq Bhamla
      * @since 08-Jun-2019
      */
-    <T extends IMouseActions> T onClickable(E element, final String name);
+    <T extends IMouseActions> T onClickable (E element, final String name);
 
     /**
      * @param <T>
      * @param element element
      * @param name
      * @param strategy wait strategy
+     *
      * @return element action
+     *
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
      */
-    <T extends IMouseActions> T onClickable(E element, final String name, WaitStrategy strategy);
+    <T extends IMouseActions> T onClickable (E element, final String name, WaitStrategy strategy);
 
     /**
      * @return driver action
+     *
      * @author Wasiq Bhamla
      * @since 08-Jun-2019
      */
-    B onDriver();
+    B onDriver ();
 
     /**
      * @param <T>
      * @param locator locator
      * @param name
+     *
      * @return element action
+     *
      * @author Wasiq Bhamla
      * @since 08-Jun-2019
      */
-    <T extends ISelectboxActions> T onDropdown(By locator, final String name);
-
-    /**
-     * @param <T>
-     * @param locator locator
-     * @param name
-     * @param strategy strategy
-     * @return element action
-     * @author Wasiq Bhamla
-     * @since 12-Jul-2019
-     */
-    <T extends ISelectboxActions> T onDropdown(By locator, final String name, WaitStrategy strategy);
-
-    /**
-     * @param <T>
-     * @param element element
-     * @param name
-     * @return element action
-     * @author Wasiq Bhamla
-     * @since 08-Jun-2019
-     */
-    <T extends ISelectboxActions> T onDropdown(E element, final String name);
-
-    /**
-     * @param <T>
-     * @param element element
-     * @param name
-     * @param strategy strategy
-     * @return element action
-     * @author Wasiq Bhamla
-     * @since 12-Jul-2019
-     */
-    <T extends ISelectboxActions> T onDropdown(E element, final String name, WaitStrategy strategy);
-
-    /**
-     * @param <T>
-     * @param locator locator
-     * @param name
-     * @return element action
-     * @author Wasiq Bhamla
-     * @since 08-Jun-2019
-     */
-    <T extends ITextboxActions> T onTextbox(By locator, final String name);
+    <T extends ISelectboxActions> T onDropdown (By locator, final String name);
 
     /**
      * @param <T>
      * @param locator locator
      * @param name
      * @param strategy strategy
+     *
      * @return element action
+     *
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
      */
-    <T extends ITextboxActions> T onTextbox(By locator, final String name, WaitStrategy strategy);
+    <T extends ISelectboxActions> T onDropdown (By locator, final String name, WaitStrategy strategy);
 
     /**
      * @param <T>
      * @param element element
      * @param name
+     *
      * @return element action
+     *
      * @author Wasiq Bhamla
      * @since 08-Jun-2019
      */
-    <T extends ITextboxActions> T onTextbox(E element, final String name);
+    <T extends ISelectboxActions> T onDropdown (E element, final String name);
 
     /**
      * @param <T>
      * @param element element
      * @param name
      * @param strategy strategy
+     *
      * @return element action
+     *
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
      */
-    <T extends ITextboxActions> T onTextbox(E element, final String name, WaitStrategy strategy);
+    <T extends ISelectboxActions> T onDropdown (E element, final String name, WaitStrategy strategy);
+
+    /**
+     * @param <T>
+     * @param locator locator
+     * @param name
+     *
+     * @return element action
+     *
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
+     */
+    <T extends ITextboxActions> T onTextbox (By locator, final String name);
+
+    /**
+     * @param <T>
+     * @param locator locator
+     * @param name
+     * @param strategy strategy
+     *
+     * @return element action
+     *
+     * @author Wasiq Bhamla
+     * @since 12-Jul-2019
+     */
+    <T extends ITextboxActions> T onTextbox (By locator, final String name, WaitStrategy strategy);
+
+    /**
+     * @param <T>
+     * @param element element
+     * @param name
+     *
+     * @return element action
+     *
+     * @author Wasiq Bhamla
+     * @since 08-Jun-2019
+     */
+    <T extends ITextboxActions> T onTextbox (E element, final String name);
+
+    /**
+     * @param <T>
+     * @param element element
+     * @param name
+     * @param strategy strategy
+     *
+     * @return element action
+     *
+     * @author Wasiq Bhamla
+     * @since 12-Jul-2019
+     */
+    <T extends ITextboxActions> T onTextbox (E element, final String name, WaitStrategy strategy);
 }

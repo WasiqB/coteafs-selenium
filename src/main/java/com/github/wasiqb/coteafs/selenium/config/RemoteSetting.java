@@ -40,10 +40,9 @@ public class RemoteSetting extends BasePojo {
     private String              userId;
 
     /**
-     * @author Wasiq Bhamla
      * @since 01-Aug-2019
      */
-    public RemoteSetting() {
-        setProtocol(Protocol.HTTP);
+    public RemoteSetting () {
+        setProtocol (Protocol.HTTP);
     }
 }

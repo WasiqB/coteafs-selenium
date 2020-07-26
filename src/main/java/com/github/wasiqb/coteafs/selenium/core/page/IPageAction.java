@@ -21,12 +21,10 @@ package com.github.wasiqb.coteafs.selenium.core.page;
  */
 public interface IPageAction {
     /**
-     * @param <T>
-     *     page action
-     * @param elementKey
-     *     element alias
-     * @param value
-     *     element input value
+     * @param <T> page action
+     * @param elementKey element alias
+     * @param value element input value
+     *
      * @return page action
      *
      * @author Wasiq Bhamla
@@ -41,10 +39,9 @@ public interface IPageAction {
     void perform ();
 
     /**
-     * @param <T>
-     *     input value
-     * @param elementKey
-     *     element alias
+     * @param <T> input value
+     * @param elementKey element alias
+     *
      * @return input value
      *
      * @author Wasiq Bhamla

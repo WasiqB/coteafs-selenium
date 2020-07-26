@@ -25,10 +25,11 @@ public class VideoRecordingError extends CoteafsError {
     private static final long serialVersionUID = 6184267334962964373L;
 
     /**
-     * @since 28-Nov-2019
-     * @author Wasiq Bhamla
      * @param message
      * @param cause
+     *
+     * @author Wasiq Bhamla
+     * @since 28-Nov-2019
      */
     public VideoRecordingError (final String message, final Throwable cause) {
         super (message, cause);

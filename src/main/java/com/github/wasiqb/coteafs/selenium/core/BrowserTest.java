@@ -44,6 +44,7 @@ public class BrowserTest {
     /**
      * @param browserName Browser name
      * @param configFile
+     *
      * @author wasiqb
      * @since Sep 13, 2018 9:55:41 PM
      */
@@ -60,6 +61,7 @@ public class BrowserTest {
 
     /**
      * @param result test result
+     *
      * @author wasiqb
      * @since Mar 21, 2019 6:46:47 PM
      */

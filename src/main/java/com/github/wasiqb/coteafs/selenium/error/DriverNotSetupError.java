@@ -28,9 +28,10 @@ public class DriverNotSetupError extends CoteafsError {
     private static final long serialVersionUID = -8652506910306288004L;
 
     /**
+     * @param message
+     *
      * @author Wasiq Bhamla
      * @since 03-Aug-2019
-     * @param message
      */
     public DriverNotSetupError (final String message) {
         super (message, Reason.R1, Category.C1, Severity.HIGH);

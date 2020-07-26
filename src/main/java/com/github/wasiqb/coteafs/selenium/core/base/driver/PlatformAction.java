@@ -28,10 +28,11 @@ public class PlatformAction implements IPlatformAction {
     private final PlatformOs platformOs;
 
     /**
-     * @author Wasiq Bhamla
-     * @since 26-Jul-2019
      * @param platform platform
      * @param platformOs platformOs
+     *
+     * @author Wasiq Bhamla
+     * @since 26-Jul-2019
      */
     public PlatformAction (final Platform platform, final PlatformOs platformOs) {
         this.platform = platform;

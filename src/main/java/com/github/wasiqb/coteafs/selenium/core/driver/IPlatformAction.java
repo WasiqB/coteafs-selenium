@@ -24,16 +24,18 @@ import com.github.wasiqb.coteafs.selenium.core.enums.PlatformOs;
  */
 public interface IPlatformAction {
     /**
+     * @return platform
+     *
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
-     * @return platform
      */
     Platform getPlatform ();
 
     /**
+     * @return platform os.
+     *
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
-     * @return platform os.
      */
     PlatformOs getPlatformOs ();
 }

@@ -27,33 +27,34 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * @param <D>
+ *
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public class AlertAction<D extends WebDriver> extends ScreenAction<D> implements IAlertAction {
-    AlertAction(final D driver) {
-        super(driver);
+public class AlertAction <D extends WebDriver> extends ScreenAction <D> implements IAlertAction {
+    AlertAction (final D driver) {
+        super (driver);
     }
 
     @Override
-    public String alert(final AlertDecision decision) {
-        final Alert alert = driverWait().until(ExpectedConditions.alertIsPresent());
+    public String alert (final AlertDecision decision) {
+        final Alert alert = driverWait ().until (ExpectedConditions.alertIsPresent ());
         String message = null;
         if (alert != null) {
-            message = alert.getText();
-            setAlias(message);
+            message = alert.getText ();
+            setAlias (message);
             if (decision == AlertDecision.ACCEPT) {
-                alert.accept();
+                alert.accept ();
             } else {
-                alert.dismiss();
+                alert.dismiss ();
             }
         }
         return message;
     }
 
     @Override
-    public StringSubject verifyAlertMessage(final AlertDecision decision) {
-        final String actual = alert(decision);
-        return assertThat(actual);
+    public StringSubject verifyAlertMessage (final AlertDecision decision) {
+        final String actual = alert (decision);
+        return assertThat (actual);
     }
 }

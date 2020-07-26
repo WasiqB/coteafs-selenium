@@ -21,9 +21,10 @@ package com.github.wasiqb.coteafs.selenium.core.element;
  */
 public interface ITextboxActions extends IMouseActions {
     /**
+     * @param text input text
+     *
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
-     * @param text input text
      */
     void enterText (String text);
 }

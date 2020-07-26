@@ -23,23 +23,27 @@ import java.io.File;
  */
 public interface IScreenAction {
     /**
+     * @return screenshot
+     *
      * @author Wasiq Bhamla
      * @since 06-Jun-2019
-     * @return screenshot
      */
-    byte [] attachScreenshot ();
+    byte[] attachScreenshot ();
 
     /**
-     * @author Wasiq Bhamla
      * @return file
+     *
+     * @author Wasiq Bhamla
      * @since 25-Jul-2019
      */
     File saveScreenshot ();
 
     /**
-     * @author Wasiq Bhamla
      * @param path
+     *
      * @return file
+     *
+     * @author Wasiq Bhamla
      * @since 25-Jul-2019
      */
     File saveScreenshot (String path);
