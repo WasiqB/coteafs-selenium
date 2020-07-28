@@ -75,6 +75,6 @@ public class VerifyElement<E extends WebElement, D extends WebDriver, B extends 
 
     @Override
     public StringSubject verifyText () {
-        return assertThat (text ());
+        return assertThat (text ().trim ());
     }
 }

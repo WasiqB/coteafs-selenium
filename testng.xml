@@ -24,6 +24,7 @@
 		<listener class-name="com.github.wasiqb.coteafs.listeners.ExecutionListener" />
 		<listener class-name="com.github.wasiqb.coteafs.listeners.DataProviderListener" />
 		<listener class-name="com.github.wasiqb.coteafs.listeners.AnnotationTransformer" />
+		<listener class-name="com.github.wasiqb.coteafs.listeners.SuiteResultReporter" />
 	</listeners>
 	<test name="Test Local">
 		<classes>

@@ -33,7 +33,7 @@ playback:
     after_click: 0
     page_load: 60
     script_load: 60
-    highlight: 500
+    highlight: 100
   screenshot:
     path: ./screenshots
     prefix: SCR
