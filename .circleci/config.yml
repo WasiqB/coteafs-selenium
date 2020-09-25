@@ -19,6 +19,8 @@ jobs:
   selenium-test:
     executor: selenium-executors
     steps:
+      - attach_workspace:
+          at: .
       - run:
           name: Install Chrome
           command: |
