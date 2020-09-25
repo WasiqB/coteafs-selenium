@@ -47,8 +47,8 @@
 		<commons.text.version>1.8</commons.text.version>
 		<recorder.version>0.7.7.0</recorder.version>
 		<lombok.version>1.18.12</lombok.version>
-		<report.agent.version>5.0.4</report.agent.version>
-		<report.log.version>5.0.2</report.log.version>
+		<report.agent.version>5.0.7</report.agent.version>
+		<report.log.version>5.0.1</report.log.version>
 	</properties>
 
 	<dependencies>
