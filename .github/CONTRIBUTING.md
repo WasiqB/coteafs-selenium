@@ -1,16 +1,18 @@
-# Contributing to coteafs-selenium.
+# Contributing to <project-name>.
 
 :+1: :tada: Firstly, thanks for taking the time to contribute! :tada: :+1:
 
-The following are set of guidelines for contributing towards this framework on Github. These are mostly guidelines, not rules. Use your best judgement, and feel free to propose changes to this document in a pull request.
+The following are the set of guidelines for contributing towards this repository on Github. These are mostly guidelines
+, not rules. Use your best judgement, and feel free to propose changes to this project in a pull request.
 
 ## Code Contribution
 
 ## 1. Where to start from?
 
-If you've noticed a bug or have a question plesae check the [search the issue tracker][tracker] to see if someone else has already created a ticket. If not, go ahead and [add one][new issue]!
+If you've noticed a bug or have a question, then kindly [search the issue tracker][tracker] to see if someone
+ else has already created a ticket. If not, go ahead and [add one][new issue]!
 
-## 2. Want to fix an issue or add new feature?
+## 2. Want to fix an issue or add a new feature?
 
 If this is something you think you can fix, then follow the following steps:
 
@@ -28,7 +30,7 @@ To Fork and clone the repository, see this useful [post][fork].
 
 ### Step 4: Create new Branch
 
-Now create a new branch with descriptive name in your forked repo. Refer [here][branch] to know about Git branches.
+Now create a new branch with a descriptive name in your forked repo. Refer [here][branch] to know about Git branches.
 
 ### Step 5: Commit with a descriptive message
 
@@ -51,7 +53,9 @@ There is a process in place to help maintain the quality of the framework. To ad
 
 ### Git workflow
 
-Since the repository is hosted on GitHub, it has been configured to only accept **signed commits** from any contributor (_including me :wink:_). So make sure to **sign your commits** before sending Pull Request, **else the it will be rejected**. To know more about signed commits, check out this [post][sign-commit].
+Since the repository is hosted on GitHub, it has been configured to only accept **signed commits** from any
+ contributor (_including me :wink:_). So make sure to **sign your commits** before sending Pull Request, **else the
+  PR will be rejected**. To know more about signed commits, check out this [post][sign-commit].
 
 ### Branching strategy
 
@@ -70,7 +74,7 @@ Any work being done on any open tickets, should be done in a new branch with nam
 
 Any Pull Request raised should make sure following checks are successful:
 - Pull Request is raised to merge changes to `develop` branch.
-- Commits are signed.
+- Commits is GPG signed.
 - There is at least one reviewer.
 - Circle CI tests are green.
 - Branch is up to date with `develop` branch.
