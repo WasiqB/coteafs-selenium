@@ -9,9 +9,15 @@ branches: &all
     - release
     - /issue-.*/
 
+executors:
+  selenium-executors:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch
+      - image: selenium/standalone-chrome:latest
+
 jobs:
   selenium-test:
-    executor: maven-deploy/maven
+    executor: selenium-executors
     steps:
       - run:
           name: Install Chrome
