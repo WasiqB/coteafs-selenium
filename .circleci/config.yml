@@ -2,33 +2,39 @@ version: 2.1
 
 orbs:
   maven-deploy: wasiqb/maven-deploy@2.1.0
+  selenium-orb:
+    orbs:
+      maven-deploy: wasiqb/maven-deploy@2.1.0
+    executors:
+      selenium-executors:
+        docker:
+          - image: circleci/openjdk:11-jdk-stretch
+          - image: selenium/standalone-chrome:latest
+    commands:
+      selenium-test:
+        steps:
+          - attach_workspace:
+              at: .
+          - run:
+              name: Install Chrome
+              command: |
+                wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+                sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+                sudo apt-get update
+                sudo apt-get install google-chrome-stable
+          - maven-deploy/test:
+              attach: false
+    jobs:
+      selenium-test:
+        executor: selenium-executors
+        steps:
+          - selenium-test
 
 branches: &all
   only:
     - master
     - release
     - /issue-.*/
-
-executors:
-  selenium-executors:
-    docker:
-      - image: circleci/openjdk:11-jdk-stretch
-      - image: selenium/standalone-chrome:latest
-
-jobs:
-  selenium-test:
-    executor: selenium-executors
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install google-chrome-stable
-      - maven-deploy/test
 
 workflows:
   workflow:
@@ -46,7 +52,7 @@ workflows:
           filters:
             branches:
               <<: *all
-      - selenium-test:
+      - selenium-orb/selenium-test:
           requires:
             - maven-deploy/build
           filters:
@@ -54,7 +60,7 @@ workflows:
               <<: *all
       - maven-deploy/sonar-analysis:
           requires:
-            - selenium-test
+            - selenium-orb/selenium-test
           filters:
             branches:
               <<: *all
