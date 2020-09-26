@@ -1,112 +1,51 @@
-default: &default
-  working_directory: ~/repo
-  docker:
-    - image: circleci/openjdk:11-jdk-stretch
-    - image: selenium/standalone-chrome:latest
 version: 2.1
-jobs:
-  code_checkout:
-    <<: *default
-    steps:
-      - checkout
-      - save_cache:
-          key: repo-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - ~/repo
-  resolve_dependencies:
-    <<: *default
-    steps:
-      - restore_cache:
-          keys:
-            - repo-{{ .Branch }}-{{ .Revision }}
-      - run:
-          name: Resolve Dependencies
-          command: mvn dependency:resolve
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: repo-dependency-{{ .Branch }}-{{ .Revision }}
-  build:
-    <<: *default
-    steps:
-      - restore_cache:
-          key: repo-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: repo-dependency-{{ .Branch }}-{{ .Revision }}
-      - run:
-          name: Build project
-          command: mvn install -DskipTests
-      - save_cache:
-          key: repo-target-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - target/
-  test:
-    <<: *default
-    steps:
-      - attach_workspace:
-          at: .
-      - restore_cache:
-          key: repo-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: repo-dependency-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: repo-target-{{ .Branch }}-{{ .Revision }}
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install google-chrome-stable
-      - run:
-          name: Run Tests with Sonar Coverage
-          command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test -DCLOUD_USER=$BS_USER -DCLOUD_KEY=$BS_KEY
-      - save_cache:
-          key: repo-reports-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - reports/
-  code_analysis:
-    <<: *default
-    steps:
-      - restore_cache:
-          key: repo-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: repo-dependency-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: repo-target-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: repo-reports-{{ .Branch }}-{{ .Revision }}
-      - run:
-          name: Update Sonar Analysis
-          command: mvn package sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.organization=$SONAR_ORG -Dsonar.login=$SONAR_KEY -DskipTests -Dsonar.branch.name=$CIRCLE_BRANCH
 
-filters: &all_branches
-  branches:
-    only:
-      - develop
-      - master
-      - release
-      - /issue-.*/
+orbs:
+  maven-deploy: wasiqb/maven-deploy@2.1.0
+
+branches: &all
+  only:
+    - master
+    - release
+    - /issue-.*/
 
 workflows:
-  version: 2
-  normal_flow:
+  workflow:
     jobs:
-      - code_checkout:
-          filters: *all_branches
-      - resolve_dependencies:
-          filters: *all_branches
+      - maven-deploy/code-checkout
+      - maven-deploy/resolve-dependency:
           requires:
-            - code_checkout
-      - build:
-          filters: *all_branches
+            - maven-deploy/code-checkout
+          filters:
+            branches:
+              <<: *all
+      - maven-deploy/build:
           requires:
-            - resolve_dependencies
-      - test:
+            - maven-deploy/resolve-dependency
+          filters:
+            branches:
+              <<: *all
+      - maven-deploy/test:
           requires:
-            - build
-          filters: *all_branches
-      - code_analysis:
+            - maven-deploy/build
+          filters:
+            branches:
+              <<: *all
+      - maven-deploy/sonar-analysis:
           requires:
-            - test
-          filters: *all_branches
+            - maven-deploy/test
+          filters:
+            branches:
+              <<: *all
+          context: RELEASE_PROFILE_WASIQB
+      - maven-deploy/deploy:
+          mentions: mfaisalkhatri,wbhamla1
+          fail_only: false
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - maven-deploy/sonar-analysis
+          context: RELEASE_PROFILE_WASIQB
+          deploy-command: mvn deploy --settings settings/settings.xml -DskipTests -Dcheckstyle.skip -B -Prelease
