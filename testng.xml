@@ -37,7 +37,7 @@
 			</class>
 		</classes>
 	</test>
-	<test name="Test Grid">
+	<test name="Test Grid" enabled="false">
 		<parameter name="test.browser" value="REMOTE" />
 		<parameter name="test.config"
 			value="./src/test/resources/config/grid/selenium-grid-config.yaml" />
