@@ -16,7 +16,7 @@
 	
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Suite">
+<suite name="Suite" thread-count="5" parallel="tests">
 	<listeners>
 		<listener class-name="com.github.wasiqb.coteafs.listeners.ConfigListener" />
 		<listener class-name="com.github.wasiqb.coteafs.listeners.SuiteListener" />
@@ -26,7 +26,7 @@
 		<listener class-name="com.github.wasiqb.coteafs.listeners.AnnotationTransformer" />
 		<listener class-name="com.github.wasiqb.coteafs.listeners.SuiteResultReporter" />
 	</listeners>
-	<test name="Test Local">
+	<test name="Test Local" enabled="false">
 		<classes>
 			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
 				<methods>
@@ -57,6 +57,8 @@
 			<class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
 				<methods>
 					<include name="testLogin" />
+					<include name="testCheckboxes" />
+					<include name="testDropDownBox" />
 				</methods>
 			</class>
 		</classes>
