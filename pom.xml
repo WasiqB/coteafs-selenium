@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>com.github.wasiqb.coteafs</groupId>
 		<artifactId>parent</artifactId>
-		<version>3.2.0</version>
+		<version>3.3.5</version>
 	</parent>
 
 	<scm>
@@ -37,14 +37,14 @@
 
 	<properties>
 		<coteafs.config.version>2.3.0</coteafs.config.version>
-		<coteafs.error.version>1.13.0</coteafs.error.version>
-		<coteafs.logger.version>2.4.0</coteafs.logger.version>
-		<coteafs.listener.version>2.4.0</coteafs.listener.version>
+		<coteafs.error.version>1.15.0</coteafs.error.version>
+		<coteafs.logger.version>2.5.0</coteafs.logger.version>
+		<coteafs.listener.version>2.5.0</coteafs.listener.version>
 		<selenium-version>3.141.59</selenium-version>
-		<commons.io.version>2.7</commons.io.version>
-		<webdrivermanager-version>4.1.0</webdrivermanager-version>
+		<commons.io.version>2.8.0</commons.io.version>
+		<webdrivermanager-version>4.2.2</webdrivermanager-version>
 		<faker.version>1.0.2</faker.version>
-		<commons.text.version>1.8</commons.text.version>
+		<commons.text.version>1.9</commons.text.version>
 		<recorder.version>0.7.7.0</recorder.version>
 		<lombok.version>1.18.12</lombok.version>
 		<report.agent.version>5.0.7</report.agent.version>
