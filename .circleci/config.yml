@@ -4,7 +4,7 @@ orbs:
   maven-deploy: wasiqb/maven-deploy@2.1.0
   selenium-orb:
     orbs:
-      maven-deploy: wasiqb/maven-deploy@2.1.0
+      slack: circleci/slack@3.4.2
     executors:
       selenium-executors:
         docker:
@@ -22,8 +22,22 @@ orbs:
                 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
                 sudo apt-get update
                 sudo apt-get install google-chrome-stable
-          - maven-deploy/test:
-              attach: false
+          - run:
+              name: Run Tests with Sonar Coverage
+              command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
+          - store_test_results:
+              path: target/surefire-reports
+          - persist_to_workspace:
+              root: .
+              paths:
+                - .
+          - slack/status:
+              mentions: mfaisalkhatri,wbhamla1
+              webhook: ${SLACK_WEBHOOK}
+              fail_only: true
+              include_project_field: true
+              include_job_number_field: true
+              include_visit_job_action: true
     jobs:
       selenium-test:
         executor: selenium-executors
