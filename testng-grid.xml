@@ -17,7 +17,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Selenium Grid Suite">
-	<test name="Test Grid">
+	<test name="Test Grid" enabled="false">
 		<parameter name="test.browser" value="REMOTE" />
 		<parameter name="test.config"
 			value="./src/test/resources/config/grid/selenium-grid-config.yaml" />
