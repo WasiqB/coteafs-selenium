@@ -31,7 +31,7 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.CheckboxPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.DropDownPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -41,7 +41,7 @@ import org.testng.annotations.Test;
 public class SeleniumTest extends BrowserTest {
     private MainPage main;
 
-    @BeforeClass
+    @BeforeMethod
     public void setupMethod () {
         this.main = new MainPage ();
         this.main.onDriver ()
