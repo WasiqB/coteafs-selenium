@@ -171,7 +171,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
                 manager.forceDownload ();
             }
             if (isNotEmpty (driver.getPath ())) {
-                manager.browserPath (driver.getPath ());
+                manager.cachePath (driver.getPath ());
             }
         }
         manager.setup ();
