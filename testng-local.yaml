@@ -1,0 +1,10 @@
+name: Local Suite
+tests:
+  - name: Test Local
+    preserveOrder: true
+    classes:
+      - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
+        includedMethods:
+          - testLogin
+          - testCheckboxes
+          - testDropDownBox

@@ -1,0 +1,14 @@
+name: Coteafs-Selenium Suite
+listeners:
+  - com.github.wasiqb.coteafs.listeners.ConfigListener
+  - com.github.wasiqb.coteafs.listeners.SuiteListener
+  - com.github.wasiqb.coteafs.listeners.TestListener
+  - com.github.wasiqb.coteafs.listeners.ExecutionListener
+  - com.github.wasiqb.coteafs.listeners.DataProviderListener
+  - com.github.wasiqb.coteafs.listeners.AnnotationTransformer
+  - com.github.wasiqb.coteafs.listeners.SuiteResultReporter
+
+suiteFiles:
+  - testng-local.yaml
+  #  - testng-grid.yaml
+  - testng-browserstack.yaml
