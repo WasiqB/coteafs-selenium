@@ -10,5 +10,5 @@ listeners:
 
 suiteFiles:
   - testng-local.yaml
-  #  - testng-grid.yaml
+  - testng-grid.yaml
   - testng-browserstack.yaml
