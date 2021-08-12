@@ -18,36 +18,21 @@ package com.github.wasiqb.coteafs.selenium.config;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.wasiqb.coteafs.config.util.BasePojo;
 import com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 2:41:06 PM
  */
-@Getter
-@Setter
-public class ApplicationSetting extends BasePojo {
-    private AvailableBrowser    browser;
-    private DriverSetting       driver;
+@Data
+public class ApplicationSetting {
+    private AvailableBrowser    browser  = AvailableBrowser.CHROME;
+    private DriverSetting       driver   = new DriverSetting ();
     private boolean             headlessMode;
     private String              hubUrl;
-    private Map<String, String> params;
-    private PlaybackSetting     playback;
+    private Map<String, String> params   = new HashMap<> ();
+    private PlaybackSetting     playback = new PlaybackSetting ();
     private RemoteSetting       remote;
     private String              url;
-
-    /**
-     * @author wasiqb
-     * @since Apr 7, 2019 5:12:10 PM
-     */
-    public ApplicationSetting () {
-        this.params = new HashMap<> ();
-        this.browser = AvailableBrowser.CHROME;
-        this.driver = new DriverSetting ();
-        this.playback = new PlaybackSetting ();
-        this.headlessMode = false;
-    }
 }

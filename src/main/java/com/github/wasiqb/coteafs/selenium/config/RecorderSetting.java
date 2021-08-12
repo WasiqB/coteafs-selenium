@@ -15,24 +15,15 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
-import com.github.wasiqb.coteafs.config.util.BasePojo;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author Wasiq Bhamla
  * @since 27-Oct-2019
  */
-@Getter
-@Setter
-public class RecorderSetting extends BasePojo {
+@Data
+public class RecorderSetting {
     private boolean enable;
-    private String  path;
-    private String  prefix;
-
-    RecorderSetting () {
-        this.enable = false;
-        this.path = "./video";
-        this.prefix = "VID";
-    }
+    private String  path   = "./video";
+    private String  prefix = "VID";
 }

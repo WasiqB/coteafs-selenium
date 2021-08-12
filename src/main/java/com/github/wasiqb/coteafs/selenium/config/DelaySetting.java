@@ -15,38 +15,25 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
-import com.github.wasiqb.coteafs.config.util.BasePojo;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 2:48:55 PM
  */
-@Getter
-@Setter
-public class DelaySetting extends BasePojo {
+@Data
+public class DelaySetting {
     private long afterClick;
-    private long afterFrameSwitch;
+    private long afterFrameSwitch  = 500;
     private long afterKeyPress;
     private long afterMouseMove;
-    private long afterWindowSwitch;
+    private long afterWindowSwitch = 500;
     private long beforeClick;
     private long beforeKeyPress;
     private long beforeMouseMove;
-    private long explicit;
-    private long highlight;
-    private long implicit;
-    private long pageLoad;
-    private long scriptLoad;
-
-    DelaySetting () {
-        this.pageLoad = 60;
-        this.scriptLoad = 60;
-        this.implicit = 1;
-        this.explicit = 30;
-        this.highlight = 200;
-        this.afterFrameSwitch = 500;
-        this.afterWindowSwitch = 500;
-    }
+    private long explicit          = 30;
+    private long highlight         = 200;
+    private long implicit          = 1;
+    private long pageLoad          = 60;
+    private long scriptLoad        = 60;
 }

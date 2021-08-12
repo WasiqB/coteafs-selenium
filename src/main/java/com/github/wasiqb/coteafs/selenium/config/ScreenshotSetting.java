@@ -15,28 +15,17 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
-import com.github.wasiqb.coteafs.config.util.BasePojo;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 3:00:06 PM
  */
-@Getter
-@Setter
-public class ScreenshotSetting extends BasePojo {
+@Data
+public class ScreenshotSetting {
     private boolean captureAll;
     private boolean captureOnError;
-    private String  extension;
-    private String  path;
-    private String  prefix;
-
-    ScreenshotSetting () {
-        this.captureOnError = false;
-        this.extension = "jpeg";
-        this.path = "./screenshots";
-        this.prefix = "SCR";
-        this.captureAll = false;
-    }
+    private String  extension = "jpeg";
+    private String  path      = "./screenshots";
+    private String  prefix    = "SCR";
 }
