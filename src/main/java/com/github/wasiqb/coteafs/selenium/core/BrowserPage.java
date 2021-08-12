@@ -20,12 +20,13 @@ import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.FILTER_PKG
 
 import java.lang.reflect.InvocationTargetException;
 
-import com.github.wasiqb.coteafs.logger.Loggy;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
-import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
-import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ISelectBoxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ITextBoxActions;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 import com.github.wasiqb.coteafs.selenium.core.page.IPage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -36,7 +37,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  */
 @SuppressWarnings ("unchecked")
 public class BrowserPage implements IPage<EventFiringWebDriver, BrowserActions, WebElement> {
-    private static final Loggy   LOG = Loggy.init ();
+    private static final Logger  LOG = LogManager.getLogger ();
     private final        Browser browser;
 
     /**
@@ -54,7 +55,7 @@ public class BrowserPage implements IPage<EventFiringWebDriver, BrowserActions, 
             page = pageCls.getConstructor ()
                 .newInstance ();
         } catch (final InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-            handleError (FILTER_PKG, e).forEach (LOG::e);
+            handleError (FILTER_PKG, e).forEach (LOG::error);
         }
         return page;
     }
@@ -85,42 +86,42 @@ public class BrowserPage implements IPage<EventFiringWebDriver, BrowserActions, 
     }
 
     @Override
-    public ISelectboxActions onDropdown (final By locator, final String name) {
+    public ISelectBoxActions onDropdown (final By locator, final String name) {
         return new WebElementAction (onDriver (), locator, name);
     }
 
     @Override
-    public ISelectboxActions onDropdown (final By locator, final String name, final WaitStrategy strategy) {
+    public ISelectBoxActions onDropdown (final By locator, final String name, final WaitStrategy strategy) {
         return new WebElementAction (onDriver (), locator, name, strategy);
     }
 
     @Override
-    public ISelectboxActions onDropdown (final WebElement element, final String name) {
+    public ISelectBoxActions onDropdown (final WebElement element, final String name) {
         return new WebElementAction (onDriver (), element, name);
     }
 
     @Override
-    public ISelectboxActions onDropdown (final WebElement element, final String name, final WaitStrategy strategy) {
+    public ISelectBoxActions onDropdown (final WebElement element, final String name, final WaitStrategy strategy) {
         return new WebElementAction (onDriver (), element, name, strategy);
     }
 
     @Override
-    public ITextboxActions onTextbox (final By locator, final String name) {
+    public ITextBoxActions onTextBox (final By locator, final String name) {
         return new WebElementAction (onDriver (), locator, name);
     }
 
     @Override
-    public ITextboxActions onTextbox (final By locator, final String name, final WaitStrategy strategy) {
+    public ITextBoxActions onTextBox (final By locator, final String name, final WaitStrategy strategy) {
         return new WebElementAction (onDriver (), locator, name, strategy);
     }
 
     @Override
-    public ITextboxActions onTextbox (final WebElement element, final String name) {
+    public ITextBoxActions onTextBox (final WebElement element, final String name) {
         return new WebElementAction (onDriver (), element, name);
     }
 
     @Override
-    public ITextboxActions onTextbox (final WebElement element, final String name, final WaitStrategy strategy) {
+    public ITextBoxActions onTextBox (final WebElement element, final String name, final WaitStrategy strategy) {
         return new WebElementAction (onDriver (), element, name, strategy);
     }
 }

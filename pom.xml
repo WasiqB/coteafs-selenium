@@ -24,21 +24,10 @@
 		<url>https://circleci.com/gh/WasiqB/coteafs-selenium</url>
 	</ciManagement>
 
-	<repositories>
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>bintray-epam-reportportal</id>
-			<name>bintray</name>
-			<url>http://dl.bintray.com/epam/reportportal</url>
-		</repository>
-	</repositories>
-
 	<properties>
 		<coteafs.config.version>2.3.0</coteafs.config.version>
 		<coteafs.error.version>1.15.0</coteafs.error.version>
-		<coteafs.logger.version>2.6.0</coteafs.logger.version>
+		<log4j.version>2.14.1</log4j.version>
 		<coteafs.listener.version>3.2.0</coteafs.listener.version>
 		<selenium-version>3.141.59</selenium-version>
 		<commons.io.version>2.11.0</commons.io.version>
@@ -47,6 +36,7 @@
 		<commons.text.version>1.9</commons.text.version>
 		<recorder.version>0.7.7.0</recorder.version>
 		<lombok.version>1.18.20</lombok.version>
+		<jackson.version>2.12.4</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -66,9 +56,24 @@
 			<version>${coteafs.error.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.github.wasiqb.coteafs</groupId>
-			<artifactId>logger</artifactId>
-			<version>${coteafs.logger.version}</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

@@ -19,7 +19,7 @@ package com.github.wasiqb.coteafs.selenium.core.element;
  * @author Wasiq Bhamla
  * @since 07-Jun-2019
  */
-public interface ITextboxActions extends IMouseActions {
+public interface ITextBoxActions extends IMouseActions {
     /**
      * @param text input text
      *

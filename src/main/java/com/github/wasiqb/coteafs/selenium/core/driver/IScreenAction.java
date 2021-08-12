@@ -39,7 +39,7 @@ public interface IScreenAction {
     File saveScreenshot ();
 
     /**
-     * @param path
+     * @param path Screenshot path
      *
      * @return file
      *

@@ -42,9 +42,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.github.wasiqb.coteafs.logger.Loggy;
 import com.github.wasiqb.coteafs.selenium.config.RecorderSetting;
 import com.github.wasiqb.coteafs.selenium.error.VideoRecordingError;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.monte.media.Format;
 import org.monte.media.FormatKeys.MediaType;
 import org.monte.media.math.Rational;
@@ -55,14 +56,14 @@ import org.monte.screenrecorder.ScreenRecorder;
  * @since 27-Oct-2019
  */
 class CustomScreenRecorder extends ScreenRecorder {
-    private static final Loggy           LOG              = Loggy.init ();
+    private static final Logger          LOG              = LogManager.getLogger ();
     private static final RecorderSetting RECORDER_SETTING = appSetting ().getPlayback ()
         .getRecording ();
     private static       ScreenRecorder  screenRecorder;
 
     static void startRecording () {
         if (checkIfEnabled ()) {
-            LOG.i ("Started Video screen recording...");
+            LOG.info ("Started Video screen recording...");
             final File file = new File (RECORDER_SETTING.getPath ());
 
             final Dimension screenSize = Toolkit.getDefaultToolkit ()
@@ -86,25 +87,25 @@ class CustomScreenRecorder extends ScreenRecorder {
                         Rational.valueOf (30)), null, file);
                 screenRecorder.start ();
             } catch (final IOException | AWTException e) {
-                handleError (FILTER_PKG, e).forEach (LOG::e);
+                handleError (FILTER_PKG, e).forEach (LOG::error);
                 throw new VideoRecordingError ("Error while starting video recording.", e);
             }
         } else {
-            LOG.w ("Video screen recording is Disabled, cannot start...");
+            LOG.warn ("Video screen recording is Disabled, cannot start...");
         }
     }
 
     static void stopRecording () {
         if (checkIfEnabled ()) {
-            LOG.i ("Stopping Video screen recording...");
+            LOG.info ("Stopping Video screen recording...");
             try {
                 screenRecorder.stop ();
             } catch (final IOException e) {
-                handleError (FILTER_PKG, e).forEach (LOG::e);
+                handleError (FILTER_PKG, e).forEach (LOG::error);
                 throw new VideoRecordingError ("Error while stopping video recording.", e);
             }
         } else {
-            LOG.w ("Video screen recording is Disabled, cannot stop...");
+            LOG.warn ("Video screen recording is Disabled, cannot stop...");
         }
     }
 

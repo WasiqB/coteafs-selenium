@@ -23,8 +23,8 @@ import java.util.stream.Collectors;
 
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
-import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
-import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ISelectBoxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ITextBoxActions;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -41,7 +41,7 @@ import org.openqa.selenium.support.ui.Select;
  */
 @SuppressWarnings ("unchecked")
 public class AbstractElementAction<E extends WebElement, D extends WebDriver, B extends IDriverActions<D>>
-    extends FindableAction<E, D, B> implements ITextboxActions, ISelectboxActions {
+    extends FindableAction<E, D, B> implements ITextBoxActions, ISelectBoxActions {
     protected AbstractElementAction (final B browserAction, final By by, final String name) {
         super (browserAction, by, name);
     }

@@ -25,6 +25,8 @@ import static org.apache.logging.log4j.util.Strings.isNotEmpty;
 import java.io.File;
 
 import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -37,11 +39,12 @@ import org.testng.annotations.Parameters;
  * @since Sep 13, 2018 9:54:10 PM
  */
 public class BrowserTest {
-    private Browser browser;
+    private static final Logger  LOG = LogManager.getLogger ();
+    private              Browser browser;
 
     /**
      * @param browserName Browser name
-     * @param configFile
+     * @param configFile Config path
      *
      * @author wasiqb
      * @since Sep 13, 2018 9:55:41 PM
@@ -64,7 +67,7 @@ public class BrowserTest {
      * @since Mar 21, 2019 6:46:47 PM
      */
     @AfterMethod (alwaysRun = true)
-    public void teardownMethod (final ITestResult result) {
+    public void tearDownMethod (final ITestResult result) {
         final ScreenshotSetting screenshotSetting = appSetting ().getPlayback ()
             .getScreenshot ();
         final boolean screenshotOnError = screenshotSetting.isCaptureOnError ();
@@ -73,11 +76,11 @@ public class BrowserTest {
             final File screenshot = this.browser.perform ()
                 .saveScreenshot ();
             final Throwable cause = result.getThrowable ();
-            //            if (cause != null) {
-            //                log (LogLevel.ERROR, screenshot, "Test Failed");
-            //            } else {
-            //                log (LogLevel.INFO, screenshot, "Screenshot captured.");
-            //            }
+            if (cause != null) {
+                LOG.error ("Test Failed: Screenshot captured at [{}]", screenshot.getPath ());
+            } else {
+                LOG.info ("Screenshot captured at path [{}]", screenshot.getPath ());
+            }
         }
     }
 

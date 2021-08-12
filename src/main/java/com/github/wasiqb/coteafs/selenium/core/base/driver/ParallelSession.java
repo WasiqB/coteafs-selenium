@@ -43,7 +43,7 @@ public class ParallelSession {
     }
 
     /**
-     * @param session
+     * @param session Session
      *
      * @author Wasiq Bhamla
      * @since 28-Sep-2019

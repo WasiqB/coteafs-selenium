@@ -24,7 +24,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  */
 public class BrowserSession extends DriverSession<EventFiringWebDriver> {
     /**
-     * @param driver
+     * @param driver Driver
      *
      * @author Wasiq Bhamla
      * @since 28-Sep-2019
