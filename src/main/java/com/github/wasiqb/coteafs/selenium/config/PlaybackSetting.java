@@ -15,31 +15,19 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
-import com.github.wasiqb.coteafs.config.util.BasePojo;
 import com.github.wasiqb.coteafs.selenium.core.enums.ScreenState;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 2:45:29 PM
  */
-@Getter
-@Setter
-public class PlaybackSetting extends BasePojo {
-    private DelaySetting      delays;
-    private boolean           highlight;
-    private RecorderSetting   recording;
-    private ScreenResolution  screenResolution;
-    private ScreenState       screenState;
-    private ScreenshotSetting screenshot;
-
-    PlaybackSetting () {
-        this.screenResolution = new ScreenResolution ();
-        this.delays = new DelaySetting ();
-        this.screenshot = new ScreenshotSetting ();
-        this.screenState = ScreenState.NORMAL;
-        this.highlight = true;
-        this.recording = new RecorderSetting ();
-    }
+@Data
+public class PlaybackSetting {
+    private DelaySetting      delays           = new DelaySetting ();
+    private boolean           highlight        = true;
+    private RecorderSetting   recording        = new RecorderSetting ();
+    private ScreenResolution  screenResolution = new ScreenResolution ();
+    private ScreenState       screenState      = ScreenState.NORMAL;
+    private ScreenshotSetting screenshot       = new ScreenshotSetting ();
 }

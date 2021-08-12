@@ -15,32 +15,21 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
-import static java.lang.String.format;
+import static java.text.MessageFormat.format;
 
-import com.github.wasiqb.coteafs.config.util.BasePojo;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author Wasiq Bhamla
  * @since 28 Apr 2019
  */
-@Getter
-@Setter
-public class ScreenResolution extends BasePojo {
-    private int height;
-    private int width;
-
-    /**
-     * @since 28 Apr 2019
-     */
-    public ScreenResolution () {
-        this.width = 1366;
-        this.height = 1024;
-    }
+@Data
+public class ScreenResolution {
+    private int height = 1024;
+    private int width  = 1366;
 
     @Override
     public String toString () {
-        return format ("%dx%d", this.width, this.height);
+        return format ("{0}x{1}", this.width, this.height);
     }
 }

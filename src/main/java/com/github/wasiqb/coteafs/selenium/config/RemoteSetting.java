@@ -17,32 +17,22 @@ package com.github.wasiqb.coteafs.selenium.config;
 
 import java.util.Map;
 
-import com.github.wasiqb.coteafs.config.util.BasePojo;
 import com.github.wasiqb.coteafs.selenium.core.enums.Protocol;
 import com.github.wasiqb.coteafs.selenium.core.enums.RemoteSource;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author Wasiq Bhamla
  * @since 01-Aug-2019
  */
-@Getter
-@Setter
-public class RemoteSetting extends BasePojo {
+@Data
+public class RemoteSetting {
     private Map<String, Object> capabilities;
     private Map<String, Object> cloudCapabilities;
     private String              password;
     private int                 port;
-    private Protocol            protocol;
+    private Protocol            protocol = Protocol.HTTP;
     private RemoteSource        source;
     private String              url;
     private String              userId;
-
-    /**
-     * @since 01-Aug-2019
-     */
-    public RemoteSetting () {
-        setProtocol (Protocol.HTTP);
-    }
 }
