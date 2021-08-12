@@ -17,8 +17,8 @@ package com.github.wasiqb.coteafs.selenium.core.page;
 
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
-import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
-import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ISelectBoxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ITextBoxActions;
 import com.github.wasiqb.coteafs.selenium.core.enums.WaitStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -34,8 +34,8 @@ import org.openqa.selenium.WebElement;
  */
 public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E extends WebElement> {
     /**
-     * @param <T>
-     * @param pageCls
+     * @param <T> Page type
+     * @param pageCls Page class
      *
      * @return next page instance
      *
@@ -45,9 +45,9 @@ public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E exten
     <T extends IPage<D, B, E>> T nextPage (Class<T> pageCls);
 
     /**
-     * @param <T>
+     * @param <T> Mouse action type
      * @param locator locator
-     * @param name
+     * @param name Name of element
      *
      * @return element action
      *
@@ -57,9 +57,9 @@ public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E exten
     <T extends IMouseActions> T onClickable (By locator, final String name);
 
     /**
-     * @param <T>
+     * @param <T> Mouse action type
      * @param locator locator
-     * @param name
+     * @param name Name of element
      * @param strategy strategy
      *
      * @return element action
@@ -70,9 +70,9 @@ public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E exten
     <T extends IMouseActions> T onClickable (By locator, final String name, WaitStrategy strategy);
 
     /**
-     * @param <T>
+     * @param <T> Mouse action type
      * @param element element
-     * @param name
+     * @param name Element name
      *
      * @return element action
      *
@@ -82,9 +82,9 @@ public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E exten
     <T extends IMouseActions> T onClickable (E element, final String name);
 
     /**
-     * @param <T>
+     * @param <T> Mouse action type
      * @param element element
-     * @param name
+     * @param name Element name
      * @param strategy wait strategy
      *
      * @return element action
@@ -103,21 +103,21 @@ public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E exten
     B onDriver ();
 
     /**
-     * @param <T>
+     * @param <T> SelectBox action type
      * @param locator locator
-     * @param name
+     * @param name Element name
      *
      * @return element action
      *
      * @author Wasiq Bhamla
      * @since 08-Jun-2019
      */
-    <T extends ISelectboxActions> T onDropdown (By locator, final String name);
+    <T extends ISelectBoxActions> T onDropdown (By locator, final String name);
 
     /**
-     * @param <T>
+     * @param <T> SelectBox action type
      * @param locator locator
-     * @param name
+     * @param name Element name
      * @param strategy strategy
      *
      * @return element action
@@ -125,24 +125,24 @@ public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E exten
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
      */
-    <T extends ISelectboxActions> T onDropdown (By locator, final String name, WaitStrategy strategy);
+    <T extends ISelectBoxActions> T onDropdown (By locator, final String name, WaitStrategy strategy);
 
     /**
-     * @param <T>
+     * @param <T> SelectBox action type
      * @param element element
-     * @param name
+     * @param name Element name
      *
      * @return element action
      *
      * @author Wasiq Bhamla
      * @since 08-Jun-2019
      */
-    <T extends ISelectboxActions> T onDropdown (E element, final String name);
+    <T extends ISelectBoxActions> T onDropdown (E element, final String name);
 
     /**
-     * @param <T>
+     * @param <T> SelectBox action type
      * @param element element
-     * @param name
+     * @param name Element name
      * @param strategy strategy
      *
      * @return element action
@@ -150,24 +150,24 @@ public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E exten
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
      */
-    <T extends ISelectboxActions> T onDropdown (E element, final String name, WaitStrategy strategy);
+    <T extends ISelectBoxActions> T onDropdown (E element, final String name, WaitStrategy strategy);
 
     /**
-     * @param <T>
+     * @param <T> TextBox action type
      * @param locator locator
-     * @param name
+     * @param name Element name
      *
      * @return element action
      *
      * @author Wasiq Bhamla
      * @since 08-Jun-2019
      */
-    <T extends ITextboxActions> T onTextbox (By locator, final String name);
+    <T extends ITextBoxActions> T onTextBox (By locator, final String name);
 
     /**
-     * @param <T>
+     * @param <T> TextBox action type
      * @param locator locator
-     * @param name
+     * @param name Element name
      * @param strategy strategy
      *
      * @return element action
@@ -175,24 +175,24 @@ public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E exten
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
      */
-    <T extends ITextboxActions> T onTextbox (By locator, final String name, WaitStrategy strategy);
+    <T extends ITextBoxActions> T onTextBox (By locator, final String name, WaitStrategy strategy);
 
     /**
-     * @param <T>
+     * @param <T> TextBox action type
      * @param element element
-     * @param name
+     * @param name Element name
      *
      * @return element action
      *
      * @author Wasiq Bhamla
      * @since 08-Jun-2019
      */
-    <T extends ITextboxActions> T onTextbox (E element, final String name);
+    <T extends ITextBoxActions> T onTextBox (E element, final String name);
 
     /**
-     * @param <T>
+     * @param <T> TextBox action type
      * @param element element
-     * @param name
+     * @param name Element name
      * @param strategy strategy
      *
      * @return element action
@@ -200,5 +200,5 @@ public interface IPage<D extends WebDriver, B extends IDriverActions<D>, E exten
      * @author Wasiq Bhamla
      * @since 12-Jul-2019
      */
-    <T extends ITextboxActions> T onTextbox (E element, final String name, WaitStrategy strategy);
+    <T extends ITextBoxActions> T onTextBox (E element, final String name, WaitStrategy strategy);
 }

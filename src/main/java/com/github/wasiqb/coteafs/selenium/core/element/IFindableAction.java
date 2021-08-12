@@ -26,9 +26,9 @@ import org.openqa.selenium.By;
  */
 public interface IFindableAction extends IKeyboardActions {
     /**
-     * @param <E>
+     * @param <E> Mouse action type
      * @param byLocator locator
-     * @param name
+     * @param name Element name
      *
      * @return actions
      *
@@ -38,9 +38,9 @@ public interface IFindableAction extends IKeyboardActions {
     <E extends IMouseActions> E find (final By byLocator, final String name);
 
     /**
-     * @param <E>
+     * @param <E> Mouse action type
      * @param byLocator locator
-     * @param name
+     * @param name Element name
      * @param strategy wait strategy
      *
      * @return list of actions
@@ -51,9 +51,9 @@ public interface IFindableAction extends IKeyboardActions {
     <E extends IMouseActions> E find (final By byLocator, final String name, WaitStrategy strategy);
 
     /**
-     * @param <E>
+     * @param <E> Mouse action type
      * @param byLocator locator
-     * @param name
+     * @param name Element name
      *
      * @return list of actions
      *
@@ -63,9 +63,9 @@ public interface IFindableAction extends IKeyboardActions {
     <E extends IMouseActions> List<E> finds (final By byLocator, final String name);
 
     /**
-     * @param <E>
+     * @param <E> Mouse action type
      * @param byLocator locator
-     * @param name
+     * @param name Element name
      * @param strategy wait strategy
      *
      * @return list of actions

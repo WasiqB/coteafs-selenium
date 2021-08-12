@@ -15,7 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
-import static com.github.wasiqb.coteafs.selenium.listeners.DriverListner.setAlias;
+import static com.github.wasiqb.coteafs.selenium.listeners.DriverListener.setAlias;
 import static com.google.common.truth.Truth.assertThat;
 
 import com.github.wasiqb.coteafs.selenium.core.driver.IAlertAction;

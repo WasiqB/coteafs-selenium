@@ -31,7 +31,7 @@ public class DriverSession<D extends WebDriver> {
     private       D                   driver;
 
     /**
-     * @param driver
+     * @param driver WebDriver
      *
      * @author Wasiq Bhamla
      * @since 28-Sep-2019
@@ -60,8 +60,8 @@ public class DriverSession<D extends WebDriver> {
     }
 
     /**
-     * @param <T>
-     * @param key
+     * @param <T> Return type
+     * @param key Context key
      *
      * @return context
      *
@@ -84,9 +84,9 @@ public class DriverSession<D extends WebDriver> {
     }
 
     /**
-     * @param <T>
-     * @param key
-     * @param value
+     * @param <T> Return type
+     * @param key Context key
+     * @param value Context value
      *
      * @author Wasiq Bhamla
      * @since 28-Sep-2019

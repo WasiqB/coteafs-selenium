@@ -1,7 +1,7 @@
 package com.github.wasiqb.coteafs.selenium.pages;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
-import com.github.wasiqb.coteafs.selenium.core.element.ISelectboxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ISelectBoxActions;
 import com.github.wasiqb.coteafs.selenium.core.page.ElementKey;
 import org.openqa.selenium.By;
 
@@ -37,7 +37,7 @@ public class DropDownPage extends BrowserPage {
      *
      * @since Jul 19, 2020
      */
-    public ISelectboxActions dropDownField () {
+    public ISelectBoxActions dropDownField () {
         return onDropdown (By.id ("dropdown"), "DropDown List");
     }
 }

@@ -21,7 +21,7 @@ import java.util.List;
  * @author Wasiq Bhamla
  * @since 07-Jun-2019
  */
-public interface ISelectboxActions extends IMouseActions {
+public interface ISelectBoxActions extends IMouseActions {
     /**
      * @author Wasiq Bhamla
      * @since 07-Jun-2019
@@ -93,6 +93,8 @@ public interface ISelectboxActions extends IMouseActions {
     void selectByValue (String value);
 
     /**
+     * @param <T> Mouse action type
+     *
      * @return all selected options
      *
      * @author Wasiq Bhamla

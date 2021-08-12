@@ -17,7 +17,7 @@ package com.github.wasiqb.coteafs.selenium.pages;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
-import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
+import com.github.wasiqb.coteafs.selenium.core.element.ITextBoxActions;
 import com.github.wasiqb.coteafs.selenium.core.page.ElementKey;
 import org.openqa.selenium.By;
 
@@ -63,7 +63,7 @@ public class LoginPage extends BrowserPage {
      *
      * @since Aug 31, 2018 9:40:05 PM
      */
-    public ITextboxActions password () {
+    public ITextBoxActions password () {
         return form ().find (By.id ("password"), "Password");
     }
 
@@ -81,7 +81,7 @@ public class LoginPage extends BrowserPage {
      *
      * @since Aug 31, 2018 9:34:38 PM
      */
-    public ITextboxActions userId () {
+    public ITextBoxActions userId () {
         return form ().find (By.id ("username"), "User ID");
     }
 

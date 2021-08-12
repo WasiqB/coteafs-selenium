@@ -24,7 +24,8 @@
 
 ## :question: What is this Framework about?
 
-This is a Selenium WebDriver wrapper Framework which enables robust, maintainable and easy to write test scripts. _**It supports latest stable Selenium WebDriver 3.141.59**_.
+This is a Selenium WebDriver wrapper Framework which enables robust, maintainable and easy to write test scripts. _**It
+supports latest stable Selenium WebDriver 3.141.59**_.
 
 ## :bulb: What features does this framework offer?
 
@@ -80,7 +81,9 @@ Getting hands-on with this framework requires minimal time. You can start writin
   <summary><strong>1. :wrench: Create Config file</strong></summary>
   <br/>
 
-Config file is by default searched in `src/test/resources` folder. The name of the config file is by default considered as `selenium-config.yaml`. But the same can be overridden by using System property `coteafs.selenium.config` where you can specify the new config file for the test.
+Config file is by default searched in `src/test/resources` folder. The name of the config file is by default considered
+as `selenium-config.yaml`. But the same can be overridden by using System property `coteafs.selenium.config` where you
+can specify the new config file for the test.
 
 #### Sample Config file
 
@@ -155,7 +158,8 @@ playback:   # Playback settings.
   <summary><strong>2. :page_facing_up: Create Page object class</strong></summary>
   <br/>
 
-Checkout the following examples which will guide you in writing tests. Lets have a look at the Login page of Guru99 demo site.
+Checkout the following examples which will guide you in writing tests. Lets have a look at the Login page of Guru99 demo
+site.
 
 > Remember, `BrowserPage` class needs to be extended for every page and also a flavour of inheritance can be added as per requirement.
 
@@ -164,28 +168,28 @@ Checkout the following examples which will guide you in writing tests. Lets have
 ```java
 package com.github.wasiqb.coteafs.selenium.pages;
 
+import com.github.wasiqb.coteafs.selenium.core.element.ITextBoxActions;
 import org.openqa.selenium.By;
 
 import com.github.wasiqb.coteafs.selenium.core.BrowserPage;
 import com.github.wasiqb.coteafs.selenium.core.element.IMouseActions;
-import com.github.wasiqb.coteafs.selenium.core.element.ITextboxActions;
 
 public class LoginPage extends BrowserPage {
-  public ITextboxActions password () {
-    return form ().find (By.name ("password"), "Password");
-  }
+    public ITextBoxActions password () {
+        return form ().find (By.name ("password"), "Password");
+    }
 
-  public IMouseActions signIn () {
-    return form ().find (By.name ("btnLogin"), "Login");
-  }
+    public IMouseActions signIn () {
+        return form ().find (By.name ("btnLogin"), "Login");
+    }
 
-  public ITextboxActions userId () {
-    return form ().find (By.name ("uid"), "User ID");
-  }
+    public ITextBoxActions userId () {
+        return form ().find (By.name ("uid"), "User ID");
+    }
 
-  private IMouseActions form () {
-    return onClickable (By.name ("frmLogin"), "Form");
-  }
+    private IMouseActions form () {
+        return onClickable (By.name ("frmLogin"), "Form");
+    }
 }
 ```
 
@@ -195,7 +199,9 @@ public class LoginPage extends BrowserPage {
   <summary><strong>3. :runner: Create Page Action class</strong></summary>
   <br/>
 
-This is a new concept, here you can define actions specific to each page. This approach abstracts out the page action flows and helps in modularising the classes. So whenever the flow of the page changes, you need to change only at single place.
+This is a new concept, here you can define actions specific to each page. This approach abstracts out the page action
+flows and helps in modularising the classes. So whenever the flow of the page changes, you need to change only at single
+place.
 
 > For every page action you need to extend `AbstractPageAction`. Since it is a generic class, you need to pass the action class name as it's generic type.
 > Also, `perform` method needs to be implemented for every action class.
@@ -211,25 +217,25 @@ import com.github.wasiqb.coteafs.selenium.core.page.AbstractPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.LoginPage;
 import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 
-public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
-  public static final String PASS    = "password";
-  public static final String USER_ID = "userId";
+public class LoginPageAction extends AbstractPageAction<LoginPageAction> {
+    public static final String PASS    = "password";
+    public static final String USER_ID = "userId";
 
-  @Override
-  public void perform () {
-    final LoginPage login = new LoginPage ();
-    login.userId ()
-      .enterText (value (USER_ID));
-    login.password ()
-      .enterText (value (PASS));
-    login.signIn ()
-      .click ();
+    @Override
+    public void perform () {
+        final LoginPage login = new LoginPage ();
+        login.userId ()
+            .enterText (value (USER_ID));
+        login.password ()
+            .enterText (value (PASS));
+        login.signIn ()
+            .click ();
 
-    login.nextPage (MainPage.class)
-      .managerIdBanner ()
-      .verifyText ()
-      .endsWith (format ("Manger Id : {0}", value (USER_ID).toString ()));
-  }
+        login.nextPage (MainPage.class)
+            .managerIdBanner ()
+            .verifyText ()
+            .endsWith (format ("Manger Id : {0}", value (USER_ID).toString ()));
+    }
 }
 ```
 
@@ -239,7 +245,8 @@ public class LoginPageAction extends AbstractPageAction <LoginPageAction> {
   <summary><strong>4. :white_check_mark: Write Test class</strong></summary>
   <br/>
 
-Test which are written using this framework are slightly different than usual. In the tests, Page actions is used instead of page objects. This can be demonstrated as shown below:
+Test which are written using this framework are slightly different than usual. In the tests, Page actions is used
+instead of page objects. This can be demonstrated as shown below:
 
 #### Sample Test
 
@@ -287,7 +294,8 @@ public class SeleniumTest extends BrowserTest {
 
 ### Basic syncronous run
 
-Following is a simple `testng.xml` file for running the tests on Chrome browser **locally, on grid and on BrowserStack** in sync.
+Following is a simple `testng.xml` file for running the tests on Chrome browser **locally, on grid and on BrowserStack**
+in sync.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -341,12 +349,14 @@ Following is a simple `testng.xml` file for running the tests on Chrome browser 
 ```
 
 > **Note:** Notice the parameter used in last 2 tests,
+
 - `test.browser`: You can override the browser set in config file, it accepts same value as described in confid section.
 - `test.config`: You can set different config for current test.
 
 ### Parallel Run
 
-In case you want to run tests for different browsers parallely, you just need to modify the following line in `testng.xml`.
+In case you want to run tests for different browsers parallely, you just need to modify the following line
+in `testng.xml`.
 
 ```xml
 . . .
@@ -394,7 +404,8 @@ $ mvn clean install -Dsuite-xml=testng.xml -DCLOUD_USER=<cloud_user> -DCLOUD_KEY
 - **Star** the project to make the project popular.
 - Stay updated with the project progress by **Watching** it.
 - **Contribute** to fix open issues, documentations or add new features. To know more, see our [contributing][] page.
-- I would be delighted if you can **Sponsor** this project and provide your support to open source development by clicking on the Sponsor button on the top of this repository.
+- I would be delighted if you can **Sponsor** this project and provide your support to open source development by
+  clicking on the Sponsor button on the top of this repository.
 
 ## :gift_heart: Thanks for the support.
 
@@ -445,12 +456,21 @@ For allowing us to run our unit tests on different cloud platforms.
 </p>
 
 [gitter]: https://gitter.im/WasiqB/coteafs-selenium
+
 [home]: https://github.com/wasiqb/coteafs-selenium
+
 [circleci]: https://circleci.com/gh/WasiqB/coteafs-selenium
+
 [coverage]: https://sonarcloud.io/component_measures?id=com.github.wasiqb.coteafs%3Aselenium&metric=Coverage
+
 [maven]: https://maven-badges.herokuapp.com/maven-central/com.github.wasiqb.coteafs/selenium
+
 [site]: https://wasiqb.github.io
+
 [tracker]: https://github.com/WasiqB/coteafs-selenium/issues?q=something
+
 [issue]: https://github.com/WasiqB/coteafs-selenium/issues/new
+
 [contributing]: .github/CONTRIBUTING.md
+
 [mail]: mailto:wasbhamla2005@gmail.com
