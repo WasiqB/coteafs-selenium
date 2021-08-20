@@ -18,6 +18,7 @@ package com.github.wasiqb.coteafs.selenium.config;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.github.wasiqb.coteafs.datasource.annotation.DataFile;
 import com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser;
 import lombok.Data;
 
@@ -25,6 +26,7 @@ import lombok.Data;
  * @author Wasiq Bhamla
  * @since Apr 8, 2018 2:41:06 PM
  */
+@DataFile (fileName = "selenium-config.yaml")
 @Data
 public class ApplicationSetting {
     private AvailableBrowser    browser  = AvailableBrowser.CHROME;
