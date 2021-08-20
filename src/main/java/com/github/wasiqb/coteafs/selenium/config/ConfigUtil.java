@@ -15,8 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
-import static com.github.wasiqb.coteafs.config.loader.ConfigLoader.settings;
-import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.COTEAFS_CONFIG_KEY;
+import com.github.wasiqb.coteafs.datasource.DataSource;
 
 /**
  * @author Wasiq Bhamla
@@ -30,9 +29,7 @@ public final class ConfigUtil {
      * @since Aug 9, 2018 8:39:04 PM
      */
     public static ApplicationSetting appSetting () {
-        return settings ().withKey (COTEAFS_CONFIG_KEY)
-            .withDefault ("config/selenium-config.yaml")
-            .load (ApplicationSetting.class);
+        return DataSource.parse (ApplicationSetting.class);
     }
 
     private ConfigUtil () {

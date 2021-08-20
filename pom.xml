@@ -25,7 +25,7 @@
 	</ciManagement>
 
 	<properties>
-		<coteafs.config.version>2.3.0</coteafs.config.version>
+		<coteafs.data.version>1.3.0</coteafs.data.version>
 		<coteafs.error.version>1.15.0</coteafs.error.version>
 		<log4j.version>2.14.1</log4j.version>
 		<coteafs.listener.version>3.2.0</coteafs.listener.version>
@@ -42,8 +42,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.github.wasiqb.coteafs</groupId>
-			<artifactId>configs</artifactId>
-			<version>${coteafs.config.version}</version>
+			<artifactId>datasource</artifactId>
+			<version>${coteafs.data.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.wasiqb.coteafs</groupId>
