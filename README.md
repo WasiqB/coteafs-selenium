@@ -7,8 +7,8 @@
 <h1 align="center">Selenium WebDriver wrapper Framework in Java, which supports Automation of most of the web browsers.</h1>
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)][home]
-[![Gitter](https://badges.gitter.im/WasiqB/coteafs-selenium.svg)](https://gitter.im/WasiqB/coteafs-selenium?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![CircleCI](https://circleci.com/gh/WasiqB/coteafs-selenium.svg?style=svg)][circleci]
+[![Discord](https://img.shields.io/discord/874329599285268561?label=Discord&logo=Discord&style=for-the-badge)](https://discord.gg/DWVM398zsC)
+[![GitHub Actions workflow](https://github.com/WasiqB/coteafs-selenium/actions/workflows/test.yml/badge.svg)](https://github.com/WasiqB/coteafs-selenium/actions/workflows/test.yml)
 [![Test Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.github.wasiqb.coteafs%3Aselenium&metric=coverage)][coverage]
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.github.wasiqb.coteafs%3Aselenium&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.wasiqb.coteafs%3Aselenium)
 [![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=com.github.wasiqb.coteafs%3Aselenium&metric=sqale_rating)](https://sonarcloud.io/component_measures?id=com.github.wasiqb.coteafs%3Aselenium&metric=Maintainability)
@@ -25,11 +25,11 @@
 ## :question: What is this Framework about?
 
 This is a Selenium WebDriver wrapper Framework which enables robust, maintainable and easy to write test scripts. _**It
-supports latest stable Selenium WebDriver 3.141.59**_.
+supports the latest stable Selenium WebDriver 3.141.59**_.
 
-## :bulb: What features does this framework offer?
+## :bulb: What features do this framework offer?
 
-Some of the key features which this framework offers are as follows:
+Some key features which this framework offers are as follows:
 
 :point_right: Latest stable Selenium WebDriver 3.141.59.
 
@@ -60,17 +60,18 @@ Some of the key features which this framework offers are as follows:
 You can use the following dependency into your `pom.xml` to use this library.
 
 ```xml
+
 <dependency>
-  <groupId>com.github.wasiqb.coteafs</groupId>
-  <artifactId>selenium</artifactId>
-  <version>3.3.0</version>
+    <groupId>com.github.wasiqb.coteafs</groupId>
+    <artifactId>selenium</artifactId>
+    <version>4.0.0</version>
 </dependency>
 ```
 
 Or you can add the following into your `build.gradle` file.
 
  ```gradle
- compile "com.github.wasiqb.coteafs:selenium:3.2.0"
+ compile "com.github.wasiqb.coteafs:selenium:4.0.0"
  ```
 
 ## :smile: How it is easy to write Tests with this Framework?
@@ -90,64 +91,66 @@ can specify the new config file for the test.
 `src/test/resources/selenium-config.yaml`
 
 ```yaml
-browser: CHROME           # CHROME, SAFARI, EDGE, FIREFOX, IE.
-url: http://demo.guru99.com/V4/   # Application URL.
-headless_mode: false      # true, for headless, else false.
-driver:                   # Driver manager specific settings.
-  force_cache: true       # true, false (default). Forces to use cached driver.
-  force_download: true    # true, false (default). Forces to download driver each time.
-  path: /drivers/         # Local path where drivers will searched for.
-  version: 2.14           # Version of driver.
-  exe_url: https://driver/download/url    # Driver download URL.
-remote:                   # Remote settings block (required when Browser is Remote).
-  user_id: ${CLOUD_USER}  # Cloud User. Not required for Grid.
-  password: ${CLOUD_KEY}  # Cloud Key. Not required for Grid.
-  protocol: HTTPS         # HTTP, HTTPS. Default HTTP.
-  url: hub-cloud.browserstack.com   # Remote hub URL
-  source: BROWSERSTACK    # BROWSERSTACK, GRID, SAUCELABS
-  capabilities:           # Remote capabilities.
-    browser: Chrome
-    browser_version: 75.0
-    os: Windows
-    os_version: 10
-    resolution: 1024x768
-    name: Any Test name
-  cloud_capabilities:     # Cloud specific capabilities.
-    seleniumVersion: 3.141.59
-    name: Sauce-[Java] Sample Test
-params:     # test specific map.
-  user: <test-specific-user>
-  password: <test-specific-password>
-playback:   # Playback settings.
-  screen_state: NORMAL  # FULL_SCREEN, MAXIMIZED, NORMAL
-  highlight: true       # true, to highlight elements, else false.
-  screen_resolution:    # Screen resolution settings.
-    width: 1280     # Screen width.
-    height: 768     # Screen height.
-  recording:
-    enable: true    # true, to enable recording, else false.
-    path: ./video   # Video recording path.
-    prefix: VID     # Video file prefix.
-  delays:       # On demand delay settings.
-    implicit: 60          # Implicit waits in seconds.
-    explicit: 60          # Explicit waits in seconds.
-    after_frame_switch: 500   # Delay after iFrame switch in milliseconds.
-    after_window_switch: 500  # Delay after Window switch in milliseconds.
-    before_key_press: 0   # delay before key press in milliseconds.
-    after_key_press: 0    # delay after key press in milliseconds.
-    before_mouse_move: 0  # delay before mouse move in milliseconds.
-    after_mouse_move: 0   # delay after mouse move in milliseconds.
-    before_click: 0       # delay before mouse click in milliseconds.
-    after_click: 0        # delay after mouse click in milliseconds.
-    page_load: 60         # page load timeout in seconds.
-    script_load: 60       # script load timeout in seconds.
-    highlight: 500        # highlight delay in milliseconds.
-  screenshot:     # Screenshot settings.
-    path: ~/screenshots     # default screenshot path.
-    prefix: SCR             # screenshot file prefix.
-    extension: jpeg         # screenshot file extension.
-    capture_on_error: false # screenshot on error.
-    capture_all: true       # always capture screenshot on each event, when true.
+browsers:
+  local_browser:
+    browser: CHROME           # CHROME, SAFARI, EDGE, FIREFOX, IE.
+    url: http://demo.guru99.com/V4/   # Application URL.
+    headless_mode: false      # true, for headless, else false.
+    driver: # Driver manager specific settings.
+      force_cache: true       # true, false (default). Forces to use cached driver.
+      force_download: true    # true, false (default). Forces to download driver each time.
+      path: /drivers/         # Local path where drivers will searched for.
+      version: 2.14           # Version of driver.
+      exe_url: https://driver/download/url    # Driver download URL.
+    remote: # Remote settings block (required when Browser is Remote).
+      user_id: ${CLOUD_USER}  # Cloud User. Not required for Grid.
+      password: ${CLOUD_KEY}  # Cloud Key. Not required for Grid.
+      protocol: HTTPS         # HTTP, HTTPS. Default HTTP.
+      url: hub-cloud.browserstack.com   # Remote hub URL
+      source: BROWSERSTACK    # BROWSERSTACK, GRID, SAUCELABS
+      capabilities: # Remote capabilities.
+        browser: Chrome
+        browser_version: 75.0
+        os: Windows
+        os_version: 10
+        resolution: 1024x768
+        name: Any Test name
+      cloud_capabilities: # Cloud specific capabilities.
+        seleniumVersion: 3.141.59
+        name: Sauce-[Java] Sample Test
+    params: # test specific map.
+      user: <test-specific-user>
+      password: <test-specific-password>
+    playback: # Playback settings.
+      screen_state: NORMAL  # FULL_SCREEN, MAXIMIZED, NORMAL
+      highlight: true       # true, to highlight elements, else false.
+      screen_resolution: # Screen resolution settings.
+        width: 1280     # Screen width.
+        height: 768     # Screen height.
+      recording:
+        enable: true    # true, to enable recording, else false.
+        path: ./video   # Video recording path.
+        prefix: VID     # Video file prefix.
+      delays: # On demand delay settings.
+        implicit: 60          # Implicit waits in seconds.
+        explicit: 60          # Explicit waits in seconds.
+        after_frame_switch: 500   # Delay after iFrame switch in milliseconds.
+        after_window_switch: 500  # Delay after Window switch in milliseconds.
+        before_key_press: 0   # delay before key press in milliseconds.
+        after_key_press: 0    # delay after key press in milliseconds.
+        before_mouse_move: 0  # delay before mouse move in milliseconds.
+        after_mouse_move: 0   # delay after mouse move in milliseconds.
+        before_click: 0       # delay before mouse click in milliseconds.
+        after_click: 0        # delay after mouse click in milliseconds.
+        page_load: 60         # page load timeout in seconds.
+        script_load: 60       # script load timeout in seconds.
+        highlight: 500        # highlight delay in milliseconds.
+      screenshot: # Screenshot settings.
+        path: ~/screenshots     # default screenshot path.
+        prefix: SCR             # screenshot file prefix.
+        extension: jpeg         # screenshot file extension.
+        capture_on_error: false # screenshot on error.
+        capture_all: true       # always capture screenshot on each event, when true.
 ```
 
 > **Note:** If you find any config not working, feel free to raise an [issue][].
@@ -267,22 +270,22 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
 
 public class SeleniumTest extends BrowserTest {
-  @BeforeClass
-  public void setupMethod () {
-    final MainPage main = new MainPage ();
-    main.onDriver ()
-      .navigateTo (appSetting ().getUrl ());
-  }
+    @BeforeClass
+    public void setupMethod () {
+        final MainPage main = new MainPage ();
+        main.onDriver ()
+            .navigateTo (appSetting ().getUrl ());
+    }
 
-  @Test
-  public void testSignIn () {
-    final LoginPageAction login = new LoginPageAction ();
-    login.addInputValue (USER_ID, appSetting ().getParams ()
-      .get ("user"))
-      .addInputValue (PASS, appSetting ().getParams ()
-      .get ("password"))
-      .perform ();
-  }
+    @Test
+    public void testSignIn () {
+        final LoginPageAction login = new LoginPageAction ();
+        login.addInputValue (USER_ID, appSetting ().getParams ()
+                .get ("user"))
+            .addInputValue (PASS, appSetting ().getParams ()
+                .get ("password"))
+            .perform ();
+    }
 }
 ```
 
@@ -292,79 +295,47 @@ public class SeleniumTest extends BrowserTest {
   <summary><strong>5. :microscope: Create TestNG XML file</strong></summary>
   <br/>
 
-### Basic syncronous run
+### Basic synchronous run
 
-Following is a simple `testng.xml` file for running the tests on Chrome browser **locally, on grid and on BrowserStack**
-in sync.
+Following is a simple `testng.yaml` file for running the tests on Chrome browser **locally, on grid and on
+BrowserStack** in sync.
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <listeners>
-    <listener class-name="com.github.wasiqb.coteafs.listeners.ConfigListener"/>
-    <listener class-name="com.github.wasiqb.coteafs.listeners.SuiteListener"/>
-    <listener class-name="com.github.wasiqb.coteafs.listeners.TestListener"/>
-    <listener class-name="com.github.wasiqb.coteafs.listeners.ExecutionListener"/>
-    <listener class-name="com.github.wasiqb.coteafs.listeners.DataProviderListener"/>
-    <listener class-name="com.github.wasiqb.coteafs.listeners.AnnotationTransformer"/>
-  </listeners>
-  <test name="Test Local">
-    <classes>
-      <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
-        <methods>
-          <include name="testSignIn"/>
-          <include name="testNewCustomer"/>
-          <include name="testEditCustomer"/>
-          <include name="testNewAccount"/>
-          <include name="testDeleteAccount"/>
-          <include name="testDeleteCustomer"/>
-        </methods>
-      </class>
-    </classes>
-  </test>
-  <test name="Test Grid">
-    <parameter name="test.browser" value="REMOTE"/>
-    <parameter name="test.config" value="./src/test/resources/selenium-grid-config.yaml"/>
-    <classes>
-      <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
-        <methods>
-          <include name="testSignIn"/>
-        </methods>
-      </class>
-    </classes>
-  </test>
-  <test name="Test BrowserStack">
-    <parameter name="test.browser" value="REMOTE"/>
-    <parameter name="test.config" value="./src/test/resources/selenium-bs-config.yaml"/>
-    <classes>
-      <class name="com.github.wasiqb.coteafs.selenium.SeleniumTest">
-        <methods>
-          <include name="testSignIn"/>
-        </methods>
-      </class>
-    </classes>
-  </test>
-</suite>
+```yaml
+name: Local Suite
+tests:
+  - name: Test Local
+    preserveOrder: true
+    parameters: {
+      test.browser: local
+    }
+    classes:
+      - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
+        includedMethods:
+          - testLogin
+          - testCheckboxes
+          - testDropDownBox
+  - name: Test Grid
+    parameters: {
+      test.browser: grid
+    }
+    classes:
+      - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
+        includedMethods:
+          - testLogin
+  - name: Test BrowserStack Chrome
+      preserveOrder: true
+      parameters: {
+        test.browser: bs_chrome
+      }
+      classes:
+        - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
+          includedMethods:
+            - testLogin
+            - testCheckboxes
+            - testDropDownBox
 ```
 
-> **Note:** Notice the parameter used in last 2 tests,
-
-- `test.browser`: You can override the browser set in config file, it accepts same value as described in confid section.
-- `test.config`: You can set different config for current test.
-
-### Parallel Run
-
-In case you want to run tests for different browsers parallely, you just need to modify the following line
-in `testng.xml`.
-
-```xml
-. . .
-<suite name="Suite" parallel="tests" thread-count="10">
-. . .
-```
-
-This attributes will tell testng to run all the test blocks in 10 parallel threads.
+- `test.browser`: Here, the browser config key is used to tell the framework which browser config needs to be executed.
 
 </details>
 
@@ -377,7 +348,7 @@ This attributes will tell testng to run all the test blocks in 10 parallel threa
 Run the tests using following command,
 
 ```bash
-$ mvn clean install -Dsuite-xml=testng.xml
+$ mvn clean install -Dsuite-xml=testng.yaml
 ```
 
 ### Running on BrowserStack or any other cloud solution
@@ -385,14 +356,14 @@ $ mvn clean install -Dsuite-xml=testng.xml
 Run the tests using following command,
 
 ```bash
-$ mvn clean install -Dsuite-xml=testng.xml -DCLOUD_USER=<cloud_user> -DCLOUD_KEY=<cloud_key>
+$ mvn clean install -Dsuite-xml=testng.yaml -DCLOUD_USER=<cloud_user> -DCLOUD_KEY=<cloud_key>
 ```
 
 </details>
 
 ## :question: Need Assistance?
 
-- You can chat with us on our [Gitter][gitter] room.
+- You can join and chat with us on our [Discord][discord] server.
 - Directly chat with me on my [site][] and I'll revert to you as soon as possible.
 - Discuss your queries by writing to me @ [wasbhamla2005@gmail.com][mail]
 - If you find any issue which is bottleneck for you, [search the issue tracker][tracker] to see if it is already raised.
@@ -455,11 +426,9 @@ For allowing us to run our unit tests on different cloud platforms.
   </a>
 </p>
 
-[gitter]: https://gitter.im/WasiqB/coteafs-selenium
+[discord]: https://discord.gg/DWVM398zsC
 
 [home]: https://github.com/wasiqb/coteafs-selenium
-
-[circleci]: https://circleci.com/gh/WasiqB/coteafs-selenium
 
 [coverage]: https://sonarcloud.io/component_measures?id=com.github.wasiqb.coteafs%3Aselenium&metric=Coverage
 
