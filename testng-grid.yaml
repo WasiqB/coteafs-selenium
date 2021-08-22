@@ -1,7 +1,9 @@
 name: Selenium Grid Suite
 tests:
   - name: Test Grid
-    parameters: { test.browser: REMOTE, test.config: ./src/test/resources/config/grid/selenium-grid-config.yaml }
+    parameters: {
+      test.browser: grid
+    }
     classes:
       - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
         includedMethods:

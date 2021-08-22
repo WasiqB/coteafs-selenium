@@ -15,6 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.element;
 
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getBrowserSetting;
 import static com.github.wasiqb.coteafs.selenium.listeners.DriverListener.setAlias;
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
@@ -29,7 +30,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import com.github.wasiqb.coteafs.selenium.config.ConfigUtil;
 import com.github.wasiqb.coteafs.selenium.config.DelaySetting;
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.element.IWaitStrategy;
@@ -110,8 +110,7 @@ public class BaseElementAction<E extends WebElement, D extends WebDriver, B exte
         this.actions = new Actions (this.driver);
         this.wait = browserAction.driverWait ();
         this.alreadyHighlighted = false;
-        this.delays = ConfigUtil.appSetting ()
-            .getPlayback ()
+        this.delays = getBrowserSetting ().getPlayback ()
             .getDelays ();
         this.strategy = WaitStrategy.NONE;
     }

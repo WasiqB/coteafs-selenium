@@ -15,7 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
-import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getBrowserSetting;
 import static com.github.wasiqb.coteafs.selenium.core.enums.Platform.DESKTOP;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -63,7 +63,7 @@ public abstract class AbstractDriver<D extends WebDriver> extends PlatformAction
     }
 
     protected void setupDriverOptions () {
-        final PlaybackSetting playback = appSetting ().getPlayback ();
+        final PlaybackSetting playback = getBrowserSetting ().getPlayback ();
         final DelaySetting delays = playback.getDelays ();
         manageTimeouts (t -> t.pageLoadTimeout (delays.getPageLoad (), SECONDS));
         manageTimeouts (t -> t.setScriptTimeout (delays.getScriptLoad (), SECONDS));

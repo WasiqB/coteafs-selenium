@@ -15,9 +15,12 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
+import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+
 import java.util.HashMap;
 import java.util.Map;
 
+import com.github.wasiqb.coteafs.selenium.config.BrowserSetting;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -29,15 +32,16 @@ import org.openqa.selenium.WebDriver;
 public class DriverSession<D extends WebDriver> {
     private final Map<String, Object> context;
     private       D                   driver;
+    private final BrowserSetting      setting;
 
     /**
-     * @param driver WebDriver
+     * @param browserName Browser name
      *
      * @author Wasiq Bhamla
      * @since 28-Sep-2019
      */
-    public DriverSession (final D driver) {
-        this.driver = driver;
+    public DriverSession (final String browserName) {
+        this.setting = appSetting (browserName);
         this.context = new HashMap<> ();
     }
 
@@ -81,6 +85,13 @@ public class DriverSession<D extends WebDriver> {
      */
     public D getDriver () {
         return this.driver;
+    }
+
+    /**
+     * @return Browser setting
+     */
+    public BrowserSetting getSetting () {
+        return this.setting;
     }
 
     /**

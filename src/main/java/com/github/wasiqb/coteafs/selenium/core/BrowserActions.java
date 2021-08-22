@@ -15,7 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core;
 
-import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getBrowserSetting;
 
 import java.util.Set;
 
@@ -41,7 +41,7 @@ public class BrowserActions extends WebDriverAction<EventFiringWebDriver> implem
      */
     BrowserActions (final EventFiringWebDriver driver) {
         super (driver);
-        this.delaySetting = appSetting ().getPlayback ()
+        this.delaySetting = getBrowserSetting ().getPlayback ()
             .getDelays ();
     }
 

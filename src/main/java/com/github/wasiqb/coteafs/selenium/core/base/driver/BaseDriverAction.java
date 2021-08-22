@@ -15,7 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
-import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getBrowserSetting;
 import static java.time.Duration.ofSeconds;
 
 import java.util.function.Consumer;
@@ -40,7 +40,7 @@ public class BaseDriverAction<D extends WebDriver> implements IWaitAction<D>, IS
 
     BaseDriverAction (final D driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait (driver, ofSeconds (appSetting ().getPlayback ()
+        this.wait = new WebDriverWait (driver, ofSeconds (getBrowserSetting ().getPlayback ()
             .getDelays ()
             .getExplicit ()).getSeconds ());
     }

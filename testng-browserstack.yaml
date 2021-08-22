@@ -5,8 +5,7 @@ tests:
   - name: Test BrowserStack Chrome
     preserveOrder: true
     parameters: {
-      test.browser: REMOTE,
-      test.config: ./src/test/resources/config/browserstack/selenium-chrome-config.yaml
+      test.browser: bs_chrome
     }
     classes:
       - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
@@ -16,8 +15,7 @@ tests:
           - testDropDownBox
   - name: Test BrowserStack Firefox
     parameters: {
-      test.browser: REMOTE,
-      test.config: ./src/test/resources/config/browserstack/selenium-firefox-config.yaml
+      test.browser: bs_firefox
     }
     classes:
       - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
@@ -25,8 +23,7 @@ tests:
           - testLogin
   - name: Test BrowserStack Edge
     parameters: {
-      test.browser: REMOTE,
-      test.config: ./src/test/resources/config/browserstack/selenium-edge-config.yaml
+      test.browser: bs_edge
     }
     classes:
       - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
@@ -34,8 +31,7 @@ tests:
           - testLogin
   - name: Test BrowserStack IE
     parameters: {
-      test.browser: REMOTE,
-      test.config: ./src/test/resources/config/browserstack/selenium-ie-config.yaml
+      test.browser: bs_ie
     }
     classes:
       - name: com.github.wasiqb.coteafs.selenium.SeleniumTest

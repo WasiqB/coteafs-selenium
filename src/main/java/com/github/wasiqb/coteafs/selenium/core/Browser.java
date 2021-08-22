@@ -16,10 +16,10 @@
 package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.fail;
-import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
-import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
 import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.close;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getBrowserSetting;
 import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getSession;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.setDriver;
 import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.setSession;
 import static com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser.REMOTE;
 import static com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser.valueOf;
@@ -29,7 +29,6 @@ import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.edgedriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.iedriver;
-import static java.lang.System.getProperty;
 import static java.text.MessageFormat.format;
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
@@ -118,7 +117,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         setupDriver (chromedriver ());
         final ChromeOptions chromeOptions = new ChromeOptions ();
         chromeOptions.addArguments ("--dns-prefetch-disable");
-        if (appSetting ().isHeadlessMode ()) {
+        if (getBrowserSetting ().isHeadlessMode ()) {
             chromeOptions.addArguments ("--headless");
         }
         chromeOptions.setCapability (CapabilityType.ACCEPT_SSL_CERTS, true);
@@ -153,7 +152,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
     }
 
     private static void setupDriver (final WebDriverManager manager) throws MalformedURLException {
-        final DriverSetting driver = appSetting ().getDriver ();
+        final DriverSetting driver = getBrowserSetting ().getDriver ();
         if (!isNull (driver)) {
             if (isNotEmpty (driver.getVersion ())) {
                 manager.browserVersion (driver.getVersion ());
@@ -198,7 +197,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         if (!OS.isWindows ()) {
             Assert.fail ("IE is not supported.");
         }
-        if (appSetting ().isHeadlessMode ()) {
+        if (getBrowserSetting ().isHeadlessMode ()) {
             LOG.warn ("IE does not support headless mode. Hence, ignoring the same...");
         }
         return new InternetExplorerDriver (ieService, ieOptions);
@@ -206,7 +205,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
 
     private static WebDriver setupRemote () {
         LOG.info ("Setting up Remote driver...");
-        final RemoteSetting remoteSetting = appSetting ().getRemote ();
+        final RemoteSetting remoteSetting = getBrowserSetting ().getRemote ();
         final RemoteSource source = remoteSetting.getSource ();
         final DesiredCapabilities caps = new DesiredCapabilities ();
         switch (source) {
@@ -222,7 +221,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         if (!OS.isMac ()) {
             Assert.fail ("Safari is not supported.");
         }
-        if (appSetting ().isHeadlessMode ()) {
+        if (getBrowserSetting ().isHeadlessMode ()) {
             LOG.warn ("Safari does not support Headless mode. Hence, ignoring the same...");
         }
         final SafariOptions options = new SafariOptions ();
@@ -230,7 +229,6 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
     }
 
     private       AvailableBrowser availableBrowser;
-    private       String           browserName;
     private final DriverListener   listener;
 
     /**
@@ -257,18 +255,15 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
     }
 
     @Override
-    public void setBrowserUnderTest (final String browser) {
-        this.browserName = browser;
+    public void setBrowserSettingName (final String browser) {
+        setSession (browser);
     }
 
     @Override
     public void start () {
         LOG.info ("Starting the browser...");
-        String target = this.browserName;
-        if (target == null) {
-            target = getProperty (BROWSER, appSetting ().getBrowser ()
-                .name ());
-        }
+        final String target = getBrowserSetting ().getBrowser ()
+            .name ();
         this.availableBrowser = valueOf (target.toUpperCase ());
         final WebDriver driver = setupDriver (this.availableBrowser);
         if (isNull (driver)) {
@@ -276,7 +271,7 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
         }
         final EventFiringWebDriver wd = new EventFiringWebDriver (driver);
         wd.register (this.listener);
-        setSession (new BrowserSession (wd));
+        setDriver (wd);
         setupDriverOptions ();
         if (this.availableBrowser != REMOTE) {
             perform ().startRecording ();

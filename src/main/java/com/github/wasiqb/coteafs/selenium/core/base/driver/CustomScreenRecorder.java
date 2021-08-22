@@ -16,8 +16,8 @@
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.handleError;
-import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.FILTER_PKG;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getBrowserSetting;
 import static java.text.MessageFormat.format;
 import static org.monte.media.FormatKeys.EncodingKey;
 import static org.monte.media.FormatKeys.FrameRateKey;
@@ -57,7 +57,7 @@ import org.monte.screenrecorder.ScreenRecorder;
  */
 class CustomScreenRecorder extends ScreenRecorder {
     private static final Logger          LOG              = LogManager.getLogger ();
-    private static final RecorderSetting RECORDER_SETTING = appSetting ().getPlayback ()
+    private static final RecorderSetting RECORDER_SETTING = getBrowserSetting ().getPlayback ()
         .getRecording ();
     private static       ScreenRecorder  screenRecorder;
 
