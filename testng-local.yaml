@@ -2,6 +2,9 @@ name: Local Suite
 tests:
   - name: Test Local
     preserveOrder: true
+    parameters: {
+      test.browser: local
+    }
     classes:
       - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
         includedMethods:

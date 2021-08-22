@@ -24,12 +24,12 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  */
 public class BrowserSession extends DriverSession<EventFiringWebDriver> {
     /**
-     * @param driver Driver
+     * @param browserName Browser name
      *
      * @author Wasiq Bhamla
      * @since 28-Sep-2019
      */
-    BrowserSession (final EventFiringWebDriver driver) {
-        super (driver);
+    public BrowserSession (final String browserName) {
+        super (browserName);
     }
 }

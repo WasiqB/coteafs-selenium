@@ -16,8 +16,8 @@
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.handleError;
-import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.FILTER_PKG;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getBrowserSetting;
 import static com.google.common.truth.Truth.assertThat;
 import static java.lang.String.format;
 import static java.lang.Thread.currentThread;
@@ -69,7 +69,7 @@ public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> imple
 
     @Override
     public File saveScreenshot () {
-        final ScreenshotSetting setting = appSetting ().getPlayback ()
+        final ScreenshotSetting setting = getBrowserSetting ().getPlayback ()
             .getScreenshot ();
         final String path = setting.getPath ();
         final String prefix = setting.getPrefix ();
