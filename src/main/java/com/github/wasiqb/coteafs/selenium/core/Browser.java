@@ -16,7 +16,6 @@
 package com.github.wasiqb.coteafs.selenium.core;
 
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.fail;
-import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
 import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.close;
 import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getBrowserSetting;
 import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getSession;
@@ -30,8 +29,6 @@ import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.edgedriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.iedriver;
-import static java.lang.System.getProperty;
-import static java.lang.System.getenv;
 import static java.text.MessageFormat.format;
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
@@ -265,11 +262,8 @@ public class Browser extends AbstractDriver<EventFiringWebDriver> implements IWe
     @Override
     public void start () {
         LOG.info ("Starting the browser...");
-        String target = getenv (BROWSER);
-        if (target == null) {
-            target = getProperty (BROWSER, getBrowserSetting ().getBrowser ()
-                .name ());
-        }
+        final String target = getBrowserSetting ().getBrowser ()
+            .name ();
         this.availableBrowser = valueOf (target.toUpperCase ());
         final WebDriver driver = setupDriver (this.availableBrowser);
         if (isNull (driver)) {
