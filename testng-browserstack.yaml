@@ -1,0 +1,39 @@
+name: BrowserStack Suite
+parallel: tests
+threadCount: 5
+tests:
+  - name: Test BrowserStack Chrome
+    preserveOrder: true
+    parameters: {
+      test.browser: bs_chrome
+    }
+    classes:
+      - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
+        includedMethods:
+          - testLogin
+          - testCheckboxes
+          - testDropDownBox
+  - name: Test BrowserStack Firefox
+    parameters: {
+      test.browser: bs_firefox
+    }
+    classes:
+      - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
+        includedMethods:
+          - testLogin
+  - name: Test BrowserStack Edge
+    parameters: {
+      test.browser: bs_edge
+    }
+    classes:
+      - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
+        includedMethods:
+          - testLogin
+  - name: Test BrowserStack IE
+    parameters: {
+      test.browser: bs_ie
+    }
+    classes:
+      - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
+        includedMethods:
+          - testLogin

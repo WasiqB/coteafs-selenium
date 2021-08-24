@@ -15,6 +15,8 @@
  */
 package com.github.wasiqb.coteafs.selenium.error;
 
+import java.io.Serial;
+
 import com.github.wasiqb.coteafs.error.CoteafsError;
 
 /**
@@ -22,11 +24,12 @@ import com.github.wasiqb.coteafs.error.CoteafsError;
  * @since 28-Nov-2019
  */
 public class VideoRecordingError extends CoteafsError {
+    @Serial
     private static final long serialVersionUID = 6184267334962964373L;
 
     /**
-     * @param message
-     * @param cause
+     * @param message Message
+     * @param cause Exception
      *
      * @author Wasiq Bhamla
      * @since 28-Nov-2019

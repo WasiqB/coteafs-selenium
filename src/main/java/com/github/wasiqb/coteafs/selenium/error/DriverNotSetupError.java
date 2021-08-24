@@ -15,6 +15,8 @@
  */
 package com.github.wasiqb.coteafs.selenium.error;
 
+import java.io.Serial;
+
 import com.github.wasiqb.coteafs.error.CoteafsError;
 import com.github.wasiqb.coteafs.error.enums.Category;
 import com.github.wasiqb.coteafs.error.enums.Reason;
@@ -25,10 +27,11 @@ import com.github.wasiqb.coteafs.error.enums.Severity;
  * @since 03-Aug-2019
  */
 public class DriverNotSetupError extends CoteafsError {
+    @Serial
     private static final long serialVersionUID = -8652506910306288004L;
 
     /**
-     * @param message
+     * @param message Message
      *
      * @author Wasiq Bhamla
      * @since 03-Aug-2019

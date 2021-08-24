@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Wasiq Bhamla.
+ * Copyright (c) 2021, Wasiq Bhamla.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,22 +17,16 @@ package com.github.wasiqb.coteafs.selenium.config;
 
 import java.util.Map;
 
-import com.github.wasiqb.coteafs.selenium.core.enums.Protocol;
-import com.github.wasiqb.coteafs.selenium.core.enums.RemoteSource;
+import com.github.wasiqb.coteafs.datasource.annotation.DataFile;
 import lombok.Data;
 
-/**
- * @author Wasiq Bhamla
- * @since 01-Aug-2019
- */
 @Data
-public class RemoteSetting {
-    private Map<String, Object> capabilities;
-    private Map<String, Object> cloudCapabilities;
-    private String              password;
-    private int                 port;
-    private Protocol            protocol = Protocol.HTTP;
-    private RemoteSource        source;
-    private String              url;
-    private String              userId;
+@DataFile
+public class SeleniumConfig {
+    private BrowserSetting              browser;
+    private Map<String, BrowserSetting> browsers;
+
+    public BrowserSetting getBrowserSetting (final String name) {
+        return this.browsers.get (name);
+    }
 }

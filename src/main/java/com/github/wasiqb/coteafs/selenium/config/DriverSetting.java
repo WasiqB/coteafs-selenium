@@ -15,17 +15,14 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
-import com.github.wasiqb.coteafs.config.util.BasePojo;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author Wasiq Bhamla
  * @since 03-Aug-2019
  */
-@Getter
-@Setter
-public class DriverSetting extends BasePojo {
+@Data
+public class DriverSetting {
     private String  exeUrl;
     private boolean forceCache;
     private boolean forceDownload;

@@ -1,0 +1,10 @@
+name: Selenium Grid Suite
+tests:
+  - name: Test Grid
+    parameters: {
+      test.browser: grid
+    }
+    classes:
+      - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
+        includedMethods:
+          - testLogin

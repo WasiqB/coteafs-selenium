@@ -1,0 +1,149 @@
+browser: &default_browser
+  browser: CHROME
+  url: https://the-internet.herokuapp.com
+  params:
+    user: tomsmith
+    password: SuperSecretPassword!
+  playback:
+    screen_state: NORMAL
+    highlight: true
+    screen_resolution:
+      width: 1280
+      height: 768
+    delays:
+      implicit: 60
+      explicit: 60
+      before_key_press: 0
+      after_key_press: 0
+      before_mouse_move: 0
+      after_mouse_move: 0
+      before_click: 0
+      after_click: 0
+      page_load: 60
+      script_load: 60
+      highlight: 100
+    screenshot:
+      path: ./screenshots
+      prefix: SCR
+      extension: jpeg
+      capture_on_error: false
+      capture_all: true
+    recording:
+      enable: false
+      path: ./video
+      prefix: VID
+
+browsers:
+  local:
+    <<: *default_browser
+    headless_mode: true
+    #driver:
+    #  force_cache: true
+    #  force_download: true
+    #  path: /drivers/
+    #  version: 2.14
+    #  exe_url: https://driver/download/url
+  grid:
+    <<: *default_browser
+    headless_mode: true
+    remote:
+      url: localhost
+      port: 4444
+      source: GRID
+      capabilities:
+        browserName: chrome
+        version: 77.0.3865.75
+        platform: LINUX
+  bs_chrome:
+    <<: *default_browser
+    remote:
+      user_id: ${CLOUD_USER}
+      password: ${CLOUD_KEY}
+      protocol: HTTPS
+      url: hub-cloud.browserstack.com
+      source: BROWSERSTACK
+      capabilities:
+        browser: Chrome
+        browser_version: 83.0
+        os: Windows
+        os_version: 10
+        resolution: 1024x768
+        name: Bstack-[Java] Sample Chrome Test
+  bs_edge:
+    <<: *default_browser
+    remote:
+      user_id: ${CLOUD_USER}
+      password: ${CLOUD_KEY}
+      protocol: HTTPS
+      url: hub-cloud.browserstack.com
+      source: BROWSERSTACK
+      capabilities:
+        browser: Edge
+        browser_version: latest
+        os: Windows
+        os_version: 10
+        resolution: 1024x768
+        name: Bstack-[Java] Sample Edge Test
+  bs_firefox:
+    <<: *default_browser
+    remote:
+      user_id: ${CLOUD_USER}
+      password: ${CLOUD_KEY}
+      protocol: HTTPS
+      url: hub-cloud.browserstack.com
+      source: BROWSERSTACK
+      capabilities:
+        browser: Firefox
+        browser_version: latest
+        os: Windows
+        os_version: 10
+        resolution: 1024x768
+        name: Bstack-[Java] Sample Firefox Test
+  bs_ie:
+    <<: *default_browser
+    remote:
+      user_id: ${CLOUD_USER}
+      password: ${CLOUD_KEY}
+      protocol: HTTPS
+      url: hub-cloud.browserstack.com
+      source: BROWSERSTACK
+      capabilities:
+        browser: IE
+        browser_version: 11.0
+        os: Windows
+        os_version: 10
+        resolution: 1024x768
+        name: Bstack-[Java] Sample IE Test
+  bs_safari:
+    <<: *default_browser
+    remote:
+      user_id: ${CLOUD_USER}
+      password: ${CLOUD_KEY}
+      protocol: HTTPS
+      url: hub-cloud.browserstack.com
+      source: BROWSERSTACK
+      capabilities:
+        browser: Safari
+        browser_version: 13.1
+        os: OS X
+        os_version: Catalina
+        resolution: 1024x768
+        name: Bstack-[Java] Sample Safari Test
+  sl_chrome:
+    <<: *default_browser
+    browser: CHROME
+    url: http://demo.guru99.com/V4/
+    headless_mode: true
+    remote:
+      user_id: ${CLOUD_USER}
+      password: ${CLOUD_KEY}
+      protocol: HTTPS
+      url: ondemand.saucelabs.com
+      source: SAUCELABS
+      capabilities:
+        browserName: chrome
+        browserVersion: 75.0
+        platformVersion: Windows 10
+      cloud_capabilities:
+        seleniumVersion: 3.141.59
+        name: Sauce-[Java] Sample Test

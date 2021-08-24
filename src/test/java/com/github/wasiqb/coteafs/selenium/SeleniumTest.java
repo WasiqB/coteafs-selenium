@@ -15,7 +15,7 @@
  */
 package com.github.wasiqb.coteafs.selenium;
 
-import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getBrowserSetting;
 import static com.github.wasiqb.coteafs.selenium.pages.CheckboxPage.CheckboxPageKeys.CHECK;
 import static com.github.wasiqb.coteafs.selenium.pages.DropDownPage.DropDownKeys.OPTION;
 import static com.github.wasiqb.coteafs.selenium.pages.LoginPage.LoginPageKeys.PASS;
@@ -31,7 +31,7 @@ import com.github.wasiqb.coteafs.selenium.pages.MainPage;
 import com.github.wasiqb.coteafs.selenium.pages.action.CheckboxPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.DropDownPageAction;
 import com.github.wasiqb.coteafs.selenium.pages.action.LoginPageAction;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -41,11 +41,11 @@ import org.testng.annotations.Test;
 public class SeleniumTest extends BrowserTest {
     private MainPage main;
 
-    @BeforeClass
+    @BeforeMethod
     public void setupMethod () {
         this.main = new MainPage ();
         this.main.onDriver ()
-            .navigateTo (appSetting ().getUrl ());
+            .navigateTo (getBrowserSetting ().getUrl ());
     }
 
     /**
@@ -111,7 +111,7 @@ public class SeleniumTest extends BrowserTest {
     public void testLogin () {
         this.main.links ("Form Authentication")
             .click ();
-        final Map<String, String> loginParams = appSetting ().getParams ();
+        final Map<String, String> loginParams = getBrowserSetting ().getParams ();
         final LoginPageAction login = new LoginPageAction ();
         login.addInputValue (USER_ID, loginParams.get ("user"))
             .addInputValue (PASS, loginParams.get ("password"))

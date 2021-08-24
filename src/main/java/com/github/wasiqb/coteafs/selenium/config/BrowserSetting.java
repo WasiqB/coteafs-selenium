@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Wasiq Bhamla.
+ * Copyright (c) 2017-2020, Wasiq Bhamla.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,24 @@
  */
 package com.github.wasiqb.coteafs.selenium.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.github.wasiqb.coteafs.selenium.core.enums.AvailableBrowser;
 import lombok.Data;
 
 /**
  * @author Wasiq Bhamla
- * @since 27-Oct-2019
+ * @since Apr 8, 2018 2:41:06 PM
  */
 @Data
-public class RecorderSetting {
-    private boolean enable;
-    private String  path   = "./video";
-    private String  prefix = "VID";
+public class BrowserSetting {
+    private AvailableBrowser    browser  = AvailableBrowser.CHROME;
+    private DriverSetting       driver   = new DriverSetting ();
+    private boolean             headlessMode;
+    private String              hubUrl;
+    private Map<String, String> params   = new HashMap<> ();
+    private PlaybackSetting     playback = new PlaybackSetting ();
+    private RemoteSetting       remote;
+    private String              url;
 }

@@ -15,7 +15,9 @@
  */
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
+import com.github.wasiqb.coteafs.selenium.config.BrowserSetting;
 import com.github.wasiqb.coteafs.selenium.core.BrowserSession;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 /**
  * @author Wasiq Bhamla
@@ -32,6 +34,11 @@ public class ParallelSession {
         SESSION.remove ();
     }
 
+    public static BrowserSetting getBrowserSetting () {
+        return SESSION.get ()
+            .getSetting ();
+    }
+
     /**
      * @return session
      *
@@ -42,14 +49,19 @@ public class ParallelSession {
         return SESSION.get ();
     }
 
+    public static void setDriver (final EventFiringWebDriver driver) {
+        SESSION.get ()
+            .setDriver (driver);
+    }
+
     /**
-     * @param session
+     * @param browserName Browser name
      *
      * @author Wasiq Bhamla
      * @since 28-Sep-2019
      */
-    public static void setSession (final BrowserSession session) {
-        SESSION.set (session);
+    public static void setSession (final String browserName) {
+        SESSION.set (new BrowserSession (browserName));
     }
 
     private ParallelSession () {

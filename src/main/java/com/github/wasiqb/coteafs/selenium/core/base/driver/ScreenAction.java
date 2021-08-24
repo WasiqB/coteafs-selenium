@@ -16,8 +16,8 @@
 package com.github.wasiqb.coteafs.selenium.core.base.driver;
 
 import static com.github.wasiqb.coteafs.error.util.ErrorUtil.handleError;
-import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.FILTER_PKG;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getBrowserSetting;
 import static com.google.common.truth.Truth.assertThat;
 import static java.lang.String.format;
 import static java.lang.Thread.currentThread;
@@ -29,11 +29,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import com.github.wasiqb.coteafs.logger.Loggy;
 import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
 import com.github.wasiqb.coteafs.selenium.core.driver.IScreenAction;
 import com.google.common.truth.StringSubject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -46,13 +47,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * @since 27-Jul-2019
  */
 public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> implements IScreenAction, IDriverActions<D> {
-    private static final Loggy LOG = Loggy.init ();
+    private static final Logger LOG = LogManager.getLogger ();
 
     protected static void pause (final long delay) {
         try {
             sleep (delay);
         } catch (final InterruptedException e) {
-            LOG.e ("Error while pausing: {}", e.getMessage ());
+            LOG.error ("Error while pausing: {}", e.getMessage ());
             currentThread ().interrupt ();
         }
     }
@@ -68,7 +69,7 @@ public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> imple
 
     @Override
     public File saveScreenshot () {
-        final ScreenshotSetting setting = appSetting ().getPlayback ()
+        final ScreenshotSetting setting = getBrowserSetting ().getPlayback ()
             .getScreenshot ();
         final String path = setting.getPath ();
         final String prefix = setting.getPrefix ();
@@ -82,15 +83,15 @@ public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> imple
     @Override
     public File saveScreenshot (final String path) {
         final String msg = "Capturing screenshot and saving at [{}]...";
-        LOG.i (msg, path);
+        LOG.info (msg, path);
         try {
             final File source = ((TakesScreenshot) this.driver).getScreenshotAs (OutputType.FILE);
             final File destination = new File (path);
             copyFile (source, destination);
             return destination;
         } catch (final IOException e) {
-            LOG.e ("Error while saving screenshot.", e);
-            handleError (FILTER_PKG, e).forEach (LOG::e);
+            LOG.error ("Error while saving screenshot.", e);
+            handleError (FILTER_PKG, e).forEach (LOG::error);
         }
         return null;
     }
@@ -105,7 +106,7 @@ public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> imple
         try {
             CustomScreenRecorder.startRecording ();
         } catch (final Exception e) {
-            handleError (FILTER_PKG, e).forEach (LOG::e);
+            handleError (FILTER_PKG, e).forEach (LOG::error);
         }
     }
 
@@ -119,7 +120,7 @@ public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> imple
         try {
             CustomScreenRecorder.stopRecording ();
         } catch (final Exception e) {
-            handleError (FILTER_PKG, e).forEach (LOG::e);
+            handleError (FILTER_PKG, e).forEach (LOG::error);
         }
     }
 

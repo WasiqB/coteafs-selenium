@@ -15,18 +15,14 @@
  */
 package com.github.wasiqb.coteafs.selenium.core;
 
-import static com.github.wasiqb.coteafs.selenium.config.ConfigUtil.appSetting;
 import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.BROWSER;
-import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.CONFIG;
-import static com.github.wasiqb.coteafs.selenium.constants.ConfigKeys.COTEAFS_CONFIG_KEY;
-import static com.github.wasiqb.coteafs.selenium.utils.ReportPortalLoggy.log;
-import static java.lang.System.setProperty;
-import static org.apache.logging.log4j.util.Strings.isNotEmpty;
+import static com.github.wasiqb.coteafs.selenium.core.base.driver.ParallelSession.getBrowserSetting;
 
 import java.io.File;
 
 import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
-import com.github.wasiqb.coteafs.selenium.utils.LogLevel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -39,23 +35,20 @@ import org.testng.annotations.Parameters;
  * @since Sep 13, 2018 9:54:10 PM
  */
 public class BrowserTest {
-    private Browser browser;
+    private static final Logger  LOG = LogManager.getLogger ();
+    private              Browser browser;
 
     /**
-     * @param browserName Browser name
-     * @param configFile
+     * @param browserName Browser setting name
      *
      * @author wasiqb
      * @since Sep 13, 2018 9:55:41 PM
      */
-    @Parameters ({ BROWSER, CONFIG })
+    @Parameters ({ BROWSER })
     @BeforeTest (alwaysRun = true)
-    public void setupTest (@Optional final String browserName, @Optional final String configFile) {
-        if (isNotEmpty (configFile)) {
-            setProperty (COTEAFS_CONFIG_KEY, configFile);
-        }
+    public void setupTest (@Optional final String browserName) {
         this.browser = new Browser ();
-        this.browser.setBrowserUnderTest (browserName);
+        this.browser.setBrowserSettingName (browserName);
         this.browser.start ();
     }
 
@@ -66,8 +59,8 @@ public class BrowserTest {
      * @since Mar 21, 2019 6:46:47 PM
      */
     @AfterMethod (alwaysRun = true)
-    public void teardownMethod (final ITestResult result) {
-        final ScreenshotSetting screenshotSetting = appSetting ().getPlayback ()
+    public void tearDownMethod (final ITestResult result) {
+        final ScreenshotSetting screenshotSetting = getBrowserSetting ().getPlayback ()
             .getScreenshot ();
         final boolean screenshotOnError = screenshotSetting.isCaptureOnError ();
         final boolean captureAll = screenshotSetting.isCaptureAll ();
@@ -76,9 +69,9 @@ public class BrowserTest {
                 .saveScreenshot ();
             final Throwable cause = result.getThrowable ();
             if (cause != null) {
-                log (LogLevel.ERROR, screenshot, "Test Failed");
+                LOG.error ("Test Failed: Screenshot captured at [{}]", screenshot.getPath ());
             } else {
-                log (LogLevel.INFO, screenshot, "Screenshot captured.");
+                LOG.info ("Screenshot captured at path [{}]", screenshot.getPath ());
             }
         }
     }
@@ -88,7 +81,7 @@ public class BrowserTest {
      * @since Sep 13, 2018 9:57:12 PM
      */
     @AfterTest (alwaysRun = true)
-    public void teardownTest () {
+    public void tearDownTest () {
         this.browser.stop ();
     }
 }
