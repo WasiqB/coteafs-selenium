@@ -286,10 +286,10 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         with:
-          body_path: changelogs/latest.md
           tag_name: v${{ needs.push-pom.outputs.release-version }}
           name: Version ${{ needs.push-pom.outputs.release-version }}
           prerelease: false
+          generate_release_notes: true
           draft: false
           files: |
             target/*.jar
