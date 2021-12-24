@@ -4,8 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       release_type:
-        description: 'Release Type: major, minor, patch'
+        type: choice
+        description: 'Release Type'
         required: true
+        options:
+          - major
+          - minor
+          - patch
         default: 'minor'
 
 env:
