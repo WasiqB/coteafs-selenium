@@ -31,7 +31,6 @@ import java.util.Calendar;
 
 import com.github.wasiqb.coteafs.selenium.config.ScreenshotSetting;
 import com.github.wasiqb.coteafs.selenium.core.driver.IDriverActions;
-import com.github.wasiqb.coteafs.selenium.core.driver.IScreenAction;
 import com.google.common.truth.StringSubject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,7 +45,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * @author Wasiq Bhamla
  * @since 27-Jul-2019
  */
-public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> implements IScreenAction, IDriverActions<D> {
+public class ScreenAction<D extends WebDriver> extends BaseDriverAction<D> implements IDriverActions<D> {
     private static final Logger LOG = LogManager.getLogger ();
 
     protected static void pause (final long delay) {
