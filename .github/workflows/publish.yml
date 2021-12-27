@@ -20,18 +20,7 @@ env:
   NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
 jobs:
-  validate-input:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.release_type == 'major' ||
-      github.event.inputs.release_type == 'minor' ||
-      github.event.inputs.release_type == 'patch' }}
-    steps:
-      - name: Release Type selected for making release
-        run: echo "[${{ github.event.inputs.release_type }}] release in progress."
-
   prepare-release-snapshot:
-    needs:
-      - validate-input
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
