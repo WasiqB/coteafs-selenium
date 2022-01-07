@@ -1,4 +1,4 @@
-name: Test coteafs-appium project
+name: Test coteafs-selenium project
 
 on:
   push:
