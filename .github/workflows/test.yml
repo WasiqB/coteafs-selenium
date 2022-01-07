@@ -114,7 +114,7 @@ jobs:
         with:
           name: target
 
-      - name: Analyze code
+      - name: Analyse code
         env:
           SONAR_KEY: ${{ secrets.SONAR_KEY }}
           SONAR_ORG: ${{ secrets.SONAR_ORG }}
