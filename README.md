@@ -9,6 +9,7 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)][home]
 [![Discord](https://img.shields.io/discord/874329599285268561?label=Discord&logo=Discord&style=for-the-badge)](https://discord.gg/DWVM398zsC)
 [![GitHub Actions workflow](https://github.com/WasiqB/coteafs-selenium/actions/workflows/test.yml/badge.svg)](https://github.com/WasiqB/coteafs-selenium/actions/workflows/test.yml)
+![CodeQL](https://github.com/WasiqB/coteafs-selenium/workflows/CodeQL/badge.svg)
 [![Test Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.github.wasiqb.coteafs%3Aselenium&metric=coverage)][coverage]
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.github.wasiqb.coteafs%3Aselenium&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.wasiqb.coteafs%3Aselenium)
 [![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=com.github.wasiqb.coteafs%3Aselenium&metric=sqale_rating)](https://sonarcloud.io/component_measures?id=com.github.wasiqb.coteafs%3Aselenium&metric=Maintainability)
