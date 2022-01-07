@@ -24,7 +24,7 @@ body:
         - Edge
         - Safari
         - Other
-        - None
+        - Not Required
     validations:
       required: true
 
