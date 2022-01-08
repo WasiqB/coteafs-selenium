@@ -92,7 +92,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: target
-          path: ${{ github.workspace }}/target
+          path: |
+            ${{ github.workspace }}/target
+            ${{ github.workspace }}/reports
 
   analysis:
     needs:
