@@ -1,11 +1,6 @@
 name: Test coteafs-selenium project
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
   push:
     branches:
       - master
@@ -72,7 +67,7 @@ jobs:
           sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
           sudo apt-get update
           sudo apt-get install google-chrome-stable
-          docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:3.141.59
+          docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:4.1.1
 
       - name: Test execution
         env:
@@ -127,8 +122,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-            -Dsonar.projectKey=com.github.wasiqb.coteafs:selenium \
-            -DskipTests \
-            -Dcheckstyle.skip
+        run: mvn -B sonar:sonar -DskipTests -Dcheckstyle.skip

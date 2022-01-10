@@ -29,11 +29,3 @@ tests:
       - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
         includedMethods:
           - testLogin
-  - name: Test BrowserStack IE
-    parameters: {
-      test.browser: bs_ie
-    }
-    classes:
-      - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
-        includedMethods:
-          - testLogin

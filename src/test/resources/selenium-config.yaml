@@ -44,6 +44,7 @@ browsers:
     #  version: 2.14
     #  exe_url: https://driver/download/url
   grid:
+    browser: REMOTE
     <<: *default_browser
     headless_mode: true
     remote:
@@ -55,25 +56,27 @@ browsers:
         version: 77.0.3865.75
         platform: LINUX
   bs_chrome:
+    browser: REMOTE
     <<: *default_browser
     remote:
-      user_id: ${CLOUD_USER}
-      password: ${CLOUD_KEY}
+      user_id: ${env:CLOUD_USER}
+      password: ${env:CLOUD_KEY}
       protocol: HTTPS
       url: hub-cloud.browserstack.com
       source: BROWSERSTACK
       capabilities:
         browser: Chrome
-        browser_version: 83.0
+        browser_version: latest
         os: Windows
         os_version: 10
         resolution: 1024x768
         name: Bstack-[Java] Sample Chrome Test
   bs_edge:
+    browser: REMOTE
     <<: *default_browser
     remote:
-      user_id: ${CLOUD_USER}
-      password: ${CLOUD_KEY}
+      user_id: ${env:CLOUD_USER}
+      password: ${env:CLOUD_KEY}
       protocol: HTTPS
       url: hub-cloud.browserstack.com
       source: BROWSERSTACK
@@ -85,10 +88,11 @@ browsers:
         resolution: 1024x768
         name: Bstack-[Java] Sample Edge Test
   bs_firefox:
+    browser: REMOTE
     <<: *default_browser
     remote:
-      user_id: ${CLOUD_USER}
-      password: ${CLOUD_KEY}
+      user_id: ${env:CLOUD_USER}
+      password: ${env:CLOUD_KEY}
       protocol: HTTPS
       url: hub-cloud.browserstack.com
       source: BROWSERSTACK
@@ -100,43 +104,45 @@ browsers:
         resolution: 1024x768
         name: Bstack-[Java] Sample Firefox Test
   bs_ie:
+    browser: REMOTE
     <<: *default_browser
     remote:
-      user_id: ${CLOUD_USER}
-      password: ${CLOUD_KEY}
+      user_id: ${env:CLOUD_USER}
+      password: ${env:CLOUD_KEY}
       protocol: HTTPS
       url: hub-cloud.browserstack.com
       source: BROWSERSTACK
       capabilities:
         browser: IE
-        browser_version: 11.0
+        browser_version: latest
         os: Windows
         os_version: 10
         resolution: 1024x768
         name: Bstack-[Java] Sample IE Test
   bs_safari:
+    browser: REMOTE
     <<: *default_browser
     remote:
-      user_id: ${CLOUD_USER}
-      password: ${CLOUD_KEY}
+      user_id: ${env:CLOUD_USER}
+      password: ${env:CLOUD_KEY}
       protocol: HTTPS
       url: hub-cloud.browserstack.com
       source: BROWSERSTACK
       capabilities:
         browser: Safari
-        browser_version: 13.1
+        browser_version: latest
         os: OS X
-        os_version: Catalina
+        os_version: Big Sur
         resolution: 1024x768
         name: Bstack-[Java] Sample Safari Test
   sl_chrome:
     <<: *default_browser
-    browser: CHROME
+    browser: REMOTE
     url: http://demo.guru99.com/V4/
     headless_mode: true
     remote:
-      user_id: ${CLOUD_USER}
-      password: ${CLOUD_KEY}
+      user_id: ${env:CLOUD_USER}
+      password: ${env:CLOUD_KEY}
       protocol: HTTPS
       url: ondemand.saucelabs.com
       source: SAUCELABS
