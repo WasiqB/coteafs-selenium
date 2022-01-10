@@ -22,8 +22,6 @@ import com.github.wasiqb.coteafs.datasource.DataSource;
  * @since Aug 9, 2018 8:23:23 PM
  */
 public final class ConfigUtil {
-    private static BrowserSetting setting;
-
     /**
      * @param browserName Browser setting name.
      *
@@ -33,11 +31,8 @@ public final class ConfigUtil {
      * @since Aug 9, 2018 8:39:04 PM
      */
     public static BrowserSetting appSetting (final String browserName) {
-        if (setting == null) {
-            setting = DataSource.parse (SeleniumConfig.class)
-                .getBrowserSetting (browserName);
-        }
-        return setting;
+        return DataSource.parse (SeleniumConfig.class)
+            .getBrowserSetting (browserName);
     }
 
     private ConfigUtil () {
