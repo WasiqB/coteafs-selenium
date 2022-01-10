@@ -1,11 +1,6 @@
 name: Test coteafs-selenium project
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
   push:
     branches:
       - master
