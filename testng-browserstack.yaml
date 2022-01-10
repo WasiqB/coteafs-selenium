@@ -1,5 +1,5 @@
 name: BrowserStack Suite
-parallel: tests
+parallel: false
 threadCount: 5
 tests:
   - name: Test BrowserStack Chrome
