@@ -26,13 +26,13 @@
 ## :question: What is this Framework about?
 
 This is a Selenium WebDriver wrapper Framework which enables robust, maintainable and easy to write test scripts. _**It
-supports the latest stable Selenium WebDriver 3.141.59**_.
+supports the latest stable Selenium WebDriver 4.1.1**_.
 
 ## :bulb: What features do this framework offer?
 
 Some key features which this framework offers are as follows:
 
-:point_right: Latest stable Selenium WebDriver 3.141.59.
+:point_right: Latest stable Selenium WebDriver 4.1.1
 
 :point_right: Minimal learning curve.
 
@@ -87,7 +87,7 @@ Config file is by default searched in `src/test/resources` folder. The name of t
 as `selenium-config.yaml`. But the same can be overridden by using System property `coteafs.selenium.config` where you
 can specify the new config file for the test.
 
-#### Sample Config file
+### Sample Config file
 
 `src/test/resources/selenium-config.yaml`
 
@@ -167,7 +167,7 @@ site.
 
 > Remember, `BrowserPage` class needs to be extended for every page and also a flavour of inheritance can be added as per requirement.
 
-#### Sample Page object
+### Sample Page object
 
 ```java
 package com.github.wasiqb.coteafs.selenium.pages;
@@ -210,7 +210,7 @@ place.
 > For every page action you need to extend `AbstractPageAction`. Since it is a generic class, you need to pass the action class name as it's generic type.
 > Also, `perform` method needs to be implemented for every action class.
 
-#### Sample page action
+### Sample page action
 
 ```java
 package com.github.wasiqb.coteafs.selenium.pages.action;
@@ -252,7 +252,7 @@ public class LoginPageAction extends AbstractPageAction<LoginPageAction> {
 Test which are written using this framework are slightly different than usual. In the tests, Page actions is used
 instead of page objects. This can be demonstrated as shown below:
 
-#### Sample Test
+### Sample Test
 
 > Every test class extends `BrowserTest` class.
 

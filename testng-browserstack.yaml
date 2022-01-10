@@ -1,5 +1,5 @@
 name: BrowserStack Suite
-parallel: false
+parallel: tests
 threadCount: 5
 tests:
   - name: Test BrowserStack Chrome
@@ -24,14 +24,6 @@ tests:
   - name: Test BrowserStack Edge
     parameters: {
       test.browser: bs_edge
-    }
-    classes:
-      - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
-        includedMethods:
-          - testLogin
-  - name: Test BrowserStack IE
-    parameters: {
-      test.browser: bs_ie
     }
     classes:
       - name: com.github.wasiqb.coteafs.selenium.SeleniumTest
