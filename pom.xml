@@ -38,6 +38,7 @@
         <lombok.version>1.18.22</lombok.version>
         <jackson.version>2.13.1</jackson.version>
         <sonar.projectKey>com.github.wasiqb.coteafs:selenium</sonar.projectKey>
+        <sonar.java.libraries>target/dependency/*.jar</sonar.java.libraries>
     </properties>
 
     <dependencies>
