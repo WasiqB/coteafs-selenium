@@ -6,6 +6,10 @@
 
 <h1 align="center">Selenium WebDriver wrapper Framework in Java, which supports Automation of most of the web browsers.</h1>
 
+<div align="center">
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/WasiqB/coteafs-selenium)
+
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)][home]
 [![Discord](https://img.shields.io/discord/874329599285268561?label=Discord&logo=Discord&style=for-the-badge)](https://discord.gg/DWVM398zsC)
 [![GitHub Actions workflow](https://github.com/WasiqB/coteafs-selenium/actions/workflows/test.yml/badge.svg)](https://github.com/WasiqB/coteafs-selenium/actions/workflows/test.yml)
@@ -20,6 +24,8 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.wasiqb.coteafs/selenium.svg)][maven]
 [![Github Releases](https://img.shields.io/github/downloads/WasiqB/coteafs-selenium/total.svg)](https://github.com/WasiqB/coteafs-selenium/releases)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+</div>
 
 > **Detailed documentation on main project site is under development.**
 
@@ -65,14 +71,14 @@ You can use the following dependency into your `pom.xml` to use this library.
 <dependency>
     <groupId>com.github.wasiqb.coteafs</groupId>
     <artifactId>selenium</artifactId>
-    <version>4.0.0</version>
+    <version>4.2.0</version>
 </dependency>
 ```
 
 Or you can add the following into your `build.gradle` file.
 
  ```gradle
- compile "com.github.wasiqb.coteafs:selenium:4.0.0"
+ compile "com.github.wasiqb.coteafs:selenium:4.2.0"
  ```
 
 ## :smile: How it is easy to write Tests with this Framework?
@@ -84,8 +90,7 @@ Getting hands-on with this framework requires minimal time. You can start writin
   <br/>
 
 Config file is by default searched in `src/test/resources` folder. The name of the config file is by default considered
-as `selenium-config.yaml`. But the same can be overridden by using System property `coteafs.selenium.config` where you
-can specify the new config file for the test.
+as `selenium-config.yaml`.
 
 ### Sample Config file
 
@@ -154,7 +159,7 @@ browsers:
         capture_all: true       # always capture screenshot on each event, when true.
 ```
 
-> **Note:** If you find any config not working, feel free to raise an [issue][].
+> **Note:** If you find any config not working, feel free to raise [an issue][].
 
 </details>
 
@@ -162,8 +167,8 @@ browsers:
   <summary><strong>2. :page_facing_up: Create Page object class</strong></summary>
   <br/>
 
-Checkout the following examples which will guide you in writing tests. Lets have a look at the Login page of Guru99 demo
-site.
+Checkout the following examples which will guide you in writing tests. Let's have a look at the Login page of Guru99
+demo site.
 
 > Remember, `BrowserPage` class needs to be extended for every page and also a flavour of inheritance can be added as per requirement.
 
