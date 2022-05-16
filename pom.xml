@@ -36,7 +36,7 @@
         <commons.text.version>1.9</commons.text.version>
         <recorder.version>0.7.7.0</recorder.version>
         <lombok.version>1.18.22</lombok.version>
-        <jackson.version>2.13.1</jackson.version>
+        <jackson.version>2.13.2.1</jackson.version>
         <sonar.projectKey>com.github.wasiqb.coteafs:selenium</sonar.projectKey>
         <sonar.java.libraries>target/dependency/*.jar</sonar.java.libraries>
     </properties>
