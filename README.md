@@ -1,3 +1,7 @@
+# 🚨🚨 This project is no longer maintained!
+## 📢 I have created new project [Boyka-Framework](https://github.com/BoykaFramework/boyka-framework) which has all the functionality this project provides and many more features.
+## PLEASE START USING [BOYKA-FRAMEWORK](https://github.com/BoykaFramework/boyka-framework) INSTEAD!!!
+
 <p align="center">
   <a href="">
     <img src="assets/coteafs-selenium-logo.png" width=300 padding=10 />
