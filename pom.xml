@@ -33,7 +33,7 @@
         <commons.io.version>2.11.0</commons.io.version>
         <webdrivermanager-version>5.0.3</webdrivermanager-version>
         <faker.version>1.0.2</faker.version>
-        <commons.text.version>1.9</commons.text.version>
+        <commons.text.version>1.10.0</commons.text.version>
         <recorder.version>0.7.7.0</recorder.version>
         <lombok.version>1.18.22</lombok.version>
         <jackson.version>2.13.1</jackson.version>
